@@ -11,6 +11,11 @@ def index(request):
     #return HttpResponse("欢迎进入前台首页！")
     return render(request,"web/index.html")
 
+def login(request):
+    '''前台首页'''
+    #return HttpResponse("欢迎进入前台首页！")
+    return render(request,"web/login.html")
+
 def test(request):
     # 连接es时host只写ip
     es_host = 'http://172.16.20.60'
