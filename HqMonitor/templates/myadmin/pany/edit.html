@@ -4,52 +4,53 @@
     <h3>
         会员信息管理
     </h3>
-    <form id="edit-profile" action="{% url 'myadmin_users_update' user.id %}" class="form-horizontal" method="post">
+    <form id="edit-profile" action="{% url 'myadmin_pany_update' comp.id %}" class="form-horizontal" method="post">
         {% csrf_token %}
         <fieldset>
             <legend>编辑会员信息</legend>
             <div class="control-group">
-                <label class="control-label" for="input01">账号：</label>
+                <label class="control-label" for="input01">企业名称：</label>
                 <div class="controls">
-                    {{ user.username }}
+                    {{ comp.comp_name }}
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="input01">真实姓名：</label>
+                <label class="control-label" for="input01">企业地址：</label>
                 <div class="controls">
-                    <input type="text" name="name" class="input-xlarge" id="input01" value="{{ user.name }}" />
+                    <input type="text" name="address" class="input-xlarge" id="input01" value="{{ comp.address }}" />
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="input01">性别：</label>
+                <label class="control-label" for="input01">联系人：</label>
                 <div class="controls">
-                    <input type="radio" name="sex" class="input-xlarge" id="input01" value="1"
-                    {% if user.sex == 1 %}checked{% endif %} /> 男
-                    <input type="radio" name="sex" class="input-xlarge" id="input01" value="0"
-                    {% if user.sex == 0 %}checked{% endif %} /> 女
+                    <input type="text" name="name" class="input-xlarge" id="input01" value="{{ comp.name }}" />
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label" for="input01">电话：</label>
                 <div class="controls">
-                    <input type="text" name="phone" class="input-xlarge" id="input01" value="{{ user.phone }}" />
+                    <input type="text" name="phone" class="input-xlarge" id="input01" value="{{ comp.phone }}" />
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="input01">email邮箱：</label>
+                <label class="control-label" for="input01">企业IP：</label>
                 <div class="controls">
-                    <input type="text" name="email" class="input-xlarge" id="input01" value="{{ user.email }}" />
+                    <input type="text" name="compip" class="input-xlarge" id="input01" value="{{ comp.comp_ip }}" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="input01">企业域名：</label>
+                <div class="controls">
+                    <input type="text" name="comprealm" class="input-xlarge" id="input01" value="{{ comp.comp_realm }}" />
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label" for="input01">状态：</label>
                 <div class="controls">
-                    <input type="radio" name="state" class="input-xlarge" id="input01" value="0"
-                    {% if user.state == 0 %}checked{% endif %} /> 管理员
                     <input type="radio" name="state" class="input-xlarge" id="input01" value="1"
-                    {% if user.state == 1 %}checked{% endif %} /> 启用会员
+                    {% if comp.state == 1 %}checked{% endif %} /> 启用
                     <input type="radio" name="state" class="input-xlarge" id="input01" value="2"
-                    {% if user.state == 2 %}checked{% endif %} /> 禁用用户
+                    {% if comp.state == 2 %}checked{% endif %} /> 禁用
                 </div>
             </div>
             <div class="form-actions">

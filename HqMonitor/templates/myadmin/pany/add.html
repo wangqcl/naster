@@ -1,0 +1,61 @@
+{% extends "myadmin/base.html" %}
+
+{% block mainbody %}
+    <h3>
+        会员信息管理
+    </h3>
+    <form id="edit-profile" action="{% url 'myadmin_pany_insert' %}" class="form-horizontal" method="post">
+        {% csrf_token %}
+        <fieldset>
+            <legend>添加会员信息</legend>
+            <div class="control-group">
+                <label class="control-label" for="input01">企业名称：</label>
+                <div class="controls">
+                    <input type="text" name="compname" class="input-xlarge" id="input01" value="" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="input01">企业地址：</label>
+                <div class="controls">
+                    <input type="text" name="address" class="input-xlarge" id="input01"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="input01">联系人：</label>
+                <div class="controls">
+                    <input type="text" name="name" class="input-xlarge" id="input01"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="input01">联系人电话：</label>
+                <div class="controls">
+                    <input type="text" name="phone" class="input-xlarge" id="input01"/>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="input01">企业IP：</label>
+                <div class="controls">
+                    <input type="text" name="compip" class="input-xlarge" id="input01"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="input01">企业域名：</label>
+                <div class="controls">
+                    <input type="text" name="comprealm" class="input-xlarge" id="input01"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="input01">状态：</label>
+                <div class="controls">
+                    <input type="radio" name="state" class="input-xlarge" id="input01" value="1" /> 启用
+                    <input type="radio" name="state" class="input-xlarge" id="input01" value="0" /> 禁用
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">添加</button> <button type="reset" class="btn">重置</button>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}

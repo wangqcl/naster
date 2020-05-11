@@ -10,8 +10,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="JavaScript File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -25,19 +25,21 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/HqMonitor/static" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/HqMonitor/templates/myadmin/pany" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\monitor\HqMonitor\templates\myadmin\pany" />
       <recent name="E:\monitor\HqMonitor\static" />
       <recent name="E:\monitor\HqMonitor\templates\myadmin" />
       <recent name="E:\monitor\HqMonitor\static\login\img" />
       <recent name="E:\monitor\HqMonitor\static\login\img\order" />
-      <recent name="E:\monitor\HqMonitor\static\login\css" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\monitor\HqMonitor\static\login\img" />
@@ -60,6 +62,11 @@
       <workItem from="1588833527620" duration="3443000" />
       <workItem from="1588836982319" duration="2358000" />
       <workItem from="1588839399556" duration="5186000" />
+      <workItem from="1588900806243" duration="380000" />
+      <workItem from="1588901192788" duration="22061000" />
+      <workItem from="1588988083504" duration="8949000" />
+      <workItem from="1589002877071" duration="8753000" />
+      <workItem from="1589159539004" duration="2358000" />
     </task>
     <servers />
   </component>

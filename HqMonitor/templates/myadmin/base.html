@@ -20,7 +20,7 @@
                         <div class="nav-collapse">
                             <ul class="nav">
                                 <li class="active">
-                                    <a href="##">首页</a>
+                                    <a href="{% url 'myadmin_index' %}">首页</a>
                                 </li>
                                 <li>
                                     <a href="settings.htm">在线设置</a>
@@ -65,7 +65,7 @@
                                     <a href="profile.htm">@{{ request.session.adminuser }}</a>
                                 </li>
                                 <li>
-                                    <a href="##">退出</a>
+                                    <a href="{% url 'myadmin_logout' %}">退出</a>
                                 </li>
                             </ul>
                         </div>
@@ -83,25 +83,25 @@
                                 导航栏
                             </li>
                             <li class="active">
-                                <a href="##"><i class="icon-white icon-home"></i> 首页</a>
+                                <a href="{% url 'myadmin_index' %}"><i class="icon-white icon-home"></i> 首页</a>
                             </li>
                             <li class="nav-header">
                                 会员管理
                             </li>
                             <li>
-                                <a href="##"><i class="icon-folder-open"></i> 浏览会员</a>
+                                <a href="{% url 'myadmin_users_index' 1 %}"><i class="icon-folder-open"></i> 浏览会员</a>
                             </li>
                             <li>
-                                <a href="##"><i class="icon-check"></i> 添加会员</a>
+                                <a href="{% url 'myadmin_users_add' %}"><i class="icon-check"></i> 添加会员</a>
                             </li>
                             <li class="nav-header">
                                 类别管理
                             </li>
                             <li>
-                                <a href="##"><i class="icon-envelope"></i> 浏览类别</a>
+                                <a href="{% url 'myadmin_pany_index' %}"><i class="icon-envelope"></i> 浏览企业</a>
                             </li>
                             <li>
-                                <a href="##"><i class="icon-file"></i> 添加类别</a>
+                                <a href="{% url 'myadmin_pany_add' %}"><i class="icon-file"></i> 添加企业</a>
                             </li>
                              <li class="nav-header">
                                 信息管理
@@ -140,5 +140,6 @@
         <script src="{% static 'myadmin/js/jquery.min.js' %}"></script>
         <script src="{% static 'myadmin/js/bootstrap.min.js' %}"></script>
         <script src="{% static 'myadmin/js/site.js' %}"></script>
+        <script src="{% static 'myadmin/js/yz.js' %}"></script>
     </body>
 </html>

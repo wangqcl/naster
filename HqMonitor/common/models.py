@@ -4,13 +4,13 @@ from datetime import datetime
 #用户信息模型
 class Users(models.Model):
     username = models.CharField(max_length=32) #账号
-    name = models.CharField(max_length=16)      #真实姓名
+    name = models.CharField(max_length=16,null=True)      #真实姓名
     password = models.CharField(max_length=32)  #密码
     sex = models.IntegerField(default=1)        #性别
-    phone = models.CharField(max_length=16)     #电话
-    email = models.CharField(max_length=50)     #Emai
+    phone = models.CharField(max_length=16,null=True)     #电话
+    email = models.CharField(max_length=50,null=True)     #Emai
     state = models.IntegerField(default=1)      #状态
-    comp_id = models.IntegerField()             #对应公司信息ID
+    comp_id = models.IntegerField(null=True)             #对应公司信息ID
     addtime = models.DateTimeField(default=datetime.now)    #注册时间
 
     def toDict(self):
@@ -22,15 +22,16 @@ class Users(models.Model):
 #公司信息表
 class Compinfo(models.Model):
     comp_name = models.CharField(max_length=16)  # 企业名称
-    address = models.CharField(max_length=255)  # 地址
-    name = models.CharField(max_length=16)  # 企业联系人
-    phone = models.CharField(max_length=16)  # 电话
+    address = models.CharField(max_length=255,null=True)  # 地址
+    name = models.CharField(max_length=16,null=True)  # 企业联系人
+    phone = models.CharField(max_length=16,null=True)  # 电话
     comp_ip = models.CharField(max_length=32)  # 企业IP
     comp_realm = models.CharField(max_length=32)  # 企业域名
+    state = models.IntegerField(default=1) #企业信息状态
     addtime = models.DateTimeField(default=datetime.now)  # 注册时间
 
     def toDict(self):
-        return {'id':self.id,'comp_name':self.comp_name,'address':self.address,'name':self.name,'phone':self.phone,'comp_ip':self.comp_ip,'comp_realm':self.comp_realm,'addtime':self.addtime}
+        return {'id':self.id,'comp_name':self.comp_name,'address':self.address,'name':self.name,'phone':self.phone,'comp_ip':self.comp_ip,'comp_realm':self.comp_realm,'state':self.state,'addtime':self.addtime}
 
     class Meta:
         db_table = "compinfo"  # 更改表名

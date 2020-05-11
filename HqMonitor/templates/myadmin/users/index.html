@@ -4,18 +4,20 @@
     <h4>
         会员信息管理
     </h4>
+
     <form class="form-inline" action="{% url 'myadmin_users_index' 1 %}" method="get">
-  <label>关键字：</label>
-  <input type="text" name="keyword" value="{{request.GET.keyword}}" class="input-small" placeholder="账号/姓名">
-  <label>性别：</label>
-  <select name="sex" class="span1">
-	  <option value="">全部</option>
-	  <option value="1" {% if request.GET.sex == '1' %}selected{% endif %}>男</option>
-	  <option value="0" {% if request.GET.sex == '0' %}selected{% endif %}>女</option>
-  </select>
-  <button type="submit" class="btn">搜索</button>
-  <a href="{% url 'myadmin_users_index' 1 %}" class="btn">全部</a>
-</form>
+      <label>关键字：</label>
+      <input type="text" name="keyword" value="{{request.GET.keyword}}" class="input-small" placeholder="账号/姓名">
+      <label>性别：</label>
+      <select name="sex" class="span1">
+          <option value="">全部</option>
+          <option value="1" {% if request.GET.sex == '1' %}selected{% endif %}>男</option>
+          <option value="0" {% if request.GET.sex == '0' %}selected{% endif %}>女</option>
+      </select>
+      <button type="submit" class="btn">搜索</button>
+      <a href="{% url 'myadmin_users_index' 1 %}" class="btn">全部</a>
+    </form>
+
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
@@ -39,16 +41,16 @@
                 <td>
                     {% if vo.state == 0 %}
                         <span style="color:green">管理员</span>
-                        {% if vo.state == 2 %}启用会员
-                        {% endif %}
+                    {% elif vo.state == 1 %}
+                    <span style="color:#368938">启用会员</span>
                     {% else %}
-                        <span style="color:red">禁停用户</span>
+                    <span style="color:red">禁停用户</span>
                     {% endif %}
                 </td>
                 <td>
                     <a href="{% url 'myadmin_users_resetpass' vo.id %}"  class="btn btn-mini btn-success">修改密码</a>
-                    <a href="{% url 'myadmin_users_del' vo.id %}" class="btn btn-mini btn-primary">删除</a>
-                    <a href="{% url 'myadmin_users_edit' vo.id %}" class="btn btn-mini btn-danger">编辑</a>
+                    <a href="{% url 'myadmin_users_edit' vo.id %}" class="btn btn-mini btn-primary">编辑</a>
+                    <a href="{% url 'myadmin_users_del' vo.id %}" class="btn btn-mini btn-danger">删除</a>
                 </td>
             </tr>
             {% endfor %}
@@ -60,7 +62,7 @@
 			<a href="{% url 'myadmin_users_index' pIndex|add:-1 %}?{{ mywhere|join:'&' }}">&laquo;</a>
 		</li>
 		{% for p in plist %}
-		<li {% if pIndex == p %}class="active"{% endif %}>
+		<li {% if pIndex == p %} class="active" {% endif %}>
 			<a href="{% url 'myadmin_users_index' p %}?{{ mywhere|join:'&' }}">{{p}}</a>
 		</li>
 		{% endfor %}

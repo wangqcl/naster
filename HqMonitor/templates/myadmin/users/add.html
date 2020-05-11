@@ -40,18 +40,6 @@
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="input01">地址：</label>
-                <div class="controls">
-                    <input type="text" name="address" class="input-xlarge" id="input01"/>
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="input01">邮编：</label>
-                <div class="controls">
-                    <input type="text" name="code" class="input-xlarge" id="input01"/>
-                </div>
-            </div>
-            <div class="control-group">
                 <label class="control-label" for="input01">电话：</label>
                 <div class="controls">
                     <input type="text" name="phone" class="input-xlarge" id="input01"/>
@@ -63,6 +51,18 @@
                     <input type="text" name="email" class="input-xlarge" id="input01"/>
                 </div>
             </div>
+
+            <div class="control-group">
+                <label class="control-label" for="input01">所属企业：</label>
+                <div class="controls">
+                    <select name="compid">
+                        {% for vo in complist %}
+                            <option value="{{ vo.id }}">{{ vo.comp_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary">添加</button> <button type="reset" class="btn">重置</button>
             </div>
