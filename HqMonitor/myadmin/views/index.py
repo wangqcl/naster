@@ -3,14 +3,20 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
 
-from common.models import Users
+from common.models import Users,Compinfo
 import time,json
 
 # 后台首页
 def index(request):
     '''后台首页'''
+    us_count = Users.objects.exclude(state=3).all().count()
+    co_count = Compinfo.objects.exclude(state=3).all().count()
+    context = {
+        "us_count":us_count,
+        "co_count":co_count
+    }
     #return HttpResponse("欢迎进入后台首页！")
-    return render(request,"myadmin/index.html")
+    return render(request,"myadmin/index.html",context)
 
 # ==============后台管理员操作====================
 # 会员登录表单
@@ -25,27 +31,38 @@ def dologin(request):
     if verifycode != code:
         context = {'info': '验证码错误！'}
         return render(request, "myadmin/login.html", context)
+    # 判断是否有特殊字符
+    user_name = request.POST['username']
+    string = "~!@#$%^&*()_+-*/<>,.[]\/"
+    for i in string:
+        if i in user_name:
+            print(i)
+            context = {'info': '您的输入包含特殊字符,请重新输入！'}
+            return render(request, "myadmin/login.html", context)
+
     try:
         # 根据账号获取登录者信息
-        user = Users.objects.get(username=request.POST['username'])
-        print(user.username)
+        user = Users.objects.get(username=user_name)
+        passw = request.POST['password']
+        sa = passw[0:5]
+        #print(user.username)
         # 判断当前用户是否是后台管理员用户
         if user.state == 0:
             # 验证密码
             import hashlib
             m = hashlib.md5()
-            m.update(bytes(request.POST['password'], encoding="utf8"))
+            m.update(bytes(passw+sa, encoding="utf8"))
             if user.password == m.hexdigest():
                 # 此处登录成功，将当前登录信息放入到session中，并跳转页面
                 request.session['adminuser'] = user.username
                 # print(json.dumps(user))
                 return redirect(reverse('myadmin_index'))
             else:
-                context = {'info': '登录密码错误！'}
+                context = {'info': '登录账号/密码错误！'}
         else:
-            context = {'info': '此用户非后台管理用户！'}
+            context = {'info': '无登录权限！'}
     except:
-        context = {'info': '登录账号错误！'}
+        context = {'info': '登录账号/密码错误！'}
     return render(request, "myadmin/login.html", context)
 
 # 会员退出

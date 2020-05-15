@@ -4,8 +4,8 @@
 <head>
 <meta charset="utf-8">
 <title>index</title>
-<script type="text/javascript" src="{% static 'web/js/jquery.js' %}"></script>
-<link rel="stylesheet" href="{% static 'web/css/comon0.css' %}">
+<script type="text/javascript" src="{% static 'monit/js/jquery.js' %}"></script>
+<link rel="stylesheet" href="{% static 'monit/css/comon0.css' %}">
 </head>
 	<script>
 	$(window).load(function(){  
@@ -22,14 +22,14 @@ $(document).ready(function(){
 });
 	});
 	</script>
-	<script type="text/javascript" src="{% static 'web/js/echarts.min.js'%}"></script> 
-	<script language="JavaScript" src="{% static 'web/js/js.js'%}"></script> 
+	<script type="text/javascript" src="{% static 'monit/js/echarts.min.js'%}"></script>
+	<script language="JavaScript" src="{% static 'monit/js/js.js'%}"></script>
 <body>
 <div class="canvas" style="opacity: .2">
-	<iframe frameborder="0" src="{% static 'web/js/index.html'%}" style="width: 100%; height: 100%"></iframe>
+	<iframe frameborder="0" src="{% static 'monit/js/index.html'%}" style="width: 100%; height: 100%"></iframe>
 	</div>
 <div class="loading">
-  <div class="loadbox"> <img src="{% static 'web/picture/loading.gif'%}"> 页面加载中... </div>
+  <div class="loadbox"> <img src="{% static 'monit/picture/loading.gif'%}"> 页面加载中... </div>
 </div>
 <div class="head">
   <h1>大数据可视化展板通用模板</h1>
@@ -96,9 +96,9 @@ $(document).ready(function(){
         </div>
       </div>
       <div class="map">
-        <div class="map1"><img src="{% static 'web/picture/lbx.png'%}"></div>
-        <div class="map2"><img src="{% static 'web/picture/jt.png'%}"></div>
-        <div class="map3"><img src="{% static 'web/picture/map.png'%}"></div>
+        <div class="map1"><img src="{% static 'monit/picture/lbx.png'%}"></div>
+        <div class="map2"><img src="{% static 'monit/picture/jt.png'%}"></div>
+        <div class="map3"><img src="{% static 'monit/picture/map.png'%}"></div>
         <div class="map4" id="map_1"></div>
       </div>
     </li>
@@ -124,8 +124,8 @@ $(document).ready(function(){
 <div class="back"></div>
 
 
-<script type="text/javascript" src="{% static 'web/js/china.js'%}"></script> 
-<script type="text/javascript" src="{% static 'web/js/area_echarts.js'%}"></script>
-<script type="text/javascript" src="{% static 'web/js/controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'monit/js/china.js'%}"></script>
+<script type="text/javascript" src="{% static 'monit/js/area_echarts.js'%}"></script>
+<script type="text/javascript" src="{% static 'monit/js/controller.js' %}"></script>
 </body>
 </html>

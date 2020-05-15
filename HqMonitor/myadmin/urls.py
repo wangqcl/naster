@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from myadmin.views import index,users,pany
+from myadmin.views import index,users,pany,lation
 
 urlpatterns = [
     # 后台首页
@@ -23,11 +23,18 @@ urlpatterns = [
     url(r'^verify$', index.verify, name="myadmin_verify"),  # 验证码
 
     #公司信息维护
-    url(r'^pany$', pany.index, name="myadmin_pany_index"),   #会员首页
-    url(r'^pany/add$', pany.add, name="myadmin_pany_add"),  # 添加会员
+    url(r'^pany/(?P<pIndex>[0-9]+)$', pany.index, name="myadmin_pany_index"),   #业务信息首页
+    url(r'^pany/add$', pany.add, name="myadmin_pany_add"),  # 添加信息
     url(r'^pany/insert$', pany.insert, name="myadmin_pany_insert"),  # 执行添加
-    url(r'^pany/del/(?P<uid>[0-9]+)$', pany.delete, name="myadmin_pany_del"),  # 删除会员
-    url(r'^pany/edit/(?P<uid>[0-9]+)$', pany.edit, name="myadmin_pany_edit"),  # 编辑会员
-    url(r'^pany/update/(?P<uid>[0-9]+)$', pany.update, name="myadmin_pany_update"),  # 更新会员
+    url(r'^pany/del/(?P<uid>[0-9]+)$', pany.delete, name="myadmin_pany_del"),  # 删除业务信息
+    url(r'^pany/edit/(?P<uid>[0-9]+)$', pany.edit, name="myadmin_pany_edit"),  # 编辑业务信息
+    url(r'^pany/update/(?P<uid>[0-9]+)$', pany.update, name="myadmin_pany_update"),  # 更新业务信息
 
+    #客户-业务信息关系
+    url(r'^lation/(?P<uid>[0-9]+)$', lation.index, name="myadmin_lation_index"),   #会员首页
+    url(r'^lation/add(?P<uid>[0-9]+)$', lation.add, name="myadmin_lation_add"),  # 添加会员
+    url(r'^lation/insert$', lation.insert, name="myadmin_lation_insert"),  # 执行添加
+    url(r'^lation/del/(?P<uid>[0-9]+)$', lation.delete, name="myadmin_lation_del"),  # 删除会员
+    url(r'^lation/edit/(?P<uid>[0-9]+)$', lation.edit, name="myadmin_lation_edit"),  # 编辑会员
+    url(r'^lation/update/(?P<uid>[0-9]+)$', lation.update, name="myadmin_lation_update"),  # 更新会员
 ]

@@ -1,0 +1,63 @@
+{% extends "myadmin/base.html" %}
+
+{% block mainbody %}
+    <h3>
+        会员信息管理
+    </h3>
+<div class="form-horizontal">
+    <legend>权限信息添加</legend>
+            <div class="control-group">
+                <label class="control-label" for="input01">账号：</label>
+                <div class="controls">
+<!--                    <input type="text" name="username" class="input-xlarge uneditable-input" id="input01"  value="{{ user.username }}" />-->
+                    <span class="input-xlarge uneditable-input">{{ user.username }}</span>
+                </div>
+            </div>
+            <div class="control-group dropdown">
+                <label class="control-label" for="input01">所属企业：</label>
+                    <div class="controls">
+                      <select id="select_id" name="comp_name" class="input-xlarge">
+                          <option value="">全部</option>
+                          {% for la in la_list %}
+                          <option value="{{ la.id }}">{{ la.comp_name }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+            </div>
+            <div class="form-actions">
+                <button class="btn btn-primary" id="btn_add">添加权限</button>
+                <button class="btn" id="btn_ret">返回</button>
+            </div>
+</div>
+            <script>
+
+                $(document).ready(function() {
+                    $("#btn_add").click(function () { //获取添加按钮的ID
+                        //alert(document.getElementById("select_id").value); //获取ID的值
+                        var selected_val = document.getElementById("select_id").value;
+                        if (selected_val){
+                            $.getJSON("{% url 'myadmin_lation_insert' %}",{"id":{{user.id}},selected_val}, function (data) {
+                                if (data.msg == 'success') {
+                                    alert('权限添加成功！')
+                                    $("#btn_add").text('继续添加');
+                                }else if (data.msg == 'repeat'){
+                                    alert('不可重复添加！')
+                                }else {
+                                    alert('权限添加失败！')
+                                }
+                            });
+                        }else {
+                            alert('业务信息不可为空！')
+                        }
+                    });
+                });
+
+                $(document).ready(function () {
+                    $("#btn_ret").click(function () {
+                        location.href="{% url 'myadmin_users_index' 1 %}"
+                    });
+                });
+
+            </script>
+
+{% endblock %}

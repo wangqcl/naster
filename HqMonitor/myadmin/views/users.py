@@ -5,6 +5,9 @@ from datetime import datetime
 from django.core.paginator import Paginator
 from django.db.models import Q
 
+from random import Random
+from hashlib import md5
+
 # 浏览会员
 def index(request,pIndex=1):
     umod = Users.objects.exclude(state=3).order_by("id")
@@ -13,12 +16,12 @@ def index(request,pIndex=1):
     #获取判断并封装关键字搜索
     kw = request.GET.get("keyword",None)
     if kw:
-        #查询账户信息
+        #查询用户信息
         list = umod.filter(Q(username__contains=kw) | Q(name__contains=kw))
         mywhere.append("keyword=" + kw)
     else:
         list = umod.filter()
-        # 获取、判断并封装性别sex搜索条件
+    # 获取、判断并封装性别sex搜索条件
     sex = request.GET.get('sex', '')
     if sex != '':
         list = list.filter(sex=sex)
@@ -43,9 +46,9 @@ def index(request,pIndex=1):
 # 会员信息添加表单
 def add(request):
     #return HttpResponse("asdas")
-    comp_list = Compinfo.objects.all()
-    context = {'complist': comp_list }
-    return render(request, "myadmin/users/add.html",context)
+    # comp_list = Compinfo.objects.all()  #公司
+    # context = {'complist': comp_list }
+    return render(request, "myadmin/users/add.html")
 
 #执行会员信息添加
 def insert(request):
@@ -54,18 +57,16 @@ def insert(request):
         # 使用request.POST获取前台的数据
         ob.username = request.POST['username']
         ob.name = request.POST['name']
+        passw = request.POST['password']
+        sa = passw[0:5]
         # 获取密码并md5
         import hashlib
         m = hashlib.md5()
-        m.update(bytes(request.POST['password'], encoding="utf8"))
+        m.update(bytes(passw+sa, encoding="utf8"))
         ob.password = m.hexdigest()
-        #ob.password = request.POST['password']
-        ob.sex = request.POST['sex']
-        #ob.address = request.POST['address']
-        #ob.code = request.POST['code']
         ob.phone = request.POST['phone']
         ob.email = request.POST['email']
-        ob.state = 2
+        ob.state = 1
         ob.addtime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         ob.save()
         context = {'info':'保存成功！'}
@@ -78,8 +79,10 @@ def insert(request):
 def delete(request,uid):
     try:
         ob = Users.objects.get(id=uid)
-        ob.state = 3  #删除用户
-        ob.save()
+        # ob.state = 3  #删除用户
+        # ob.save()
+        ob.compinfo_set.remove()
+        ob.delete()
         context = {'info': '删除成功！'}
     except Exception as err:
         print(err)
@@ -103,7 +106,7 @@ def update(request,uid):
         ob = Users.objects.get(id=uid)
         # 使用request.POST获取前台的数据
         ob.name = request.POST['name']
-        ob.sex = request.POST['sex']
+        #ob.sex = request.POST['sex']
         #ob.address = request.POST['address']
         #ob.code = request.POST['code']
         ob.phone = request.POST['phone']
@@ -131,10 +134,12 @@ def resetpass(request,uid):
 def doresetpass(request,uid):
     try:
         ob = Users.objects.get(id=uid)
+        passw = request.POST['password']
+        sa = passw[0:5]
         # 获取密码并md5
         import hashlib
         m = hashlib.md5()
-        m.update(bytes(request.POST['password'], encoding="utf8"))
+        m.update(bytes(passw + sa, encoding="utf8"))
         ob.password = m.hexdigest()
         ob.save()
         context = {"info": "密码重置成功！"}

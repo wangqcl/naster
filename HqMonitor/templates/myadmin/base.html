@@ -1,16 +1,26 @@
-{% load static from staticfiles %}
 <!DOCTYPE html>
+{% load static from staticfiles %}
 <html lang="cn">
     <head>
         <meta charset="utf-8">
         <title>大屏监控后台管理</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="{% static 'myadmin/css/bootstrap.min.css' %}" rel="stylesheet">
-        <link href="{% static 'myadmin/css/bootstrap-responsive.min.css' %}" rel="stylesheet">
+        <link href="{% static 'myadmin/css/bootstrap.css' %}" rel="stylesheet">
+        <link href="{% static 'myadmin/css/bootstrap-responsive.css' %}" rel="stylesheet">
+
         <link href="{% static 'myadmin/css/site.css' %}" rel="stylesheet">
+
+        <script src="{% static 'myadmin/js/jquery.min.js' %}"></script>
+        <script src="{% static 'myadmin/js/bootstrap.js' %}"></script>
+        <script type="text/javascript" src="{% static 'myadmin/js/register.js' %}"></script>
         <!--[if lt IE 9]><script src="{% static 'myadmin/js/html5.js' %}"></script><![endif]-->
+
+
+
     </head>
     <body>
+
+
         <div class="container">
             <!-- 页头开始 -->
             <div class="navbar">
@@ -23,25 +33,16 @@
                                     <a href="{% url 'myadmin_index' %}">首页</a>
                                 </li>
                                 <li>
-                                    <a href="settings.htm">在线设置</a>
+                                    <a href="#">在线设置</a>
                                 </li>
                                 <li>
-                                    <a href="help.htm">帮助</a>
+                                    <a href="#">帮助</a>
                                 </li>
                                 <li class="dropdown">
-                                    <a href="help.htm" class="dropdown-toggle" data-toggle="dropdown">更多 <b class="caret"></b></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">更多 <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a href="help.htm">Introduction Tour</a>
-                                        </li>
-                                        <li>
-                                            <a href="help.htm">Project Organisation</a>
-                                        </li>
-                                        <li>
-                                            <a href="help.htm">Task Assignment</a>
-                                        </li>
-                                        <li>
-                                            <a href="help.htm">Access Permissions</a>
+                                            <a href="#">Introduction Tour</a>
                                         </li>
                                         <li class="divider">
                                         </li>
@@ -49,10 +50,7 @@
                                             Files
                                         </li>
                                         <li>
-                                            <a href="help.htm">How to upload multiple files</a>
-                                        </li>
-                                        <li>
-                                            <a href="help.htm">Using file version</a>
+                                            <a href="#">How to upload multiple files</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -88,7 +86,7 @@
                             <li class="nav-header">
                                 会员管理
                             </li>
-                            <li>
+                            <li >
                                 <a href="{% url 'myadmin_users_index' 1 %}"><i class="icon-folder-open"></i> 浏览会员</a>
                             </li>
                             <li>
@@ -98,33 +96,27 @@
                                 类别管理
                             </li>
                             <li>
-                                <a href="{% url 'myadmin_pany_index' %}"><i class="icon-envelope"></i> 浏览企业</a>
+                                <a href="{% url 'myadmin_pany_index' 1 %}"><i class="icon-envelope"></i> 浏览业务</a>
                             </li>
                             <li>
-                                <a href="{% url 'myadmin_pany_add' %}"><i class="icon-file"></i> 添加企业</a>
+                                <a href="{% url 'myadmin_pany_add' %}"><i class="icon-file"></i> 添加业务</a>
                             </li>
                              <li class="nav-header">
                                 信息管理
                             </li>
-                            <li>
-                                <a href="##"><i class="icon-list-alt"></i> 浏览信息</a>
-                            </li>
-                            <li>
-                                <a href="##"><i class="icon-list-alt"></i> 添加信息</a>
-                            </li>
                             <li class="divider">
                             </li>
                             <li>
-                                <a href="help.htm"><i class="icon-info-sign"></i> Help</a>
+                                <a href="#"><i class="icon-info-sign"></i> Help</a>
                             </li>
                             <li class="nav-header">
                                 Bonus Templates
                             </li>
                             <li>
-                                <a href="gallery.htm"><i class="icon-picture"></i> Gallery</a>
+                                <a href="#"><i class="icon-picture"></i> Gallery</a>
                             </li>
                             <li>
-                                <a href="blank.htm"><i class="icon-stop"></i> Blank Slate</a>
+                                <a href="#"><i class="icon-stop"></i> Blank Slate</a>
                             </li>
                         </ul>
                     </div><!-- 侧边导航结束 -->
@@ -137,9 +129,11 @@
                 </div>
             </div>
         </div>
-        <script src="{% static 'myadmin/js/jquery.min.js' %}"></script>
-        <script src="{% static 'myadmin/js/bootstrap.min.js' %}"></script>
+
+
         <script src="{% static 'myadmin/js/site.js' %}"></script>
-        <script src="{% static 'myadmin/js/yz.js' %}"></script>
+<!--        <script src="{% static 'myadmin/js/yz.js' %}"></script>-->
+
+
     </body>
 </html>

@@ -15,24 +15,6 @@
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="input01">企业地址：</label>
-                <div class="controls">
-                    <input type="text" name="address" class="input-xlarge" id="input01" value="{{ comp.address }}" />
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="input01">联系人：</label>
-                <div class="controls">
-                    <input type="text" name="name" class="input-xlarge" id="input01" value="{{ comp.name }}" />
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="input01">电话：</label>
-                <div class="controls">
-                    <input type="text" name="phone" class="input-xlarge" id="input01" value="{{ comp.phone }}" />
-                </div>
-            </div>
-            <div class="control-group">
                 <label class="control-label" for="input01">企业IP：</label>
                 <div class="controls">
                     <input type="text" name="compip" class="input-xlarge" id="input01" value="{{ comp.comp_ip }}" />
@@ -42,6 +24,33 @@
                 <label class="control-label" for="input01">企业域名：</label>
                 <div class="controls">
                     <input type="text" name="comprealm" class="input-xlarge" id="input01" value="{{ comp.comp_realm }}" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="input01">端口：</label>
+                <div class="controls">
+                    <input type="text" name="compport" class="input-xlarge" id="input01" value="{{ comp.port }}" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="input01">接入状态：</label>
+                <div class="controls">
+                    <input type="radio" name="accessstatus" class="input-xlarge" id="input01" value="0"
+                    {% if comp.access_status == 0 %}checked{% endif %} /> 接入
+                    <input type="radio" name="accessstatus" class="input-xlarge" id="input01" value="1"
+                    {% if comp.access_status == 1 %}checked{% endif %}/> 未接入
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="input01">接入节点：</label>
+                <div class="controls">
+                    <input type="text" name="accessnode" class="input-xlarge" id="input01" value="{{ comp.access_node }}" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="input01">服务项：</label>
+                <div class="controls">
+                    <input type="text" name="serviceitems" class="input-xlarge" id="input01" value="{{ comp.service_items }}" />
                 </div>
             </div>
             <div class="control-group">

@@ -9,12 +9,12 @@ import json
 def index(request):
     '''前台首页'''
     #return HttpResponse("欢迎进入前台首页！")
-    return render(request,"web/index.html")
+    return render(request,"web/monit.html")
 
 def login(request):
     '''前台首页'''
     #return HttpResponse("欢迎进入前台首页！")
-    return render(request,"web/login.html")
+    return render(request,"web/monweb/login.html")
 
 def test(request):
     # 连接es时host只写ip

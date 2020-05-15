@@ -10,8 +10,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="Python Script" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -28,21 +29,22 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/HqMonitor/templates/myadmin/pany" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/HqMonitor/static/monweb/img" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\monitor\HqMonitor\templates\myadmin\pany" />
-      <recent name="E:\monitor\HqMonitor\static" />
-      <recent name="E:\monitor\HqMonitor\templates\myadmin" />
-      <recent name="E:\monitor\HqMonitor\static\login\img" />
-      <recent name="E:\monitor\HqMonitor\static\login\img\order" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\monitor\HqMonitor\static\login\img" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\monitor\HqMonitor\static\monweb\img" />
+      <recent name="E:\monitor\HqMonitor\static\monweb\js" />
+      <recent name="E:\monitor\HqMonitor\static\monweb\css" />
+      <recent name="E:\monitor\HqMonitor\static\monweb" />
+      <recent name="E:\monitor\HqMonitor\templates\web\monweb" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -66,7 +68,11 @@
       <workItem from="1588901192788" duration="22061000" />
       <workItem from="1588988083504" duration="8949000" />
       <workItem from="1589002877071" duration="8753000" />
-      <workItem from="1589159539004" duration="2358000" />
+      <workItem from="1589159539004" duration="20950000" />
+      <workItem from="1589246932670" duration="27489000" />
+      <workItem from="1589333456894" duration="26781000" />
+      <workItem from="1589418959719" duration="21847000" />
+      <workItem from="1589505582768" duration="14626000" />
     </task>
     <servers />
   </component>
@@ -78,6 +84,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="1330" y="386" key="#Notifications/0.0.1920.1050@0.0.1920.1050" timestamp="1588232867030" />
+    <state x="866" y="321" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1589511288157">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="866" y="321" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1589511288157" />
     <state x="1198" y="265" key="FileChooserDialogImpl" timestamp="1588229955027">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
