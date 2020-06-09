@@ -1,19 +1,19 @@
 body {
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #eee;
-  background: url(../img/hqbg.jpg) ;
+  background-color: #00838F;
+  /*background: url(../img/hqbg.jpg) ;*/
 }
 
 .form-signin {
-  max-width: 330px;
-  padding: 15px;
+  max-width: 500px;
+  padding: 20px;
   margin: 0 auto;
-  background-color: #eee;
+  background-color: #00838F;  //输入框背景
 }
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 .form-signin .checkbox {
   font-weight: normal;

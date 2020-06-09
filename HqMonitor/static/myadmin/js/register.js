@@ -61,7 +61,7 @@ $(function(){
 			error_password = false;
 		}else
 		{
-			$('#pwd').next().html('建议长度8-16位,特殊字符只能包含！@_')
+			$('#pwd').next().html('建议长度8-16位(！@ _)')
 			$('#pwd').next().show();
 		}
 	}

@@ -5,7 +5,7 @@ from datetime import datetime
 class Users(models.Model):
     username = models.CharField(max_length=32) #账号
     name = models.CharField(max_length=16,null=True)      #真实姓名
-    password = models.CharField(max_length=32)  #密码
+    password = models.CharField(max_length=128)  #密码
     #sex = models.IntegerField(default=1)        #性别
     phone = models.CharField(max_length=16,null=True)     #电话
     email = models.CharField(max_length=50,null=True)     #Emai
@@ -43,14 +43,14 @@ class Compinfo(models.Model):
     class Meta:
         db_table = "compinfo"  # 更改表名
 
-#用户-关系表
-class Members(models.Model):
-    users_id = models.IntegerField(default=1)
-    compinfo_id = models.IntegerField(default=1)
-
-    def toDict(self):
-        return {'id':self.id,'users_id':self.users_id,'compinfo_id':self.compinfo_id}
-
-    class Meta:
-        db_table = "members"  # 更改表名
+# #用户-关系表
+# class Members(models.Model):
+#     users_id = models.IntegerField(default=1)
+#     compinfo_id = models.IntegerField(default=1)
+#
+#     def toDict(self):
+#         return {'id':self.id,'users_id':self.users_id,'compinfo_id':self.compinfo_id}
+#
+#     class Meta:
+#         db_table = "members"  # 更改表名
 

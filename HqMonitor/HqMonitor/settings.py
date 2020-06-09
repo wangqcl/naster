@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'common.shopmiddleware.ShopMiddleware',     #注册中间件
+    #'common.shopmiddleware.ShopMiddleware',     #注册中间件
 ]
 
 ROOT_URLCONF = 'HqMonitor.urls'
@@ -71,11 +71,32 @@ TEMPLATES = [
     },
 ]
 
+PASSWORD_HASHERS = (
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.BCryptPasswordHasher',
+    'django.contrib.auth.hashers.SHA1PasswordHasher',
+    'django.contrib.auth.hashers.MD5PasswordHasher',
+    'django.contrib.auth.hashers.CryptPasswordHasher',
+)
+
 WSGI_APPLICATION = 'HqMonitor.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'monitordb',
+#         'USER': 'root',
+#         'PASSWORD': 'letmein',
+#         'HOST': '172.16.20.88',
+#         'PORT': '3306',
+#     }
+# }
 
 DATABASES = {
     'default': {
@@ -83,7 +104,7 @@ DATABASES = {
         'NAME': 'monitordb',
         'USER': 'root',
         'PASSWORD': 'letmein',
-        'HOST': '172.16.20.88',
+        'HOST': '192.168.221.128',
         'PORT': '3306',
     }
 }
@@ -132,3 +153,15 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+# from elasticsearch import Elasticsearch
+# ELASTICSEARCH = Elasticsearch(
+#     ['119.90.98.16', '9200'],
+#     http_auth=('elastic', 'hqsec711'),
+#     scheme="http",
+#     port=9200,
+# )
+
+IP_LOCAL = ["119.90.98.16", "9200"]
+H_AUTH=('elastic', 'hqsec711')
+

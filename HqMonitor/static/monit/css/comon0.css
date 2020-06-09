@@ -24,6 +24,21 @@ a:hover{ color:#06c; text-decoration: none!important}
  .clearfix:after {
 	clear: both
 }
+
+.l_left{
+    float: left;
+}
+.r_right{float: right}
+*{
+    font-size: 100%;
+}
+
+.index_nav ul li{font-size: 1em;color: #fff;opacity: 0.8;padding-top:8px;padding-left:10px;padding-right:10px;padding-bottom:5px;cursor: pointer;text-shadow:0 6px 8px #00225b }
+.index_nav ul .l_left{margin-left: 3%}
+.index_nav ul .r_right{margin-right: 3%}
+.index_nav ul li:hover{opacity: 1}
+
+
 .pulll_left{float:left;}
 .pulll_right{float:right;}
 /*谷哥滚动条样式*/
@@ -55,12 +70,13 @@ a:hover{ color:#06c; text-decoration: none!important}
 .mainbox>ul>li{ width: 30%}
 .mainbox>ul>li:nth-child(2){ width: 40%;padding: 0}
 
+
 .boxall{ border: 1px solid rgba(25,186,139,.17); padding:0 .2rem .4rem .15rem;  background: rgba(255,255,255,.04) url(../images/line.png); background-size: 100% auto; position: relative; margin-bottom: .15rem; z-index: 10;}
 .boxall:before,
 .boxall:after{ position:absolute; width: .1rem; height: .1rem; content: "";  border-top: 2px solid #02a6b5; top: 0;}
 .boxall:before,.boxfoot:before{border-left: 2px solid #02a6b5;left: 0;}
 .boxall:after,.boxfoot:after{border-right: 2px solid #02a6b5; right: 0;}
-.alltitle{ font-size:.2rem; color:#fff; text-align: center; line-height: .5rem;}
+.alltitle{ font-size:.2rem;text-align: center; line-height: .5rem;color: #83c3e3}
 
 .boxfoot{ position:absolute; bottom: 0; width: 100%; left: 0;}
 .boxfoot:before,
@@ -123,6 +139,7 @@ a:hover{ color:#06c; text-decoration: none!important}
 .wrap li{  line-height:.42rem; height:.42rem; font-size: .18rem; text-indent: .24rem; margin-bottom: .1rem; }
 .wrap li p{border: 1px solid rgba(25,186,139,.17);color: rgba(255,255,255,.6); }
 .sy{ float:left; width: 33%; height:95%; margin-top: .25rem;}
+.sya{ float:left; width: 49%; height:95%; margin-top: .25rem;}
 
 
 .adduser{ height:1.5rem; overflow: hidden;}
@@ -198,3 +215,10 @@ to {transform: rotate(-359deg);}
 .str_wrap img {
 	max-width:none !important;	
 }
+
+
+/*新增*/
+.tdc{color:#000000}
+
+.tbc{color:rgba(255,255,255,.6)}
+

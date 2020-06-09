@@ -2,39 +2,50 @@
 {% load static from staticfiles %}
 <html>
 <head>
-<meta charset="utf-8">
-<title>index</title>
-<script type="text/javascript" src="{% static 'monit/js/jquery.js' %}"></script>
-<link rel="stylesheet" href="{% static 'monit/css/comon0.css' %}">
+    <meta charset="utf-8">
+    <title>index</title>
+    <script type="text/javascript" src="{% static 'monit/js/jquery.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'monit/css/comon0.css' %}">
+
+
 </head>
 	<script>
 	$(window).load(function(){  
              $(".loading").fadeOut()
             })  
 			
-/****/
-$(document).ready(function(){
-	var whei=$(window).width()
-	$("html").css({fontSize:whei/20})
-	$(window).resize(function(){
-		var whei=$(window).width()
-	 $("html").css({fontSize:whei/20})
-});
-	});
+    /****/
+    $(document).ready(function(){
+        var whei=$(window).width()
+        $("html").css({fontSize:whei/20})
+        $(window).resize(function(){
+            var whei=$(window).width()
+         $("html").css({fontSize:whei/20})
+    });
+        });
 	</script>
 	<script type="text/javascript" src="{% static 'monit/js/echarts.min.js'%}"></script>
 	<script language="JavaScript" src="{% static 'monit/js/js.js'%}"></script>
 <body>
 <div class="canvas" style="opacity: .2">
 	<iframe frameborder="0" src="{% static 'monit/js/index.html'%}" style="width: 100%; height: 100%"></iframe>
-	</div>
+</div>
 <div class="loading">
   <div class="loadbox"> <img src="{% static 'monit/picture/loading.gif'%}"> 页面加载中... </div>
 </div>
 <div class="head">
-  <h1>大数据可视化展板通用模板</h1>
-  <div class="weather"><!--<img src="{% static 'web/js/weather.png'%}"><span>多云转小雨</span>--><span id="showTime"></span></div>
-
+  <h1>网络安全动态数据监控</h1>
+    <div class="weather"><span id="showTime"></span></div>
+        <div class="index_nav" >
+        <ul style="height: 30px; margin-bottom: 0px;">
+            <li class="l_left">网络全局信息</li>
+            <li class="l_left" >web安全防护信息</li>
+            <li class="l_left">入侵检测信息</li>
+            <li class="r_right">威胁情报</li>
+            <li class="r_right">安全综合评分</li>
+            <li class="r_right">用户接入状态</li>
+        </ul>
+    </div>
   <!--时间加载-->
 	<script>
     var t = null;
@@ -53,79 +64,509 @@ $(document).ready(function(){
            t = setTimeout(time,1000); //设定定时器，循环运行
         }
     </script>
-	
-	
+
 </div>
 <div class="mainbox">
   <ul class="clearfix">
     <li>
       <div class="boxall" style="height: 3.2rem">
-        <div class="alltitle">模块标题样式1</div>
-        <div class="allnav" id="echart1"></div>
+        <div style="height:100%; width: 100%;">
+		  	<div class="sya" id="echart1_1"></div>
+            <div class="sya" id="echart1_2"></div>
+		  </div>
         <div class="boxfoot"></div>
       </div>
       <div class="boxall" style="height: 3.2rem">
-        <div class="alltitle">模块标题样式2</div>
+        <div class="alltitle">域名被访问次数/时间</div>
         <div class="allnav" id="echart2"></div>
         <div class="boxfoot"></div>
       </div>
       <div class="boxall" style="height: 3.2rem">
-        <div style="height:100%; width: 100%;">
-		  	<div class="sy" id="fb1"></div>
-				<div class="sy" id="fb2"></div>
-				<div class="sy" id="fb3"></div>
-		  </div>
-        <div class="boxfoot">
-			
-		  </div>
+            <div class="alltitle">WAF-攻击趋势</div>
+          <div class="allnav" id="echart44"></div>
+          <div class="boxfoot"></div>
       </div>
     </li>
     <li>
-      <div class="bar">
-        <div class="barbox">
-          <ul class="clearfix">
-            <li class="pulll_left counter">12581189</li>
-            <li class="pulll_left counter">3912410</li>
-          </ul>
+        <div class="bar">
+          <div class="barbox">
+            <ul class="clearfix">
+              <li class="pulll_left counter" id="dayhit"></li>
+              <li class="pulll_left counter" id="allhit"></li>
+            </ul>
+          </div>
+          <div class="barbox2">
+            <ul class="clearfix">
+              <li class="pulll_left">威胁情报今日命中数 </li>
+              <li class="pulll_left">威胁情报总命中数</li>
+            </ul>
+          </div>
         </div>
-        <div class="barbox2">
-          <ul class="clearfix">
-            <li class="pulll_left">2018年总收入情况 </li>
-            <li class="pulll_left">2018年总支出情况</li>
-          </ul>
+        <div class="map boxall" style="height: 5.1rem">
+<!--          <div class="map1"><img src="{% static 'monit/picture/lbx.png'%}"></div>-->
+<!--          <div class="map2"><img src="{% static 'monit/picture/jt.png'%}"></div>-->
+<!--          <div class="map3"><img src="{% static 'monit/picture/map.png'%}"></div>-->
+<!--          <div class="map4" id="map_1"></div>-->
+            <div class="allnav" id="wordmap"></div>
+            <div class="boxfoot"></div>
         </div>
-      </div>
-      <div class="map">
-        <div class="map1"><img src="{% static 'monit/picture/lbx.png'%}"></div>
-        <div class="map2"><img src="{% static 'monit/picture/jt.png'%}"></div>
-        <div class="map3"><img src="{% static 'monit/picture/map.png'%}"></div>
-        <div class="map4" id="map_1"></div>
-      </div>
+         <div class="boxall" style="height: 3rem">
+            <div style="height:100%;">
+          <div class="sya" id="fb1"></div>
+          <div class="sya" id="fb2"></div>
+		  </div>
+        <div class="boxfoot"></div>
+        </div>
     </li>
     <li>
-      <div class="boxall" style="height:3.4rem">
-        <div class="alltitle">模块标题样式4</div>
+      <div class="boxall" style="height:3.2rem">
+        <div class="alltitle">请求数量</div>
         <div class="allnav" id="echart4"></div>
         <div class="boxfoot"></div>
       </div>
       <div class="boxall" style="height: 3.2rem">
-        <div class="alltitle">模块标题样式5</div>
+        <div class="alltitle">主要威胁IP分值</div>
         <div class="allnav" id="echart5"></div>
         <div class="boxfoot"></div>
       </div>
-      <div class="boxall" style="height: 3rem">
-        <div class="alltitle">模块标题样式6/div>
-        <div class="allnav" id="echart6"></div>
-        <div class="boxfoot"></div>
+      <div class="boxall" style="height: 3.2rem">
+            <div class="alltitle">流量数据</div>
+            <div class="allnav" id="info"></div>
+          <div class="boxfoot"></div>
       </div>
+
     </li>
   </ul>
 </div>
 <div class="back"></div>
 
-
-<script type="text/javascript" src="{% static 'monit/js/china.js'%}"></script>
+<!--<script type="text/javascript" src="{% static 'monit/js/china.js'%}"></script>-->
+<script type="text/javascript" src="{% static 'monit/js/world.js'%}"></script>
 <script type="text/javascript" src="{% static 'monit/js/area_echarts.js'%}"></script>
-<script type="text/javascript" src="{% static 'monit/js/controller.js' %}"></script>
+<!--<script type="text/javascript" src="{% static 'monit/js/controller.js' %}"></script>-->
+
+<!--访问数量-->
+<script type="text/javascript" >
+    change()
+    var times = []
+    var values = []
+    var edtime
+
+    function change(){
+      //用加载首次json数据
+      $.getJSON('{% url "monit_main_getnum" %}',function(data){
+        times=data.times
+        values=data.number
+          // console.log("时间222222")
+          // console.log(times)
+          // console.log(values)
+        edtime = data.edtime
+        echarts_4(times,values)
+        // console.log(times)
+        setTimeout(function(){  //2分钟后执行一次
+          p_chage();
+        },120000);
+      })
+    }
+
+    function p_chage() {
+       // var n = 15
+       // times = times.slice(-n)
+       // values = values.slice(-n)
+      $.ajaxSetup({
+        data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+      });
+      $.post("{% url 'monit_main_getnum' %}",{'edtime':edtime}, function(data){
+        // console.log(data)
+        times = times.concat(data.times)
+          // console.log(times)
+          // console.log("11111111")
+        values = values.concat(data.number)
+        edtime = data.edtime
+          // console.log(values)
+
+        echarts_4(times,values)
+
+        var n = 20
+        times = times.slice(-n)
+        values = values.slice(-n)
+        setTimeout(p_chage,120000)//定时调用
+        },"json");
+    }
+</script>
+<!--端口请求数量-->
+<script type="text/javascript">
+        nu_change()
+        var nu_port = []
+        var nuvalues = []
+        var nu_edtime
+        function nu_change(){
+          //用加载首次json数据
+          $.getJSON('{% url "monit_visitport" %}',function(data){
+            nu_port=data.port
+            nu_values=data.number
+            nu_edtime = data.edtime
+            echarts_34(nu_port,nu_values)
+            // console.log(times)
+            // setTimeout(function(){  //2分钟后执行一次
+            //   p_chage();
+            // },120000);
+          })
+        }
+</script>
+<!--服务器状态码-->
+<script type="text/javascript">
+        st_change()
+        var st_port_data = []
+        var st_yAxis_data = []
+
+        var st_series = []
+        function st_change(){
+          //用加载首次json数据
+          $.getJSON('{% url "monit_status_code" %}',function(data){
+            st_port_data=data.port
+            st_xAxis_data=data.xAxis
+            st_yAxis_data = data.yAxis
+
+            for (var key in st_yAxis_data)
+                {
+                    var test = {}
+                    // document.write(cars[i] + "<br>");
+                    test["name"] = key,
+                    test["type"] = 'bar',
+                    test["barWidth"] = 5,
+                    test["stack"] = 'statu',
+                    test["data"] = st_yAxis_data[key]
+                    st_series.push(test)
+                }
+            // console.log(series)
+            echarts_35(st_series,st_port_data,st_xAxis_data)
+            // console.log(times)
+          })
+        }
+</script>
+<!--域名被访问-->
+<script type="text/javascript">
+        do_change();
+        var do_port_data = [];
+        var do_yAxis_data = [];
+
+        var do_series = [];
+        function do_change(){
+          //用加载首次json数据
+          $.getJSON('{% url "monit_domain_infor" %}',function(data){
+            do_port_data=data.port;
+            do_xAxis_data=data.xAxis;
+            do_yAxis_data = data.yAxis;
+            var color =['#00f8ff','#00f15a','#0696f9','#dcf776','#499C9F','#7944B7','#F034C1'];
+            var i=0;
+            for (var key in do_yAxis_data)
+                {
+                    var ser = {};
+                    ser["symbol"] = "none";
+                    ser["name"] = key;
+                    ser["type"] = 'line';
+                    // ser["stack"] = 'statu';
+                    ser["areaStyle"] = {};
+                    ser["areaStyle"] = {
+                        normal: {
+                            borderWidth: 5,
+                            color: color[i],
+                        }
+                    };
+                     ser["itemStyle"] = { //控制线图表颜色
+                        normal: {
+                          color: color[i],
+                          borderColor: 'rgba(221, 220, 107, .1)',
+                          borderWidth: 12
+                        }
+                      };
+                    i++;
+                    ser["data"] = do_yAxis_data[key];
+                    do_series.push(ser)
+                }
+            // console.log(series)
+            echarts_2(do_series,do_port_data,do_xAxis_data)
+            // console.log(times)
+          })
+        }
+</script>
+<!--主要威胁IP-->
+<script type="text/javascript" >
+    fa_change()
+    var fa_ip = []
+    var fa_values = []
+    var fa_edtime
+
+    function fa_change(){
+      //用加载首次json数据
+      $.getJSON('{% url "monit_ip_fraction" %}',function(data){
+        fa_ip=data.ports
+        fa_values=data.number
+        fa_edtime = data.edtime
+        echarts_5(fa_ip,fa_values)
+        // setTimeout(function(){  //2分钟后执行一次
+        //   p_chage();
+        // },120000);
+      })
+    }
+
+</script>
+<!--客户端请求流量-->
+<script type="text/javascript" >
+    rq_change();
+    var rq_edtime;
+    var rq_port_data = [];
+    var rq_yAxis_data = [];
+    var rq_series = [];
+
+    function rq_change(){
+      //用加载首次json数据
+      $.getJSON('{% url "monit_Request_traffic" %}',function(data){
+        rq_port_data=data.ports;
+        rq_yAxis_data=data.yAxis;
+        rq_xAxis_data=data.xAxis;
+
+        var colors =[
+            '#065aab', '#066eab', '#0682ab', '#0696ab',
+            '#06a0ab', '#06b4ab', '#06c8ab', '#06dcab', '#06f0ab',
+            '#04dd98', '#d9b3e6', '#b6c3fc',
+            '#9966cc', '#bdb76a', '#eee8ab', '#a35015',
+            '#bcd3bb', '#e88f70', '#9dc5c8', '#e1e8c8',];
+        var i=0;
+        for (var key in rq_yAxis_data)
+            {
+                var ser = {};
+                ser["symbol"] = "none";
+                ser["name"] = key;
+                ser["type"] = 'line';
+                // ser["stack"] = 'statu';
+                ser["areaStyle"] = {};
+                ser["areaStyle"] = {
+                    normal: {
+                        borderWidth: 5,
+                        color: colors[i],
+                    }
+                };
+                 ser["itemStyle"] = { //控制线图表颜色
+                    normal: {
+                      color: colors[i],
+                      borderColor: 'rgba(221, 220, 107, .1)',
+                      borderWidth: 12
+                    }
+                  };
+                i++;
+                ser["data"] = rq_yAxis_data[key];
+                rq_series.push(ser)
+            }
+        // console.log(series)
+        echarts_31(rq_series,rq_port_data,rq_xAxis_data)
+      })
+    }
+
+</script>
+<!--客户端响应流量-->
+<script type="text/javascript" >
+    rp_change();
+    var rq_edtime;
+    var rp_port_data = [];
+    var rp_yAxis_data = [];
+    var y_num = [];
+
+    function rp_change(){
+      //用加载首次json数据
+      $.getJSON('{% url "monit_Response_traffic" %}',function(data){
+        rp_port_data=data.port;
+        value = data.yAxis
+        for (var num in value){
+            y_num.push(value[num])
+        }
+        rp_yAxis_data=y_num;
+        rp_xAxis_data=data.xAxis;
+        var charts = {
+            unit: 'MB',
+            names: rp_port_data,
+            lineX: rp_xAxis_data,
+            value: rp_yAxis_data,
+
+        }
+        // var color = ['rgba(23, 255, 243', 'rgba(255,100,97',];
+          var color =['#00f8ff','#00f15a','#0696f9','#dcf776',
+                    '#499C9F','#7944B7','#F034C1','#065aab',
+                    '#066eab', '#0682ab', '#0696ab',];
+        var lineY = [];
+        for (var i = 0; i < charts.names.length; i++) {
+            var x = i;
+            if (x > color.length - 1) {
+                x = color.length - 1
+            }
+            var data = {
+                name: charts.names[i],
+                type: 'line',
+                // color: color[x] + ')',
+                color: color[x],
+                smooth: true,
+                areaStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            // color: color[x] + ', 0.3)'
+                            color: color[x]
+                        }, {
+                            offset: 0.8,
+                            // color: color[x] + ', 0)'
+                            color: color[x]
+                        }], false),
+                        shadowColor: 'rgba(0, 0, 0, 0.1)',
+                        shadowBlur: 10
+                    }
+                },
+                symbol: 'circle',//折线上点大小
+                symbolSize: 0.1,
+                data: charts.value[i]
+            };
+            lineY.push(data)
+        }
+
+        lineY[0].markLine = {//设置指示线
+            silent: true,
+            data: [ {
+                yAxis: 400
+            }]
+        };
+        echarts_32(lineY,charts)
+      })
+    }
+
+</script>
+<!--waf攻击-->
+<script type="text/javascript" >
+    wa_change();
+    var wa_edtime;
+    var wa_port_data = [];
+    var wa_yAxis_data = [];
+    var wa_num = [];
+    // var series = {};
+
+    function wa_change(){
+      //用加载首次json数据
+      $.getJSON('{% url "monit_attack_trend" %}',function(data){
+        wa_port_data=data.port;  //标志
+        value = data.yAxis;  //Y轴数
+        for (var num in value){
+            wa_num.push(value[num])
+        }
+        wa_yAxis_data=wa_num;  //Y 轴所有的列表数据
+        wa_xAxis_data=data.xAxis;  //时间
+
+        var wcharts = {
+            unit: '数量',
+            names: wa_port_data,
+            lineX: wa_xAxis_data,
+            value: wa_yAxis_data,
+        }
+        var colors = ['rgba(23, 255, 243', 'rgba(255,100,97','rgba(255,165,0','rgba(0,191,255',
+            'rgba(255,69,0','rgba(205,92,92','rgba(199,21,133','rgba(148,0,211'];
+
+        var linesY = [];
+        for (var i = 0; i < wcharts.names.length; i++) {
+            var x = i;
+            if (x > colors.length - 1) {
+                x = colors.length - 1
+            }
+            var data = {
+                name: wcharts.names[i],
+                type: 'line',
+                // color: color[x] + ')',
+                // color: color[x],
+                smooth: true,
+                symbol: 'circle',
+                symbolSize: 5,
+                showSymbol: false,
+                areaStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: colors[x] + ', 0.3)'
+                            // color: color[x]
+                        }, {
+                            offset: 0.8,
+                            color: colors[x] + ', 0)'
+                            // color: color[x]
+                        }], false),
+                        shadowColor: 'rgba(0, 0, 0, 0.1)',
+                        shadowBlur: 10
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        color: colors[x] + ')',
+                        borderColor: colors[x] + ')',
+                        borderWidth: 12
+                    }
+                },
+                data: wcharts.value[i]
+            };
+            linesY.push(data)
+            // console.log(linesY);
+        }
+
+        echarts_44(linesY,wcharts)
+      })
+    }
+
+</script>
+<!--态势地图-->
+<script type="text/javascript">
+    ma_change();
+    function ma_change() {
+      //用加载首次json数据
+      $.getJSON('{% url "monit_attack_map" %}',function(data) {
+          geoCoordMap = data.geoCoordMap;//geoCoordMap
+          BJData = data.BJData;//BJData
+          word_map(geoCoordMap,BJData);
+      });
+    }
+</script>
+<!--命中数-->
+<script type="text/javascript">
+    hit_change();
+    function hit_change() {
+      //用加载首次json数据
+      $.getJSON('{% url "monit_Hit" %}',function(data) {
+          var day_hit = data.num_today;
+          var all_hit = data.num_all;
+           document.getElementById("dayhit").innerHTML = day_hit;
+           document.getElementById("allhit").innerHTML = all_hit;
+      });
+    }
+</script>
+
+<script type="text/javascript">
+    l_change();
+    function l_change() {
+      //用加载首次json数据
+      $.getJSON('{% url "monit_Source_data" %}',function(data) {
+          var args = data.data;
+          var str = "";
+          str += "<table width=\"95%\" style=\"overflow:scroll;margin-bottom:50px\" border=\"0\">";
+          for (var i = 0; i < args.length; i++) {
+              if (i === 0) {
+                    str += "<tr style=\"padding:10px 10px;font-size:20px\"><th class='tbc'>源IP</th><th class='tbc'>目的IP</th><th class='tbc'>源数据(MB)</th><th class='tbc'> 回应数据(MB)</th></tr>"
+                }else {
+                    str += "<tbody><tr>";
+                    for (var k = 0; k < args[i].length; k++) {
+                        str += " <td class=\"tdc\">" + args[i][k] + "</td>";
+                    }
+                    str += "</tr></tbody>";
+                }
+            }
+            str += "</table>";
+            document.getElementById('info').innerHTML=str
+            console.log(str)
+      });
+    }
+</script>
+
 </body>
 </html>

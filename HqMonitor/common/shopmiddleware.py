@@ -23,6 +23,13 @@ class ShopMiddleware(object):
                 # 执行登录界面跳转
                 return redirect(reverse('myadmin_login'))
 
+        elif re.match("/web",path):
+            # 判断当前用户是否没有登录
+            if "webuser" not in request.session:
+                # 执行登录界面跳转
+                return redirect(reverse('login'))
+
+
 
         response = self.get_response(request)
 

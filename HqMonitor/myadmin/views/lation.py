@@ -1,7 +1,7 @@
 #客户关系表
 from django.shortcuts import render
 from django.http import HttpResponse,JsonResponse
-from common.models import Users,Compinfo,Members
+from common.models import Users,Compinfo
 from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
 

@@ -34,4 +34,4 @@ function get_r1_data() {
 		}
 	})
 }
-get_r1_data()
+// get_r1_data()

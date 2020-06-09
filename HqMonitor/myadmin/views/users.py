@@ -4,6 +4,7 @@ from common.models import Users,Compinfo
 from datetime import datetime
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.contrib.auth.hashers import make_password, check_password
 
 from random import Random
 from hashlib import md5
@@ -38,32 +39,22 @@ def index(request,pIndex=1):
         pIndex = 1
     list2 = page.page(pIndex)  # 当前页数据
     plist = page.page_range  # 页码数列表
-
-    # 封装信息加载模板输出
     context = {"userslist": list2, 'plist': plist, 'pIndex': pIndex, 'maxpages': maxpages, 'mywhere': mywhere}
     return render(request, "myadmin/users/index.html", context)
 
 # 会员信息添加表单
 def add(request):
-    #return HttpResponse("asdas")
-    # comp_list = Compinfo.objects.all()  #公司
-    # context = {'complist': comp_list }
     return render(request, "myadmin/users/add.html")
 
 #执行会员信息添加
 def insert(request):
     try:
         ob = Users()
-        # 使用request.POST获取前台的数据
         ob.username = request.POST['username']
         ob.name = request.POST['name']
         passw = request.POST['password']
-        sa = passw[0:5]
-        # 获取密码并md5
-        import hashlib
-        m = hashlib.md5()
-        m.update(bytes(passw+sa, encoding="utf8"))
-        ob.password = m.hexdigest()
+        dj_ps = make_password(passw, None, 'pbkdf2_sha256') #加密
+        ob.password = dj_ps
         ob.phone = request.POST['phone']
         ob.email = request.POST['email']
         ob.state = 1
@@ -79,8 +70,6 @@ def insert(request):
 def delete(request,uid):
     try:
         ob = Users.objects.get(id=uid)
-        # ob.state = 3  #删除用户
-        # ob.save()
         ob.compinfo_set.remove()
         ob.delete()
         context = {'info': '删除成功！'}
@@ -104,11 +93,7 @@ def edit(request,uid):
 def update(request,uid):
     try:
         ob = Users.objects.get(id=uid)
-        # 使用request.POST获取前台的数据
         ob.name = request.POST['name']
-        #ob.sex = request.POST['sex']
-        #ob.address = request.POST['address']
-        #ob.code = request.POST['code']
         ob.phone = request.POST['phone']
         ob.email = request.POST['email']
         ob.state = request.POST['state']
@@ -131,16 +116,13 @@ def resetpass(request,uid):
     return render(request,'myadmin/info.html',context)
 
 #执行密码修改
+
 def doresetpass(request,uid):
     try:
         ob = Users.objects.get(id=uid)
         passw = request.POST['password']
-        sa = passw[0:5]
-        # 获取密码并md5
-        import hashlib
-        m = hashlib.md5()
-        m.update(bytes(passw + sa, encoding="utf8"))
-        ob.password = m.hexdigest()
+        dj_ps = make_password(passw, None, 'pbkdf2_sha256')
+        ob.password = dj_ps
         ob.save()
         context = {"info": "密码重置成功！"}
     except Exception as err:
