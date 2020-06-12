@@ -7,3 +7,19 @@
     |--views
         |--center.py //个人中心
         |--monit.py //大屏-全局信息
+
+
+
+
+
+
+
+----
+admin   密码：HQsec711
+
+
+
+Invasion.html     <!--  入侵检测监控页面-->
+safety.html  安全防护
+score.html  综合评分
+threaten.html  威胁情报
