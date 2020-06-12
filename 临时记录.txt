@@ -1,2 +1,9 @@
-=请求数量图表：
-每两分钟加载一次数据
+|-HqMonitor   //项目
+|--common
+|--HqMonitor
+|--myadmin  //后台
+|--templates    //模板
+|--web      //前端相关
+    |--views
+        |--center.py //个人中心
+        |--monit.py //大屏-全局信息

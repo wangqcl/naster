@@ -67,7 +67,7 @@ def dologin(request):
 # 会员退出
 def logout(request):
     # 清除登录的session信息
-    del request.session['adminuser']
+    del request.session['webuser']
     # 跳转登录页面（url地址改变）
     return redirect(reverse('myadmin_login'))
     # 加载登录页面(url地址不变)

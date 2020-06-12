@@ -87,27 +87,28 @@ WSGI_APPLICATION = 'HqMonitor.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'monitordb',
-#         'USER': 'root',
-#         'PASSWORD': 'letmein',
-#         'HOST': '172.16.20.88',
-#         'PORT': '3306',
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'monitordb',
         'USER': 'root',
         'PASSWORD': 'letmein',
-        'HOST': '192.168.221.128',
+        'HOST': '172.16.255.62',
         'PORT': '3306',
     }
 }
+
+#本地
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'monitordb',
+#         'USER': 'root',
+#         'PASSWORD': 'letmein',
+#         'HOST': '192.168.221.128',
+#         'PORT': '3306',
+#     }
+# }
 
 
 # Password validation

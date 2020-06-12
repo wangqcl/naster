@@ -6,6 +6,8 @@
     <title>index</title>
     <script type="text/javascript" src="{% static 'monit/js/jquery.js' %}"></script>
     <link rel="stylesheet" href="{% static 'monit/css/comon0.css' %}">
+
+
 </head>
 	<script>
 	$(window).load(function(){  
@@ -44,19 +46,19 @@
   <!--时间加载-->
 	<script>
     var t = null;
-        t = setTimeout(time,1000);
+        t = setTimeout(time,1000);//開始运行
         function time()
         {
-           clearTimeout(t);
+           clearTimeout(t);//清除定时器
            dt = new Date();
             var y=dt.getFullYear();
             var mt=dt.getMonth()+1;
             var day=dt.getDate();
-           var h=dt.getHours();
-           var m=dt.getMinutes();
-           var s=dt.getSeconds();
+           var h=dt.getHours();//获取时
+           var m=dt.getMinutes();//获取分
+           var s=dt.getSeconds();//获取秒
            document.getElementById("showTime").innerHTML = y+"年"+mt+"月"+day+"-"+h+"时"+m+"分"+s+"秒";
-           t = setTimeout(time,1000);
+           t = setTimeout(time,1000); //设定定时器，循环运行
         }
     </script>
 
@@ -131,7 +133,6 @@
 </div>
 <div class="back"></div>
 
-
 <script type="text/javascript" src="{% static 'monit/js/world.js'%}"></script>
 <script type="text/javascript" src="{% static 'monit/js/area_echarts.js'%}"></script>
 
@@ -140,11 +141,11 @@
     change();
     var times = [];
     var values = [];
-    var edtime;
     var params = {{ compid }};
+    var edtime;
 
     function change(){
-      $.getJSON('{% url "monit_main_getnum" %}',function(data){
+      $.getJSON('{% url "monit_main_getnum" %}?comid={{ compid }}',function(data){
         times=data.times;
         values=data.number;
         edtime = data.edtime;
@@ -165,7 +166,6 @@
         edtime = data.edtime;
 
         echarts_4(times,values);
-
         var n = 20;
         times = times.slice(-n);
         values = values.slice(-n);
@@ -175,32 +175,29 @@
 </script>
 <!--端口请求数量-->
 <script type="text/javascript">
-        nu_change()
-        var nu_port = []
-        var nuvalues = []
-        var nu_edtime
+        nu_change();
+        var nu_port = [];
+        var nu_edtime;
         function nu_change(){
-          $.getJSON('{% url "monit_visitport" %}',function(data){
-            nu_port=data.port
-            nu_values=data.number
-            nu_edtime = data.edtime
+          $.getJSON('{% url "monit_visitport" %}?comid={{ compid }}',function(data){
+            nu_port=data.port;
+            nu_values=data.number;
+            nu_edtime = data.edtime;
             echarts_34(nu_port,nu_values)
           })
         }
 </script>
 <!--服务器状态码-->
 <script type="text/javascript">
-        st_change()
-        var st_port_data = []
-        var st_yAxis_data = []
-
-        var st_series = []
+        st_change();
+        var st_port_data = [];
+        var st_yAxis_data = [];
+        var st_series = [];
         function st_change(){
-          $.getJSON('{% url "monit_status_code" %}',function(data){
-            st_port_data=data.port
-            st_xAxis_data=data.xAxis
-            st_yAxis_data = data.yAxis
-
+          $.getJSON('{% url "monit_status_code" %}?comid={{ compid }}',function(data){
+            st_port_data=data.port;
+            st_xAxis_data=data.xAxis;
+            st_yAxis_data = data.yAxis;
             for (var key in st_yAxis_data)
                 {
                     var test = {};
@@ -222,7 +219,7 @@
         var do_yAxis_data = [];
         var do_series = [];
         function do_change(){
-          $.getJSON('{% url "monit_domain_infor" %}',function(data){
+          $.getJSON('{% url "monit_domain_infor" %}?comid={{ compid }}',function(data){
             do_port_data=data.port;
             do_xAxis_data=data.xAxis;
             do_yAxis_data = data.yAxis;
@@ -234,6 +231,7 @@
                     ser["symbol"] = "none";
                     ser["name"] = key;
                     ser["type"] = 'line';
+                    // ser["stack"] = 'statu';
                     ser["areaStyle"] = {};
                     ser["areaStyle"] = {
                         normal: {
@@ -262,15 +260,31 @@
     var fa_ip = [];
     var fa_values = [];
     var fa_edtime;
+    var compid = {{ compid }}
 
     function fa_change(){
-      $.getJSON('{% url "monit_ip_fraction" %}',function(data){
-        fa_ip=data.ports;
-        fa_values=data.number;
-        fa_edtime = data.edtime;
-        echarts_5(fa_ip,fa_values)
-      })
+        // $.ajaxSettings.async = false;
+      // $.getJSON('{% url "monit_ip_fraction" %}?comid={{ compid }}',function(data){
+      //   fa_ip=data.ports;
+      //   fa_values=data.number;
+      //   fa_edtime = data.edtime;
+      //   echarts_5(fa_ip,fa_values)
+      // });
+        // $.ajaxSettings.async = true;
+        $.ajax({
+            type: "GET",
+            url: "{% url 'monit_ip_fraction' %}",
+            data: { comid:compid },
+            dataType: "JSON",
+            success: function(data) {
+                fa_ip=data.ports;
+                fa_values=data.number;
+                fa_edtime = data.edtime;
+                echarts_5(fa_ip,fa_values)
+            }
+      });
     }
+
 
 </script>
 <!--客户端请求流量-->
@@ -280,8 +294,9 @@
     var rq_port_data = [];
     var rq_yAxis_data = [];
     var rq_series = [];
+
     function rq_change(){
-      $.getJSON('{% url "monit_Request_traffic" %}',function(data){
+      $.getJSON('{% url "monit_Request_traffic" %}?comid={{ compid }}',function(data){
         rq_port_data=data.ports;
         rq_yAxis_data=data.yAxis;
         rq_xAxis_data=data.xAxis;
@@ -307,7 +322,7 @@
                         color: colors[i],
                     }
                 };
-                 ser["itemStyle"] = {
+                 ser["itemStyle"] = { //控制线图表颜色
                     normal: {
                       color: colors[i],
                       borderColor: 'rgba(221, 220, 107, .1)',
@@ -318,7 +333,6 @@
                 ser["data"] = rq_yAxis_data[key];
                 rq_series.push(ser)
             }
-        // console.log(series)
         echarts_31(rq_series,rq_port_data,rq_xAxis_data)
       })
     }
@@ -335,7 +349,7 @@
     function rp_change(){
       $.getJSON('{% url "monit_Response_traffic" %}',function(data){
         rp_port_data=data.port;
-        value = data.yAxis;
+        value = data.yAxis
         for (var num in value){
             y_num.push(value[num])
         }
@@ -360,6 +374,7 @@
             var data = {
                 name: charts.names[i],
                 type: 'line',
+                // color: color[x] + ')',
                 color: color[x],
                 smooth: true,
                 areaStyle: {
@@ -416,7 +431,7 @@
             names: wa_port_data,
             lineX: wa_xAxis_data,
             value: wa_yAxis_data,
-        }
+        };
         var colors = ['rgba(23, 255, 243', 'rgba(255,100,97','rgba(255,165,0','rgba(0,191,255',
             'rgba(255,69,0','rgba(205,92,92','rgba(199,21,133','rgba(148,0,211'];
 

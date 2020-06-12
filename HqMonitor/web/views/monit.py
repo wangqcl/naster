@@ -1,19 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from common.models import Users,Compinfo
-from django.http import JsonResponse
-from django.shortcuts import redirect
-from django.core.urlresolvers import reverse
 from elasticsearch import Elasticsearch
-import json,time
+import json
 import datetime
 from django.views.generic import View
 from django.conf import settings
-
-
-def index(request,pIndex=1):
-    '''前台首页'''
-    return render(request,"web/monit.html")
 
 '''配置es'''
 es = Elasticsearch(
@@ -22,27 +14,84 @@ es = Elasticsearch(
     scheme="http",
     port=9200,
 )
+#监控首页
+def index(request,pIndex=0):
+    '''首页-全局监控信息'''
+    username = request.session.get('webuser',default=None)  # 获取登录用户名
+    user = Users.objects.get(username=username)
+    if user.state == 0:
+        if int(pIndex) == 0:
+            content = {
+                "compid": pIndex
+            }
+            return render(request,"web/monit.html",content)
+        else:
+            content = {
+                "compid":pIndex
+            }
+            return render(request, "web/usermon/qmonit.html",content)   #只查询此用户下的数据
+    elif user.state == 1 & pIndex!=0 :
+        content = {
+            "compid": pIndex
+        }
+        return render(request,"web/usermon/monit.html",content)  #用户的监控首页
+    else:
+        error = "访问出错！"
+        content = {"info":error}
+        return render(request, "web/info.html",content)
 
 #请求数量
 class Main_getnum(View):
+
     def get(self,request):
-        print(settings.IP_LOCAL)
-        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
+        comid = request.GET.get('comid',None)
+        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
-        #如果项目ID不等于0，
-        # 如果选择了项目，查询所选项目下的IP/域名，拼接条件
-        #如果是管理员，携带ID为0：  如果是管理员，携带ID不为0：  如果是用户身份：
-        es_result = self.sear_info(st_time,ed_time)
-        return HttpResponse(es_result)
+        if comid == None:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return HttpResponse(es_result)
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_realm = comp.comp_realm  # 域名
+                comp_s = comp_realm.split('.', 1)
+                sp_param = "*%s*" % (comp_s[1])
+                es_result = self.sear_info(st_time, ed_time, sp_param)
+                return HttpResponse(es_result)
+            except Exception as err:
+                print(err)
+                return HttpResponse("Error")
+
+
     def post(self,request):
         st_time = request.POST['edtime']
+        comid = request.POST['compid']
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
-        es_result = self.sear_info(st_time, ed_time)
-        return HttpResponse(es_result)
+        if int(comid) == 0: #是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time,ed_time,sp_param)
+            return HttpResponse(es_result)
+        else:
+            comp = Compinfo.objects.get(id=comid)
+            comp_ip = comp.comp_ip  #IP
+            comp_realm = comp.comp_realm    #域名
 
-    def sear_info(self, st_time, ed_time):
+            if comp_ip != "" and comp_realm == "":  #Ip
+                sp_param = "*%s*" % (comp_ip)
+                es_result = self.sear_info(st_time, ed_time, sp_param)
+                return HttpResponse(es_result)
+            elif comp_ip != "" and comp_realm != "":  #域名
+                comp_s = comp_realm.split('.', 1)
+                sp_param = "*%s*" % (comp_s[1])
+                es_result = self.sear_info(st_time, ed_time,sp_param)
+                return HttpResponse(es_result)
+            else:
+                return HttpResponse("Error")
 
-        body = {
+    def sear_info(self, st_time, ed_time,sp_param):
+        if sp_param == None:
+            body = {
             "aggs": {
                 "2": {
                     "date_histogram": {
@@ -94,7 +143,74 @@ class Main_getnum(View):
                     "must_not": []
                 }
             }
-        }
+        } #全部
+        else:
+            body = {
+                "aggs": {
+                    "2": {
+                        "date_histogram": {
+                            "field": "@timestamp",
+                            "calendar_interval": "1m",
+                            "time_zone": "Asia/Shanghai",
+                            "min_doc_count": 1
+                        }
+                    }
+                },
+                "size": 0,
+                "_source": {
+                    "excludes": []
+                },
+                "stored_fields": [
+                    "*"
+                ],
+                "script_fields": {},
+                "docvalue_fields": [
+                    {
+                        "field": "@timestamp",
+                        "format": "date_time"
+                    }
+                ],
+                "query": {
+                    "bool": {
+                        "must": [],
+                        "filter": [
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "bool": {
+                                    "should": [
+                                        {
+                                            "wildcard": {
+                                            "domain": sp_param
+                                            }
+                                        }
+                                    ],
+                                "minimum_should_match": 1
+                                }
+                            },
+                            {
+                                "range": {
+                                    "@timestamp": {
+                                        "format": "strict_date_optional_time",
+                                        "gte": st_time,
+                                        "lte": ed_time
+                                    }
+                                }
+                            }
+                        ],
+                        "should": [],
+                        "must_not": []
+                    }
+                }
+            } #按域名筛选
+
         try:
             ret = es.search(index='logstash-nginx-log', doc_type='_doc', body=body)
             re_data = ret['aggregations']['2']['buckets']
@@ -113,17 +229,43 @@ class Main_getnum(View):
 
 #主要访问端口
 class Main_visit_port(View):
+
     def get(self,request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
-        es_result = self.sear_info(st_time,ed_time)
-        return HttpResponse(es_result)
+        #获取
+        comid = request.GET.get('comid', None)
+        if comid == None:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return HttpResponse(es_result)
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_ip = comp.comp_ip  # IP
+                comp_s = comp_ip.split(';')
+                sp_param ={
+                      "bool": {
+                        "should": [
+                        ],
+                        "minimum_should_match": 1
+                      }
+                    }
+                for ip in comp_s:
+                    match_phrase = {"match_phrase": {"destination.ip": ip}}
+                    sp_param["bool"]["should"].append(match_phrase)
+                es_result = self.sear_info(st_time, ed_time, sp_param)
+                return HttpResponse(es_result)
+            except Exception as err:
+                print(err)
+                return HttpResponse("Error")
     def post(self,request):
         info = {"请求失败！"}
         return HttpResponse(info)
 
-    def sear_info(self,st_time,ed_time):
-        body = {
+    def sear_info(self,st_time,ed_time,sp_param):
+        if sp_param == None:
+            body = {
             "aggs": {
                 "2": {
                     "terms": {
@@ -224,20 +366,122 @@ class Main_visit_port(View):
                     "must_not": []
                 }
             }
-        }
+        } #全部
+        else:
+            body = {
+            "aggs": {
+                "2": {
+                    "terms": {
+                        "field": "destination.port",
+                        "order": {
+                            "_count": "desc"
+                        },
+                        "size": 5
+                    }
+                }
+            },
+            "size": 0,
+            "_source": {
+                "excludes": []
+            },
+            "stored_fields": [
+                "*"
+            ],
+            "script_fields": {},
+            "docvalue_fields": [
+                {
+                    "field": "@timestamp",
+                    "format": "date_time"
+                },
+                {
+                    "field": "event.created",
+                    "format": "date_time"
+                },
+                {
+                    "field": "event.end",
+                    "format": "date_time"
+                },
+                {
+                    "field": "event.start",
+                    "format": "date_time"
+                },
+                {
+                    "field": "file.accessed",
+                    "format": "date_time"
+                },
+                {
+                    "field": "file.created",
+                    "format": "date_time"
+                },
+                {
+                    "field": "file.ctime",
+                    "format": "date_time"
+                },
+                {
+                    "field": "file.mtime",
+                    "format": "date_time"
+                },
+                {
+                    "field": "process.start",
+                    "format": "date_time"
+                },
+                {
+                    "field": "tls.client_certificate.not_after",
+                    "format": "date_time"
+                },
+                {
+                    "field": "tls.client_certificate.not_before",
+                    "format": "date_time"
+                },
+                {
+                    "field": "tls.server_certificate.not_after",
+                    "format": "date_time"
+                },
+                {
+                    "field": "tls.server_certificate.not_before",
+                    "format": "date_time"
+                }
+            ],
+            "query": {
+                "bool": {
+                    "must": [],
+                    "filter": [
+                        {
+                            "match_all": {}
+                        },
+                        {
+                            "match_all": {}
+                        },
+                        {
+                            "match_all": {}
+                        },
+                        sp_param,
+                        {
+                            "range": {
+                                "@timestamp": {
+                                    "format": "strict_date_optional_time",
+                                    "gte": st_time,
+                                    "lte": ed_time
+                                }
+                            }
+                        }
+                    ],
+                    "should": [],
+                    "must_not": []
+                }
+            }
+        } #按域名筛选
         try:
             ret = es.search(index='packetbeat-*', doc_type='_doc', body=body)
-            # print(ret)
             re_data = ret['aggregations']['2']['buckets']
             ports, number, jsontext = [], [], {}
-            # print(re_data)
             for i in re_data:
                 number_dict = {}
                 ports.append(i['key'])
                 number_dict['value'], number_dict['name'] = i['doc_count'], i['key']
                 number.append(number_dict)
-            jsontext['ports'] = ports[:-1]
-            jsontext['number'] = number[:-1]
+            jsontext['ports'] = ports
+            jsontext['number'] = number
             jsontext['edtime'] = ed_time
             return json.dumps(jsontext)
         except:
@@ -249,14 +493,31 @@ class Server_status_code(View):
     def get(self,request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
-        es_result = self.sear_info(st_time,ed_time)
-        return HttpResponse(es_result)
+        comid = request.GET.get('comid', None)
+        if comid == None:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return HttpResponse(es_result)
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_realm = comp.comp_realm  # 域名
+                comp_s = comp_realm.split('.', 1)
+                sp_param = "*%s*" % (comp_s[1])
+                es_result = self.sear_info(st_time, ed_time, sp_param)
+                return HttpResponse(es_result)
+            except Exception as err:
+                print(err)
+                return HttpResponse("Error")
+        # es_result = self.sear_info(st_time,ed_time)
+        # return HttpResponse(es_result)
     def post(self,request):
         info = {"请求失败！"}
         return HttpResponse(info)
 
-    def sear_info(self,st_time,ed_time):
-        body = {
+    def sear_info(self,st_time,ed_time,sp_param):
+        if sp_param == None:
+            body = {
           "aggs": {
             "2": {
               "date_histogram": {
@@ -319,40 +580,114 @@ class Server_status_code(View):
               "must_not": []
             }
           }
-        }
+        } #全部
+        else:
+            body = {
+          "aggs": {
+            "2": {
+              "date_histogram": {
+                "field": "@timestamp",
+                "fixed_interval": "5s",
+                "time_zone": "Asia/Shanghai",
+                "min_doc_count": 1
+              },
+              "aggs": {
+                "3": {
+                  "terms": {
+                    "field": "status.keyword",
+                    "order": {
+                      "_count": "desc"
+                    },
+                    "size": 2
+                  }
+                }
+              }
+            }
+          },
+          "size": 0,
+          "_source": {
+            "excludes": []
+          },
+          "stored_fields": [
+            "*"
+          ],
+          "script_fields": {},
+          "docvalue_fields": [
+            {
+              "field": "@timestamp",
+              "format": "date_time"
+            }
+          ],
+          "query": {
+            "bool": {
+              "must": [],
+              "filter": [
+                {
+                  "match_all": {}
+                },
+                {
+                  "match_all": {}
+                },
+                {
+                  "match_all": {}
+                },
+                {
+                      "bool": {
+                          "should": [
+                              {
+                                  "wildcard": {
+                                      "domain": sp_param
+                                  }
+                              }
+                          ],
+                          "minimum_should_match": 1
+                      }
+                  },
+                {
+                  "range": {
+                    "@timestamp": {
+                      "format": "strict_date_optional_time",
+                      "gte": st_time,
+                      "lte": ed_time
+                    }
+                  }
+                }
+              ],
+              "should": [],
+              "must_not": []
+            }
+          }
+        } #按域名筛选
         try:
             ret = es.search(index='logstash-nginx-log', doc_type='_doc', body=body)
             re_data = ret['aggregations']['2']['buckets']
             list_date, jsontext,yAxis_data = [], {},{}
             doc_count = []
             for i in re_data:
-                list_date.append(i["key_as_string"][11:-13])  #获取日期数据并放入列表
+                list_date.append(i["key_as_string"][11:-13])  #日期
                 ret_buckets = i["3"]["buckets"]
                 for v in ret_buckets:
                     port_key = v["key"]  # 端口
-                    doc_count = v["doc_count"]  # 获取端口对应数量
+                    doc_count = v["doc_count"]  # 端口数量
 
                     # 判断jsontext中是否存在相同的key,端口
                     keys = list(yAxis_data.keys())
                     if (port_key in keys):
-                        # print("存在")
                         if len(yAxis_data[port_key])<len(list_date)-1:
-                            # print("aaa")
                             diff = len(list_date)-len(yAxis_data[port_key])
                             diff_list = ['' for _ in range(diff - 1)]
                             yAxis_data[port_key].extend(diff_list) #合并补空位
                             yAxis_data[port_key].append(doc_count)
-                        # 如果存在继续添加
+                        # 继续添加
                         else:
                             yAxis_data[port_key].append(doc_count)
                     else:
-                        # print("不存在")  # 不存在则新添加
+                        # 新加
                         null_list = ['' for _ in range(len(list_date)-1)]
-                        yAxis_data.setdefault(port_key, null_list).append(doc_count)  # 字典中添加端口和数量
+                        yAxis_data.setdefault(port_key, null_list).append(doc_count)  # 添加端口和数量
                 jsontext['yAxis'] = yAxis_data  #端口对应数据量
-                jsontext['xAxis'] = list_date  #日期列表做X轴
-                jsontext['port'] = list(yAxis_data.keys())  # 统计所有端口值
-                # jsontext['edtime'] = ed_time
+                jsontext['xAxis'] = list_date  #X轴
+                jsontext['port'] = list(yAxis_data.keys())  # 所有端口值
             return json.dumps(jsontext)
         except:
             errinfo = {"error": "数据请求失败！"}
@@ -363,14 +698,31 @@ class Domain_infor(View):
     def get(self,request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
-        es_result = self.sear_info(st_time,ed_time)
-        return HttpResponse(es_result)
+        comid = request.GET.get('comid', None)
+        if comid == None:  #用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return HttpResponse(es_result)
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_realm = comp.comp_realm  # 域名
+                comp_s = comp_realm.split('.', 1)
+                sp_param = "*%s*" % (comp_s[1])
+                es_result = self.sear_info(st_time, ed_time, sp_param)
+                return HttpResponse(es_result)
+            except Exception as err:
+                print(err)
+                return HttpResponse("Error")
+        # es_result = self.sear_info(st_time,ed_time)
+        # return HttpResponse(es_result)
     def post(self,request):
         info = {"请求失败！"}
         return HttpResponse(info)
 
-    def sear_info(self,st_time,ed_time):
-        body = {
+    def sear_info(self,st_time,ed_time,sp_param):
+        if sp_param == None:
+            body = {
           "aggs": {
             "2": {
               "date_histogram": {
@@ -433,7 +785,84 @@ class Domain_infor(View):
               "must_not": []
             }
           }
-        }
+        } #全部
+        else:
+            body = {
+          "aggs": {
+            "2": {
+              "date_histogram": {
+                "field": "@timestamp",
+                "calendar_interval": "1m",
+                "time_zone": "Asia/Shanghai",
+                "min_doc_count": 1
+              },
+              "aggs": {
+                "3": {
+                  "terms": {
+                    "field": "domain.keyword",
+                    "order": {
+                      "_count": "desc"
+                    },
+                    "size": 5
+                  }
+                }
+              }
+            }
+          },
+          "size": 0,
+          "_source": {
+            "excludes": []
+          },
+          "stored_fields": [
+            "*"
+          ],
+          "script_fields": {},
+          "docvalue_fields": [
+            {
+              "field": "@timestamp",
+              "format": "date_time"
+            }
+          ],
+          "query": {
+            "bool": {
+              "must": [],
+              "filter": [
+                {
+                  "match_all": {}
+                },
+                {
+                  "match_all": {}
+                },
+                {
+                  "match_all": {}
+                },
+                  {
+                      "bool": {
+                          "should": [
+                              {
+                                  "wildcard": {
+                                      "domain": sp_param
+                                  }
+                              }
+                          ],
+                          "minimum_should_match": 1
+                      }
+                  },
+                {
+                  "range": {
+                    "@timestamp": {
+                      "format": "strict_date_optional_time",
+                      "gte": st_time,
+                      "lte": ed_time
+                    }
+                  }
+                }
+              ],
+              "should": [],
+              "must_not": []
+            }
+          }
+        } #按域名筛选
         try:
             ret = es.search(index='logstash-nginx-log', doc_type='_doc', body=body)
             re_data = ret['aggregations']['2']['buckets']
@@ -476,14 +905,42 @@ class Ip_fraction(View):
     def get(self,request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区时间
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
-        es_result = self.sear_info(st_time,ed_time)
-        return HttpResponse(es_result)
+        # 获取
+        comid = request.GET.get('comid', None)
+        if comid == None:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return HttpResponse(es_result)
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_ip = comp.comp_ip  # IP
+                comp_s = comp_ip.split(';')
+                sp_param = {
+                               "bool":
+                                   {
+                                       "should":
+                                           [
+
+                                           ],
+                                       "minimum_should_match": 1
+                                   }
+                           }
+                for ip in comp_s:
+                    match_phrase = {"match_phrase": {"dst_ip": ip}}
+                    sp_param["bool"]["should"].append(match_phrase)
+                es_result = self.sear_info(st_time, ed_time, sp_param)
+                return HttpResponse(es_result)
+            except Exception as err:
+                print(err)
+                return HttpResponse("Error")
     def post(self,request):
         info = {"请求失败！"}
         return HttpResponse(info)
 
-    def sear_info(self,st_time,ed_time):
-        body = {
+    def sear_info(self,st_time,ed_time,sp_param):
+        if sp_param == None:
+            body = {
           "aggs": {
             "2": {
               "terms": {
@@ -556,7 +1013,83 @@ class Ip_fraction(View):
               "must_not": []
             }
           }
+        } #全部
+        else:
+            body = {
+  "aggs": {
+    "2": {
+      "terms": {
+        "field": "src_ip.keyword",
+        "order": {
+          "1": "desc"
+        },
+        "size": 10
+      },
+      "aggs": {
+        "1": {
+          "avg": {
+            "field": "score"
+          }
+        },
+        "3": {
+          "terms": {
+            "field": "src_ip.keyword",
+            "order": {
+              "1": "desc"
+            },
+            "size": 10
+          },
+          "aggs": {
+            "1": {
+              "avg": {
+                "field": "score"
+              }
+            }
+          }
         }
+      }
+    }
+  },
+  "size": 0,
+  "_source": {
+    "excludes": []
+  },
+  "stored_fields": [
+    "*"
+  ],
+  "script_fields": {},
+  "docvalue_fields": [
+    {
+      "field": "timestamp",
+      "format": "date_time"
+    }
+  ],
+  "query": {
+    "bool": {
+      "must": [],
+      "filter": [
+        {
+          "match_all": {}
+        },
+        {
+          "match_all": {}
+        },
+        sp_param,
+        {
+          "range": {
+            "timestamp": {
+              "format": "strict_date_optional_time",
+              "gte": st_time,
+              "lte": ed_time
+            }
+          }
+        }
+      ],
+      "should": [],
+      "must_not": []
+    }
+  }
+} #按域名筛选
         try:
             ret = es.search(index='total', doc_type='_doc', body=body)
             re_data = ret['aggregations']['2']['buckets']
@@ -565,8 +1098,8 @@ class Ip_fraction(View):
                 ports.append(i['key']) #域名
                 ip_frac = i['1'][ 'value']
                 number.append(round(ip_frac)) #分值,四舍五入
-            jsontext['ports'] = ports[:-1]
-            jsontext['number'] = number[:-1]
+            jsontext['ports'] = ports
+            jsontext['number'] = number
             jsontext['edtime'] = ed_time
             return json.dumps(jsontext)
         except:
@@ -578,133 +1111,282 @@ class Request_traffic(View):
     def get(self,request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
-        es_result = self.sear_info(st_time,ed_time)
-        return HttpResponse(es_result)
+        # 获取
+        comid = request.GET.get('comid', None)
+        if comid == None:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return HttpResponse(es_result)
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_ip = comp.comp_ip  # IP
+                comp_s = comp_ip.split(';')
+                sp_param = {
+                    "bool":
+                        {
+                            "should":
+                                [
+
+                                ],
+                            "minimum_should_match": 1
+                        }
+                }
+                for ip in comp_s:
+                    match_phrase = {"match_phrase": {"destination.ip": ip}}
+                    sp_param["bool"]["should"].append(match_phrase)
+                es_result = self.sear_info(st_time, ed_time, sp_param)
+                return HttpResponse(es_result)
+            except Exception as err:
+                print(err)
+                return HttpResponse("Error")
 
     def post(self,request):
         info = {"请求失败！"}
         return HttpResponse(info)
 
-    def sear_info(self,st_time,ed_time):
-        body = {
-          "aggs": {
-            "3": {
-              "date_histogram": {
-                "field": "@timestamp",
-                "fixed_interval": "30s",
-                "time_zone": "Asia/Shanghai",
-                "min_doc_count": 1
-              },
-              "aggs": {
-                "4": {
-                  "terms": {
-                    "field": "source.ip",
-                    "order": {
-                      "1": "desc"
+    def sear_info(self,st_time,ed_time,sp_param):
+        if sp_param == None:
+            body = {
+                "aggs": {
+                    "3": {
+                        "date_histogram": {
+                            "field": "@timestamp",
+                            "fixed_interval": "30s",
+                            "time_zone": "Asia/Shanghai",
+                            "min_doc_count": 1
+                        },
+                        "aggs": {
+                            "4": {
+                                "terms": {
+                                    "field": "source.ip",
+                                    "order": {
+                                        "1": "desc"
+                                    },
+                                    "size": 3
+                                },
+                                "aggs": {
+                                    "1": {
+                                        "sum": {
+                                            "field": "source.bytes"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "size": 0,
+                "_source": {
+                    "excludes": []
+                },
+                "stored_fields": [
+                    "*"
+                ],
+                "script_fields": {},
+                "docvalue_fields": [
+                    {
+                        "field": "@timestamp",
+                        "format": "date_time"
                     },
-                    "size": 3
-                  },
-                  "aggs": {
-                    "1": {
-                      "sum": {
-                        "field": "source.bytes"
-                      }
+                    {
+                        "field": "event.created",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "event.end",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "event.start",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "file.accessed",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "file.created",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "file.ctime",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "file.mtime",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "process.start",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "tls.client_certificate.not_after",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "tls.client_certificate.not_before",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "tls.server_certificate.not_after",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "tls.server_certificate.not_before",
+                        "format": "date_time"
                     }
-                  }
-                }
-              }
-            }
-          },
-          "size": 0,
-          "_source": {
-            "excludes": []
-          },
-          "stored_fields": [
-            "*"
-          ],
-          "script_fields": {},
-          "docvalue_fields": [
-            {
-              "field": "@timestamp",
-              "format": "date_time"
-            },
-            {
-              "field": "event.created",
-              "format": "date_time"
-            },
-            {
-              "field": "event.end",
-              "format": "date_time"
-            },
-            {
-              "field": "event.start",
-              "format": "date_time"
-            },
-            {
-              "field": "file.accessed",
-              "format": "date_time"
-            },
-            {
-              "field": "file.created",
-              "format": "date_time"
-            },
-            {
-              "field": "file.ctime",
-              "format": "date_time"
-            },
-            {
-              "field": "file.mtime",
-              "format": "date_time"
-            },
-            {
-              "field": "process.start",
-              "format": "date_time"
-            },
-            {
-              "field": "tls.client_certificate.not_after",
-              "format": "date_time"
-            },
-            {
-              "field": "tls.client_certificate.not_before",
-              "format": "date_time"
-            },
-            {
-              "field": "tls.server_certificate.not_after",
-              "format": "date_time"
-            },
-            {
-              "field": "tls.server_certificate.not_before",
-              "format": "date_time"
-            }
-          ],
-          "query": {
-            "bool": {
-              "must": [],
-              "filter": [
-                {
-                  "match_all": {}
-                },
-                {
-                  "match_all": {}
-                },
-                {
-                  "match_all": {}
-                },
-                {
-                  "range": {
-                    "@timestamp": {
-                      "format": "strict_date_optional_time",
-                      "gte": st_time,
-                      "lte": ed_time
+                ],
+                "query": {
+                    "bool": {
+                        "must": [],
+                        "filter": [
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "range": {
+                                    "@timestamp": {
+                                        "format": "strict_date_optional_time",
+                                        "gte": st_time,
+                                        "lte": ed_time
+                                    }
+                                }
+                            }
+                        ],
+                        "should": [],
+                        "must_not": []
                     }
-                  }
                 }
-              ],
-              "should": [],
-              "must_not": []
             }
-          }
-        }
+        else:
+            body = {
+                "aggs": {
+                    "3": {
+                        "date_histogram": {
+                            "field": "@timestamp",
+                            "fixed_interval": "30s",
+                            "time_zone": "Asia/Shanghai",
+                            "min_doc_count": 1
+                        },
+                        "aggs": {
+                            "4": {
+                                "terms": {
+                                    "field": "source.ip",
+                                    "order": {
+                                        "1": "desc"
+                                    },
+                                    "size": 3
+                                },
+                                "aggs": {
+                                    "1": {
+                                        "sum": {
+                                            "field": "source.bytes"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "size": 0,
+                "_source": {
+                    "excludes": []
+                },
+                "stored_fields": [
+                    "*"
+                ],
+                "script_fields": {},
+                "docvalue_fields": [
+                    {
+                        "field": "@timestamp",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "event.created",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "event.end",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "event.start",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "file.accessed",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "file.created",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "file.ctime",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "file.mtime",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "process.start",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "tls.client_certificate.not_after",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "tls.client_certificate.not_before",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "tls.server_certificate.not_after",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "tls.server_certificate.not_before",
+                        "format": "date_time"
+                    }
+                ],
+                "query": {
+                    "bool": {
+                        "must": [],
+                        "filter": [
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            sp_param,
+                            {
+                                "range": {
+                                    "@timestamp": {
+                                        "format": "strict_date_optional_time",
+                                        "gte": st_time,
+                                        "lte": ed_time
+                                    }
+                                }
+                            }
+                        ],
+                        "should": [],
+                        "must_not": []
+                    }
+                }
+            }
         try:
             ret = es.search(index='packetbeat-*', doc_type='_doc', body=body)
             re_data = ret['aggregations']['3']['buckets']

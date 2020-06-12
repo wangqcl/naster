@@ -19,7 +19,7 @@ urlpatterns = [
     url(r'^web/Hit$', Hit.as_view(), name='monit_Hit'),  # 命中
     url(r'^web/Source_data$', Source_data.as_view(), name='monit_Source_data'),  # 流量数据
 
-    url(r'^web/center$', center.center, name="web_center"),
+    url(r'^web/center$', center.center, name="web_center"),  #个人中心
 
     #登录
     url(r'^$', center.login, name="login"),  # 登录页面

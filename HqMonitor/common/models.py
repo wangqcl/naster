@@ -35,22 +35,12 @@ class Compinfo(models.Model):
     access_status = models.IntegerField(default=1)   #接入状态
     access_node = models.CharField(max_length=32,default="")   #接入节点
     service_items = models.CharField(max_length=32,default="") #服务
-
     users = models.ManyToManyField(to='Users')  #多对多关系对应
+
     def toDict(self):
-        return {'id':self.id,'comp_name':self.comp_name,'address':self.address,'name':self.name,'phone':self.phone,'comp_ip':self.comp_ip,'comp_realm':self.comp_realm,'state':self.state,'addtime':self.addtime,'port':self.port,'access_status':self.access_status,'access_node':self.access_node,'service_items':self.service_items}
+        return {'id':self.id,'comp_name':self.comp_name,'comp_ip':self.comp_ip,'comp_realm':self.comp_realm,'state':self.state,'addtime':self.addtime,'port':self.port,'access_status':self.access_status,'access_node':self.access_node,'service_items':self.service_items}
 
     class Meta:
         db_table = "compinfo"  # 更改表名
 
-# #用户-关系表
-# class Members(models.Model):
-#     users_id = models.IntegerField(default=1)
-#     compinfo_id = models.IntegerField(default=1)
-#
-#     def toDict(self):
-#         return {'id':self.id,'users_id':self.users_id,'compinfo_id':self.compinfo_id}
-#
-#     class Meta:
-#         db_table = "members"  # 更改表名
 
