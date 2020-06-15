@@ -29,7 +29,10 @@
   <div class="loadbox"> <img src="{% static 'monit/picture/loading.gif'%}"> 页面加载中... </div>
 </div>
 <div class="head">
-  <h1>网络安全动态数据监控</h1>
+    <!-- 头 -->
+    {% block title %}
+    {% endblock %}
+    <!-- 头结束 -->
     <div class="weather"><span id="showTime"></span></div>
         <div class="index_nav" >
         <ul style="height: 30px; margin-bottom: 0px;">

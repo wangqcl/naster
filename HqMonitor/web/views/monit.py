@@ -13,7 +13,10 @@ es = Elasticsearch(
     http_auth=settings.H_AUTH,
     scheme="http",
     port=9200,
+    timeout=30,
+    retry_on_timeout=True
 )
+
 #监控首页
 def index(request,pIndex=0):
     '''首页-全局监控信息'''
@@ -44,9 +47,9 @@ def index(request,pIndex=0):
 class Main_getnum(View):
 
     def get(self,request):
-        comid = request.GET.get('comid',None)
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
+        comid = request.GET.get('comid', None)
         if comid == None:  # 是否携带用户信息
             sp_param = None
             es_result = self.sear_info(st_time, ed_time, sp_param)
@@ -1424,133 +1427,284 @@ class Response_traffic(View):
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
-        es_result = self.sear_info(st_time, ed_time)
-        return HttpResponse(es_result)
+        # 获取
+        comid = request.GET.get('comid', None)
+        if comid == None:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return HttpResponse(es_result)
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_ip = comp.comp_ip  # IP
+                comp_s = comp_ip.split(';')
+                sp_param = {
+                    "bool":
+                        {
+                            "should":
+                                [
+
+                                ],
+                            "minimum_should_match": 1
+                        }
+                }
+                for ip in comp_s:
+                    match_phrase = {"match_phrase": {"destination.ip": ip}}
+                    sp_param["bool"]["should"].append(match_phrase)
+                es_result = self.sear_info(st_time, ed_time, sp_param)
+                return HttpResponse(es_result)
+            except Exception as err:
+                print(err)
+                return HttpResponse("Error")
+        # es_result = self.sear_info(st_time, ed_time)
+        # return HttpResponse(es_result)
 
     def post(self, request):
         info = {"请求失败！"}
         return HttpResponse(info)
 
-    def sear_info(self, st_time, ed_time):
-        body = {
-          "aggs": {
-            "2": {
-              "date_histogram": {
-                "field": "@timestamp",
-                "fixed_interval": "30s",
-                "time_zone": "Asia/Shanghai",
-                "min_doc_count": 1
-              },
-              "aggs": {
-                "3": {
-                  "terms": {
-                    "field": "destination.ip",
-                    "order": {
-                      "1": "desc"
+    def sear_info(self, st_time, ed_time,sp_param):
+        if sp_param == None:
+            body = {
+                "aggs": {
+                    "2": {
+                        "date_histogram": {
+                            "field": "@timestamp",
+                            "fixed_interval": "30s",
+                            "time_zone": "Asia/Shanghai",
+                            "min_doc_count": 1
+                        },
+                        "aggs": {
+                            "3": {
+                                "terms": {
+                                    "field": "destination.ip",
+                                    "order": {
+                                        "1": "desc"
+                                    },
+                                    "size": 5
+                                },
+                                "aggs": {
+                                    "1": {
+                                        "sum": {
+                                            "field": "destination.bytes"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "size": 0,
+                "_source": {
+                    "excludes": []
+                },
+                "stored_fields": [
+                    "*"
+                ],
+                "script_fields": {},
+                "docvalue_fields": [
+                    {
+                        "field": "@timestamp",
+                        "format": "date_time"
                     },
-                    "size": 5
-                  },
-                  "aggs": {
-                    "1": {
-                      "sum": {
-                        "field": "destination.bytes"
-                      }
+                    {
+                        "field": "event.created",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "event.end",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "event.start",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "file.accessed",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "file.created",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "file.ctime",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "file.mtime",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "process.start",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "tls.client_certificate.not_after",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "tls.client_certificate.not_before",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "tls.server_certificate.not_after",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "tls.server_certificate.not_before",
+                        "format": "date_time"
                     }
-                  }
-                }
-              }
-            }
-          },
-          "size": 0,
-          "_source": {
-            "excludes": []
-          },
-          "stored_fields": [
-            "*"
-          ],
-          "script_fields": {},
-          "docvalue_fields": [
-            {
-              "field": "@timestamp",
-              "format": "date_time"
-            },
-            {
-              "field": "event.created",
-              "format": "date_time"
-            },
-            {
-              "field": "event.end",
-              "format": "date_time"
-            },
-            {
-              "field": "event.start",
-              "format": "date_time"
-            },
-            {
-              "field": "file.accessed",
-              "format": "date_time"
-            },
-            {
-              "field": "file.created",
-              "format": "date_time"
-            },
-            {
-              "field": "file.ctime",
-              "format": "date_time"
-            },
-            {
-              "field": "file.mtime",
-              "format": "date_time"
-            },
-            {
-              "field": "process.start",
-              "format": "date_time"
-            },
-            {
-              "field": "tls.client_certificate.not_after",
-              "format": "date_time"
-            },
-            {
-              "field": "tls.client_certificate.not_before",
-              "format": "date_time"
-            },
-            {
-              "field": "tls.server_certificate.not_after",
-              "format": "date_time"
-            },
-            {
-              "field": "tls.server_certificate.not_before",
-              "format": "date_time"
-            }
-          ],
-          "query": {
-            "bool": {
-              "must": [],
-              "filter": [
-                {
-                  "match_all": {}
-                },
-                {
-                  "match_all": {}
-                },
-                {
-                  "match_all": {}
-                },
-                {
-                  "range": {
-                    "@timestamp": {
-                      "format": "strict_date_optional_time",
-                      "gte": st_time,
-                      "lte": ed_time
+                ],
+                "query": {
+                    "bool": {
+                        "must": [],
+                        "filter": [
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "range": {
+                                    "@timestamp": {
+                                        "format": "strict_date_optional_time",
+                                        "gte": st_time,
+                                        "lte": ed_time
+                                    }
+                                }
+                            }
+                        ],
+                        "should": [],
+                        "must_not": []
                     }
-                  }
                 }
-              ],
-              "should": [],
-              "must_not": []
             }
-          }
-        }
+        else:
+            body = {
+                "aggs": {
+                    "2": {
+                        "date_histogram": {
+                            "field": "@timestamp",
+                            "fixed_interval": "30s",
+                            "time_zone": "Asia/Shanghai",
+                            "min_doc_count": 1
+                        },
+                        "aggs": {
+                            "3": {
+                                "terms": {
+                                    "field": "destination.ip",
+                                    "order": {
+                                        "1": "desc"
+                                    },
+                                    "size": 5
+                                },
+                                "aggs": {
+                                    "1": {
+                                        "sum": {
+                                            "field": "destination.bytes"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "size": 0,
+                "_source": {
+                    "excludes": []
+                },
+                "stored_fields": [
+                    "*"
+                ],
+                "script_fields": {},
+                "docvalue_fields": [
+                    {
+                        "field": "@timestamp",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "event.created",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "event.end",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "event.start",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "file.accessed",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "file.created",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "file.ctime",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "file.mtime",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "process.start",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "tls.client_certificate.not_after",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "tls.client_certificate.not_before",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "tls.server_certificate.not_after",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "tls.server_certificate.not_before",
+                        "format": "date_time"
+                    }
+                ],
+                "query": {
+                    "bool": {
+                        "must": [],
+                        "filter": [
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            sp_param,
+                            {
+                                "range": {
+                                    "@timestamp": {
+                                        "format": "strict_date_optional_time",
+                                        "gte": st_time,
+                                        "lte": ed_time
+                                    }
+                                }
+                            }
+                        ],
+                        "should": [],
+                        "must_not": []
+                    }
+                }
+            }
         try:
             ret = es.search(index='packetbeat-*', doc_type='_doc', body=body)
             re_data = ret['aggregations']['2']['buckets']
@@ -1590,15 +1744,45 @@ class Waf_attack_trend(View):
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         st_time = datetime.datetime.strptime(datetime.datetime.now().strftime("%Y-%m-%d"), "%Y-%m-%d").strftime('%Y-%m-%dT%H:%M:%S')
-        es_result = self.sear_info(st_time, ed_time)
-        return HttpResponse(es_result)
+        # 获取
+        comid = request.GET.get('comid', None)
+        if comid == None:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return HttpResponse(es_result)
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_ip = comp.comp_ip  # IP
+                comp_s = comp_ip.split(';')
+                sp_param = {
+                    "bool":
+                        {
+                            "should":
+                                [
+
+                                ],
+                            "minimum_should_match": 1
+                        }
+                }
+                for ip in comp_s:
+                    match_phrase = {"match_phrase": {"transaction.host_ip": ip}}
+                    sp_param["bool"]["should"].append(match_phrase)
+                es_result = self.sear_info(st_time, ed_time, sp_param)
+                return HttpResponse(es_result)
+            except Exception as err:
+                print(err)
+                return HttpResponse("Error")
+        # es_result = self.sear_info(st_time, ed_time)
+        # return HttpResponse(es_result)
 
     def post(self, request):
         info = {"请求失败！"}
         return HttpResponse(info)
 
-    def sear_info(self, st_time, ed_time):
-        body = {
+    def sear_info(self, st_time, ed_time,sp_param):
+        if sp_param == None:
+            body = {
           "aggs": {
             "4": {
               "date_histogram": {
@@ -1667,8 +1851,80 @@ class Waf_attack_trend(View):
             }
           }
         }
+        else:
+            body = {
+                "aggs": {
+                    "4": {
+                        "date_histogram": {
+                            "field": "@timestamp",
+                            "fixed_interval": "30m",
+                            "time_zone": "Asia/Shanghai",
+                            "min_doc_count": 1
+                        },
+                        "aggs": {
+                            "5": {
+                                "terms": {
+                                    "field": "transaction.messages.message.keyword",
+                                    "order": {
+                                        "_count": "desc"
+                                    },
+                                    "size": 5
+                                }
+                            }
+                        }
+                    }
+                },
+                "size": 0,
+                "_source": {
+                    "excludes": []
+                },
+                "stored_fields": [
+                    "*"
+                ],
+                "script_fields": {},
+                "docvalue_fields": [
+                    {
+                        "field": "@timestamp",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "values._widget_1583487508607.data.uploadTime",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "values._widget_1583990422218.data.uploadTime",
+                        "format": "date_time"
+                    }
+                ],
+                "query": {
+                    "bool": {
+                        "must": [],
+                        "filter": [
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            sp_param,
+                            {
+                                "range": {
+                                    "@timestamp": {
+                                        "format": "strict_date_optional_time",
+                                        "gte": st_time,
+                                        "lte": ed_time
+                                    }
+                                }
+                            }
+                        ],
+                        "should": [],
+                        "must_not": []
+                    }
+                }
+            }
         try:
             ret = es.search(index='waf*', doc_type='_doc', body=body)
+
             re_data = ret['aggregations']['4']['buckets']
             list_date, jsontext, yAxis_data = [], {}, {}
 
@@ -1707,96 +1963,302 @@ class Attack_map(View):
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
-        es_result = self.sear_info(st_time, ed_time)
-        # print(st_time)
-        return HttpResponse(es_result)
+        comid = request.GET.get('comid', None)
+        if comid == None:  # 全局信息
+            param = None
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param,param)
+            return HttpResponse(es_result)
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_realm = comp.comp_realm
+                if comp_realm == "":# 域名为空
+                    param = 1
+                    comp_ip = comp.comp_ip  # IP
+                    comp_s = comp_ip.split(';')
+                    sp_param = {
+                        "bool":
+                            {
+                                "should":
+                                    [
+
+                                    ],
+                                "minimum_should_match": 1
+                            }
+                    }
+                    for ip in comp_s:
+                        match_phrase = {"match_phrase": {"domain": ip}}
+                        sp_param["bool"]["should"].append(match_phrase)
+                    es_result = self.sear_info(st_time, ed_time, sp_param,param)
+                    return HttpResponse(es_result)
+                else:
+                    param = 2
+                    comp_s = comp_realm.split('.', 1)
+                    sp_param = "*%s*" % (comp_s[1])
+                    es_result = self.sear_info(st_time, ed_time, sp_param,param)
+                    return HttpResponse(es_result)
+            except Exception as err:
+                print(err)
+                return HttpResponse("Error")
+        # es_result = self.sear_info(st_time, ed_time)
+        # return HttpResponse(es_result)
 
     def post(self, request):
         info = {"请求失败！"}
         return HttpResponse(info)
 
-    def sear_info(self, st_time, ed_time):
-        body = {
-          "aggs": {
-            "filter_agg": {
-              "filter": {
-                "geo_bounding_box": {
-                  "ignore_unmapped": "true",
-                  "geoip.location": {
-                    "top_left": {
-                      "lat": 64.590055,
-                      "lon": -180
-                    },
-                    "bottom_right": {
-                      "lat": -90,
-                      "lon": 180
-                    }
-                  }
-                }
-              },
+    def sear_info(self, st_time, ed_time,sp_param,param):
+        if sp_param == None:
+            body = {
               "aggs": {
-                "2": {
-                  "geohash_grid": {
-                    "field": "geoip.location",
-                    "precision": 2
+                "filter_agg": {
+                  "filter": {
+                    "geo_bounding_box": {
+                      "ignore_unmapped": "true",
+                      "geoip.location": {
+                        "top_left": {
+                          "lat": 64.590055,
+                          "lon": -180
+                        },
+                        "bottom_right": {
+                          "lat": -90,
+                          "lon": 180
+                        }
+                      }
+                    }
                   },
                   "aggs": {
-                    "3": {
-                      "geo_centroid": {
-                        "field": "geoip.location"
+                    "2": {
+                      "geohash_grid": {
+                        "field": "geoip.location",
+                        "precision": 2
+                      },
+                      "aggs": {
+                        "3": {
+                          "geo_centroid": {
+                            "field": "geoip.location"
+                          }
+                        }
                       }
                     }
                   }
                 }
-              }
-            }
-          },
-          "size": 0,
-          "_source": {
-            "excludes": []
-          },
-          "stored_fields": [
-            "*"
-          ],
-          "script_fields": {},
-          "docvalue_fields": [
-            {
-              "field": "@timestamp",
-              "format": "date_time"
-            }
-          ],
-          "query": {
-            "bool": {
-              "must": [],
-              "filter": [
+              },
+              "size": 0,
+              "_source": {
+                "excludes": []
+              },
+              "stored_fields": [
+                "*"
+              ],
+              "script_fields": {},
+              "docvalue_fields": [
                 {
-                  "match_all": {}
-                },
-                {
-                  "match_all": {}
-                },
-                {
-                  "match_all": {}
-                },
-                {
-                  "range": {
-                    "@timestamp": {
-                      "format": "strict_date_optional_time",
-                      "gte": st_time,
-                      "lte": ed_time
-                    }
-                  }
+                  "field": "@timestamp",
+                  "format": "date_time"
                 }
               ],
-              "should": [],
-              "must_not": []
+              "query": {
+                "bool": {
+                  "must": [],
+                  "filter": [
+                    {
+                      "match_all": {}
+                    },
+                    {
+                      "match_all": {}
+                    },
+                    {
+                      "match_all": {}
+                    },
+                    {
+                      "range": {
+                        "@timestamp": {
+                          "format": "strict_date_optional_time",
+                          "gte": st_time,
+                          "lte": ed_time
+                        }
+                      }
+                    }
+                  ],
+                  "should": [],
+                  "must_not": []
+                }
+              }
             }
-          }
-        }
+        elif param == 1: #IP
+            body = {
+                "aggs": {
+                    "filter_agg": {
+                        "filter": {
+                            "geo_bounding_box": {
+                                "ignore_unmapped": "true",
+                                "geoip.location": {
+                                    "top_left": {
+                                        "lat": 64.590055,
+                                        "lon": -180
+                                    },
+                                    "bottom_right": {
+                                        "lat": -90,
+                                        "lon": 180
+                                    }
+                                }
+                            }
+                        },
+                        "aggs": {
+                            "2": {
+                                "geohash_grid": {
+                                    "field": "geoip.location",
+                                    "precision": 2
+                                },
+                                "aggs": {
+                                    "3": {
+                                        "geo_centroid": {
+                                            "field": "geoip.location"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "size": 0,
+                "_source": {
+                    "excludes": []
+                },
+                "stored_fields": [
+                    "*"
+                ],
+                "script_fields": {},
+                "docvalue_fields": [
+                    {
+                        "field": "@timestamp",
+                        "format": "date_time"
+                    }
+                ],
+                "query": {
+                    "bool": {
+                        "must": [],
+                        "filter": [
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            sp_param,
+                            {
+                                "range": {
+                                    "@timestamp": {
+                                        "format": "strict_date_optional_time",
+                                        "gte": st_time,
+                                        "lte": ed_time
+                                    }
+                                }
+                            }
+                        ],
+                        "should": [],
+                        "must_not": []
+                    }
+                }
+            }
+        elif param == 2:  # 域名
+            body = {
+                "aggs": {
+                    "filter_agg": {
+                        "filter": {
+                            "geo_bounding_box": {
+                                "ignore_unmapped": "true",
+                                "geoip.location": {
+                                    "top_left": {
+                                        "lat": 64.590055,
+                                        "lon": -180
+                                    },
+                                    "bottom_right": {
+                                        "lat": -90,
+                                        "lon": 180
+                                    }
+                                }
+                            }
+                        },
+                        "aggs": {
+                            "2": {
+                                "geohash_grid": {
+                                    "field": "geoip.location",
+                                    "precision": 2
+                                },
+                                "aggs": {
+                                    "3": {
+                                        "geo_centroid": {
+                                            "field": "geoip.location"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "size": 0,
+                "_source": {
+                    "excludes": []
+                },
+                "stored_fields": [
+                    "*"
+                ],
+                "script_fields": {},
+                "docvalue_fields": [
+                    {
+                        "field": "@timestamp",
+                        "format": "date_time"
+                    }
+                ],
+                "query": {
+                    "bool": {
+                        "must": [],
+                        "filter": [
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "bool": {
+                                    "should": [
+                                        {
+                                            "wildcard": {
+                                                "domain": sp_param
+                                            }
+                                        }
+                                    ],
+                                    "minimum_should_match": 1
+                                }
+                            },
+                            {
+                                "range": {
+                                    "@timestamp": {
+                                        "format": "strict_date_optional_time",
+                                        "gte": st_time,
+                                        "lte": ed_time
+                                    }
+                                }
+                            }
+                        ],
+                        "should": [],
+                        "must_not": []
+                    }
+                }
+            }
         try:
-            ret = es.search(index='logstash-nginx-log', doc_type='_doc', body=body)
+            ret = es.search(index='logstash-nginx-log', doc_type='_doc', body=body)   #超时问题待解决
             re_data = ret['aggregations']['filter_agg']['2']['buckets']
-            # print(re_data)
             jsontext={}
             geoCoordMap = {'北京': [116.404117, 39.906607]} #存放所有坐标 {上海: [121.4648, 31.2891],}
             BJData = []   #[[{name: "尼日利亚",value: 500}, {name: "上海",}]]
@@ -1822,7 +2284,8 @@ class Attack_map(View):
             jsontext['geoCoordMap'] = geoCoordMap
             jsontext['BJData'] = BJData
             return json.dumps(jsontext,ensure_ascii=False)
-        except:
+        except Exception as err:
+            print(err)
             errinfo = {"error": "数据请求失败！"}
             return HttpResponse(errinfo)
 
@@ -1957,19 +2420,58 @@ class Hit(View):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         st_time = datetime.datetime.strptime(datetime.datetime.now().strftime("%Y-%m-%d"), "%Y-%m-%d").strftime('%Y-%m-%dT%H:%M:%S')
         st_all_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00') #24小时
-        num_today = self.Hit_day(st_time, ed_time) #今日命中
-        num_all = self.Hit_all(st_all_time, ed_time) # 全部命中
-        jsontext = {}
-        jsontext["num_today"] = num_today
-        jsontext["num_all"] = num_all
-        return HttpResponse(json.dumps(jsontext))
+        # num_today = self.Hit_day(st_time, ed_time) #今日命中
+        # num_all = self.Hit_all(st_all_time, ed_time) # 全部命中
+        # jsontext = {}
+        # jsontext["num_today"] = num_today
+        # jsontext["num_all"] = num_all
+        # return HttpResponse(json.dumps(jsontext))
+
+        # 获取
+        comid = request.GET.get('comid', None)
+        if comid == None:  # 是否携带用户信息
+            sp_param = None
+            num_today = self.Hit_day(st_time, ed_time,sp_param)  # 今日命中
+            num_all = self.Hit_all(st_all_time, ed_time,sp_param)  # 全部命中
+            jsontext = {}
+            jsontext["num_today"] = num_today
+            jsontext["num_all"] = num_all
+            return HttpResponse(json.dumps(jsontext))
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_ip = comp.comp_ip  # IP
+                comp_s = comp_ip.split(';')
+                sp_param = {
+                    "bool":
+                        {
+                            "should":
+                                [
+
+                                ],
+                            "minimum_should_match": 1
+                        }
+                }
+                for ip in comp_s:
+                    match_phrase = {"match_phrase": {"dst_ip.ip": ip}}
+                    sp_param["bool"]["should"].append(match_phrase)
+                num_today = self.Hit_day(st_time, ed_time, sp_param)  # 今日命中
+                num_all = self.Hit_all(st_all_time, ed_time, sp_param)  # 全部命中
+                jsontext = {}
+                jsontext["num_today"] = num_today
+                jsontext["num_all"] = num_all
+                return HttpResponse(json.dumps(jsontext))
+            except Exception as err:
+                print(err)
+                return HttpResponse("Error")
 
     def post(self, request):
         info = {"请求失败！"}
         return HttpResponse(info)
 
-    def Hit_day(self, st_time, ed_time):
-        body = {
+    def Hit_day(self, st_time, ed_time,sp_param):
+        if sp_param == None:
+            body = {
           "aggs": {
             "2": {
               "date_range": {
@@ -2031,6 +2533,70 @@ class Hit(View):
             }
           }
         }
+        else:
+            body = {
+                "aggs": {
+                    "2": {
+                        "date_range": {
+                            "field": "@timestamp",
+                            "ranges": [
+                                {
+                                    "from": "now-0d/d",
+                                    "to": "now"
+                                }
+                            ],
+                            "time_zone": "Asia/Shanghai"
+                        }
+                    }
+                },
+                "size": 0,
+                "_source": {
+                    "excludes": []
+                },
+                "stored_fields": [
+                    "*"
+                ],
+                "script_fields": {},
+                "docvalue_fields": [
+                    {
+                        "field": "@timestamp",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "dst_ip.information.reputation.timestamp",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "src_ip.information.reputation.timestamp",
+                        "format": "date_time"
+                    }
+                ],
+                "query": {
+                    "bool": {
+                        "must": [],
+                        "filter": [
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            sp_param,
+                            {
+                                "range": {
+                                    "@timestamp": {
+                                        "format": "strict_date_optional_time",
+                                        "gte": st_time,
+                                        "lte": ed_time
+                                    }
+                                }
+                            }
+                        ],
+                        "should": [],
+                        "must_not": []
+                    }
+                }
+            }
         try:
             ret = es.search(index='threat', doc_type='_doc', body=body)
             re_data = ret['aggregations']['2']['buckets']
@@ -2041,70 +2607,135 @@ class Hit(View):
             errinfo = {"error": "数据请求失败！"}
             return HttpResponse(errinfo)
 
-    def Hit_all(self, st_all_time, ed_time):
+    def Hit_all(self, st_all_time, ed_time,sp_param):
         #24小时命中数
-        body = {
-          "aggs": {
-            "2": {
-              "date_range": {
-                "field": "@timestamp",
-                "ranges": [
-                  {
-                    "from": "now-0d/d",
-                    "to": "now"
-                  }
-                ],
-                "time_zone": "Asia/Shanghai"
-              }
-            }
-          },
-          "size": 0,
-          "_source": {
-            "excludes": []
-          },
-          "stored_fields": [
-            "*"
-          ],
-          "script_fields": {},
-          "docvalue_fields": [
-            {
-              "field": "@timestamp",
-              "format": "date_time"
-            },
-            {
-              "field": "dst_ip.information.reputation.timestamp",
-              "format": "date_time"
-            },
-            {
-              "field": "src_ip.information.reputation.timestamp",
-              "format": "date_time"
-            }
-          ],
-          "query": {
-            "bool": {
-              "must": [],
-              "filter": [
-                {
-                  "match_all": {}
-                },
-                {
-                  "match_all": {}
-                },
-                {
-                  "range": {
-                    "@timestamp": {
-                      "format": "strict_date_optional_time",
-                      "gte": st_all_time,
-                      "lte": ed_time
-                    }
+        if sp_param == None:
+            body = {
+              "aggs": {
+                "2": {
+                  "date_range": {
+                    "field": "@timestamp",
+                    "ranges": [
+                      {
+                        "from": "now-0d/d",
+                        "to": "now"
+                      }
+                    ],
+                    "time_zone": "Asia/Shanghai"
                   }
                 }
+              },
+              "size": 0,
+              "_source": {
+                "excludes": []
+              },
+              "stored_fields": [
+                "*"
               ],
-              "should": [],
-              "must_not": []
+              "script_fields": {},
+              "docvalue_fields": [
+                {
+                  "field": "@timestamp",
+                  "format": "date_time"
+                },
+                {
+                  "field": "dst_ip.information.reputation.timestamp",
+                  "format": "date_time"
+                },
+                {
+                  "field": "src_ip.information.reputation.timestamp",
+                  "format": "date_time"
+                }
+              ],
+              "query": {
+                "bool": {
+                  "must": [],
+                  "filter": [
+                    {
+                      "match_all": {}
+                    },
+                    {
+                      "match_all": {}
+                    },
+                    {
+                      "range": {
+                        "@timestamp": {
+                          "format": "strict_date_optional_time",
+                          "gte": st_all_time,
+                          "lte": ed_time
+                        }
+                      }
+                    }
+                  ],
+                  "should": [],
+                  "must_not": []
+                }
+              }
             }
-          }
-        }
+        else:
+            body = {
+                "aggs": {
+                    "2": {
+                        "date_range": {
+                            "field": "@timestamp",
+                            "ranges": [
+                                {
+                                    "from": "now-0d/d",
+                                    "to": "now"
+                                }
+                            ],
+                            "time_zone": "Asia/Shanghai"
+                        }
+                    }
+                },
+                "size": 0,
+                "_source": {
+                    "excludes": []
+                },
+                "stored_fields": [
+                    "*"
+                ],
+                "script_fields": {},
+                "docvalue_fields": [
+                    {
+                        "field": "@timestamp",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "dst_ip.information.reputation.timestamp",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "src_ip.information.reputation.timestamp",
+                        "format": "date_time"
+                    }
+                ],
+                "query": {
+                    "bool": {
+                        "must": [],
+                        "filter": [
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            sp_param,
+                            {
+                                "range": {
+                                    "@timestamp": {
+                                        "format": "strict_date_optional_time",
+                                        "gte": st_all_time,
+                                        "lte": ed_time
+                                    }
+                                }
+                            }
+                        ],
+                        "should": [],
+                        "must_not": []
+                    }
+                }
+            }
         try:
             ret = es.search(index='threat', doc_type='_doc', body=body)
             re_data = ret['aggregations']['2']['buckets']
@@ -2115,7 +2746,7 @@ class Hit(View):
             errinfo = {"error": "数据请求失败！"}
             return HttpResponse(errinfo)
 
-
+#流量数据
 class Source_data(View):
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')

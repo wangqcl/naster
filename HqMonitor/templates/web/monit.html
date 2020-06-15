@@ -1,5 +1,11 @@
 ﻿{% extends "web/base.html" %}
 
+    <!-- 头 -->
+    {% block title %}
+      <h1>网络安全动态数据监控</h1>
+    {% endblock %}
+    <!-- 头结束 -->
+
 {% block mainbody %}
 <!--  全局信息监控页面-->
 <div class="mainbox">
@@ -426,7 +432,7 @@
       });
     }
 </script>
-
+<!--流量数据-->
 <script type="text/javascript">
     l_change();
     function l_change() {

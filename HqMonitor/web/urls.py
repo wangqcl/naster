@@ -27,4 +27,5 @@ urlpatterns = [
     url(r'^logout$', center.logout, name="logout"),  # 退出操作
     url(r'^verify$', center.verify, name="verify"),  # 验证码
 
+
 ]
