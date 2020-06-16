@@ -1,5 +1,95 @@
 {% extends "web/base.html" %}
 
+        <!-- js开始 -->
+    {% block script %}
+    <script language="JavaScript" src="{% static 'monit/js/threaten.js'%}"></script>
+    {% endblock %}
+    <!-- js结束 -->
+
+    <!-- 头 -->
+    {% block title %}
+<h1>威胁情报数据监控</h1>
+    {% endblock %}
+    <!-- 头结束 -->
+
 {% block mainbody %}
 <!--  威胁情报监控页面-->
+<div class="mainbox">
+    <ul class="clearfix">
+        <li>
+            <div class="boxall" style="height: 5.2rem; width: 100%; float:left">
+                    <div class="alltitle">【威胁情报】攻击类型
+                        <ul class="clearfix">
+                            <li class="pulll_left counter" id="thattack"></li>
+                        </ul>
+                    </div>
+                    <div class="boxfoot"></div>
+            </div>
+            <div class="boxall" style="height: 5.2rem; width: 100%; float:left">
+                <div class="alltitle">【威胁情报】命中趋势</div>
+                <div class="allnav" id="thhit"></div>
+                <div class="boxfoot"></div>
+            </div>
+        </li>
+        <li>
+            <div class="bar">
+          <div class="barbox">
+            <ul class="clearfix">
+              <li class="pulll_left counter" id="dayhit"></li>
+              <li class="pulll_left counter" id="allhit"></li>
+            </ul>
+          </div>
+          <div class="barbox2">
+            <ul class="clearfix">
+              <li class="pulll_left">威胁情报今日命中数 </li>
+              <li class="pulll_left">威胁情报总命中数</li>
+            </ul>
+          </div>
+        </div>
+
+            <div class="boxall" style="height: 3.75rem; width: 100%; margin-left: auto; margin-right: auto">
+                <div class="alltitle">【威胁情报】活跃攻击源</div>
+                <div class="allnav" id="thactive"></div>
+                <div class="boxfoot"></div>
+            </div>
+            <div class="boxall" style="height: 5.2rem; width: 100%; margin-left: auto; margin-right: auto">
+                <div class="alltitle">【威胁情报】IP威胁分类</div>
+                <div class="allnav" id="threat"></div>
+                <div class="boxfoot"></div>
+            </div>
+        </li>
+        <li>
+            <div class="boxall" style="height: 5.2rem; width: 100%; float:right">
+                <div class="alltitle">【威胁情报】IP威胁情报源</div>
+                <div class="allnav" id="thnews"></div>
+                <div class="boxfoot"></div>
+            </div>
+            <div class="boxall" style="height: 5.2rem; width: 100%; float:right">
+                <div class="alltitle">【威胁情报】详细数据</div>
+                <div class="allnav" id="thdata"></div>
+                <div class="boxfoot"></div>
+            </div>
+
+        </li>
+    </ul>
+</div>
+<div class="back"></div>
 {% endblock %}
+
+
+<!-- js开始 -->
+{% block jsbody %}
+<!--命中数-->
+<script type="text/javascript">
+    hit_change();
+    function hit_change() {
+      $.getJSON('{% url "monit_Hit" %}',function(data) {
+          var day_hit = data.num_today;
+          var all_hit = data.num_all;
+           document.getElementById("dayhit").innerHTML = day_hit;
+           document.getElementById("allhit").innerHTML = all_hit;
+      });
+    }
+</script>
+{% endblock %}
+<!-- js结束 -->

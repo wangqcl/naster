@@ -1,11 +1,11 @@
 from django.conf.urls import url
 from . import views
-from .views import center,monit
+from .views import center,monit,threaten
 from .views.monit import Main_visit_port,Server_status_code,Domain_infor,Ip_fraction,Request_traffic,Response_traffic,Waf_attack_trend,Attack_map,Access_ip,Main_getnum,Hit,Source_data
 
 urlpatterns = [
     #管理员网络全局信息监控路由
-    url(r'^web/index/(?P<pIndex>[0-9]+)$', monit.index, name="monit_index"), #首页
+    url(r'^web/index/(?P<pIndex>[0-9]+)$', monit.index, name="monit_index"), #全局信息监控首页
     url(r'^web/getnum$', Main_getnum.as_view(), name="monit_main_getnum"),#请求数量折线图
     url(r'^web/visitport$', Main_visit_port.as_view(), name='monit_visitport'), # 主要访问端口
     url(r'^web/statuscode$', Server_status_code.as_view(), name='monit_status_code'), # 服务器状态码
@@ -26,6 +26,9 @@ urlpatterns = [
     url(r'^dologin$', center.dologin, name="dologin"),  # 登录操作
     url(r'^logout$', center.logout, name="logout"),  # 退出操作
     url(r'^verify$', center.verify, name="verify"),  # 验证码
+
+    #威胁情报
+    url(r'^web/threaten/index/(?P<pIndex>[0-9]+)$', threaten.index, name="monit_threaten_index"), #全局信息监控首页
 
 
 ]
