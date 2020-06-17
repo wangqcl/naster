@@ -1,10 +1,168 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "web/base.html" %}
+{% load static from staticfiles %}
 
-</body>
-</html>
+        <!-- js开始 -->
+    {% block script %}
+    <script language="JavaScript" src="{% static 'monit/js/threaten.js'%}"></script>
+    {% endblock %}
+    <!-- js结束 -->
+
+    <!-- 头 -->
+    {% block title %}
+<h1>威胁情报数据监控</h1>
+    {% endblock %}
+    <!-- 头结束 -->
+
+{% block mainbody %}
+<!--  威胁情报监控页面-->
+<div class="mainbox">
+    <ul class="clearfix">
+        <li>
+            <div class="boxall" style="height: 5.2rem; width: 100%; float:left">
+                <div class="alltitle">【威胁情报】攻击类型</div>
+              <div class="allnav" id="thattack"></div>
+              <div class="boxfoot"></div>
+          </div>
+            <div class="boxall" style="height: 5.2rem; width: 100%; float:left">
+                <div class="alltitle">【威胁情报】命中趋势</div>
+                <div class="allnav" id="thhit"></div>
+                <div class="boxfoot"></div>
+            </div>
+        </li>
+        <li>
+            <div class="bar">
+          <div class="barbox">
+            <ul class="clearfix">
+              <li class="pulll_left counter" id="dayhit"></li>
+              <li class="pulll_left counter" id="allhit"></li>
+            </ul>
+          </div>
+          <div class="barbox2">
+            <ul class="clearfix">
+              <li class="pulll_left">威胁情报今日命中数 </li>
+              <li class="pulll_left">威胁情报总命中数</li>
+            </ul>
+          </div>
+        </div>
+
+            <div class="boxall" style="height: 9rem; width: 100%; margin-left: auto; margin-right: auto">
+                <div class="alltitle">【威胁情报】活跃攻击源</div>
+                <div class="allnav" id="thactive"></div>
+                <div class="boxfoot"></div>
+            </div>
+{#            <div class="boxall" style="height: 5.2rem; width: 100%; float:right">#}
+{#                <div class="alltitle">【威胁情报】详细数据</div>#}
+{#                <div class="allnav" id="thdata"></div>#}
+{#                <div class="boxfoot"></div>#}s
+{#            </div>#}
+        </li>
+        <li>
+            <div class="boxall" style="height: 5.2rem; width: 100%; margin-left: auto; margin-right: auto">
+                <div class="alltitle">【威胁情报】IP威胁分类</div>
+                <div class="allnav" id="threat"></div>
+                <div class="boxfoot"></div>
+            </div>
+            <div class="boxall" style="height: 5.2rem; width: 100%; float:right">
+                <div class="alltitle">【威胁情报】IP威胁情报源</div>
+                <div class="allnav" id="thnews"></div>
+                <div class="boxfoot"></div>
+            </div>
+
+
+        </li>
+    </ul>
+</div>
+<div class="back"></div>
+{% endblock %}
+
+
+<!-- js开始 -->
+{% block jsbody %}
+<!--命中数-->
+<script type="text/javascript">
+    hit_change();
+    function hit_change() {
+      $.getJSON('{% url "monit_Hit" %}?comid={{ compid }}',function(data) {
+          var day_hit = data.num_today;
+          var all_hit = data.num_all;
+           document.getElementById("dayhit").innerHTML = day_hit;
+           document.getElementById("allhit").innerHTML = all_hit;
+      });
+    }
+</script>
+<!--攻击类型-->
+<script type="text/javascript">
+        th_thattack();
+        var trafficWay = [];
+        var datalist = [];
+        var th_endtime;
+        function th_thattack() {
+             $.getJSON('{% url "monit_threaten_thattack" %}?comid={{ compid }}',function(data) {
+                    trafficWay = data.number;
+                    datalist = data.ports;
+                    th_endtime = data.edtime;
+                    ec_thattack(trafficWay,datalist)
+                });
+        }
+
+
+</script>
+<!--命中趋势-->
+<script type="text/javascript">
+    var hit_xdata = [];
+    var hit_ydata = [];
+    th_thattack();
+    function th_thattack() {
+             $.getJSON('{% url "monit_threaten_thhit" %}?comid={{ compid }}',function(data) {
+                    hit_xdata = data.times;
+                    hit_ydata = data.number;
+                    ec_thhit(hit_xdata,hit_ydata)
+                });
+        }
+</script>
+<!--活跃攻击源-->
+<script type="text/javascript">
+    var tiv_xdata = [];
+    var tiv_ydata = [];
+    th_thactive();
+    function th_thactive() {
+             $.getJSON('{% url "monit_threaten_thactive" %}?comid={{ compid }}',function(data) {
+                    tiv_xdata = data.x_data;
+                    tiv_ydata = data.y_data;
+                    ec_thactive(tiv_xdata,tiv_ydata)
+                });
+        }
+</script>
+<!--威胁分类-->
+<script type="text/javascript">
+    var n_name = [];
+    var n_data = [];
+    var w_data = [];
+    th_threat();
+    function th_threat() {
+         $.getJSON('{% url "monit_threaten_threat" %}?comid={{ compid }}',function(data) {
+                n_name = data.n_name;
+                n_data = data.n_data;
+                w_data = data.w_data;
+                ec_threat(n_name,n_data,w_data)
+            });
+    }
+</script>
+<!--威胁情报源-->
+<script type="text/javascript">
+    var sn_name = [];
+    var sn_data = [];
+    var sw_data = [];
+    th_thnews();
+    function th_thnews() {
+         $.getJSON('{% url "monit_threaten_thnews" %}?comid={{ compid }}',function(data) {
+                sn_name = data.n_name;
+                sn_data = data.n_data;
+                sw_data = data.w_data;
+                ec_thnews(sn_name,sn_data,sw_data)
+            });
+    }
+</script>
+
+{% endblock %}
+<!-- js结束 -->

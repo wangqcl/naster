@@ -34,7 +34,7 @@ def index(request,pIndex=0):
                 "compid":pIndex
             }
             return render(request, "web/usermon/qmonit.html",content)   #只查询此用户下的数据
-    elif user.state == 1 & pIndex!=0 :
+    elif user.state == 1 & int(pIndex) != 0 :
         comp = Compinfo.objects.get(id=pIndex)
         users = comp.users.all()  # 所有的用户账号
         for us in users:
@@ -42,14 +42,14 @@ def index(request,pIndex=0):
                 content = {
                     "compid": pIndex
                 }
-                return render(request,"web/usermon/monit.html",content)  #用户的监控首页
+                return render(request,"web/usermon/qmonit.html",content)  #用户的监控首页
             else:
                 content = {"info":"查询失败！"}
-        return render(request, "web/info.html", content)
+        return render(request, "web/monweb/info.html", content)
     else:
         error = "访问出错！"
         content = {"info":error}
-        return render(request, "web/info.html",content)
+        return render(request, "web/monweb/info.html",content)
 
 #请求数量
 class Main_getnum(View):

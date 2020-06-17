@@ -18,8 +18,8 @@
 admin   密码：HQsec711
 
 
-
+monit.html   监控（默认查询15分钟前 ）
 Invasion.html     <!--  入侵检测监控页面-->
 safety.html  安全防护
 score.html  综合评分
-threaten.html  威胁情报
+threaten.html  威胁情报（--默认查询1天的数据量）
