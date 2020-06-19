@@ -2,7 +2,7 @@
 {% load static from staticfiles %}
 <html>
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
     <title>index</title>
     <script type="text/javascript" src="{% static 'monit/js/jquery.js' %}"></script>
     <link rel="stylesheet" href="{% static 'monit/css/comon0.css' %}">
@@ -24,6 +24,7 @@
 	</script>
 	<script type="text/javascript" src="{% static 'monit/js/echarts.min.js'%}"></script>
 	<script language="JavaScript" src="{% static 'monit/js/js.js'%}"></script>
+	<script language="JavaScript" src="{% static 'monit/js/safety.js'%}"></script>
 <body>
 <div class="loading">
   <div class="loadbox"> <img src="{% static 'monit/picture/loading.gif'%}"> 页面加载中... </div>
