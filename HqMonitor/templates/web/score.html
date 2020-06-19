@@ -1,5 +1,66 @@
 {% extends "web/base.html" %}
+{% load static from staticfiles %}
+
+        <!-- js开始 -->
+    {% block script %}
+    <script language="JavaScript" src="{% static 'monit/js/score.js'%}"></script>
+    {% endblock %}
+    <!-- js结束 -->
+
+    <!-- 头 -->
+    {% block title %}
+    <h1>安全综合评分</h1>
+    {% endblock %}
+    <!-- 头结束 -->
 
 {% block mainbody %}
-<!--  综合评分监控页面-->
+<!--  威胁情报监控页面-->
+<div class="mainbox">
+    <ul class="clearfix">
+        <li>
+            <div class="boxall" style="height: 5.2rem; width: 100%; float:left">
+                <div class="alltitle">【TOTAL】总威胁趋势</div>
+              <div class="allnav" id="totalthr"></div>
+              <div class="boxfoot"></div>
+          </div>
+            <div class="boxall" style="height: 5.2rem; width: 100%; float:left">
+                <div class="alltitle">【TOTAL】TI威胁趋势</div>
+                <div class="allnav" id="tithr"></div>
+                <div class="boxfoot"></div>
+            </div>
+        </li>
+        <li>
+            <div class="boxall" style="height: 9rem; width: 100%; margin-left: auto; margin-right: auto">
+                <div class="alltitle">【TOTAL】主要威胁IP分值</div>
+                <div class="allnav" id="mainthr"></div>
+                <div class="boxfoot"></div>
+            </div>
+            <div class="boxall" style="height: 5.2rem; width: 100%; float:right">
+                <div class="alltitle">【TOTAL】威胁分类</div>
+                <div class="allnav" id="classthr"></div>
+                <div class="boxfoot"></div>
+            </div>
+        </li>
+        <li>
+            <div class="boxall" style="height: 5.2rem; width: 100%; margin-left: auto; margin-right: auto">
+                <div class="alltitle">【TOTAL】WEB威胁安全趋势</div>
+                <div class="allnav" id="webthr"></div>
+                <div class="boxfoot"></div>
+            </div>
+            <div class="boxall" style="height: 5.2rem; width: 100%; float:right">
+                <div class="alltitle">【TOTAL】入侵检测威胁趋势</div>
+                <div class="allnav" id="inthr"></div>
+                <div class="boxfoot"></div>
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="back"></div>
 {% endblock %}
+
+<!-- js开始 -->
+{% block jsbody %}
+
+
+{% endblock %}
+<!-- js结束 -->

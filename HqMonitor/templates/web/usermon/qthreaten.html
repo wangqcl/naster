@@ -54,7 +54,7 @@
                 <div class="allnav" id="thactive"></div>
                 <div class="boxfoot"></div>
             </div>
-            <div class="boxall" style="height: 4.2rem; width: 100%; float:right">
+            <div class="boxall" style="height: 4.7rem; width: 100%; float:right">
                 <div class="alltitle">【威胁情报】详细数据</div>
                 <div class="allnav">
                 <div class="transparentDataTable">
@@ -192,7 +192,7 @@
 <script type="text/javascript">
     hit_change();
     function hit_change() {
-      $.getJSON('{% url "monit_Hit" %}',function(data) {
+      $.getJSON('{% url "monit_Hit" %}?comid={{ compid }}',function(data) {
           var day_hit = data.num_today;
           var all_hit = data.num_all;
            document.getElementById("dayhit").innerHTML = day_hit;
@@ -207,7 +207,7 @@
         var datalist = [];
         var th_endtime;
         function th_thattack() {
-             $.getJSON('{% url "monit_threaten_thattack" %}',function(data) {
+             $.getJSON('{% url "monit_threaten_thattack" %}?comid={{ compid }}',function(data) {
                     trafficWay = data.number;
                     datalist = data.ports;
                     th_endtime = data.edtime;
@@ -223,7 +223,7 @@
     var hit_ydata = [];
     th_thattack();
     function th_thattack() {
-             $.getJSON('{% url "monit_threaten_thhit" %}',function(data) {
+             $.getJSON('{% url "monit_threaten_thhit" %}?comid={{ compid }}',function(data) {
                     hit_xdata = data.times;
                     hit_ydata = data.number;
                     ec_thhit(hit_xdata,hit_ydata)
@@ -236,7 +236,7 @@
     var tiv_ydata = [];
     th_thactive();
     function th_thactive() {
-             $.getJSON('{% url "monit_threaten_thactive" %}',function(data) {
+             $.getJSON('{% url "monit_threaten_thactive" %}?comid={{ compid }}',function(data) {
                     tiv_xdata = data.x_data;
                     tiv_ydata = data.y_data;
                     ec_thactive(tiv_xdata,tiv_ydata)
@@ -250,7 +250,7 @@
     var w_data = [];
     th_threat();
     function th_threat() {
-         $.getJSON('{% url "monit_threaten_threat" %}',function(data) {
+         $.getJSON('{% url "monit_threaten_threat" %}?comid={{ compid }}',function(data) {
                 n_name = data.n_name;
                 n_data = data.n_data;
                 w_data = data.w_data;
@@ -266,7 +266,7 @@
     var sw_data = [];
     th_thnews();
     function th_thnews() {
-         $.getJSON('{% url "monit_threaten_thnews" %}',function(data) {
+         $.getJSON('{% url "monit_threaten_thnews" %}?comid={{ compid }}',function(data) {
                 sn_name = data.n_name;
                 sn_data = data.n_data;
                 sw_data = data.w_data;

@@ -1,68 +1,13 @@
-﻿<!doctype html>
-{% load static from staticfiles %}
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>index</title>
-    <script type="text/javascript" src="{% static 'monit/js/jquery.js' %}"></script>
-    <link rel="stylesheet" href="{% static 'monit/css/comon0.css' %}">
+﻿{% extends "web/base.html" %}
 
+<!-- 头 -->
+    {% block title %}
+    <h1>网络安全动态数据监控</h1>
+    {% endblock %}
+    <!-- 头结束 -->
 
-</head>
-	<script>
-	$(window).load(function(){  
-             $(".loading").fadeOut()
-            })  
-			
-    /****/
-    $(document).ready(function(){
-        var whei=$(window).width()
-        $("html").css({fontSize:whei/20})
-        $(window).resize(function(){
-            var whei=$(window).width()
-         $("html").css({fontSize:whei/20})
-    });
-        });
-	</script>
-	<script type="text/javascript" src="{% static 'monit/js/echarts.min.js'%}"></script>
-	<script language="JavaScript" src="{% static 'monit/js/js.js'%}"></script>
-<body>
-<div class="loading">
-  <div class="loadbox"> <img src="{% static 'monit/picture/loading.gif'%}"> 页面加载中... </div>
-</div>
-<div class="head">
-  <h1>网络安全动态数据监控</h1>
-    <div class="weather"><span id="showTime"></span></div>
-        <div class="index_nav" >
-        <ul style="height: 30px; margin-bottom: 0px;">
-            <li class="l_left">网络全局信息</li>
-            <li class="l_left" >web安全防护信息</li>
-            <li class="l_left">入侵检测信息</li>
-            <li class="r_right">威胁情报</li>
-            <li class="r_right">安全综合评分</li>
-            <li class="r_right">用户接入状态</li>
-        </ul>
-    </div>
-  <!--时间加载-->
-	<script>
-    var t = null;
-        t = setTimeout(time,1000);//開始运行
-        function time()
-        {
-           clearTimeout(t);//清除定时器
-           dt = new Date();
-            var y=dt.getFullYear();
-            var mt=dt.getMonth()+1;
-            var day=dt.getDate();
-           var h=dt.getHours();//获取时
-           var m=dt.getMinutes();//获取分
-           var s=dt.getSeconds();//获取秒
-           document.getElementById("showTime").innerHTML = y+"年"+mt+"月"+day+"-"+h+"时"+m+"分"+s+"秒";
-           t = setTimeout(time,1000); //设定定时器，循环运行
-        }
-    </script>
-
-</div>
+{% block mainbody %}
+<!--  全局信息监控页面-->
 <div class="mainbox">
   <ul class="clearfix">
     <li>
@@ -132,9 +77,11 @@
   </ul>
 </div>
 <div class="back"></div>
+{% endblock %}
 
-<script type="text/javascript" src="{% static 'monit/js/world.js'%}"></script>
-<script type="text/javascript" src="{% static 'monit/js/area_echarts.js'%}"></script>
+<!-- js开始 -->
+{% block jsbody %}
+<!--访问数量-->
 
 <!--访问数量-->
 <script type="text/javascript" >
@@ -347,7 +294,7 @@
     var y_num = [];
 
     function rp_change(){
-      $.getJSON('{% url "monit_Response_traffic" %}',function(data){
+      $.getJSON('{% url "monit_Response_traffic" %}?comid={{ compid }}',function(data){
         rp_port_data=data.port;
         value = data.yAxis
         for (var num in value){
@@ -417,7 +364,7 @@
     var wa_num = [];
 
     function wa_change(){
-      $.getJSON('{% url "monit_attack_trend" %}',function(data){
+      $.getJSON('{% url "monit_attack_trend" %}?comid={{ compid }}',function(data){
         wa_port_data=data.port;
         value = data.yAxis;
         for (var num in value){
@@ -482,7 +429,7 @@
 <script type="text/javascript">
     ma_change();
     function ma_change() {
-      $.getJSON('{% url "monit_attack_map" %}',function(data) {
+      $.getJSON('{% url "monit_attack_map" %}?comid={{ compid }}',function(data) {
           geoCoordMap = data.geoCoordMap;
           BJData = data.BJData;
           word_map(geoCoordMap,BJData);
@@ -493,7 +440,7 @@
 <script type="text/javascript">
     hit_change();
     function hit_change() {
-      $.getJSON('{% url "monit_Hit" %}',function(data) {
+      $.getJSON('{% url "monit_Hit" %}?comid={{ compid }}',function(data) {
           var day_hit = data.num_today;
           var all_hit = data.num_all;
            document.getElementById("dayhit").innerHTML = day_hit;
@@ -501,11 +448,11 @@
       });
     }
 </script>
-
+<!--流量数据-->
 <script type="text/javascript">
     l_change();
     function l_change() {
-      $.getJSON('{% url "monit_Source_data" %}',function(data) {
+      $.getJSON('{% url "monit_Source_data" %}?comid={{ compid }}',function(data) {
           var args = data.data;
           var str = "";
           str += "<table width=\"95%\" style=\"overflow:scroll;margin-bottom:50px\" border=\"0\">";
@@ -526,5 +473,5 @@
     }
 </script>
 
-</body>
-</html>
+{% endblock %}
+<!-- js结束 -->
