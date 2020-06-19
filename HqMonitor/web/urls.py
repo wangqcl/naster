@@ -2,7 +2,7 @@ from django.conf.urls import url
 from . import views
 from .views import center,monit,safety
 from .views.monit import Main_visit_port,Server_status_code,Domain_infor,Ip_fraction,Request_traffic,Response_traffic,Waf_attack_trend,Attack_map,Access_ip,Main_getnum,Hit,Source_data
-from .views.safety import Safety_attack_trend,Safety_map,Safety_top,Safety_attack_port,Safety_risk,Safety_waf_attack_count,Safety_waf_attack_trend
+from .views.safety import Safety_attack_trend,Safety_index,Safety_map,Safety_top,Safety_attack_port,Safety_risk,Safety_waf_attack_count,Safety_waf_attack_trend
 
 urlpatterns = [
     #管理员网络全局信息监控路由
@@ -30,7 +30,7 @@ urlpatterns = [
 
 
     #web安全防护信息
-    url(r'^web/safety$', safety.index, name="safety_index"),   # 安全主页
+    url(r'^web/safety$', Safety_index.as_view(), name="safety_index"),   # 安全主页
     url(r'^web/attacktrend$', Safety_attack_trend.as_view(), name='safety_attack_trend'), # 攻击趋势
     url(r'^web/safetymap$', Safety_map.as_view(), name='safety_map'), # 攻击分布
     url(r'^web/wafattack$', Safety_waf_attack_trend.as_view(), name='safety_waf_attack_trend'), # WAF攻击趋势

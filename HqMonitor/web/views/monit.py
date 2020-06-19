@@ -31,12 +31,13 @@ def index(request, pIndex=0):
             content = {
                 "compid": pIndex
             }
-            return render(request, "web/usermon/qmonit.html", content)  # 只查询此用户下的数据
-    elif user.state == 1 & pIndex != 0:
+            return render(request, "web/usermon/qsafety.html", content)  # 只查询此用户下的数据
+
+    elif user.state == 1 or pIndex != 0:
         content = {
             "compid": pIndex
         }
-        return render(request, "web/usermon/monit.html", content)  # 用户的监控首页
+        return render(request, "web/usermon/qsafety.html", content)  # 用户的监控首页
     else:
         error = "访问出错！"
         content = {"info": error}

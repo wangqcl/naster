@@ -20,12 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="977ee6ac-61cd-41aa-8bbb-94f682f9e6ee" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/MonitorProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MonitorProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HqMonitor/templates/web/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/HqMonitor/templates/web/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HqMonitor/templates/web/monit.html" beforeDir="false" afterPath="$PROJECT_DIR$/HqMonitor/templates/web/monit.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HqMonitor/templates/web/safety.html" beforeDir="false" afterPath="$PROJECT_DIR$/HqMonitor/templates/web/safety.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HqMonitor/templates/web/usermon/qsafety.html" beforeDir="false" afterPath="$PROJECT_DIR$/HqMonitor/templates/web/usermon/qsafety.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HqMonitor/web/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/HqMonitor/web/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HqMonitor/web/views/monit.py" beforeDir="false" afterPath="$PROJECT_DIR$/HqMonitor/web/views/monit.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HqMonitor/web/views/safety.py" beforeDir="false" afterPath="$PROJECT_DIR$/HqMonitor/web/views/safety.py" afterDir="false" />
