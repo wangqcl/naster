@@ -240,3 +240,103 @@ to {transform: rotate(-359deg);}
 	font-size: 15px;
 }
 
+/* 偶数行背景色 */
+.layui-table[lay-even] tr:nth-child(even) {
+    /* background-color: #aaffaa; */
+    background-color: #abffcd;
+}
+
+/* 鼠标指向表格时,奇数行背景颜色 */
+.layui-table tbody tr:hover,.layui-table-hover {
+    background-color: #91eeff;
+}
+
+/* 表格头部工具栏背景色 */
+.layui-table-tool {
+    background-color: #eeffee;
+}
+/**
+   设置表透明  start====================================================================================================================
+ */
+
+.transparentDataTable .layui-table{
+    background-color: transparent !important;
+}
+.transparentDataTable .layui-table th {
+    background-color: #009688; /* MediumSeaGreen */
+    color: #fff;
+    font-weight: bold;
+	border-color:#009688
+}
+
+.transparentDataTable .layui-table td{border-color:#009688}
+
+.transparentDataTable .layui-table-view{
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+.transparentDataTable .layui-table-tool {
+    background-color: transparent !important;
+}
+
+.transparentDataTable .layui-table-tool .layui-icon {
+    color: white;
+}
+
+.transparentDataTable .layui-table-header, .transparentDataTable .layui-table-cell, .layui-table-header thead tr {
+    background-color: transparent !important;
+}
+
+.transparentDataTable .layui-table-header thead th, .transparentDataTable .layui-none {
+    /*border: 1px solid #FFFFFF;*/
+    color: white !important;
+}
+
+.transparentDataTable .layui-table tbody tr {
+    border: 1px solid #FFFFFF;
+    color: white;
+}
+
+.transparentDataTable .layui-table-init, .transparentDataTable .layui-laypage-limits select, .transparentDataTable .layui-laypage-btn, .transparentDataTable .layui-laypage-skip input {
+    background-color: transparent !important;
+    color: white;
+}
+
+.transparentDataTable .layui-table-page a, .transparentDataTable .layui-table-page span {
+    color: white !important;
+}
+
+
+.transparentDataTable .layui-laypage-limits select, .transparentDataTable .layui-laypage-limits option {
+    -webkit-appearance: none; /* google */
+    -moz-appearance: none; /* firefox */
+    appearance: none; /* IE */
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);   /* 点击去除高亮的颜色*/
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    color: white;
+}
+
+.transparentDataTable .layui-table[lay-even] tr:nth-child(even){
+    background-color: rgba(180, 238, 180, 0.5) !important;
+}
+
+
+/*静态表格透明*/
+.transparentStaticTable .layui-table{
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+.transparentStaticTable .layui-table tbody tr:hover, .statistics_branch_one .layui-table tbody tr:hover {
+    background-color: transparent !important;
+}
+
+.layui-table-cell {
+   height:auto;
+   overflow:visible;
+  text-overflow:inherit;
+ white-space:normal;
+}
+
+/*.statistics_table_opacity {*/
+/*    background-color: rgba(0, 0, 0, 0.5) !important;*/
+/*}*/
+
+/*设置表透明  end====================================================================================================================*/

@@ -1,6 +1,10 @@
 {% extends "web/base.html" %}
 {% load static from staticfiles %}
-
+        <!-- css开始 -->
+    {% block css %}
+        <link rel="stylesheet" href={% static 'monit/css/layui.css' %}>
+    {% endblock %}
+    <!-- css结束 -->
         <!-- js开始 -->
     {% block script %}
     <script language="JavaScript" src="{% static 'monit/js/threaten.js'%}"></script>
@@ -45,17 +49,56 @@
           </div>
         </div>
 
-            <div class="boxall" style="height: 9rem; width: 100%; margin-left: auto; margin-right: auto">
+            <div class="boxall" style="height: 4.2rem; width: 100%; margin-left: auto; margin-right: auto">
                 <div class="alltitle">【威胁情报】活跃攻击源</div>
                 <div class="allnav" id="thactive"></div>
                 <div class="boxfoot"></div>
             </div>
-{#            <div class="boxall" style="height: 5.2rem; width: 100%; float:right">#}
-{#                <div class="alltitle">【威胁情报】详细数据</div>#}
-{#                <div class="allnav" id="thdata"></div>#}
-{#                <div class="boxfoot"></div>#}s
-{#            </div>#}
+            <div class="boxall" style="height: 4.2rem; width: 100%; float:right">
+                <div class="alltitle">【威胁情报】详细数据</div>
+                <div class="allnav">
+                <div class="transparentDataTable">
+                    <table class="layui-table layui-table-cell"  >
+                        <thead>
+                        <tr>
+                            <th>time</th>
+                            <th>ip</th>
+                            <th>geo</th>
+                            <th>tag</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbody"></tbody>
+                    </table>
+
+                    <div style="text-align: center;margin: 5% 0;">
+                        <form id="page" action="{% url 'monit_threaten_indexs' %}?comid={{ compid }}">
+                            <a class="first_page">
+                                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">上一页</button>
+                            </a>
+
+                            {% for num in users.paginator.page_range %}
+                                <a class="now_page">
+                                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">{{ num }}</button>
+                                </a>
+                            {% endfor %}
+
+                            <button id="num_pages" type="button" class="layui-btn layui-btn-primary layui-btn-sm">
+                                共{{ users.paginator.num_pages }}页
+                            </button>
+
+                            <a class="last_page">
+                                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">下一页</button>
+                            </a>
+                        </form>
+                    </div>
+                </div>
+                </div>
+                <div class="boxfoot"></div>
+
+            </div>
         </li>
+
+
         <li>
             <div class="boxall" style="height: 5.2rem; width: 100%; margin-left: auto; margin-right: auto">
                 <div class="alltitle">【威胁情报】IP威胁分类</div>
@@ -75,9 +118,76 @@
 <div class="back"></div>
 {% endblock %}
 
-
 <!-- js开始 -->
 {% block jsbody %}
+<!--表格-->
+<script type="text/javascript">
+
+        let now_page = 1;
+        // 动态加载第一页数据
+        page_click();
+        $('.first_page button').removeClass('layui-btn-primary').addClass('layui-btn-disabled');
+        $('.now_page button').first().removeClass('layui-btn-primary').addClass('page_this');
+        //上一页
+        $('.first_page').click(function () {
+            now_page -= 1;
+            if (now_page < 1) {
+                now_page = 1;
+                return false
+            } else {
+                $('.page_this').parent().prev().click();
+            }
+        });
+        //下一页
+        $('.last_page').click(function () {
+            let num_pages = $('.now_page button').last().text();
+            now_page += 1;
+            if (now_page > parseInt(num_pages)) {
+                now_page -= 1;
+                return false
+            } else {
+                $('.page_this').parent().next().click();
+            }
+        });
+        //切换页
+        $('.now_page').click(function () {
+            now_page = parseInt($(this).children('button').text());
+            $('.now_page button').removeClass('page_this').addClass('layui-btn-primary');
+            $(this).addClass('page_this');
+            $(this).children('button').removeClass('layui-btn-primary').addClass('page_this');
+            page_click()
+        });
+
+        function page_click() {
+            let page_form = $('#page');
+            $.ajax({
+                type: 'GET',
+                url: page_form.attr('action'),
+                data: {page: now_page},
+                success: function (data) {
+                    $('#tbody tr').remove();
+                    $('#num_pages').html('共' + data.num_pages + '页');
+                    if (data.has_previous === true) {
+                        $('.first_page button').removeClass('layui-btn-disabled').addClass('layui-btn-primary');
+                    } else {
+                        $('.first_page button').removeClass('layui-btn-primary').addClass('layui-btn-disabled')
+                    }
+                    if (data.has_next === true) {
+                        $('.last_page button').removeClass('layui-btn-disabled').addClass('layui-btn-primary');
+                    } else {
+                        $('.last_page button').removeClass('layui-btn-primary').addClass('layui-btn-disabled');
+                    }
+                    $.each(data.user_li, function (index, user) {
+                        let a = '<td>';
+                        let b = '</td>';
+                        let body = a + user.time + b + a + user.src_ip + b + a + user.geo + b + a + user.tag + b;
+                        $('#tbody').append('<tr>' + body + '</tr>');
+                    });
+                }
+            })
+        }
+</script>
+
 <!--命中数-->
 <script type="text/javascript">
     hit_change();

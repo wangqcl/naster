@@ -16,46 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/HqMonitor/templates/web/usermon/qthreaten.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1025">
-              <caret line="79" column="18" lean-forward="true" selection-start-line="79" selection-start-column="18" selection-end-line="79" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/HqMonitor/templates/web/score.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="13" column="16" lean-forward="true" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
-              <folding>
-                <element signature="n#style#0;n#div#1;n#li#1;n#ul#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/HqMonitor/static/monit/js/score.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/HqMonitor/templates/web/base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="47" column="51" lean-forward="true" selection-start-line="47" selection-start-column="51" selection-end-line="47" selection-end-column="51" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/HqMonitor/templates/web/usermon/qmonit.html">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="425">
-              <caret line="95" column="25" lean-forward="true" selection-start-line="95" selection-start-column="25" selection-end-line="95" selection-end-column="25" />
+              <caret line="17" column="16" lean-forward="true" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -74,15 +39,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>do_xAxis_data</find>
-      <find>type</find>
-      <find>print</find>
-      <find>value</find>
-      <find>liney</find>
-      <find>lineY</find>
-      <find>console</find>
-      <find>charts</find>
-      <find>color</find>
       <find>item</find>
       <find>121</find>
       <find>//被攻击点</find>
@@ -104,6 +60,15 @@
       <find>barbox</find>
       <find>clearfix</find>
       <find>head</find>
+      <find>user_li</find>
+      <find>table</find>
+      <find>monit_threaten_index</find>
+      <find>layui-table</find>
+      <find>T</find>
+      <find>T,</find>
+      <find>.split('T'</find>
+      <find>[:</find>
+      <find>page</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -128,10 +93,8 @@
         <option value="$PROJECT_DIR$/HqMonitor/templates/web/Invasion.html" />
         <option value="$PROJECT_DIR$/HqMonitor/web/views/Invasion.py" />
         <option value="$PROJECT_DIR$/HqMonitor/web/views/safety.py" />
-        <option value="$PROJECT_DIR$/HqMonitor/web/views/score.py" />
         <option value="$PROJECT_DIR$/HqMonitor/templates/web/usermon/qmonit.html" />
         <option value="$PROJECT_DIR$/HqMonitor/templates/web/monit.html" />
-        <option value="$PROJECT_DIR$/HqMonitor/templates/web/base.html" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/HqMonitor/static/monit/js/js.js" />
         <option value="$PROJECT_DIR$/HqMonitor/static/monweb/css/error.css" />
@@ -140,23 +103,26 @@
         <option value="$PROJECT_DIR$/HqMonitor/templates/web/monweb/Center.html" />
         <option value="$PROJECT_DIR$/HqMonitor/web/views/center.py" />
         <option value="$PROJECT_DIR$/临时记录.txt" />
-        <option value="$PROJECT_DIR$/HqMonitor/web/urls.py" />
         <option value="$PROJECT_DIR$/HqMonitor/static/monit/js/threaten.js" />
         <option value="$PROJECT_DIR$/HqMonitor/HqMonitor/settings.py" />
-        <option value="$PROJECT_DIR$/HqMonitor/web/views/threaten.py" />
-        <option value="$PROJECT_DIR$/HqMonitor/static/monit/css/comon0.css" />
         <option value="$PROJECT_DIR$/HqMonitor/static/monit/js/score.js" />
-        <option value="$PROJECT_DIR$/HqMonitor/templates/web/threaten.html" />
-        <option value="$PROJECT_DIR$/HqMonitor/templates/web/usermon/qthreaten.html" />
         <option value="$PROJECT_DIR$/HqMonitor/templates/web/score.html" />
+        <option value="$PROJECT_DIR$/HqMonitor/web/views/score.py" />
+        <option value="$PROJECT_DIR$/HqMonitor/static/monit/css/layui.css" />
+        <option value="$PROJECT_DIR$/HqMonitor/static/monit/css/comon0.css" />
+        <option value="$PROJECT_DIR$/HqMonitor/web/urls.py" />
+        <option value="$PROJECT_DIR$/HqMonitor/templates/web/threaten.html" />
+        <option value="$PROJECT_DIR$/HqMonitor/templates/web/base.html" />
+        <option value="$PROJECT_DIR$/HqMonitor/web/views/threaten.py" />
+        <option value="$PROJECT_DIR$/HqMonitor/templates/web/usermon/qthreaten.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="2" />
-    <option name="y" value="1" />
-    <option name="width" value="1918" />
-    <option name="height" value="1048" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1066" />
   </component>
   <component name="ProjectId" id="1bFZQQn1yEBUlRLjho830IuR5VG" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -203,14 +169,6 @@
               <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="monit" type="462c0819:PsiDirectoryNode" />
               <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="monitor" type="b2602c69:ProjectViewProjectNode" />
-              <item name="monitor" type="462c0819:PsiDirectoryNode" />
-              <item name="HqMonitor" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="monit" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="monitor" type="b2602c69:ProjectViewProjectNode" />
@@ -263,7 +221,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/HqMonitor/manage.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/HqMonitor/templates/web/usermon" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -276,11 +234,11 @@
       <recent name="E:\monitor\HqMonitor\static\login\img" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\monitor\HqMonitor\templates\web\usermon" />
+      <recent name="E:\monitor\HqMonitor\static\monit\css" />
       <recent name="E:\monitor\HqMonitor\static\monweb\img" />
       <recent name="E:\monitor\HqMonitor\templates\web" />
       <recent name="E:\monitor\HqMonitor\static\monit\js" />
-      <recent name="E:\monitor\HqMonitor\templates\web\usermon" />
-      <recent name="E:\monitor\HqMonitor\static\monweb\css" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -438,12 +396,14 @@
       <workItem from="1591925198688" duration="19505000" />
       <workItem from="1592186260183" duration="25472000" />
       <workItem from="1592270943268" duration="305000" />
-      <workItem from="1592356975430" duration="24098000" />
+      <workItem from="1592356975430" duration="24590000" />
+      <workItem from="1592443973187" duration="27808000" />
+      <workItem from="1592529350744" duration="7301000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="350534000" />
+    <option name="totallyTimeSpent" value="386135000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -458,13 +418,36 @@
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.75988287" visible="true" weight="0.18496802" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.75988287" visible="true" weight="0.18923241" />
       <window_info id="Favorites" order="1" sideWeight="0.24011713" side_tool="true" weight="0.16364606" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="manage.py@MonitorProject" weight="0.32939914" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32939914" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32939914" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2532189" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3025751" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32939914" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32939914" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.17918456" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32939914" />
+      <window_info anchor="bottom" id="manage.py@MonitorProject" order="13" weight="0.32939914" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" id="Database" order="4" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.75988287" visible="true" weight="0.18710022" />
+      <window_info id="Favorites" order="1" sideWeight="0.24011713" side_tool="true" weight="0.16364606" />
+      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32939914" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2532189" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3025751" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -475,29 +458,7 @@
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.26609442" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32939914" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" />
-      <window_info anchor="right" id="Database" order="4" />
-    </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.75988287" visible="true" weight="0.17963752" />
-      <window_info id="Favorites" order="1" sideWeight="0.24011713" side_tool="true" weight="0.16364606" />
-      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32939914" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32939914" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32939914" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.26609442" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32939914" />
+      <window_info anchor="bottom" id="manage.py@MonitorProject" order="13" weight="0.32939914" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -538,32 +499,6 @@
     <SUITE FILE_PATH="coverage/monitor$manage.coverage" NAME="manage Coverage Results" MODIFIED="1592375218243" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HqMonitor" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/HqMonitor/myadmin/views/pany.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1950">
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HqMonitor/common/shopmiddleware.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="22" column="26" lean-forward="true" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HqMonitor/templates/myadmin/info.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HqMonitor/templates/web/monweb/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/HqMonitor/templates/myadmin/users/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
@@ -586,16 +521,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HqMonitor/static/monit/js/jquery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="27" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/HqMonitor/templates/web/usermon/base.html" />
     <entry file="file://$PROJECT_DIR$/HqMonitor/requirements.txt">
       <provider selected="true" editor-type-id="text-editor" />
@@ -607,9 +532,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/HqMonitor/web/tests.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HqMonitor/web/views/score.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/HqMonitor/templates/myadmin/users/add.html">
@@ -657,26 +579,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HqMonitor/templates/web/monit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="170" column="68" lean-forward="true" selection-start-line="170" selection-start-column="9" selection-end-line="170" selection-end-column="68" />
-          <folding>
-            <element signature="e#2470#3421#0" />
-            <element signature="e#3436#3831#0" />
-            <element signature="e#3846#4668#0" />
-            <element signature="e#6154#6508#0" />
-            <element signature="e#6524#8142#0" />
-            <element signature="e#8158#10149#0" />
-            <element signature="e#12308#12587#0" />
-            <element signature="e#12599#12969#0" />
-            <element signature="e#12982#13963#0" />
-            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/HqMonitor/static/monit/js/js.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="850">
@@ -703,40 +605,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/HqMonitor/templates/web/monweb/info.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="9" column="25" lean-forward="true" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HqMonitor/templates/web/monweb/info.html">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="8" column="19" lean-forward="true" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HqMonitor/web/views/monit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="878">
-          <caret line="50" column="32" lean-forward="true" selection-start-line="50" selection-start-column="32" selection-end-line="50" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-            <element signature="e#3637#5265#0" />
-            <element signature="e#5292#7664#0" />
-            <element signature="e#8360#16914#0" />
-            <element signature="e#9655#9705#0" />
-            <element signature="e#9765#16914#0" />
-            <element signature="e#16960#23490#0" />
-            <element signature="e#23531#30137#0" />
-            <element signature="e#30176#35490#0" />
-            <element signature="e#35534#47420#0" />
-            <element signature="e#47465#59542#0" />
-            <element signature="e#59587#67280#0" />
-            <element signature="e#67316#79499#0" />
-            <element signature="e#79538#83166#0" />
-            <element signature="e#83197#94430#0" />
-            <element signature="e#94467#105659#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -811,6 +681,48 @@
     <entry file="file://$PROJECT_DIR$/HqMonitor/static/monit/images/head_bg.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/HqMonitor/web/views/score.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="1" column="8" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HqMonitor/templates/web/score.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#li#1;n#ul#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HqMonitor/static/monit/js/score.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HqMonitor/static/monit/js/jquery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="4" column="27" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HqMonitor/logs/all-2020-06-17.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-12433">
+          <caret line="83" column="89" selection-start-line="83" selection-start-column="89" selection-end-line="83" selection-end-column="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HqMonitor/logs/all-2020-06-18.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9247" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/HqMonitor/logs/info-2020-06-17.log">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="25">
@@ -818,88 +730,124 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/HqMonitor/logs/info-2020-06-18.log">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/HqMonitor/logs/error-2020-06-17.log">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        <state relative-caret-position="225">
+          <caret line="9" column="113" lean-forward="true" selection-start-line="9" selection-start-column="113" selection-end-line="9" selection-end-column="113" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HqMonitor/logs/all-2020-06-17.log">
+    <entry file="file://$PROJECT_DIR$/HqMonitor/static/monit/css/layui.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9379">
-          <caret line="83" column="89" selection-start-line="83" selection-start-column="89" selection-end-line="83" selection-end-column="89" />
+        <state relative-caret-position="25">
+          <caret line="1" column="21917" selection-start-line="1" selection-start-column="21917" selection-end-line="1" selection-end-column="21917" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HqMonitor/static/monit/css/comon0.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="259" column="3" lean-forward="true" selection-start-line="259" selection-start-column="3" selection-end-line="259" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HqMonitor/logs/error-2020-06-18.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1000">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HqMonitor/templates/web/monit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1825">
+          <caret line="73" column="12" selection-start-line="73" selection-start-column="12" selection-end-line="73" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/HqMonitor/web/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="30" column="60" selection-start-line="30" selection-start-column="52" selection-end-line="30" selection-end-column="60" />
+        <state relative-caret-position="300">
+          <caret line="30" column="78" selection-start-line="30" selection-start-column="78" selection-end-line="30" selection-end-column="78" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HqMonitor/web/views/threaten.py">
+    <entry file="file://$PROJECT_DIR$/HqMonitor/web/views/monit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="37" column="13" lean-forward="true" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
+        <state relative-caret-position="276">
+          <caret line="229" column="42" lean-forward="true" selection-start-line="229" selection-start-column="42" selection-end-line="229" selection-end-column="68" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
+            <element signature="e#69428#71714#0" />
+            <element signature="e#71763#74687#0" />
+            <element signature="e#74738#78165#0" />
+            <element signature="e#80035#82015#0" />
+            <element signature="e#85564#87126#0" />
+            <element signature="e#87160#89384#0" />
+            <element signature="e#89944#91754#0" />
+            <element signature="e#91788#94016#0" />
+            <element signature="e#95132#95393#0" />
+            <element signature="e#96085#99969#0" />
+            <element signature="e#100003#104819#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HqMonitor/static/monit/css/comon0.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="62" column="70" lean-forward="true" selection-start-line="62" selection-start-column="70" selection-end-line="62" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HqMonitor/templates/web/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="47" column="51" lean-forward="true" selection-start-line="47" selection-start-column="51" selection-end-line="47" selection-end-column="51" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/HqMonitor/templates/web/usermon/qmonit.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="95" column="25" lean-forward="true" selection-start-line="95" selection-start-column="25" selection-end-line="95" selection-end-column="25" />
+        <state relative-caret-position="370">
+          <caret line="169" column="35" lean-forward="true" selection-start-line="169" selection-start-column="35" selection-end-line="169" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HqMonitor/static/monit/js/score.js">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/HqMonitor/web/views/threaten.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="30" column="35" lean-forward="true" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+            <element signature="e#4371#6372#0" />
+            <element signature="e#6410#8441#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HqMonitor/templates/web/usermon/del-qthreaten.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="85" column="39" lean-forward="true" selection-start-line="85" selection-start-column="39" selection-end-line="85" selection-end-column="39" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/HqMonitor/templates/web/threaten.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="625">
-          <caret line="79" column="18" lean-forward="true" selection-start-line="79" selection-start-column="18" selection-end-line="79" selection-end-column="18" />
+        <state relative-caret-position="300">
+          <caret line="54" column="43" lean-forward="true" selection-start-line="54" selection-start-column="43" selection-end-line="54" selection-end-column="43" />
           <folding>
-            <element signature="n#ul#0;n#div#0;n#!!top" />
+            <element signature="n#style#0;n#div#1;n#li#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#li#1;n#ul#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#li#1;n#ul#0;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HqMonitor/templates/web/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="51" column="51" lean-forward="true" selection-start-line="51" selection-start-column="51" selection-end-line="51" selection-end-column="51" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/HqMonitor/templates/web/usermon/qthreaten.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1025">
-          <caret line="79" column="18" lean-forward="true" selection-start-line="79" selection-start-column="18" selection-end-line="79" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HqMonitor/templates/web/score.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="13" column="16" lean-forward="true" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#li#1;n#ul#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="425">
+          <caret line="17" column="16" lean-forward="true" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
         </state>
       </provider>
     </entry>
