@@ -218,7 +218,7 @@ to {transform: rotate(-359deg);}
 
 
 /*新增*/
-.tdc{color: #ff1e3a
+.tdc{color: #ffffff
 }
 .tbc{color:rgba(255,255,255,.6)}
 
@@ -335,6 +335,10 @@ to {transform: rotate(-359deg);}
   text-overflow:inherit;
  white-space:normal;
 }
+
+.layui-table td {
+            padding: 9px;
+ }
 
 /*.statistics_table_opacity {*/
 /*    background-color: rgba(0, 0, 0, 0.5) !important;*/
