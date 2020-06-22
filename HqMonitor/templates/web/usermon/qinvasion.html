@@ -6,8 +6,21 @@
 {% endblock %}
 <!-- css结束 -->
 
+<!-- js开始 -->
+{% block script %}
+    <script language="JavaScript" src="{% static 'monit/js/Invasion.js'%}"></script>
+{% endblock %}
+<!-- js结束 -->
+
+<!-- 头 -->
+{% block title %}
+    <h1>入侵检测数据监控</h1>
+{% endblock %}
+<!-- 头结束 -->
+
 {% block mainbody %}
     <!--  入侵检测监控页面-->
+
     <div class="mainbox">
         <ul class="clearfix">
             <li>
@@ -242,3 +255,9 @@
     </script>
 {% endblock %}
 <!-- js结束 -->
+
+
+
+
+
+
