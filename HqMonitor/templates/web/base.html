@@ -43,23 +43,31 @@
 <div class="loading">
   <div class="loadbox"> <img src="{% static 'monit/picture/loading.gif'%}"> 页面加载中... </div>
 </div>
+
+
+
+
+
 <div class="head">
+    <!--侧栏界面设计-->
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="{% url 'monit_index' compid %}">网络全局信息</a>
+      <a href="{% url 'safety_index' %}?comid={{ compid }}">web安全防护信息</a>
+      <a href="{% url 'monit_invasion_index' %}?comid={{ compid }}">入侵检测信息</a>
+      <a href="{% url 'monit_threaten_indexs' %}?comid={{ compid }}">威胁情报</a>
+        <a href="{% url 'monit_score_scindex' %}?comid={{ compid }}">安全综合评分</a>
+        <a href="{% url 'web_center' %}">个人中心</a>
+    </div>
+    <div class="butts" id="main">
+      <span style="font-size:30px;cursor:pointer;color: #ddd;" onclick="openNav()">&#9776; 操作</span>
+    </div>
+
     <!-- 头 -->
     {% block title %}
     {% endblock %}
     <!-- 头结束 -->
     <div class="weather"><span id="showTime"></span></div>
-        <div class="index_nav" >
-        <ul style="height: 30px; margin-bottom: 0px;">
-            <li class="l_left" id="l1"  onclick="location.href='{% url 'monit_index' compid %}'">网络全局信息</li>
-            <li class="l_left" id="l2" onclick=location.href='{% url 'safety_index' %}?comid={{ compid }}'>web安全防护信息</li>
-            <li class="l_left" id="l3" onclick=location.href='{% url 'monit_invasion_index' %}?comid={{ compid }}'>入侵检测信息</li>
-            <li class="r_right" id="l4" onclick="location.href='{% url 'web_center' %}'">个人中心</li>
-            <li class="r_right" id="l5" onclick=location.href='{% url 'monit_threaten_indexs' %}?comid={{ compid }}'>威胁情报</li>
-            <li class="r_right" id="l6" onclick=location.href='{% url 'monit_score_scindex' %}?comid={{ compid }}'>安全综合评分</li>
-
-        </ul>
-    </div>
   <!--时间加载-->
 	<script>
     var t = null;
@@ -87,6 +95,20 @@
 
 <script type="text/javascript" src="{% static 'monit/js/world.js'%}"></script>
 <script type="text/javascript" src="{% static 'monit/js/area_echarts.js'%}"></script>
+<script type="text/javascript">
+/*打开侧栏，修改侧栏宽度，主体左跨度、背景透明度*/
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+	document.getElementById("main").style.marginLeft = "250px";
+    	document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+    }
+    /*关闭侧栏，恢复原始侧栏宽度，主体左跨度、背景透明度*/
+    function closeNav() {
+	document.getElementById("mySidenav").style.width = "0";
+	document.getElementById("main").style.marginLeft= "0";
+	document.body.style.backgroundColor = "white";
+    }
+</script>
 <!-- js开始 -->
 {% block jsbody %}
 {% endblock %}

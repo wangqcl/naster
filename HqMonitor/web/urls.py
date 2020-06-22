@@ -2,7 +2,7 @@ from django.conf.urls import url
 from . import views
 from .views import center,monit,threaten,score,Invasion
 from .views.monit import * #Main_visit_port,Server_status_code,Domain_infor,Ip_fraction,Request_traffic,Response_traffic,Waf_attack_trend,Attack_map,Access_ip,Main_getnum,Hit,Source_data
-from .views.threaten import thattack,thhit,thactive,threat,thnews,indexs
+from .views.threaten import thattack,thhit,thactive,threat,thnews,thindex
 from .views.score import mainthr,totalthr,tithr,webthr,inthr,scindex
 from .views.Invasion import *
 from .views.safety import *
@@ -32,7 +32,7 @@ urlpatterns = [
     url(r'^web/Source_data$', Source_data.as_view(), name='monit_Source_data'),  # 流量数据
 
     #威胁情报
-    url(r'^web/threaten/indexs$',indexs.as_view(), name="monit_threaten_indexs"), #威胁情报监控首页
+    url(r'^web/threaten/thindex$',thindex.as_view(), name="monit_threaten_indexs"), #威胁情报监控首页
     # url(r'^web/threaten/index/(?P<pIndex>[0-9]+)$', threaten.index, name="monit_threaten_index"), #威胁情报监控首页
     url(r'^web/threaten/thattack$',thattack.as_view(),name="monit_threaten_thattack"),  #攻击类型
     url(r'^web/threaten/thhit$',thhit.as_view(),name="monit_threaten_thhit"),  #命中趋势

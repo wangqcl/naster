@@ -136,26 +136,28 @@
 </script>
 <!--服务器状态码-->
 <script type="text/javascript">
-        st_change()
-        var st_port_data = []
-        var st_yAxis_data = []
-
-        var st_series = []
+        st_change();
+        var st_port_data = [];
+        var st_yAxis_data = [];
+        var color = ['#0E7CE2', '#FF8352', '#E271DE', '#F8456B', '#00FFFF', '#4AEAB0']
+        var i = 0;
+        var st_series = [];
         function st_change(){
           $.getJSON('{% url "monit_status_code" %}',function(data){
-            st_port_data=data.port
-            st_xAxis_data=data.xAxis
-            st_yAxis_data = data.yAxis
-
+            st_port_data=data.port;
+            st_xAxis_data=data.xAxis;
+            st_yAxis_data = data.yAxis;
             for (var key in st_yAxis_data)
                 {
                     var test = {};
+                    test["color"] = color[i],
                     test["name"] = key,
                     test["type"] = 'bar',
                     test["barWidth"] = 5,
                     test["stack"] = 'statu',
-                    test["data"] = st_yAxis_data[key]
-                    st_series.push(test)
+                    test["data"] = st_yAxis_data[key],
+                    st_series.push(test);
+                    i++;
                 }
             echarts_35(st_series,st_port_data,st_xAxis_data)
           })

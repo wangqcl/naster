@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'common.shopmiddleware.ShopMiddleware',     #注册中间件
+    #'common.shopmiddleware.ShopMiddleware',     #注册中间件
 ]
 
 ROOT_URLCONF = 'HqMonitor.urls'
@@ -87,6 +87,7 @@ WSGI_APPLICATION = 'HqMonitor.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+#测试数据库
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',

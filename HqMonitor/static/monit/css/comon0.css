@@ -6,7 +6,62 @@
 	box-sizing: border-box}
 *,body{padding:0px;	margin:0px;color: #222;font-family: "微软雅黑";}
 @font-face{font-family:electronicFont;src:url(../font/DS-DIGIT.TTF)}
-body{ background:#000d4a url(../images/bg.jpg) center top; background-size:cover;color:#666;font-size: .1rem;}
+body{ background:#000d4a url(../images/bg.jpg) center top; background-size:cover;color:#666;font-size: .1rem;font-family: "Lato", sans-serif;
+    transition: background-color .5s;
+}
+
+/*侧边栏选择器*/
+.sidenav {
+    height: 100%;
+    width: 0; /*原始宽度*/
+    position: fixed;
+    /*z-index、top、left共同控制侧栏的悬浮（上方1，下方-1）*/
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s; /*侧栏延迟0.5s显示*/
+    padding-top: 60px;
+}
+
+/*侧边栏标签选择器*/
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s; /*标签延迟0.3s显示*/
+}
+
+/*侧栏标签和关闭按钮光标的效果*/
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+/*侧栏和关闭按钮的位置选择器*/
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+/*主体内容*/
+#main {
+    transition: margin-left .5s;/*主体内容延迟0.5s整体y右移动*/
+    padding: 16px;
+}
+
+/*当文档高度小于450px时，改变侧栏的padding属性和字体大小*/
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
 li{ list-style-type:none;}
 table{}
 i{ margin:0px; padding:0px; text-indent:0px;}
@@ -63,6 +118,9 @@ a:hover{ color:#06c; text-decoration: none!important}
 .weather{ position:absolute; right:.3rem; top:0; line-height: .75rem;}
 .weather img{ width:.37rem; display: inline-block; vertical-align: middle;}
 .weather span{color:rgba(255,255,255,.7); font-size: .18rem; padding-right: .1rem;}
+.butts{ position:absolute; left:.3rem; top:0; line-height: .75rem;}
+/*.butts img{ width:.37rem; display: inline-block; vertical-align: middle;}*/
+/*.butts span{color:rgba(255,255,255,.7); font-size: .18rem; padding-right: .1rem;}*/
 .mainbox{ padding:.1rem .1rem 0rem .1rem;}
 .mainbox>ul{}
 .mainbox>ul>li{ float: left; padding: 0 .1rem}
@@ -218,7 +276,7 @@ to {transform: rotate(-359deg);}
 
 
 /*新增*/
-.tdc{color: #ffffff
+.tdc{color: rgba(255,255,255,.5)
 }
 .tbc{color:rgba(255,255,255,.6)}
 
@@ -335,10 +393,6 @@ to {transform: rotate(-359deg);}
   text-overflow:inherit;
  white-space:normal;
 }
-
-.layui-table td {
-            padding: 9px;
- }
 
 /*.statistics_table_opacity {*/
 /*    background-color: rgba(0, 0, 0, 0.5) !important;*/

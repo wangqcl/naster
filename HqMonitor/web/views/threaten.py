@@ -23,7 +23,7 @@ es = Elasticsearch(
     retry_on_timeout=True
 )
 
-class indexs(View):
+class thindex(View):
 
     def get(self, request):
         comid = request.GET.get('comid',None)

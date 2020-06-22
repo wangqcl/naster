@@ -187,6 +187,7 @@ function echarts_34(nu_port,nu_values) {
 function echarts_35(st_series,st_port_data,st_xAxis_data) {
         var myChart = echarts.init(document.getElementById('echart1_2'));
         option = {
+            color : ['#0E7CE2', '#FF8352', '#E271DE', '#F8456B', '#00FFFF', '#4AEAB0'],
             title: [{
                 text: '服务器状态码',
                 left: 'center',
@@ -204,7 +205,11 @@ function echarts_35(st_series,st_port_data,st_xAxis_data) {
             legend: {
                 x : 'center',
                 y : 'bottom',
-                data: st_port_data
+                data: st_port_data,
+                textStyle: {
+                  color: 'rgba(255,255,255,.5)', //图标颜色
+                  fontSize: '12', //图表字体
+                }
             },
             grid: {//echart位置
                 left: '3%',
