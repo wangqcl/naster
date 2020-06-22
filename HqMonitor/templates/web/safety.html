@@ -1,19 +1,23 @@
 {% extends "web/base.html" %}
 {% load static from staticfiles %}
-        <!-- css开始 -->
-    {% block css %}
+<!-- css开始 -->
+{% block css %}
+    <link rel="stylesheet" href="{% static 'monit/css/safety.css' %}">
+{% endblock %}
+<!-- css结束 -->
 
-    {% endblock %}
-    <!-- css结束 -->
-        <!-- js开始 -->
-    {% block script %}
-    {% endblock %}
-    <!-- js结束 -->
-    <!-- 头 -->
-    {% block title %}
-<h1>web安全防护监控</h1>
-    {% endblock %}
-    <!-- 头结束 -->
+<!-- js开始 -->
+{% block script %}
+    <script language="JavaScript" src="{% static 'monit/js/safety.js'%}"></script>
+{% endblock %}
+<!-- js结束 -->
+
+<!-- 头 -->
+{% block title %}
+    <h1>web安全防护监控</h1>
+{% endblock %}
+<!-- 头结束 -->
+
 {% block mainbody %}
 <!--  web安全防护监控页面-->
 <div class="mainboxs">
