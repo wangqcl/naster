@@ -10,7 +10,7 @@ from pytz import timezone
 import datetime
 from django.http import JsonResponse
 from django.core.paginator import Paginator, PageNotAnInteger, InvalidPage
-#from django.shortcuts import render
+from . import check_user_request
 
 
 '''配置es'''
@@ -26,8 +26,10 @@ es = Elasticsearch(
 class indexs(View):
 
     '''首页-入侵检测信息'''
+    @check_user_request
     def get(self, request):
         comid = request.GET.get('comid','None')
+        print(comid)
         if comid == 'None':
             comid = None
         else:
@@ -261,9 +263,10 @@ class indexs(View):
             return HttpResponse(errinfo)
 
 
-
 # 【入侵检测】总攻击数
+
 class All_attrack(View):
+
 
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
