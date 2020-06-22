@@ -6,14 +6,13 @@
     <title>index</title>
     <script type="text/javascript" src="{% static 'monit/js/jquery.js' %}"></script>
     <link rel="stylesheet" href="{% static 'monit/css/comon0.css' %}">
-<<<<<<< HEAD
-    <link rel="stylesheet" href="{% static 'monit/css/safety.css' %}">
-=======
+
+
     <!-- css开始 -->
     {% block css %}
     {% endblock %}
     <!-- css结束 -->
->>>>>>> 0710735067a17a7f50bb81fe83f30378bfa6fb0a
+
 </head>
 	<script>
 	$(window).load(function(){
@@ -32,14 +31,14 @@
 	</script>
 	<script type="text/javascript" src="{% static 'monit/js/echarts.min.js'%}"></script>
 	<script language="JavaScript" src="{% static 'monit/js/js.js'%}"></script>
-<<<<<<< HEAD
+
 	<script language="JavaScript" src="{% static 'monit/js/safety.js'%}"></script>
-=======
+
     <!-- js开始 -->
     {% block script %}
     {% endblock %}
     <!-- js结束 -->
->>>>>>> 0710735067a17a7f50bb81fe83f30378bfa6fb0a
+
 <body>
 <div class="loading">
   <div class="loadbox"> <img src="{% static 'monit/picture/loading.gif'%}"> 页面加载中... </div>
@@ -53,8 +52,8 @@
         <div class="index_nav" >
         <ul style="height: 30px; margin-bottom: 0px;">
             <li class="l_left" id="l1"  onclick="location.href='{% url 'monit_index' compid %}'">网络全局信息</li>
-            <li class="l_left" id="l2">web安全防护信息</li>
-            <li class="l_left" id="l3">入侵检测信息</li>
+            <li class="l_left" id="l2" onclick=location.href='{% url 'safety_index' %}?comid={{ compid }}'>web安全防护信息</li>
+            <li class="l_left" id="l3" onclick=location.href='{% url 'monit_invasion_index' %}?comid={{ compid }}'>入侵检测信息</li>
             <li class="r_right" id="l4" onclick="location.href='{% url 'web_center' %}'">个人中心</li>
             <li class="r_right" id="l5" onclick=location.href='{% url 'monit_threaten_indexs' %}?comid={{ compid }}'>威胁情报</li>
             <li class="r_right" id="l6" onclick=location.href='{% url 'monit_score_scindex' %}?comid={{ compid }}'>安全综合评分</li>

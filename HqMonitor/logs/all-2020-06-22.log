@@ -219,3 +219,122 @@
 [2020-06-22 10:39:15,526] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /myadmin/users/add HTTP/1.1" 200 8848
 [2020-06-22 10:39:17,191] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /myadmin/pany/1 HTTP/1.1" 200 9780
 [2020-06-22 10:39:20,241] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /myadmin/users/1 HTTP/1.1" 200 12431
+[2020-06-22 11:14:52,188] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET / HTTP/1.1" 200 5942
+[2020-06-22 11:14:52,279] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /verify HTTP/1.1" 200 1587
+[2020-06-22 11:16:58,083] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /verify?sn=0.3204810019885866 HTTP/1.1" 200 1862
+[2020-06-22 11:17:02,892] [basehttp.py:124] [basehttp:log_message] [INFO]- "POST /dologin HTTP/1.1" 302 0
+[2020-06-22 11:17:02,928] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 7474
+[2020-06-22 11:17:07,169] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index/5 HTTP/1.1" 200 17541
+[2020-06-22 11:17:07,174] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/css/comon0.css HTTP/1.1" 304 0
+[2020-06-22 11:17:07,177] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/css/safety.css HTTP/1.1" 200 8221
+[2020-06-22 11:17:07,177] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/js.js HTTP/1.1" 304 0
+[2020-06-22 11:17:07,178] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/world.js HTTP/1.1" 304 0
+[2020-06-22 11:17:07,178] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/safety.js HTTP/1.1" 200 21957
+[2020-06-22 11:17:32,136] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend?comid=5 HTTP/1.1" 200 550
+[2020-06-22 11:17:32,147] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum?comid=5 HTTP/1.1" 200 212
+[2020-06-22 11:17:32,148] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit?comid=5 HTTP/1.1" 200 33
+[2020-06-22 11:17:32,150] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/visitport?comid=5 HTTP/1.1" 200 121
+[2020-06-22 11:17:32,191] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rstraffic?comid=5 HTTP/1.1" 200 1170
+[2020-06-22 11:17:32,191] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/domain?comid=5 HTTP/1.1" 200 227
+[2020-06-22 11:17:32,192] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/statuscode?comid=5 HTTP/1.1" 200 300
+[2020-06-22 11:17:32,221] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rqtraffic?comid=5 HTTP/1.1" 200 1791
+[2020-06-22 11:17:32,263] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data?comid=5 HTTP/1.1" 200 465
+[2020-06-22 11:17:33,209] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/fraction HTTP/1.1" 200 268
+[2020-06-22 11:17:44,548] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap?comid=5 HTTP/1.1" 200 285
+[2020-06-22 11:21:39,249] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET / HTTP/1.1" 200 5942
+[2020-06-22 11:21:39,299] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /verify HTTP/1.1" 200 1548
+[2020-06-22 11:23:46,507] [basehttp.py:124] [basehttp:log_message] [INFO]- "POST /dologin HTTP/1.1" 302 0
+[2020-06-22 11:23:46,544] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 7474
+[2020-06-22 11:23:47,683] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/index/0
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\monitor\HqMonitor\web\views\monit.py", line 31, in index
+    return render(request,"web/monit.html",content)
+  File "E:\project_env\lib\site-packages\django\shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "E:\project_env\lib\site-packages\django\template\loader.py", line 67, in render_to_string
+    template = get_template(template_name, using=using)
+  File "E:\project_env\lib\site-packages\django\template\loader.py", line 21, in get_template
+    return engine.get_template(template_name)
+  File "E:\project_env\lib\site-packages\django\template\backends\django.py", line 39, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "E:\project_env\lib\site-packages\django\template\engine.py", line 162, in get_template
+    template, origin = self.find_template(template_name)
+  File "E:\project_env\lib\site-packages\django\template\engine.py", line 136, in find_template
+    name, template_dirs=dirs, skip=skip,
+  File "E:\project_env\lib\site-packages\django\template\loaders\base.py", line 44, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 191, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 230, in compile_nodelist
+    return parser.parse()
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 515, in parse
+    raise self.error(token, e)
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "E:\project_env\lib\site-packages\django\template\loader_tags.py", line 312, in do_extends
+    nodelist = parser.parse()
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 515, in parse
+    raise self.error(token, e)
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 513, in parse
+    compiled_result = compile_func(self, token)
+  File "E:\project_env\lib\site-packages\django\template\loader_tags.py", line 251, in do_block
+    raise TemplateSyntaxError("'%s' tag with name '%s' appears more than once" % (bits[0], block_name))
+django.template.exceptions.TemplateSyntaxError: 'block' tag with name 'title' appears more than once
+[2020-06-22 11:23:47,824] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/index/0 HTTP/1.1" 500 156951
+[2020-06-22 11:25:12,374] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index/0 HTTP/1.1" 200 16842
+[2020-06-22 11:25:12,394] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/css/safety.css HTTP/1.1" 200 8221
+[2020-06-22 11:25:12,394] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/safety.js HTTP/1.1" 200 21957
+[2020-06-22 11:25:12,513] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/fraction HTTP/1.1" 200 269
+[2020-06-22 11:25:12,549] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum HTTP/1.1" 200 296
+[2020-06-22 11:25:12,552] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/visitport HTTP/1.1" 200 231
+[2020-06-22 11:25:12,622] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/domain HTTP/1.1" 200 1090
+[2020-06-22 11:25:12,625] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend HTTP/1.1" 200 853
+[2020-06-22 11:25:12,737] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/statuscode HTTP/1.1" 200 5639
+[2020-06-22 11:25:12,800] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rqtraffic HTTP/1.1" 200 2755
+[2020-06-22 11:25:12,877] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rstraffic HTTP/1.1" 200 2571
+[2020-06-22 11:25:19,770] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data HTTP/1.1" 200 528
+[2020-06-22 11:25:22,162] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap HTTP/1.1" 200 5285
+[2020-06-22 11:25:23,939] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit HTTP/1.1" 200 37
+[2020-06-22 11:27:12,625] [basehttp.py:124] [basehttp:log_message] [INFO]- "POST /web/getnum HTTP/1.1" 200 88
+[2020-06-22 11:28:36,937] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index/0 HTTP/1.1" 200 16862
+[2020-06-22 11:28:37,141] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum HTTP/1.1" 200 296
+[2020-06-22 11:28:37,168] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/visitport HTTP/1.1" 200 231
+[2020-06-22 11:28:37,232] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/domain HTTP/1.1" 200 1098
+[2020-06-22 11:28:37,249] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend HTTP/1.1" 200 853
+[2020-06-22 11:28:37,408] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/fraction HTTP/1.1" 200 268
+[2020-06-22 11:28:37,439] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/statuscode HTTP/1.1" 200 5457
+[2020-06-22 11:28:37,455] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rqtraffic HTTP/1.1" 200 3037
+[2020-06-22 11:28:37,621] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rstraffic HTTP/1.1" 200 2441
+[2020-06-22 11:28:46,207] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data HTTP/1.1" 200 528
+[2020-06-22 11:28:49,323] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit HTTP/1.1" 200 37
+[2020-06-22 11:28:50,351] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap HTTP/1.1" 200 5190
+[2020-06-22 11:30:08,219] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index/0 HTTP/1.1" 200 16852
+[2020-06-22 11:30:08,232] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/css/safety.css HTTP/1.1" 304 0
+[2020-06-22 11:30:08,232] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/safety.js HTTP/1.1" 304 0
+[2020-06-22 11:30:08,362] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/visitport HTTP/1.1" 200 238
+[2020-06-22 11:30:08,370] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum HTTP/1.1" 200 296
+[2020-06-22 11:30:08,421] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/domain HTTP/1.1" 200 1554
+[2020-06-22 11:30:08,423] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/fraction HTTP/1.1" 200 269
+[2020-06-22 11:30:08,458] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend HTTP/1.1" 200 864
+[2020-06-22 11:30:08,471] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit HTTP/1.1" 200 37
+[2020-06-22 11:30:08,636] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/statuscode HTTP/1.1" 200 5263
+[2020-06-22 11:30:08,703] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rqtraffic HTTP/1.1" 200 2743
+[2020-06-22 11:30:08,814] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rstraffic HTTP/1.1" 200 2342
+[2020-06-22 11:30:15,551] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data HTTP/1.1" 200 528
+[2020-06-22 11:30:18,417] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap HTTP/1.1" 200 4988
+[2020-06-22 11:32:08,459] [basehttp.py:124] [basehttp:log_message] [INFO]- "POST /web/getnum HTTP/1.1" 200 88
+[2020-06-22 11:34:08,536] [basehttp.py:124] [basehttp:log_message] [INFO]- "POST /web/getnum HTTP/1.1" 200 88
+[2020-06-22 11:36:09,354] [basehttp.py:124] [basehttp:log_message] [INFO]- "POST /web/getnum HTTP/1.1" 200 88
+[2020-06-22 11:36:41,009] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 7474
+[2020-06-22 11:36:41,898] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /logout HTTP/1.1" 302 0
+[2020-06-22 11:36:41,903] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET / HTTP/1.1" 200 5942
+[2020-06-22 11:36:41,931] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /verify HTTP/1.1" 200 1948
+[2020-06-22 11:36:45,152] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /myadmin/logout HTTP/1.1" 302 0
+[2020-06-22 11:36:45,158] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /myadmin/login HTTP/1.1" 200 2152
+[2020-06-22 11:36:45,198] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /myadmin/verify HTTP/1.1" 200 1846
