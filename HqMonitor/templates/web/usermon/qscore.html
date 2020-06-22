@@ -106,7 +106,7 @@
     var tiv_ydata = [];
     sc_mainthr();
     function sc_mainthr() {
-             $.getJSON('{% url "monit_score_mainthr" %}',function(data) {
+             $.getJSON('{% url "monit_score_mainthr" %}?comid={{ compid }}',function(data) {
                     tiv_xdata = data.x_data;
                     tiv_ydata = data.y_data;
                     ec_mainthr(tiv_xdata,tiv_ydata)
@@ -123,7 +123,7 @@
     var params = {{ compid }};
 
     function sc_totalthr(){
-      $.getJSON('{% url "monit_score_totalthr" %}',function(data){
+      $.getJSON('{% url "monit_score_totalthr" %}?comid={{ compid }}',function(data){
         times=data.times;
         values=data.number;
         console.log(times);
@@ -161,7 +161,7 @@
     var ti_params = {{ compid }};
 
     function sc_tithr(){
-      $.getJSON('{% url "monit_score_tithr" %}',function(data){
+      $.getJSON('{% url "monit_score_tithr" %}?comid={{ compid }}',function(data){
         ti_times=data.times;
         ti_values=data.number;
         ti_edtime = data.edtime;
@@ -198,7 +198,7 @@
     var we_params = {{ compid }};
 
     function sc_webthr(){
-      $.getJSON('{% url "monit_score_webthr" %}',function(data){
+      $.getJSON('{% url "monit_score_webthr" %}?comid={{ compid }}',function(data){
         we_times=data.times;
         we_values=data.number;
         we_edtime = data.edtime;
@@ -233,7 +233,7 @@
     var in_params = {{ compid }};
 
     function sc_inthr(){
-      $.getJSON('{% url "monit_score_inthr" %}',function(data){
+      $.getJSON('{% url "monit_score_inthr" %}?comid={{ compid }}',function(data){
         in_times=data.times;
         in_values=data.number;
         in_edtime = data.edtime;

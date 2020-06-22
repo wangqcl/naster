@@ -53,9 +53,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">个人信息</a></li>
             <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
             <li><a href="{% url 'logout' %}">退出</a></li>
           </ul>
           <form class="navbar-form navbar-right">
@@ -69,10 +68,9 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">个人中心</a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Analytics</a></li>
-            <li><a href="#">Export</a></li>
+            <li class="active"><a href="{% url "web_center" %}">个人中心</a></li>
+            <li><a href="#">个人信息</a></li>
+
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -91,14 +89,22 @@
                     <div class="info f-fl">
                         <ul>
                             <li>监控账号：<span>{{ userinfo.username }}</span></li>
-                            <li>用户名：<span>测试用户</span></li>
-                            <li class="emailText">绑定邮箱：<span>未绑定</span></li>
+                            <li>用户名：<span>{{ userinfo.name }}</span></li>
+                            <li class="emailText">绑定邮箱：<span>{{ userinfo.email }}</span></li>
                         </ul>
                         <a class="edit" href="#" target="_blank">修改个人信息 &gt;</a>
                     </div>
                 </div>
                 <div class="backCouponNum f-fl col-xs-12 col-sm-12">
-                    <p>状态：<span>0</span></p>
+                    <p>状态：<span>
+                        {% if userinfo.state == 0 %}
+                            <span style="color:green">管理员</span>
+                        {% elif userinfo.state == 1 %}
+                            <span style="color:#368938">用户</span>
+                        {% else %}
+                            <span style="color:red">..</span>
+                        {% endif %}
+                    </span></p>
                 </div>
             </div>
             </div>
@@ -111,7 +117,7 @@
                   <li style="display: block">
                     <a href="{% url 'monit_index' 0%}">
                         <h4>全局信息</h4>
-                        <span class="text-muted">127.0.0.1</span>
+                        <span class="text-muted"></span>
                     </a>
                   </li>
                 </ul>
@@ -125,7 +131,7 @@
                   <li style="display: block">
                     <a href="{% url 'monit_index' co.id %}">
                         <h4>{{ co.comp_name }}</h4>
-                        <span class="text-muted">{{ co.comp_ip }}</span>
+                        <span class="text-muted">{{ co.comp_realm }}</span>
                     </a>
                   </li>
                 </ul>
