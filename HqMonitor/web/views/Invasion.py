@@ -46,7 +46,7 @@ class indexs(View):
                 "users":userlist
             }
             if user.state == 0:
-                if type(comid) != int:
+                if int(comid) == 0:
                     return render(request, "web/Invasion.html", content)
                 else:
                     return render(request, "web/usermon/qinvasion.html", content)
@@ -86,7 +86,7 @@ class indexs(View):
     def seardat(self,comid):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区时间
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-30)).strftime('%Y-%m-%dT%H:%M:00')
-        if type(comid) != int:  # 是否携带用户信息
+        if int(comid) == 0:  # 是否携带用户信息
             sp_param = None
             es_result = self.sear_info(st_time, ed_time, sp_param)
             return es_result
@@ -575,9 +575,7 @@ class Attrack_classification(View):
             }  # 按域名筛选
 
         try:
-            print(111)
             ret = es.search(index='snort', doc_type='_doc', body=body)
-            print(ret)
             re_data = ret['aggregations']['2']['buckets']
             type, method, show,all = [], [], [],{}
             color = ['#5045f6', '#ff4343', '#ffed25', '#45dbf7', '#0089fa', '#ba58ff', '#fe9336', '#3eff74', '#06f0ab', '#7b7c68', '#e5b5b5', '#f0b489', '#928ea8']
