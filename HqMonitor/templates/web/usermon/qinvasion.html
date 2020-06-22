@@ -1,0 +1,244 @@
+{% extends "web/base.html" %}
+{% load static from staticfiles %}
+<!-- css开始 -->
+{% block css %}
+    <link rel="stylesheet" href={% static 'monit/css/layui.css' %}>
+{% endblock %}
+<!-- css结束 -->
+
+{% block mainbody %}
+    <!--  入侵检测监控页面-->
+    <div class="mainbox">
+        <ul class="clearfix">
+            <li>
+                <div class="boxall" style="height: 5.2rem; width: 100%; margin-left: auto; margin-right: auto">
+                    <div class="alltitle">【入侵检测】主要攻击类型</div>
+                    <div class="allnav" id="maac"></div>
+                    <div class="boxfoot"></div>
+                </div>
+                <div class="boxall" style="height: 5.2rem; width: 100%; float:left">
+                    <div class="alltitle">【入侵检测】主要受攻击端口</div>
+                    <div class="allnav" id="inap"></div>
+                    <div class="boxfoot"></div>
+                </div>
+            </li>
+            <li>
+                <div class="boxall" style="height: 5.2rem; width: 100%; float:left">
+                    <div class="alltitle">【入侵检测】总攻击数</div>
+                    <div class="allnav" id="inall"></div>
+                    <div class="boxfoot"></div>
+                </div>
+                <div class="boxall" style="height: 5.2rem; width: 100%; float:right">
+                    <div class="alltitle">【入侵检测】日志</div>
+                    <div class="allnav">
+                        <div class="transparentDataTable">
+                            <table class="layui-table layui-table-cell"  >
+                                <thead>
+                                <tr>
+                                    <th>time</th>
+                                    <th>ip</th>
+                                    <th>port</th>
+                                    <th>title</th>
+                                    <th>url</th>
+                                </tr>
+                                </thead>
+                                <tbody id="tbody" ></tbody>
+                            </table>
+
+                            <div style="text-align: center;margin: 5% 0;">
+                                <form id="page" action="{% url 'monit_invasion_index' %}?comid={{ compid }}">
+                                    <a class="first_page">
+                                        <button type="button" style="background: #5578f5" class="layui-btn layui-btn-primary layui-btn-sm">上一页</button>
+                                    </a>
+
+                                    {% for num in users.paginator.page_range %}
+                                        <a class="now_page">
+                                            <button type="button" style="background: #5578f5"  class="layui-btn layui-btn-primary layui-btn-sm">{{ num }}</button>
+                                        </a>
+                                    {% endfor %}
+
+                                    <button id="num_pages" type="button"style="background: #5578f5" class="layui-btn layui-btn-primary layui-btn-sm">
+                                        共{{ users.paginator.num_pages }}页
+                                    </button>
+
+                                    <a class="last_page">
+                                        <button type="button" style="background: #5578f5" class="layui-btn layui-btn-primary layui-btn-sm">下一页</button>
+                                    </a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="boxfoot"></div>
+                </div>
+            </li>
+            <li>
+                <div class="boxall" style="height: 5.2rem; width: 100%; float:right">
+                    <div class="alltitle">【入侵检测】主要攻击类型占比</div>
+                    <div class="allnav" id="acty"></div>
+                    <div class="boxfoot"></div>
+                </div>
+                <div class="boxall" style="height: 5.2rem; width: 100%; float:left">
+                    <div class="alltitle">【入侵检测】主要攻击类型攻击方式分类</div>
+                    <div class="allnav" id="accl"></div>
+                    <div class="boxfoot"></div>
+                </div>
+
+            </li>
+        </ul>
+    </div>
+    <div class="back"></div>
+{% endblock %}
+
+<!-- js开始 -->
+{% block jsbody %}
+    <!--【入侵检测】总攻击数-->
+    <script type="text/javascript" >
+        inva_all();
+        var all_data = [];
+        var nu_edtime;
+        function inva_all() {
+            $.getJSON('{% url "monit_all_attrack" %}?comid={{ compid }}',function(data) {
+                all_data=data.key;
+                data = all_data[0];
+                in_all(data)
+            })
+        }
+    </script>
+    <!--【入侵检测】主要攻击类型攻击方式分类-->
+    <script type="text/javascript">
+        nu_change();
+        var type = [];
+        var method = [];
+        var show = [];
+        var nu_edtime;
+        function nu_change(){
+            $.getJSON('{% url "monit_attrack_class" %}?comid={{ compid }}',function(data){
+                type=data.type;
+                method=data.method;
+                show=data.show;
+                ac_cl(type,method,show)
+            })
+        }
+    </script>
+    <!--【入侵检测】主要攻击类型-->
+    <script type="text/javascript" >
+        main_ac();
+        var name = [];
+        var linex = [];
+        var value = [];
+        var nu_edtime;
+        function main_ac(){
+            $.getJSON('{% url "monit_main_attrack" %}?comid={{ compid }}',function(data){
+                name = data.name;
+                linex = data.linex;
+                value = data.value;
+                ma_ac(data.name,data.linex,data.value)
+            })
+        }
+
+    </script>
+    <!--【入侵检测】主要受攻击端口-->
+    <script type="text/javascript">
+        attrackport()
+        var nu_port = []
+        var nu_values = []
+        var nu_edtime
+        function attrackport(){
+            $.getJSON('{% url "monit_attrack_port" %}?comid={{ compid }}',function(data){
+                nu_port=data.ports
+                nu_values=data.number
+                nu_edtime = data.edtime
+                in_ap(nu_port,nu_values)
+            })
+        }
+    </script>
+    <!--【入侵检测】主要攻击类型占比-->
+    <script type="text/javascript" >
+        fa_change();
+        var fa_ip = [];
+        var fa_values = [];
+        var fa_edtime;
+
+        function fa_change(){
+            $.getJSON('{% url "monit_attrack_type" %}?comid={{ compid }}',function(data){
+                fa_ip=data.types;
+                fa_values=data.number;
+                fa_edtime = data.edtime;
+                ac_ty(fa_ip,fa_values)
+            })
+        }
+
+    </script>
+    <!--【入侵检测】日志-->
+    <script type="text/javascript">
+
+        // ajax分页
+        let now_page = 1;
+        // 动态加载第一页数据
+        page_click();
+        $('.first_page button').removeClass('layui-btn-primary').addClass('layui-btn-disabled');
+        $('.now_page button').first().removeClass('layui-btn-primary').addClass('page_this');
+        //上一页
+        $('.first_page').click(function () {
+            now_page -= 1;
+            if (now_page < 1) {
+                now_page = 1;
+                return false
+            } else {
+                $('.page_this').parent().prev().click();
+            }
+        });
+        //下一页
+        $('.last_page').click(function () {
+            let num_pages = $('.now_page button').last().text();
+            now_page += 1;
+            if (now_page > parseInt(num_pages)) {
+                now_page -= 1;
+                return false
+            } else {
+                $('.page_this').parent().next().click();
+            }
+        });
+        //切换页
+        $('.now_page').click(function () {
+            now_page = parseInt($(this).children('button').text());
+            $('.now_page button').removeClass('page_this').addClass('layui-btn-primary');
+            $(this).addClass('page_this');
+            $(this).children('button').removeClass('layui-btn-primary').addClass('page_this');
+            page_click()
+        });
+
+        function page_click() {
+            let page_form = $('#page');
+            $.ajax({
+                type: 'get',
+                url: page_form.attr('action'),
+                data: {page: now_page},
+                success: function (data) {
+                    $('#tbody tr').remove();
+                    $('#num_pages').html('共' + data.num_pages + '页');
+                    if (data.has_previous === true) {
+                        $('.first_page button').removeClass('layui-btn-disabled').addClass('layui-btn-primary');
+                    } else {
+                        $('.first_page button').removeClass('layui-btn-primary').addClass('layui-btn-disabled')
+                    }
+                    if (data.has_next === true) {
+                        $('.last_page button').removeClass('layui-btn-disabled').addClass('layui-btn-primary');
+                    } else {
+                        $('.last_page button').removeClass('layui-btn-primary').addClass('layui-btn-disabled');
+                    }
+                    $.each(data.user_li, function (index, user) {
+                        let a = '<td style="color: #00c3f5;width:50%">';
+                        let b = '</td>';
+                        let c = '<div style="color:#00aeef;overflow-y:scroll;width:130px;height:75px;white-space:pre-wrap"${position.specificTasks}</div>'
+                        console.log(user.time)
+                        let body = a + c+user.time + b + a +c+ user.ip + b + a +c+ user.port + b + a +c+ user.title + b + a +c+ user.url + b;
+                        $('#tbody').append('<tr>' + body + '</tr>');
+                    });
+                }
+            })
+        }
+
+    </script>
+{% endblock %}
+<!-- js结束 -->
