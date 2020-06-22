@@ -45,7 +45,7 @@
                 <div class="alltitle">【入侵检测】日志</div>
                 <div class="allnav">
                     <div class="transparentDataTable">
-                        <table class="layui-table layui-table-cell"  >
+                        <table class="layui-table layui-table-cell" style="TABLE-LAYOUT: fixed"  >
                             <thead>
                             <tr>
                                 <th>time</th>
@@ -53,6 +53,7 @@
                                 <th>port</th>
                                 <th>title</th>
                                 <th>url</th>
+
                             </tr>
                             </thead>
                             <tbody id="tbody" ></tbody>
@@ -243,9 +244,9 @@
                     $.each(data.user_li, function (index, user) {
                         let a = '<td style="color: #00c3f5;width:50%">';
                         let b = '</td>';
-                        let c = '<div style="color:#00aeef;overflow-y:scroll;width:130px;height:75px;white-space:pre-wrap"${position.specificTasks}</div>'
+                        let c = '<div style="color:#00aeef;overflow-y:scroll;width:100%;height:65px;white-space:pre-wrap"${position.specificTasks}</div>'
                         console.log(user.time)
-                        let body = a + c+user.time + b + a +c+ user.ip + b + a +c+ user.port + b + a +c+ user.title + b + a +c+ user.url + b;
+                        let body =a + c + user.time + b + a + c + user.ip + b + a + c + user.port + b + a + c + user.title + b + a + c + user.url + b;
                         $('#tbody').append('<tr>' + body + '</tr>');
                     });
                 }
