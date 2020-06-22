@@ -27,7 +27,11 @@ class indexs(View):
 
     '''首页-入侵检测信息'''
     def get(self, request):
-        comid = request.GET.get('comid',None)
+        comid = request.GET.get('comid','None')
+        if comid == 'None':
+            comid = None
+        else:
+            comid = int(comid)
         # comid = request.GET.get('comid', 0)  #企业ID
         result =self.seardat(comid)
         res = result["dat"]
@@ -81,7 +85,7 @@ class indexs(View):
 
     def seardat(self,comid):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区时间
-        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-14)).strftime('%Y-%m-%dT%H:%M:00')
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-30)).strftime('%Y-%m-%dT%H:%M:00')
         if type(comid) != int:  # 是否携带用户信息
             sp_param = None
             es_result = self.sear_info(st_time, ed_time, sp_param)
@@ -99,7 +103,7 @@ class indexs(View):
                     }
                 }
                 for ip in comp_s:
-                    match_phrase = {"match_phrase": {"dst_ip.ip": ip}}
+                    match_phrase = {"match_phrase": {"dst_ip": ip}}
                     sp_param["bool"]["should"].append(match_phrase)
                 self.es_result = self.sear_info(st_time, ed_time, sp_param)
                 if self.es_result == False:
@@ -112,7 +116,8 @@ class indexs(View):
                 return False
 
     def sear_info(self, st_time, ed_time,sp_param):
-        body = {
+        if sp_param == None:
+            body = {
             "version": "true",
             "size": 30,
             "sort": [
@@ -173,6 +178,69 @@ class indexs(View):
                 "fragment_size": 2147483647
             }
         }
+        else:
+            body = {
+                "version": "true",
+                "size": 30,
+                "sort": [
+                    {
+                        "@timestamp": {
+                            "order": "desc",
+                            "unmapped_type": "boolean"
+                        }
+                    }
+                ],
+                "_source": {
+                    "excludes": []
+                },
+                "stored_fields": [
+                    "*"
+                ],
+                "script_fields": {},
+                "docvalue_fields": [
+                    {
+                        "field": "@timestamp",
+                        "format": "date_time"
+                    }
+                ],
+                "query": {
+                    "bool": {
+                        "must": [],
+                        "filter": [
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            sp_param,
+                            {
+                                "range": {
+                                    "@timestamp": {
+                                        "format": "strict_date_optional_time",
+                                        "gte": st_time,
+                                        "lte": ed_time
+                                    }
+                                }
+                            }
+                        ],
+                        "should": [],
+                        "must_not": []
+                    }
+                },
+                "highlight": {
+                    "pre_tags": [
+                        "@kibana-highlighted-field@"
+                    ],
+                    "post_tags": [
+                        "@/kibana-highlighted-field@"
+                    ],
+                    "fields": {
+                        "*": {}
+                    },
+                    "fragment_size": 2147483647
+                }
+            }
         try:
             ret = es.search(index='snort', doc_type='_doc', body=body)
             re_data = ret['hits']['hits']
@@ -199,9 +267,13 @@ class All_attrack(View):
 
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
-        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-14)).strftime('%Y-%m-%dT%H:%M:00')
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-30)).strftime('%Y-%m-%dT%H:%M:00')
         # 获取
-        comid = request.GET.get('comid', None)
+        comid = request.GET.get('comid','None')
+        if comid == 'None':
+            comid = None
+        else:
+            comid = int(comid)
         if type(comid) != int:  # 是否携带用户信息
             sp_param = None
             es_result = self.in_all(st_time, ed_time, sp_param)
@@ -219,9 +291,9 @@ class All_attrack(View):
                     }
                 }
                 for ip in comp_s:
-                    match_phrase = {"match_phrase": {"destination.ip": ip}}
+                    match_phrase = {"match_phrase": {"dst_ip": ip}}
                     sp_param["bool"]["should"].append(match_phrase)
-                es_result = self.sear_info(st_time, ed_time, sp_param)
+                es_result = self.in_all(st_time, ed_time, sp_param)
                 return HttpResponse(es_result)
             except Exception as err:
                 print(err)
@@ -303,6 +375,7 @@ class All_attrack(View):
                             {
                                 "match_all": {}
                             },
+                            sp_param,
                             {
                                 "range": {
                                     "@timestamp": {
@@ -336,9 +409,13 @@ class Attrack_classification(View):
 
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
-        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-14)).strftime('%Y-%m-%dT%H:%M:00')
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-30)).strftime('%Y-%m-%dT%H:%M:00')
         # 获取
-        comid = request.GET.get('comid', None)
+        comid = request.GET.get('comid')
+        if comid:
+            comid = int(comid)
+        else:
+            comid = None
         if type(comid) != int:  # 是否携带用户信息
             sp_param = None
             es_result = self.sear_info(st_time, ed_time, sp_param)
@@ -356,7 +433,7 @@ class Attrack_classification(View):
                     }
                 }
                 for ip in comp_s:
-                    match_phrase = {"match_phrase": {"destination.ip": ip}}
+                    match_phrase = {"match_phrase": {"dst_ip": ip}}
                     sp_param["bool"]["should"].append(match_phrase)
                 es_result = self.sear_info(st_time, ed_time, sp_param)
                 return HttpResponse(es_result)
@@ -480,6 +557,7 @@ class Attrack_classification(View):
                             {
                                 "match_all": {}
                             },
+                            sp_param,
                             {
                                 "range": {
                                     "@timestamp": {
@@ -495,8 +573,11 @@ class Attrack_classification(View):
                     }
                 }
             }  # 按域名筛选
+
         try:
+            print(111)
             ret = es.search(index='snort', doc_type='_doc', body=body)
+            print(ret)
             re_data = ret['aggregations']['2']['buckets']
             type, method, show,all = [], [], [],{}
             color = ['#5045f6', '#ff4343', '#ffed25', '#45dbf7', '#0089fa', '#ba58ff', '#fe9336', '#3eff74', '#06f0ab', '#7b7c68', '#e5b5b5', '#f0b489', '#928ea8']
@@ -535,9 +616,13 @@ class Attrack_classification(View):
 class Main_attrack(View):
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
-        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-20)).strftime('%Y-%m-%dT%H:%M:00')
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-30)).strftime('%Y-%m-%dT%H:%M:00')
         # 获取
-        comid = request.GET.get('comid', None)
+        comid = request.GET.get('comid')
+        if comid:
+            comid = int(comid)
+        else:
+            comid = None
         if type(comid) != int:  # 是否携带用户信息
             sp_param = None
             es_result = self.sear_info(st_time, ed_time, sp_param)
@@ -558,7 +643,7 @@ class Main_attrack(View):
                         }
                 }
                 for ip in comp_s:
-                    match_phrase = {"match_phrase": {"transaction.host_ip": ip}}
+                    match_phrase = {"match_phrase": {"dst_ip": ip}}
                     sp_param["bool"]["should"].append(match_phrase)
                 es_result = self.sear_info(st_time, ed_time, sp_param)
                 return HttpResponse(es_result)
@@ -686,6 +771,7 @@ class Main_attrack(View):
                             {
                                 "match_all": {}
                             },
+                            sp_param,
                             {
                                 "range": {
                                     "@timestamp": {
@@ -736,7 +822,6 @@ class Main_attrack(View):
             jsontext['name'] = name
             jsontext['linex'] = linex
             jsontext['value'] = line
-            print(jsontext)
             return json.dumps(jsontext)
         except:
             errinfo = {"error": "数据请求失败！"}
@@ -756,9 +841,13 @@ class Attrack_port(View):
 
     def get(self,request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
-        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-14)).strftime('%Y-%m-%dT%H:%M:00')
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-30)).strftime('%Y-%m-%dT%H:%M:00')
         #获取
-        comid = request.GET.get('comid', None)
+        comid = request.GET.get('comid')
+        if comid:
+            comid = int(comid)
+        else:
+            comid = None
         if type(comid) != int:  # 是否携带用户信息
             sp_param = None
             es_result = self.sear_info(st_time, ed_time, sp_param)
@@ -776,7 +865,7 @@ class Attrack_port(View):
                     }
                 }
                 for ip in comp_s:
-                    match_phrase = {"match_phrase": {"destination.ip": ip}}
+                    match_phrase = {"match_phrase": {"dst_ip": ip}}
                     sp_param["bool"]["should"].append(match_phrase)
                 es_result = self.sear_info(st_time, ed_time, sp_param)
                 return HttpResponse(es_result)
@@ -877,6 +966,7 @@ class Attrack_port(View):
                             {
                                 "match_all": {}
                             },
+                            sp_param,
                             {
                                 "range": {
                                     "@timestamp": {
@@ -914,9 +1004,13 @@ class Attrack_port(View):
 class Attrack_type(View):
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区时间
-        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-14)).strftime('%Y-%m-%dT%H:%M:00')
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-30)).strftime('%Y-%m-%dT%H:%M:00')
         # 获取
-        comid = request.GET.get('comid', None)
+        comid = request.GET.get('comid')
+        if comid:
+            comid = int(comid)
+        else:
+            comid = None
         if type(comid) != int:  # 是否携带用户信息
             sp_param = None
             es_result = self.sear_info(st_time, ed_time, sp_param)
@@ -1039,6 +1133,7 @@ class Attrack_type(View):
                             {
                                 "match_all": {}
                             },
+                            sp_param,
                             {
                                 "range": {
                                     "@timestamp": {
