@@ -24,7 +24,7 @@ class Users(models.Model):
 
 #公司信息表
 class Compinfo(models.Model):
-    id = models.UUIDField(primary_key=True, auto_created=True, default=uuid.uuid4, editable=False)
+    # id = models.UUIDField(primary_key=True, auto_created=True, default=uuid.uuid4, editable=False)
     comp_name = models.CharField(max_length=16)  # 企业名称
     #address = models.CharField(max_length=255,null=True)  # 地址
     #name = models.CharField(max_length=16,null=True)  # 企业联系人
