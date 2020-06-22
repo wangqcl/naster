@@ -20,12 +20,13 @@ es = Elasticsearch(
 class Safety_index(View):
         def get(self, request):
             comid = request.GET.get('comid',None)
-            # comid = request.GET.get('comid', 0)  #企业ID
-            result =self.seardat(comid)
             print(comid)
+            # comid = request.GET.get('comid', 0)  #企业ID
+            # result =self.seardat(comid)
             if request.is_ajax() ==False:
                 username = request.session.get('webuser', default=None)  # 获取登录用户名
                 user = Users.objects.get(username=username)
+                print(user,111111111111)
                 content = {
                     "compid":comid,
                 }
@@ -48,35 +49,6 @@ class Safety_index(View):
                     content = {"info": error}
                     return render(request, "web/monweb/info.html", content)
 
-        def seardat(self, comid):
-            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
-            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
-            if int(comid) == 0:  # 是否携带用户信息
-                sp_param = None
-                es_result = self.sear_info(st_time, ed_time, sp_param)
-                return es_result
-            else:
-                try:
-                    comp = Compinfo.objects.get(id=comid)
-                    comp_ip = comp.comp_ip  # IP
-                    comp_s = comp_ip.split(';')
-                    sp_param = {
-                        "bool": {
-                            "should": [
-                            ],
-                            "minimum_should_match": 1
-                        }
-                    }
-                    for ip in comp_s:
-                        match_phrase = {"match_phrase": {"dst_ip.ip": ip}}
-                        sp_param["bool"]["should"].append(match_phrase)
-                    self.es_result = self.sear_info(st_time, ed_time, sp_param)
-                    if self.es_result == False:
-                        return False
-                    else:
-                        return self.es_result
-                except Exception as err:
-                    return False
 
 
 # 验证用户权限
@@ -1442,7 +1414,7 @@ class Safety_waf_attack_count(View):
                 data1.append(data[0])
                 if len(data) > 5:
                     datelist.append(data[:4])
-                    datelist.append(data1 + data[4:8] if len(data[4:8])>2 else '')
+                    datelist.append(data1 + data[4:7] if len(data[4:8])>2 else '')
                     datelist.append(data1 + data[7:10] if len(data[7:10])>2 else '')
                     datelist.append(data1 + data[10:13] if len(data[10:13])>2 else '')
                     datelist.append(data1 + data[13:] if len(data[13:])>2 else '')

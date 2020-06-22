@@ -584,8 +584,8 @@ function echarts_j(nu_port,nu_values) {
     },
     series: [{
         type: 'pie',
-        color: ['pink','blue','#f35833','#ffcc00','black'],
-        radius: ['50%', '75%'],
+        color: ['pink','#f35833','#ffcc00','black','blue'],
+        radius: ['55%', '75%'],
         avoidLabelOverlap: false,
         label: {
             show: true,
