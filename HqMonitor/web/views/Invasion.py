@@ -3,14 +3,13 @@ from django.http import HttpResponse
 from common.models import Users, Compinfo
 from elasticsearch import Elasticsearch
 import json
-import datetime
 from django.views.generic import View
 from django.conf import settings
-from pytz import timezone
 import datetime
 from django.http import JsonResponse
 from django.core.paginator import Paginator, PageNotAnInteger, InvalidPage
 from . import check_user_request
+from .utils import *
 
 
 '''配置es'''
@@ -249,7 +248,8 @@ class indexs(View):
             for v in re_data:
                 jsontext = {}
                 da_list = v.get('_source','')
-                jsontext['time']=da_list.get('@timestamp','')  # 时间
+                times = time(da_list.get('@timestamp',''))
+                jsontext['time']=times  # 时间
                 jsontext['ip']=da_list.get('src_ip','') # ip
                 jsontext['port']=da_list.get('dst_port','')  #端口
                 jsontext['title']=da_list.get('title','')   #标题
@@ -793,7 +793,7 @@ class Main_attrack(View):
             name, linex, line, jsontext = [],[], [] ,{}
             color = ['#00b9f6', '#38a97d', '#004eff', '#17c7e7', '#4e85ea', '#e49be9', '#078d9d', '#eca52a', '#ef9544', '#ea3b3b']
             for i in re_data:
-                string = self.time(i.get('key_as_string'))
+                string = time(i.get('key_as_string'))
                 linex.append(string)
                 key = i.get('3','').get('buckets','')
                 for j in key:
@@ -827,12 +827,7 @@ class Main_attrack(View):
             errinfo = {"error": "数据请求失败！"}
             return HttpResponse(errinfo)
 
-    def time(self,utc_time):
-        n_time = datetime.datetime.strptime(utc_time,'%Y-%m-%dT%H:%M:%S.%f+08:00')
-        utctime = datetime.datetime(n_time.year,n_time.month,n_time.day,n_time.hour,n_time.minute,n_time.second,tzinfo=timezone('UTC'))
-        lt = utctime.astimezone(timezone('Asia/Shanghai'))
-        llt = lt.strftime("%Y%m%d")
-        return llt
+
 
 
 
