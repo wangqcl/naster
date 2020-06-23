@@ -29,7 +29,6 @@ class indexs(View):
     @check_user_request
     def get(self, request):
         comid = request.GET.get('comid','None')
-        print(comid)
         if comid == 'None':
             comid = None
         else:
