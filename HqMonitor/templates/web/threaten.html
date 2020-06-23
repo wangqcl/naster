@@ -54,7 +54,7 @@
                 <div class="allnav" id="thactive"></div>
                 <div class="boxfoot"></div>
             </div>
-            <div class="boxall" style="height: 4.2rem; width: 100%; float:right">
+            <div class="boxall" style="height: 4.7rem; width: 100%; float:right">
                 <div class="alltitle">【威胁情报】详细数据</div>
                 <div class="allnav">
                 <div class="transparentDataTable">
@@ -178,7 +178,7 @@
                         $('.last_page button').removeClass('layui-btn-primary').addClass('layui-btn-disabled');
                     }
                     $.each(data.user_li, function (index, user) {
-                        let a = '<td>';
+                        let a = '<td style="color: #00c3f5;width:50%">';
                         let b = '</td>';
                         let body = a + user.time + b + a + user.src_ip + b + a + user.geo + b + a + user.tag + b;
                         $('#tbody').append('<tr>' + body + '</tr>');

@@ -1,0 +1,1681 @@
+[2020-06-23 09:22:00,767] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET / HTTP/1.1" 200 5942
+[2020-06-23 09:22:00,917] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /verify HTTP/1.1" 200 1461
+[2020-06-23 09:22:16,729] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET / HTTP/1.1" 200 5942
+[2020-06-23 09:22:16,782] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /verify HTTP/1.1" 200 1737
+[2020-06-23 09:22:16,819] [base.py:152] [base:get_response] [WARNING]- Not Found: /favicon.ico
+[2020-06-23 09:22:16,819] [basehttp.py:124] [basehttp:log_message] [WARNING]- "GET /favicon.ico HTTP/1.1" 404 10408
+[2020-06-23 09:22:29,038] [basehttp.py:124] [basehttp:log_message] [INFO]- "POST /dologin HTTP/1.1" 302 0
+[2020-06-23 09:22:29,085] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 5922
+[2020-06-23 09:22:48,321] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index/5 HTTP/1.1" 200 17966
+[2020-06-23 09:22:48,339] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/safety.js HTTP/1.1" 304 0
+[2020-06-23 09:22:48,339] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/css/comon0.css HTTP/1.1" 200 12953
+[2020-06-23 09:22:48,341] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/js.js HTTP/1.1" 200 35466
+[2020-06-23 09:22:48,455] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/visitport?comid=5 HTTP/1.1" 200 155
+[2020-06-23 09:22:50,157] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/fraction HTTP/1.1" 200 267
+[2020-06-23 09:22:50,433] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rstraffic?comid=5 HTTP/1.1" 200 1176
+[2020-06-23 09:22:50,556] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rqtraffic?comid=5 HTTP/1.1" 200 1774
+[2020-06-23 09:22:53,448] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum?comid=5 HTTP/1.1" 200 200
+[2020-06-23 09:22:53,852] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/statuscode?comid=5 HTTP/1.1" 200 312
+[2020-06-23 09:22:53,854] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/domain?comid=5 HTTP/1.1" 200 215
+[2020-06-23 09:22:54,278] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend?comid=5 HTTP/1.1" 200 211
+[2020-06-23 09:23:03,709] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit?comid=5 HTTP/1.1" 200 33
+[2020-06-23 09:23:55,197] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data?comid=5 HTTP/1.1" 200 464
+[2020-06-23 09:24:14,565] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap?comid=5 HTTP/1.1" 200 285
+[2020-06-23 09:24:18,111] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Invasion?comid=5 HTTP/1.1" 200 13142
+[2020-06-23 09:24:18,124] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/Invasion.js HTTP/1.1" 304 0
+[2020-06-23 09:24:18,124] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/css/layui.css HTTP/1.1" 304 0
+[2020-06-23 09:24:18,174] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/allattrack?comid=5 HTTP/1.1" 200 14
+[2020-06-23 09:24:18,183] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attracktype?comid=5 HTTP/1.1" 200 60
+[2020-06-23 09:24:18,192] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attrackclass?comid=5 HTTP/1.1" 200 38
+[2020-06-23 09:24:18,196] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attrackport?comid=5 HTTP/1.1" 200 60
+[2020-06-23 09:24:18,200] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Invasion?comid=5&page=1 HTTP/1.1" 200 73
+[2020-06-23 09:24:18,207] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/mainattrack?comid=5 HTTP/1.1" 200 38
+[2020-06-23 09:25:01,013] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/safety?comid=5 HTTP/1.1" 200 10401
+[2020-06-23 09:25:01,033] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/css/safety.css HTTP/1.1" 200 8221
+[2020-06-23 09:25:01,061] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/wafattackcount
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\safety.py", line 1662, in get
+    result = self.seardat(comid)
+  File "E:\monitor\HqMonitor\web\views\safety.py", line 1694, in seardat
+    es_result = self.sear_info(st_time, ed_time, sp_param)
+NameError: name 'st_time' is not defined
+[2020-06-23 09:25:01,103] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/wafattack HTTP/1.1" 200 601
+[2020-06-23 09:25:01,152] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attacktrend HTTP/1.1" 200 325
+[2020-06-23 09:25:01,152] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackport HTTP/1.1" 200 123
+[2020-06-23 09:25:01,184] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/wafattackcount HTTP/1.1" 500 16932
+[2020-06-23 09:25:01,342] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/safetytop HTTP/1.1" 200 271
+[2020-06-23 09:25:02,202] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/safety_risk HTTP/1.1" 200 223
+[2020-06-23 09:25:07,387] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/threaten/thindex
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\threaten.py", line 48, in get
+    elif user.state == 1 & comid != 0:
+TypeError: unsupported operand type(s) for &: 'int' and 'str'
+[2020-06-23 09:25:07,424] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/threaten/thindex?comid=5 HTTP/1.1" 500 95699
+[2020-06-23 09:25:11,080] [safety.py:824] [safety:sear_info] [ERROR]- 获取数据出错：ConnectionTimeout caused by - ReadTimeoutError(HTTPConnectionPool(host='119.90.98.16', port=9200): Read timed out. (read timeout=10))
+[2020-06-23 09:25:11,080] [base.py:152] [base:get_response] [WARNING]- Not Found: /web/safetymap
+[2020-06-23 09:25:11,080] [basehttp.py:124] [basehttp:log_message] [WARNING]- "GET /web/safetymap HTTP/1.1" 404 13
+[2020-06-23 09:25:11,105] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/safetymap HTTP/1.1" 500 59
+[2020-06-23 09:26:34,726] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/threaten/thindex
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\threaten.py", line 53, in get
+    return render(request, "web/usermon/threaten.html", content)  # 用户的监控首页
+  File "E:\project_env\lib\site-packages\django\shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "E:\project_env\lib\site-packages\django\template\loader.py", line 67, in render_to_string
+    template = get_template(template_name, using=using)
+  File "E:\project_env\lib\site-packages\django\template\loader.py", line 25, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: web/usermon/threaten.html
+[2020-06-23 09:26:34,848] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/threaten/thindex?comid=5 HTTP/1.1" 500 111126
+[2020-06-23 09:27:52,001] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/score/scindex
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\score.py", line 84, in get
+    elif user.state == 1 & comid != 0:
+TypeError: unsupported operand type(s) for &: 'int' and 'str'
+[2020-06-23 09:27:52,032] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/score/scindex?comid=5 HTTP/1.1" 500 87243
+[2020-06-23 09:28:00,942] [safety.py:824] [safety:sear_info] [ERROR]- 获取数据出错：ConnectionTimeout caused by - ReadTimeoutError(HTTPConnectionPool(host='119.90.98.16', port=9200): Read timed out. (read timeout=10))
+[2020-06-23 09:28:00,942] [base.py:152] [base:get_response] [WARNING]- Not Found: /web/safetymap
+[2020-06-23 09:28:00,943] [basehttp.py:124] [basehttp:log_message] [WARNING]- "GET /web/safetymap HTTP/1.1" 404 13
+[2020-06-23 09:28:00,943] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/safetymap HTTP/1.1" 500 59
+[2020-06-23 09:28:01,106] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/threaten/thindex
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\threaten.py", line 53, in get
+    return render(request, "web/usermon/threaten.html", content)  # 用户的监控首页
+  File "E:\project_env\lib\site-packages\django\shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "E:\project_env\lib\site-packages\django\template\loader.py", line 67, in render_to_string
+    template = get_template(template_name, using=using)
+  File "E:\project_env\lib\site-packages\django\template\loader.py", line 25, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: web/usermon/threaten.html
+[2020-06-23 09:28:01,134] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/threaten/thindex?comid=5 HTTP/1.1" 500 110991
+[2020-06-23 09:28:07,523] [safety.py:824] [safety:sear_info] [ERROR]- 获取数据出错：ConnectionTimeout caused by - ReadTimeoutError(HTTPConnectionPool(host='119.90.98.16', port=9200): Read timed out. (read timeout=10))
+[2020-06-23 09:28:07,524] [base.py:152] [base:get_response] [WARNING]- Not Found: /web/safetymap
+[2020-06-23 09:28:07,524] [basehttp.py:124] [basehttp:log_message] [WARNING]- "GET /web/safetymap HTTP/1.1" 404 13
+[2020-06-23 09:28:07,525] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/safetymap HTTP/1.1" 500 59
+[2020-06-23 09:30:57,511] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thindex?comid=5 HTTP/1.1" 200 14336
+[2020-06-23 09:30:57,526] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/threaten.js HTTP/1.1" 200 25463
+[2020-06-23 09:30:57,679] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thhit HTTP/1.1" 200 749
+[2020-06-23 09:30:57,683] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thindex?comid=5&page=1 HTTP/1.1" 200 1093
+[2020-06-23 09:30:57,821] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thattack HTTP/1.1" 200 572
+[2020-06-23 09:30:57,897] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thactive HTTP/1.1" 200 282
+[2020-06-23 09:30:58,110] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/threat HTTP/1.1" 200 995
+[2020-06-23 09:30:58,164] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thnews HTTP/1.1" 200 947
+[2020-06-23 09:31:05,100] [safety.py:824] [safety:sear_info] [ERROR]- 获取数据出错：ConnectionTimeout caused by - ReadTimeoutError(HTTPConnectionPool(host='119.90.98.16', port=9200): Read timed out. (read timeout=10))
+[2020-06-23 09:31:05,101] [base.py:152] [base:get_response] [WARNING]- Not Found: /web/safetymap
+[2020-06-23 09:31:05,101] [basehttp.py:124] [basehttp:log_message] [WARNING]- "GET /web/safetymap HTTP/1.1" 404 13
+[2020-06-23 09:31:05,102] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/safetymap HTTP/1.1" 500 59
+[2020-06-23 09:31:08,907] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit HTTP/1.1" 200 37
+[2020-06-23 09:31:21,598] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/score/scindex
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\score.py", line 84, in get
+    elif user.state == 1 & comid != 0:
+TypeError: unsupported operand type(s) for &: 'int' and 'str'
+[2020-06-23 09:31:21,693] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/score/scindex?comid=5 HTTP/1.1" 500 87243
+[2020-06-23 09:31:27,158] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/safetymap HTTP/1.1" 200 4522
+[2020-06-23 09:31:27,158] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/safetymap HTTP/1.1" 500 59
+[2020-06-23 09:31:58,094] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/scindex?comid=5 HTTP/1.1" 200 14120
+[2020-06-23 09:31:58,120] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/score.js HTTP/1.1" 200 19645
+[2020-06-23 09:31:58,181] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/totalthr?comid=5 HTTP/1.1" 200 291
+[2020-06-23 09:31:58,186] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/tithr?comid=5 HTTP/1.1" 200 305
+[2020-06-23 09:31:58,200] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/webthr?comid=5 HTTP/1.1" 200 281
+[2020-06-23 09:31:58,205] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/mainthr?comid=5 HTTP/1.1" 200 308
+[2020-06-23 09:31:58,207] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/scindex?comid=5&page=1 HTTP/1.1" 200 939
+[2020-06-23 09:31:58,229] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/inthr?comid=5 HTTP/1.1" 200 1581
+[2020-06-23 09:32:39,409] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thindex?comid=5 HTTP/1.1" 200 14384
+[2020-06-23 09:32:39,485] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thindex?comid=5&page=1 HTTP/1.1" 200 1199
+[2020-06-23 09:32:39,498] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thhit?comid=5 HTTP/1.1" 200 581
+[2020-06-23 09:32:39,508] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/threat?comid=5 HTTP/1.1" 200 981
+[2020-06-23 09:32:39,508] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thactive?comid=5 HTTP/1.1" 200 268
+[2020-06-23 09:32:41,760] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thattack?comid=5 HTTP/1.1" 200 286
+[2020-06-23 09:32:41,767] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit?comid=5 HTTP/1.1" 200 33
+[2020-06-23 09:32:41,779] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thnews?comid=5 HTTP/1.1" 200 1031
+[2020-06-23 09:49:47,170] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 5928
+[2020-06-23 09:49:49,482] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 5928
+[2020-06-23 09:49:49,523] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monweb/favicon.ico HTTP/1.1" 200 5430
+[2020-06-23 09:49:51,298] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/index
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\monit.py", line 42, in get
+    return render(request,"web/usermon/qmonit.html",content)  #用户的监控首页
+  File "E:\project_env\lib\site-packages\django\shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "E:\project_env\lib\site-packages\django\template\loader.py", line 68, in render_to_string
+    return template.render(context, request)
+  File "E:\project_env\lib\site-packages\django\template\backends\django.py", line 66, in render
+    return self.template.render(context)
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 207, in render
+    return self._render(context)
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "E:\project_env\lib\site-packages\django\template\loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "E:\project_env\lib\site-packages\django\template\defaulttags.py", line 458, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "E:\project_env\lib\site-packages\django\urls\base.py", line 91, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "E:\project_env\lib\site-packages\django\urls\resolvers.py", line 497, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'monit_index' with arguments '('5',)' not found. 2 pattern(s) tried: ['test^web/index$', 'web/index$']
+[2020-06-23 09:49:51,427] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/index?comid=5 HTTP/1.1" 500 156048
+[2020-06-23 09:50:23,171] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=5 HTTP/1.1" 200 17972
+[2020-06-23 09:50:23,262] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum?comid=5 HTTP/1.1" 200 212
+[2020-06-23 09:50:23,270] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/fraction HTTP/1.1" 200 263
+[2020-06-23 09:50:23,271] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/visitport?comid=5 HTTP/1.1" 200 121
+[2020-06-23 09:50:23,293] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/statuscode?comid=5 HTTP/1.1" 200 324
+[2020-06-23 09:50:23,295] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend?comid=5 HTTP/1.1" 200 226
+[2020-06-23 09:50:23,305] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rqtraffic?comid=5 HTTP/1.1" 200 1718
+[2020-06-23 09:50:23,308] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/domain?comid=5 HTTP/1.1" 200 227
+[2020-06-23 09:50:23,324] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rstraffic?comid=5 HTTP/1.1" 200 1174
+[2020-06-23 09:50:23,392] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data?comid=5 HTTP/1.1" 200 464
+[2020-06-23 09:50:32,934] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap?comid=5 HTTP/1.1" 200 379
+[2020-06-23 09:50:34,647] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit?comid=5 HTTP/1.1" 200 33
+[2020-06-23 09:51:43,000] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=5 HTTP/1.1" 200 17972
+[2020-06-23 09:51:43,099] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum?comid=5 HTTP/1.1" 200 212
+[2020-06-23 09:51:43,113] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/visitport?comid=5 HTTP/1.1" 200 121
+[2020-06-23 09:51:43,118] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/fraction HTTP/1.1" 200 265
+[2020-06-23 09:51:43,118] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/domain?comid=5 HTTP/1.1" 200 227
+[2020-06-23 09:51:43,123] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/statuscode?comid=5 HTTP/1.1" 200 312
+[2020-06-23 09:51:43,139] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rqtraffic?comid=5 HTTP/1.1" 200 1659
+[2020-06-23 09:51:43,139] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend?comid=5 HTTP/1.1" 200 226
+[2020-06-23 09:51:43,155] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rstraffic?comid=5 HTTP/1.1" 200 1185
+[2020-06-23 09:51:43,197] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data?comid=5 HTTP/1.1" 200 464
+[2020-06-23 09:51:52,255] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap?comid=5 HTTP/1.1" 200 379
+[2020-06-23 09:51:54,700] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit?comid=5 HTTP/1.1" 200 33
+[2020-06-23 09:51:54,719] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=6 HTTP/1.1" 200 42
+[2020-06-23 09:55:16,186] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 5928
+[2020-06-23 09:55:17,713] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 5928
+[2020-06-23 09:55:17,740] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monweb/favicon.ico HTTP/1.1" 200 5430
+[2020-06-23 09:55:19,789] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 5928
+[2020-06-23 09:55:19,816] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monweb/favicon.ico HTTP/1.1" 200 5430
+[2020-06-23 09:55:25,146] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 7498
+[2020-06-23 09:55:25,180] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monweb/favicon.ico HTTP/1.1" 200 5430
+[2020-06-23 09:55:28,077] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=0 HTTP/1.1" 200 17529
+[2020-06-23 09:55:28,143] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/domain
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:55:28,144] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/statuscode
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:55:28,144] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/rqtraffic
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:55:28,149] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/fraction
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:55:28,158] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/visitport
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:55:28,159] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/getnum
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:55:28,249] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/rqtraffic HTTP/1.1" 500 16887
+[2020-06-23 09:55:28,261] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/domain HTTP/1.1" 500 16875
+[2020-06-23 09:55:28,262] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/fraction HTTP/1.1" 500 16883
+[2020-06-23 09:55:28,266] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/getnum HTTP/1.1" 500 16875
+[2020-06-23 09:55:28,271] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/statuscode HTTP/1.1" 500 16891
+[2020-06-23 09:55:28,272] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/visitport HTTP/1.1" 500 16887
+[2020-06-23 09:55:28,280] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/trend
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:55:28,280] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/rstraffic
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:55:28,284] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/attackmap
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:55:28,287] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/Source_data
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:55:28,287] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/Hit
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:55:28,300] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/trend HTTP/1.1" 500 16871
+[2020-06-23 09:55:28,300] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/rstraffic HTTP/1.1" 500 16887
+[2020-06-23 09:55:28,307] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/attackmap HTTP/1.1" 500 16887
+[2020-06-23 09:55:28,316] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/Source_data HTTP/1.1" 500 16895
+[2020-06-23 09:55:28,320] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/Hit HTTP/1.1" 500 16863
+[2020-06-23 09:55:50,369] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/jquery.min.map HTTP/1.1" 200 127588
+[2020-06-23 09:55:59,279] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=0 HTTP/1.1" 200 17529
+[2020-06-23 09:55:59,363] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/getnum
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:55:59,364] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/visitport
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:55:59,368] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/domain
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:55:59,370] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/statuscode
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:55:59,370] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/rqtraffic
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:55:59,371] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/fraction
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:55:59,382] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/getnum HTTP/1.1" 500 16875
+[2020-06-23 09:55:59,394] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/visitport HTTP/1.1" 500 16887
+[2020-06-23 09:55:59,404] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/domain HTTP/1.1" 500 16875
+[2020-06-23 09:55:59,412] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/statuscode HTTP/1.1" 500 16891
+[2020-06-23 09:55:59,418] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/rqtraffic HTTP/1.1" 500 16887
+[2020-06-23 09:55:59,427] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/fraction HTTP/1.1" 500 16883
+[2020-06-23 09:55:59,431] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/trend
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:55:59,432] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/attackmap
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:55:59,433] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/rstraffic
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:55:59,439] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/Hit
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:55:59,443] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/Source_data
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:55:59,451] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/trend HTTP/1.1" 500 16871
+[2020-06-23 09:55:59,459] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/attackmap HTTP/1.1" 500 16887
+[2020-06-23 09:55:59,470] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/rstraffic HTTP/1.1" 500 16887
+[2020-06-23 09:55:59,470] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/Hit HTTP/1.1" 500 16863
+[2020-06-23 09:55:59,476] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/Source_data HTTP/1.1" 500 16895
+[2020-06-23 09:56:48,754] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 7498
+[2020-06-23 09:56:48,808] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monweb/css/bootstrap.min.css.map HTTP/1.1" 200 542194
+[2020-06-23 09:56:50,356] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /logout HTTP/1.1" 302 0
+[2020-06-23 09:56:50,361] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET / HTTP/1.1" 200 5942
+[2020-06-23 09:56:50,408] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /verify HTTP/1.1" 200 1680
+[2020-06-23 09:56:56,029] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /verify?sn=0.9407306296821636 HTTP/1.1" 200 1493
+[2020-06-23 09:57:01,235] [basehttp.py:124] [basehttp:log_message] [INFO]- "POST /dologin HTTP/1.1" 302 0
+[2020-06-23 09:57:01,270] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 7498
+[2020-06-23 09:57:03,387] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=0 HTTP/1.1" 200 17529
+[2020-06-23 09:57:03,484] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/visitport
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:57:03,484] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/statuscode
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:57:03,486] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/getnum
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:57:03,489] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/fraction
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:57:03,492] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/domain
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:57:03,494] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/rqtraffic
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:57:03,506] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/visitport HTTP/1.1" 500 16887
+[2020-06-23 09:57:03,517] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/statuscode HTTP/1.1" 500 16891
+[2020-06-23 09:57:03,525] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/getnum HTTP/1.1" 500 16875
+[2020-06-23 09:57:03,537] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/fraction HTTP/1.1" 500 16883
+[2020-06-23 09:57:03,543] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/rqtraffic HTTP/1.1" 500 16887
+[2020-06-23 09:57:03,544] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/domain HTTP/1.1" 500 16875
+[2020-06-23 09:57:03,550] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/trend
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:57:03,551] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/rstraffic
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:57:03,558] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/attackmap
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:57:03,559] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/Hit
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:57:03,567] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/trend HTTP/1.1" 500 16871
+[2020-06-23 09:57:03,574] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/Source_data
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:57:03,574] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/rstraffic HTTP/1.1" 500 16887
+[2020-06-23 09:57:03,589] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/attackmap HTTP/1.1" 500 16887
+[2020-06-23 09:57:03,590] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/Source_data HTTP/1.1" 500 16895
+[2020-06-23 09:57:03,595] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/Hit HTTP/1.1" 500 16863
+[2020-06-23 09:58:27,557] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=0 HTTP/1.1" 200 17529
+[2020-06-23 09:58:27,634] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/getnum
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid',None))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:58:27,635] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/visitport
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid',None))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:58:27,635] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/statuscode
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid',None))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:58:27,637] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/fraction
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid',None))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:58:27,638] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/domain
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid',None))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:58:27,647] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/rqtraffic
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid',None))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:58:27,756] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/getnum HTTP/1.1" 500 16880
+[2020-06-23 09:58:27,757] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/visitport HTTP/1.1" 500 16892
+[2020-06-23 09:58:27,761] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/domain HTTP/1.1" 500 16880
+[2020-06-23 09:58:27,765] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/rqtraffic HTTP/1.1" 500 16892
+[2020-06-23 09:58:27,766] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/statuscode HTTP/1.1" 500 16896
+[2020-06-23 09:58:27,769] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/fraction HTTP/1.1" 500 16888
+[2020-06-23 09:58:27,779] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/trend
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid',None))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:58:27,784] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/attackmap
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid',None))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:58:27,784] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/Source_data
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid',None))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:58:27,785] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/Hit
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid',None))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:58:27,793] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/trend HTTP/1.1" 500 16876
+[2020-06-23 09:58:27,804] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/attackmap HTTP/1.1" 500 16892
+[2020-06-23 09:58:27,805] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/rstraffic
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid',None))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:58:27,815] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/Source_data HTTP/1.1" 500 16900
+[2020-06-23 09:58:27,815] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/Hit HTTP/1.1" 500 16868
+[2020-06-23 09:58:27,823] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/rstraffic HTTP/1.1" 500 16892
+[2020-06-23 09:58:59,150] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=0 HTTP/1.1" 200 17529
+[2020-06-23 09:58:59,164] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/css/comon0.css HTTP/1.1" 200 12953
+[2020-06-23 09:58:59,165] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/js.js HTTP/1.1" 200 35466
+[2020-06-23 09:58:59,169] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/jquery.js HTTP/1.1" 200 84384
+[2020-06-23 09:58:59,181] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/jquery.min.map HTTP/1.1" 200 127588
+[2020-06-23 09:58:59,201] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/safety.js HTTP/1.1" 200 21957
+[2020-06-23 09:58:59,248] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/echarts.min.js HTTP/1.1" 200 744697
+[2020-06-23 09:58:59,292] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/picture/loading.gif HTTP/1.1" 200 701
+[2020-06-23 09:58:59,308] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/images/head_bg.png HTTP/1.1" 200 7881
+[2020-06-23 09:58:59,311] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/area_echarts.js HTTP/1.1" 200 16048
+[2020-06-23 09:58:59,311] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/images/line.png HTTP/1.1" 200 3943
+[2020-06-23 09:58:59,351] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/world.js HTTP/1.1" 200 1011058
+[2020-06-23 09:58:59,398] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/visitport
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:58:59,401] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/statuscode
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:58:59,403] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/domain
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:58:59,406] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/fraction
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:58:59,453] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/images/bg.jpg HTTP/1.1" 200 6045516
+[2020-06-23 09:58:59,473] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/rqtraffic
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:58:59,489] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum HTTP/1.1" 200 296
+[2020-06-23 09:58:59,497] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/rstraffic
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:58:59,527] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/statuscode HTTP/1.1" 500 16948
+[2020-06-23 09:58:59,542] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/fraction HTTP/1.1" 500 16940
+[2020-06-23 09:58:59,544] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/domain HTTP/1.1" 500 16932
+[2020-06-23 09:58:59,545] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/visitport HTTP/1.1" 500 16944
+[2020-06-23 09:58:59,546] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/rstraffic HTTP/1.1" 500 16944
+[2020-06-23 09:58:59,546] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/rqtraffic HTTP/1.1" 500 16944
+[2020-06-23 09:58:59,554] [base.py:152] [base:get_response] [WARNING]- Not Found: /favicon.ico
+[2020-06-23 09:58:59,555] [basehttp.py:124] [basehttp:log_message] [WARNING]- "GET /favicon.ico HTTP/1.1" 404 10383
+[2020-06-23 09:58:59,561] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/trend
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:58:59,564] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/attackmap
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:58:59,572] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/trend HTTP/1.1" 500 16928
+[2020-06-23 09:58:59,578] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/attackmap HTTP/1.1" 500 16944
+[2020-06-23 09:58:59,579] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/Hit
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:58:59,579] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/Source_data
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 16, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:58:59,590] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/Hit HTTP/1.1" 500 16920
+[2020-06-23 09:58:59,595] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/Source_data HTTP/1.1" 500 16952
+[2020-06-23 09:59:47,818] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=0 HTTP/1.1" 200 17529
+[2020-06-23 09:59:47,954] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/visitport
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 17, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:59:47,955] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/statuscode
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 17, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:59:47,956] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/domain
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 17, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:59:47,956] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/getnum
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 17, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:59:47,960] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/fraction
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 17, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:59:47,964] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/rqtraffic
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 17, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:59:48,065] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/visitport HTTP/1.1" 500 16887
+[2020-06-23 09:59:48,076] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/statuscode HTTP/1.1" 500 16891
+[2020-06-23 09:59:48,076] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/getnum HTTP/1.1" 500 16875
+[2020-06-23 09:59:48,081] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/domain HTTP/1.1" 500 16875
+[2020-06-23 09:59:48,084] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/fraction HTTP/1.1" 500 16883
+[2020-06-23 09:59:48,085] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/rqtraffic HTTP/1.1" 500 16887
+[2020-06-23 09:59:48,093] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/trend
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 17, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:59:48,094] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/attackmap
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 17, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:59:48,097] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/Hit
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 17, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:59:48,105] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/trend HTTP/1.1" 500 16871
+[2020-06-23 09:59:48,115] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/rstraffic
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 17, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:59:48,116] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/attackmap HTTP/1.1" 500 16887
+[2020-06-23 09:59:48,124] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/Source_data
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 17, in wrapper
+    comid = int(req.GET.get('comid'))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 09:59:48,125] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/Hit HTTP/1.1" 500 16863
+[2020-06-23 09:59:48,137] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/rstraffic HTTP/1.1" 500 16887
+[2020-06-23 09:59:48,137] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/Source_data HTTP/1.1" 500 16895
+[2020-06-23 10:00:13,698] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=0 HTTP/1.1" 200 17529
+[2020-06-23 10:00:13,778] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/getnum
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 17, in wrapper
+    comid = int(req.GET.get('comid',None))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 10:00:13,780] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/statuscode
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 17, in wrapper
+    comid = int(req.GET.get('comid',None))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 10:00:13,794] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/visitport
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 17, in wrapper
+    comid = int(req.GET.get('comid',None))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 10:00:13,800] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/domain
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 17, in wrapper
+    comid = int(req.GET.get('comid',None))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 10:00:13,801] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/fraction
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 17, in wrapper
+    comid = int(req.GET.get('comid',None))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 10:00:13,803] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/rqtraffic
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 17, in wrapper
+    comid = int(req.GET.get('comid',None))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 10:00:13,893] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/statuscode HTTP/1.1" 500 16896
+[2020-06-23 10:00:13,897] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/domain HTTP/1.1" 500 16880
+[2020-06-23 10:00:13,898] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/visitport HTTP/1.1" 500 16892
+[2020-06-23 10:00:13,911] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/rqtraffic HTTP/1.1" 500 16892
+[2020-06-23 10:00:13,912] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/getnum HTTP/1.1" 500 16880
+[2020-06-23 10:00:13,912] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/fraction HTTP/1.1" 500 16888
+[2020-06-23 10:00:13,923] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/rstraffic
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 17, in wrapper
+    comid = int(req.GET.get('comid',None))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 10:00:13,923] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/attackmap
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 17, in wrapper
+    comid = int(req.GET.get('comid',None))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 10:00:13,924] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/trend
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 17, in wrapper
+    comid = int(req.GET.get('comid',None))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 10:00:13,927] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/Source_data
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 17, in wrapper
+    comid = int(req.GET.get('comid',None))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 10:00:13,931] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/Hit
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 17, in wrapper
+    comid = int(req.GET.get('comid',None))
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'
+[2020-06-23 10:00:13,947] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/attackmap HTTP/1.1" 500 16892
+[2020-06-23 10:00:13,947] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/rstraffic HTTP/1.1" 500 16892
+[2020-06-23 10:00:13,961] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/Hit HTTP/1.1" 500 16868
+[2020-06-23 10:00:13,962] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/trend HTTP/1.1" 500 16876
+[2020-06-23 10:00:13,967] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/Source_data HTTP/1.1" 500 16900
+[2020-06-23 10:00:33,484] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=0 HTTP/1.1" 200 17529
+[2020-06-23 10:00:56,224] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/visitport HTTP/1.1" 200 235
+[2020-06-23 10:00:56,315] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/domain HTTP/1.1" 200 1090
+[2020-06-23 10:00:56,368] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend HTTP/1.1" 200 642
+[2020-06-23 10:00:56,516] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/statuscode HTTP/1.1" 200 5732
+[2020-06-23 10:00:56,531] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rqtraffic HTTP/1.1" 200 2524
+[2020-06-23 10:00:56,561] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum HTTP/1.1" 200 296
+[2020-06-23 10:00:56,569] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit HTTP/1.1" 200 37
+[2020-06-23 10:00:56,581] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rstraffic HTTP/1.1" 200 2518
+[2020-06-23 10:00:56,651] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/font/DS-DIGIT.TTF HTTP/1.1" 200 25480
+[2020-06-23 10:00:57,174] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/fraction HTTP/1.1" 200 267
+[2020-06-23 10:00:57,608] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data HTTP/1.1" 200 582
+[2020-06-23 10:01:08,823] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap HTTP/1.1" 200 3933
+[2020-06-23 10:02:56,646] [basehttp.py:124] [basehttp:log_message] [INFO]- "POST /web/getnum HTTP/1.1" 200 88
+[2020-06-23 10:04:56,699] [basehttp.py:124] [basehttp:log_message] [INFO]- "POST /web/getnum HTTP/1.1" 200 88
+[2020-06-23 10:06:56,735] [basehttp.py:124] [basehttp:log_message] [INFO]- "POST /web/getnum HTTP/1.1" 200 88
+[2020-06-23 10:08:56,822] [basehttp.py:124] [basehttp:log_message] [INFO]- "POST /web/getnum HTTP/1.1" 200 88
+[2020-06-23 10:10:56,954] [basehttp.py:124] [basehttp:log_message] [INFO]- "POST /web/getnum HTTP/1.1" 200 88
+[2020-06-23 10:12:37,842] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/scindex?comid=0 HTTP/1.1" 200 15271
+[2020-06-23 10:12:37,858] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/score.js HTTP/1.1" 200 19645
+[2020-06-23 10:12:37,860] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/css/layui.css HTTP/1.1" 200 74303
+[2020-06-23 10:12:37,916] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/mainthr HTTP/1.1" 200 322
+[2020-06-23 10:12:37,937] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/webthr HTTP/1.1" 200 885
+[2020-06-23 10:12:37,938] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/totalthr HTTP/1.1" 200 774
+[2020-06-23 10:12:37,944] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/tithr HTTP/1.1" 200 878
+[2020-06-23 10:12:37,946] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/scindex?comid=0&page=1 HTTP/1.1" 200 1446
+[2020-06-23 10:12:38,122] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/inthr HTTP/1.1" 200 1635
+[2020-06-23 10:13:24,035] [threaten.py:267] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-23 10:13:24,036] [threaten.py:267] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-23 10:13:24,036] [threaten.py:267] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-23 10:13:24,036] [threaten.py:267] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-23 10:13:24,036] [threaten.py:267] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-23 10:13:24,036] [threaten.py:267] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-23 10:13:24,042] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thindex?comid=0 HTTP/1.1" 200 14105
+[2020-06-23 10:13:24,057] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/threaten.js HTTP/1.1" 200 25463
+[2020-06-23 10:13:24,141] [threaten.py:267] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-23 10:13:24,141] [threaten.py:267] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-23 10:13:24,141] [threaten.py:267] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-23 10:13:24,141] [threaten.py:267] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-23 10:13:24,141] [threaten.py:267] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-23 10:13:24,141] [threaten.py:267] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-23 10:13:24,142] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thindex?comid=0&page=1 HTTP/1.1" 200 1136
+[2020-06-23 10:13:24,146] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thattack HTTP/1.1" 200 572
+[2020-06-23 10:13:24,161] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thactive HTTP/1.1" 200 282
+[2020-06-23 10:13:24,166] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thhit HTTP/1.1" 200 762
+[2020-06-23 10:13:26,415] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit HTTP/1.1" 200 37
+[2020-06-23 10:13:26,446] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thnews HTTP/1.1" 200 947
+[2020-06-23 10:13:26,448] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/threat HTTP/1.1" 200 995
+[2020-06-23 10:22:45,480] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Invasion?comid=0 HTTP/1.1" 200 14480
+[2020-06-23 10:22:45,516] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/Invasion.js HTTP/1.1" 200 27524
+[2020-06-23 10:22:45,541] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/allattrack HTTP/1.1" 200 17
+[2020-06-23 10:22:45,560] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attrackport HTTP/1.1" 200 93
+[2020-06-23 10:22:45,560] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attrackclass HTTP/1.1" 200 3619
+[2020-06-23 10:22:45,564] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attracktype HTTP/1.1" 200 208
+[2020-06-23 10:22:45,592] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Invasion?comid=0&page=1 HTTP/1.1" 200 1342
+[2020-06-23 10:22:45,638] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/mainattrack HTTP/1.1" 200 1001
+[2020-06-23 10:33:32,169] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/scindex?comid=0 HTTP/1.1" 200 15271
+[2020-06-23 10:33:32,293] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/totalthr HTTP/1.1" 200 774
+[2020-06-23 10:33:32,296] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/tithr HTTP/1.1" 200 878
+[2020-06-23 10:33:32,297] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/webthr HTTP/1.1" 200 885
+[2020-06-23 10:33:32,297] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/mainthr HTTP/1.1" 200 324
+[2020-06-23 10:33:32,301] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/scindex?comid=0&page=1 HTTP/1.1" 200 1493
+[2020-06-23 10:33:32,366] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/inthr HTTP/1.1" 200 1635
+[2020-06-23 10:33:53,950] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/scindex?comid=0&page=1 HTTP/1.1" 200 1493
+[2020-06-23 10:34:01,186] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/scindex?comid=0&page=1 HTTP/1.1" 200 1493
+[2020-06-23 10:34:12,402] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/scindex?comid=0 HTTP/1.1" 200 15271
+[2020-06-23 10:34:12,550] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/tithr HTTP/1.1" 200 878
+[2020-06-23 10:34:12,552] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/scindex?comid=0&page=1 HTTP/1.1" 200 1493
+[2020-06-23 10:34:12,553] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/webthr HTTP/1.1" 200 885
+[2020-06-23 10:34:12,559] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/totalthr HTTP/1.1" 200 774
+[2020-06-23 10:34:12,580] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/mainthr HTTP/1.1" 200 324
+[2020-06-23 10:34:12,643] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/inthr HTTP/1.1" 200 1635
+[2020-06-23 10:34:19,729] [threaten.py:267] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-23 10:34:19,729] [threaten.py:267] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-23 10:34:19,729] [threaten.py:267] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-23 10:34:19,730] [threaten.py:267] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-23 10:34:19,734] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thindex?comid=0 HTTP/1.1" 200 14105
+[2020-06-23 10:34:19,798] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thattack HTTP/1.1" 200 572
+[2020-06-23 10:34:19,814] [threaten.py:267] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-23 10:34:19,814] [threaten.py:267] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-23 10:34:19,814] [threaten.py:267] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-23 10:34:19,814] [threaten.py:267] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-23 10:34:19,815] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thindex?comid=0&page=1 HTTP/1.1" 200 1120
+[2020-06-23 10:34:19,825] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thhit HTTP/1.1" 200 762
+[2020-06-23 10:34:19,831] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thactive HTTP/1.1" 200 282
+[2020-06-23 10:34:19,833] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/threat HTTP/1.1" 200 995
+[2020-06-23 10:34:31,088] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit HTTP/1.1" 200 37
+[2020-06-23 10:34:31,138] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thnews HTTP/1.1" 200 947
+[2020-06-23 10:35:52,711] [threaten.py:267] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-23 10:35:52,711] [threaten.py:267] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-23 10:35:52,711] [threaten.py:267] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-23 10:35:52,715] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thindex?comid=0 HTTP/1.1" 200 14138
+[2020-06-23 10:35:52,819] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thattack HTTP/1.1" 200 572
+[2020-06-23 10:35:52,820] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit HTTP/1.1" 200 37
+[2020-06-23 10:35:52,822] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thhit HTTP/1.1" 200 762
+[2020-06-23 10:35:52,828] [threaten.py:267] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-23 10:35:52,828] [threaten.py:267] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-23 10:35:52,829] [threaten.py:267] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-23 10:35:52,829] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thindex?comid=0&page=1 HTTP/1.1" 200 1139
+[2020-06-23 10:35:52,838] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/threat HTTP/1.1" 200 995
+[2020-06-23 10:35:52,840] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thactive HTTP/1.1" 200 282
+[2020-06-23 10:35:52,867] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thnews HTTP/1.1" 200 947
+[2020-06-23 10:36:27,997] [threaten.py:267] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-23 10:36:28,001] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thindex?comid=0 HTTP/1.1" 200 14375
+[2020-06-23 10:36:28,082] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit HTTP/1.1" 200 37
+[2020-06-23 10:36:28,084] [threaten.py:267] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-23 10:36:28,086] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thindex?comid=0&page=1 HTTP/1.1" 200 1118
+[2020-06-23 10:36:28,089] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thattack HTTP/1.1" 200 572
+[2020-06-23 10:36:28,094] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thhit HTTP/1.1" 200 762
+[2020-06-23 10:36:28,095] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thactive HTTP/1.1" 200 282
+[2020-06-23 10:36:28,095] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/threat HTTP/1.1" 200 995
+[2020-06-23 10:36:28,141] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thnews HTTP/1.1" 200 947
+[2020-06-23 10:40:21,546] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/safety?comid=0 HTTP/1.1" 200 10407
+[2020-06-23 10:40:21,561] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/css/safety.css HTTP/1.1" 200 8221
+[2020-06-23 10:40:21,596] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/wafattackcount
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\safety.py", line 1662, in get
+    result = self.seardat(comid)
+  File "E:\monitor\HqMonitor\web\views\safety.py", line 1694, in seardat
+    es_result = self.sear_info(st_time, ed_time, sp_param)
+NameError: name 'st_time' is not defined
+[2020-06-23 10:40:21,604] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attacktrend HTTP/1.1" 200 323
+[2020-06-23 10:40:21,617] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/safety_risk HTTP/1.1" 200 222
+[2020-06-23 10:40:21,619] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackport HTTP/1.1" 200 123
+[2020-06-23 10:40:21,629] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/safetytop HTTP/1.1" 200 274
+[2020-06-23 10:40:21,630] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/wafattackcount HTTP/1.1" 500 16932
+[2020-06-23 10:40:21,643] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/wafattack HTTP/1.1" 200 854
+[2020-06-23 10:40:30,564] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/safetymap HTTP/1.1" 200 5088
+[2020-06-23 10:41:08,912] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 7498
+[2020-06-23 10:41:08,927] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monweb/css/ie10-viewport-bug-workaround.css HTTP/1.1" 200 433
+[2020-06-23 10:41:09,346] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monweb/js/ie-emulation-modes-warning.js HTTP/1.1" 200 2130
+[2020-06-23 10:41:09,392] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monweb/css/member.css HTTP/1.1" 200 6509
+[2020-06-23 10:41:09,400] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/myadmin/js/jquery.min.js HTTP/1.1" 200 93868
+[2020-06-23 10:41:09,403] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monweb/img/m01.jpg HTTP/1.1" 200 8897
+[2020-06-23 10:41:09,408] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monweb/css/dashboard.css HTTP/1.1" 200 1557
+[2020-06-23 10:41:09,411] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monweb/css/bootstrapc.min.css HTTP/1.1" 200 121200
+[2020-06-23 10:41:09,417] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monweb/js/bootstrap.min.js HTTP/1.1" 200 37045
+[2020-06-23 10:41:17,121] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=7 HTTP/1.1" 200 17972
+[2020-06-23 10:41:17,209] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/visitport?comid=7 HTTP/1.1" 200 123
+[2020-06-23 10:41:17,286] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rstraffic?comid=7 HTTP/1.1" 200 1197
+[2020-06-23 10:41:17,305] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/domain?comid=7 HTTP/1.1" 200 343
+[2020-06-23 10:41:17,323] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum?comid=7 HTTP/1.1" 200 238
+[2020-06-23 10:41:17,329] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend?comid=7 HTTP/1.1" 200 479
+[2020-06-23 10:41:17,346] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rqtraffic?comid=7 HTTP/1.1" 200 3416
+[2020-06-23 10:41:17,368] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/statuscode?comid=7 HTTP/1.1" 200 980
+[2020-06-23 10:41:18,201] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/fraction HTTP/1.1" 200 263
+[2020-06-23 10:41:18,203] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data?comid=7 HTTP/1.1" 200 582
+[2020-06-23 10:41:26,614] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap?comid=7 HTTP/1.1" 200 754
+[2020-06-23 10:41:29,291] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 7498
+[2020-06-23 10:41:29,292] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/center HTTP/1.1" 500 59
+[2020-06-23 10:41:29,302] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 7498
+[2020-06-23 10:41:29,351] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit?comid=7 HTTP/1.1" 200 35
+[2020-06-23 10:41:29,351] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/Hit?comid=7 HTTP/1.1" 500 59

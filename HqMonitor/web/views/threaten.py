@@ -6,6 +6,7 @@ import json
 import datetime
 from django.views.generic import View
 from django.conf import settings
+from . import check_user_request
 
 import logging
 from django.http import JsonResponse
@@ -24,10 +25,9 @@ es = Elasticsearch(
 )
 
 class thindex(View):
-
+    @check_user_request
     def get(self, request):
         comid = request.GET.get('comid',None)
-        # comid = request.GET.get('comid', 0)  #企业ID
         result =self.seardat(comid)
         res = result['dat']
         paginator = Paginator(res, 8)    #分页功能，一页8条数据
@@ -45,12 +45,12 @@ class thindex(View):
                     return render(request, "web/threaten.html", content)
                 else:
                     return render(request, "web/usermon/qthreaten.html", content)
-            elif user.state == 1 & comid != 0:
+            elif user.state == 1 & int(comid) != 0:
                 comp = Compinfo.objects.get(id=comid)
                 users = comp.users.all()
                 for us in users:
                     if us.username == username:
-                        return render(request, "web/usermon/threaten.html", content)  # 用户的监控首页
+                        return render(request, "web/usermon/qthreaten.html", content)  # 用户的监控首页
                     else:
                         content = {"info": "查询失败！"}
                 return render(request, "web/monweb/info.html", content)
@@ -272,42 +272,9 @@ class thindex(View):
         except Exception as err:
             logger.error('威胁情报-数据-获取数据出错：{}'.format(err))
             return False
-# #威胁情报监控页面
-# def index(request,pIndex=0):
-#
-#     username = request.session.get('webuser', default=None)  # 获取登录用户名
-#     user = Users.objects.get(username=username)
-#     if user.state == 0:
-#         if int(pIndex) == 0:
-#             content = {
-#                 "compid": pIndex
-#             }
-#             return render(request, "web/threaten.html", content)
-#         else:
-#             content = {
-#                 "compid": pIndex
-#             }
-#             return render(request, "web/usermon/qthreaten.html", content)  # 只查询此用户下的数据
-#     elif user.state == 1 & pIndex != 0:
-#         comp = Compinfo.objects.get(id=pIndex)
-#         users = comp.users.all()  # 所有的用户账号
-#         for us in users:
-#             if us.username == username:
-#                 content = {
-#                     "compid": pIndex
-#                 }
-#                 return render(request, "web/usermon/threaten.html", content)  # 用户的监控首页
-#             else:
-#                 content = {"info": "查询失败！"}
-#         return render(request, "web/monweb/info.html", content)
-#     else:
-#         error = "访问出错！"
-#         content = {"info": error}
-#         return render(request, "web/monweb/info.html", content)
 
-#攻击类型
 class thattack(View):
-
+    @check_user_request
     def get(self,request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
@@ -488,7 +455,7 @@ class thattack(View):
 
 #命中趋势
 class thhit(View):
-
+    @check_user_request
     def get(self,request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
@@ -661,10 +628,9 @@ class thhit(View):
             logger.error('获取数据出错：{}'.format(err))
             return False
 
-
 #活跃攻击源
 class thactive(View):
-
+    @check_user_request
     def get(self,request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
@@ -872,7 +838,7 @@ class thactive(View):
 
 #IP威胁分类
 class threat(View):
-
+    @check_user_request
     def get(self,request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
@@ -1084,7 +1050,7 @@ class threat(View):
 
 #IP威胁情报源
 class thnews(View):
-
+    @check_user_request
     def get(self,request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')

@@ -17,7 +17,8 @@ urlpatterns = [
     url(r'^web/center$', center.center, name="web_center"),  #个人中心
 
     #管理员网络全局信息监控路由
-    url(r'^web/index/(?P<pIndex>[0-9]+)$', monit.index, name="monit_index"), #全局信息监控首页
+    url(r'^web/index$', index.as_view(), name="monit_index"),  # 威胁情报监控首页
+    # url(r'^web/index/(?P<pIndex>[0-9]+)$', monit.index, name="monit_index"), #全局信息监控首页
     url(r'^web/getnum$', Main_getnum.as_view(), name="monit_main_getnum"),#请求数量折线图
     url(r'^web/visitport$', Main_visit_port.as_view(), name='monit_visitport'), # 主要访问端口
     url(r'^web/statuscode$', Server_status_code.as_view(), name='monit_status_code'), # 服务器状态码

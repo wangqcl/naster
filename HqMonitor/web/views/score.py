@@ -6,6 +6,7 @@ import json
 import datetime
 from django.views.generic import View
 from django.conf import settings
+from . import check_user_request
 
 import logging
 from django.http import JsonResponse
@@ -59,10 +60,9 @@ es = Elasticsearch(
 
 #首页
 class scindex(View):
-
+    @check_user_request
     def get(self, request):
         comid = request.GET.get('comid',None)
-        # comid = request.GET.get('comid', 0)  #企业ID
         result =self.seardat(comid)
         res = result['dat']
         paginator = Paginator(res, 8)    #分页功能，一页8条数据
@@ -81,7 +81,7 @@ class scindex(View):
                 else:
                     print("用户界面")
                     return render(request, "web/usermon/qscore.html", content)
-            elif user.state == 1 & comid != 0:
+            elif user.state == 1 & int(comid) != 0:
                 comp = Compinfo.objects.get(id=comid)
                 users = comp.users.all()
                 for us in users:
@@ -379,7 +379,7 @@ class scindex(View):
 
 #主要威胁IP分值
 class mainthr(View):
-
+    @check_user_request
     def get(self,request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
@@ -595,7 +595,7 @@ class mainthr(View):
 
 #总威胁趋势
 class totalthr(View):
-
+    @check_user_request
     def get(self,request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
@@ -798,7 +798,7 @@ class totalthr(View):
 
 #TI威胁趋势
 class tithr(View):
-
+    @check_user_request
     def get(self,request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
@@ -1001,7 +1001,7 @@ class tithr(View):
 
 #WEB威胁安全趋势
 class webthr(View):
-
+    @check_user_request
     def get(self,request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
@@ -1204,7 +1204,7 @@ class webthr(View):
 
 #入侵检测威胁趋势
 class inthr(View):
-
+    @check_user_request
     def get(self,request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-30)).strftime('%Y-%m-%dT%H:%M:00')

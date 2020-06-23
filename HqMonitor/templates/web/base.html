@@ -52,7 +52,7 @@
     <!--侧栏界面设计-->
     <div id="mySidenav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <a href="{% url 'monit_index' compid %}">网络全局信息</a>
+      <a href="{% url 'monit_index' %}?comid={{ compid }}">网络全局信息</a>
       <a href="{% url 'safety_index' %}?comid={{ compid }}">web安全防护信息</a>
       <a href="{% url 'monit_invasion_index' %}?comid={{ compid }}">入侵检测信息</a>
       <a href="{% url 'monit_threaten_indexs' %}?comid={{ compid }}">威胁情报</a>

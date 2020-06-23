@@ -6,6 +6,7 @@ import json
 import datetime
 from django.views.generic import View
 from django.conf import settings
+from . import check_user_request
 
 '''配置es'''
 es = Elasticsearch(
@@ -18,42 +19,37 @@ es = Elasticsearch(
 )
 
 #监控首页
-def index(request,pIndex=0):
+class index(View):
     '''首页-全局监控信息'''
-    username = request.session.get('webuser',default=None)  # 获取登录用户名
-    user = Users.objects.get(username=username)
-
-    if user.state == 0:
-        if int(pIndex) == 0:
-            content = {
-                "compid": pIndex
-            }
-            return render(request,"web/monit.html",content)
-        else:
-            content = {
-                "compid":pIndex
-            }
-            return render(request, "web/usermon/qmonit.html",content)   #只查询此用户下的数据
-    elif user.state == 1 & int(pIndex) != 0 :
-        comp = Compinfo.objects.get(id=pIndex)
-        users = comp.users.all()  # 所有的用户账号
-        for us in users:
-            if us.username == username:
+    @check_user_request
+    def get(self,request):
+        username = request.session.get('webuser',default=None)  # 获取登录用户名
+        user = Users.objects.get(username=username)
+        pIndex = request.GET.get('comid', None)
+        if user.state == 0:
+            if int(pIndex) == 0:
+                content = {
+                    "compid": pIndex
+                }
+                return render(request,"web/monit.html",content)
+            else:
+                content = {
+                    "compid":pIndex
+                }
+                return render(request, "web/usermon/qmonit.html",content)   #只查询此用户下的数据
+        elif user.state == 1 :
                 content = {
                     "compid": pIndex
                 }
                 return render(request,"web/usermon/qmonit.html",content)  #用户的监控首页
-            else:
-                content = {"info":"查询失败！"}
-        return render(request, "web/monweb/info.html", content)
-    else:
-        error = "访问出错！"
-        content = {"info":error}
-        return render(request, "web/monweb/info.html",content)
+        else:
+            error = "访问出错！"
+            content = {"info":error}
+            return render(request, "web/monweb/info.html",content)
 
 #请求数量
 class Main_getnum(View):
-
+    @check_user_request
     def get(self,request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
@@ -240,7 +236,7 @@ class Main_getnum(View):
 
 #主要访问端口
 class Main_visit_port(View):
-
+    @check_user_request
     def get(self,request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
@@ -501,6 +497,7 @@ class Main_visit_port(View):
 
 #服务器状态码
 class Server_status_code(View):
+    @check_user_request
     def get(self,request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
@@ -706,6 +703,7 @@ class Server_status_code(View):
 
 #域名被访问次数
 class Domain_infor(View):
+    @check_user_request
     def get(self,request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
@@ -913,6 +911,7 @@ class Domain_infor(View):
 
 #主要IP分值
 class Ip_fraction(View):
+    @check_user_request
     def get(self,request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区时间
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
@@ -1119,6 +1118,7 @@ class Ip_fraction(View):
 
 #客户端请求流量
 class Request_traffic(View):
+    @check_user_request
     def get(self,request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
@@ -1432,6 +1432,7 @@ class Request_traffic(View):
 
 #客户端回应流量
 class Response_traffic(View):
+    @check_user_request
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
@@ -1749,6 +1750,7 @@ class Response_traffic(View):
 
 #waf攻击趋势
 class Waf_attack_trend(View):
+    @check_user_request
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         st_time = datetime.datetime.strptime(datetime.datetime.now().strftime("%Y-%m-%d"), "%Y-%m-%d").strftime('%Y-%m-%dT%H:%M:%S')
@@ -1968,6 +1970,7 @@ class Waf_attack_trend(View):
 
 #态势地图
 class Attack_map(View):
+    @check_user_request
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
@@ -2299,6 +2302,7 @@ class Attack_map(View):
 
 #接入状态 不启用
 class Access_ip(View):
+    @check_user_request
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
@@ -2424,18 +2428,11 @@ class Access_ip(View):
 
 #今日命中数
 class Hit(View):
-
+    @check_user_request
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         st_time = datetime.datetime.strptime(datetime.datetime.now().strftime("%Y-%m-%d"), "%Y-%m-%d").strftime('%Y-%m-%dT%H:%M:%S')
         st_all_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00') #24小时
-        # num_today = self.Hit_day(st_time, ed_time) #今日命中
-        # num_all = self.Hit_all(st_all_time, ed_time) # 全部命中
-        # jsontext = {}
-        # jsontext["num_today"] = num_today
-        # jsontext["num_all"] = num_all
-        # return HttpResponse(json.dumps(jsontext))
-
         # 获取
         comid = request.GET.get('comid', None)
         if comid == None:  # 是否携带用户信息
@@ -2764,6 +2761,7 @@ class Hit(View):
 
 #流量数据
 class Source_data(View):
+    @check_user_request
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
