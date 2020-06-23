@@ -248,7 +248,7 @@ class indexs(View):
             for v in re_data:
                 jsontext = {}
                 da_list = v.get('_source','')
-                times = time(da_list.get('@timestamp',''))
+                times = time(da_list.get('@timestamp',''),3)
                 jsontext['time']=times  # 时间
                 jsontext['ip']=da_list.get('src_ip','') # ip
                 jsontext['port']=da_list.get('dst_port','')  #端口
@@ -793,7 +793,7 @@ class Main_attrack(View):
             name, linex, line, jsontext = [],[], [] ,{}
             color = ['#00b9f6', '#38a97d', '#004eff', '#17c7e7', '#4e85ea', '#e49be9', '#078d9d', '#eca52a', '#ef9544', '#ea3b3b']
             for i in re_data:
-                string = time(i.get('key_as_string'))
+                string = time(i.get('key_as_string'),1)
                 linex.append(string)
                 key = i.get('3','').get('buckets','')
                 for j in key:
