@@ -26,7 +26,7 @@ def check_user_request(func):
             for i in id:
                 list.append(i.id)
             if userid not in list:
-                return HttpResponse("您无权访问该数据，请更换id", status=403)
+                return HttpResponse("request error", status=403)
             else:
                 return func(*args, **kwargs)
         else:
