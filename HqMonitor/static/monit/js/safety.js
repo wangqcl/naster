@@ -571,7 +571,7 @@ function echarts_j(nu_port,nu_values) {
 //        bottom: 'bottom',
         top: 50,
         textStyle: {
-                    fontSize: 75
+                    fontSize: 18
                 },
         data: nu_port,
 
@@ -585,23 +585,23 @@ function echarts_j(nu_port,nu_values) {
     series: [{
         type: 'pie',
         color: ['pink','#f35833','#ffcc00','black','blue'],
-        radius: ['55%', '75%'],
+        radius: ['55%', '70%'],
         avoidLabelOverlap: false,
         label: {
             show: true,
             formatter: '{c}',
             padding: [-20, -30, 0, -30],
             textStyle : {
-                                    fontWeight : 300 ,
-                                    fontSize : 55    //文字的字体大小
-                                },
+                         fontWeight : 50 ,
+                         fontSize : 18    //文字的字体大小
+                         },
         },
         // radius以半径不同来表示数据大小
         roseType: 'radius',
         labelLine: {
             show: false,
 //            length: '55',
-            length2: '150'
+            length2: '90'
         },
         data: nu_values,
     }]
@@ -629,14 +629,14 @@ function echarts_k(nu_types,nu_values) {
 	        x: 'right',
 	        top: 40,
             textStyle: {
-                    fontSize: 80
+                    fontSize:18
                 },
 	        data: nu_types,
 	    },
 	    series : [
 	        {
 	            type: 'pie',
-	            radius : '80%',
+	            radius : '70%',
 	            center: ['50%', '50%'],
 	            data:nu_values,
 	                    label: { //饼图图形上的文本标签
@@ -644,9 +644,9 @@ function echarts_k(nu_types,nu_values) {
                                 show: true,
 //                                position: 'inner', //标签的位置
                                 textStyle: {
-                                    fontWeight: 300,
+                                    fontWeight: 100,
                                     color:'black',
-                                    fontSize: 50 //文字的字体大小
+                                    fontSize: 18 //文字的字体大小
                                 },
                                 formatter: '{d}%'
                             }

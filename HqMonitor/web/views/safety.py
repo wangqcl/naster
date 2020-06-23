@@ -1274,19 +1274,13 @@ class Safety_attack_port(View):
 # web安全威胁统计
 class Safety_waf_attack_count(View):
     '''首页-web安全信息'''
-
     def get(self, request):
         comid = request.GET.get('comid', None)
         result = self.seardat(comid)
         res = result['dat']
         paginator = Paginator(res, 8)  # 分页功能，一页8条数据
-        if request.is_ajax() == False:
-            userlist = paginator.page(1)
-            content = {
-                "compid": comid,
-                "users": userlist
-            }
-            return JsonResponse(content)
+        userlist = paginator.page(1)
+
             # Ajax数据交互
         if request.is_ajax():
             # print("调用了ajax请求")
@@ -1304,7 +1298,9 @@ class Safety_waf_attack_count(View):
             result = {'has_previous': users.has_previous(),
                       'has_next': users.has_next(),
                       'num_pages': users.paginator.num_pages,
-                      'user_li': user_li}
+                      'user_li': user_li,
+                      # 'user': [i for i in userlist.paginator.page_range]
+                      }
             return JsonResponse(result)
 
     def seardat(self, comid):
@@ -1632,7 +1628,7 @@ class Safety_waf_attack_count(View):
         try:
             ret = es.search(index='waf*', doc_type='_doc', body=body)
             re_data = ret['aggregations']['2']['buckets']
-            jsonlist, jsontext = [], {}
+            jsonlist,jsontext = [],{}
             for i in re_data:  # 多个
                 buck_a = i['3']['buckets']
                 for v in buck_a:  # 多个
@@ -1640,21 +1636,25 @@ class Safety_waf_attack_count(View):
                         jsontext_1 = {}
                         # 遍历数据
                         buck_b = v['4']['buckets']
+                        y_id = v['key']  # 源IP
+                        y_count = v['doc_count']  # 数量
+                        jsontext_1["y_id"] = y_id
+                        jsontext_1["y_count"] = y_count
                         for k in buck_b:
-                            jsontext_1["y_id"] = k['key']  # 源IP
-                            jsontext_1["y_count"] = k['doc_count']  # 数量
+                            jsontext_1["w_type"] = k['key']  # 威胁情报类型
                             buck_c = k['5']['buckets']
                             for c in buck_c:
-                                jsontext_1["w_type"] = c['key']  # 威胁情报类型
+                                waf_ym = c['key']  # 域名
+                                jsontext_1["waf_ym"] = waf_ym
                                 buck_d = c['6']['buckets']
                                 for d in buck_d:
-                                    jsontext_1["waf_ym"] = d['key']  # 域名
                                     buck_d = d['7']['buckets']
                                     for l in buck_d:
-                                        jsontext_1["waf_lj"] = l['key']  # waf拦截器
+                                        waf_lj = l['key']
+                                        jsontext_1["waf_lj"] = waf_lj  # waf拦截器
                         jsonlist.append(jsontext_1)
                     except Exception as err:
-                        logger.error('威胁统计数据报错：{}'.format(err))
+                        logger.error('威胁分类数据报错：{}'.format(err))
                     continue
             jsontext['dat'] = jsonlist
             return jsontext
