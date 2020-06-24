@@ -2,74 +2,109 @@
 {% load static from staticfiles %}
 <!-- css开始 -->
 {% block css %}
-    <link rel="stylesheet" href="{% static 'monit/css/safety.css' %}">
+<link rel="stylesheet" href="{% static 'monit/css/safety.css' %}">
+<link rel="stylesheet" href="{% static 'monit/css/layui.css' %}">
 {% endblock %}
 <!-- css结束 -->
 
 <!-- js开始 -->
 {% block script %}
-    <script language="JavaScript" src="{% static 'monit/js/safety.js'%}"></script>
+<script language="JavaScript" src="{% static 'monit/js/safety.js'%}"></script>
 {% endblock %}
 <!-- js结束 -->
 
 <!-- 头 -->
 {% block title %}
-    <h1>web安全防护监控</h1>
+<h1>web安全防护监控</h1>
 {% endblock %}
 <!-- 头结束 -->
 
 {% block mainbody %}
 <!--  web安全防护监控页面-->
 <div class="mainboxs">
-  <ul class="clearfix">
-    <li>
-      <div class="boxall" style="height: 4.9rem">
-        <div class="alltitle">攻击趋势</div>
-        <div class="allnav" id="echart_a"></div>
-        <div class="boxfoot"></div>
-      </div>
-      <div class="boxall" style="height: 5rem">
-            <div class="alltitle">【WAF】攻击类型趋势
+    <ul class="clearfix">
+        <li>
+            <div class="boxall" style="height: 4.9rem">
+                <div class="alltitle">攻击趋势</div>
+                <div class="allnav" id="echart_a"></div>
+                <div class="boxfoot"></div>
             </div>
-          <div class="allnav" id="echart_c"></div>
-          <div class="boxfoot"></div>
-      </div>
-    </li>
-    <li>
-        <div class="bar">
-          <div class="barbox2">
-          <div class="alltitle">攻击分布</div>
-          </div>
-        </div>
-        <div class="map boxall" style="height: 5.6rem">
-            <div class="allnav" id="echart_b"></div>
-            <div class="boxfoot"></div>
-        </div>
-        <div class="boxall" style="height: 3.5rem">
-        <div style="height:100%;">
-        <div class="alltitle">WEB攻击统计</div>
-        <div class="allnav" id="waf_info"></div>
-        </div>
-        </div>
-    </li>
-    <li >
-      <div class="boxall" style="height:3.1rem">
-        <div class="alltitle">风险占比</div>
-        <div class="allnav" id="echart_j"></div>
-        <div class="boxfoot"></div>
-      </div>
-      <div class="boxall" style="height: 3.1rem">
-        <div class="alltitle">主要受攻击端口占比</div>
-        <div class="allnav" id="echart_k"></div>
-        <div class="boxfoot"></div>
-      </div>
-      <div class="boxall" style="height: 3.5rem">
-            <div class="alltitle">TOP10</div>
-            <div class="allnav" id="echart_e"></div>
-          <div class="boxfoot"></div>
-      </div>
-    </li>
-  </ul>
+            <div class="boxall" style="height: 5rem">
+                <div class="alltitle">【WAF】攻击类型趋势
+                </div>
+                <div class="allnav" id="echart_c"></div>
+                <div class="boxfoot"></div>
+            </div>
+        </li>
+        <li>
+            <div class="bar">
+                <div class="barbox2">
+                    <div class="alltitle">攻击分布</div>
+                </div>
+            </div>
+            <div class="map boxall" style="height: 5.6rem">
+                <div class="allnav" id="echart_b"></div>
+                <div class="boxfoot"></div>
+            </div>
+            <div class="boxall" style="height: 3.5rem; width: 100%;">
+                <div class="alltitle">WEB攻击统计
+                <div class="transparentDataTable">
+                    <table class="layui-table layui-table-cell" style="TABLE-LAYOUT: fixed">
+                        <thead>
+                        <tr>
+                            <th>攻击源</th>
+                            <th>请求类型</th>
+                            <th>数量</th>
+                            <th>域名</th>
+                            <th>waf拦截器</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbody"></tbody>
+
+                    </table>
+                        <div style="text-align: center;margin: 1% 0;">
+                        <form id="page" action="{% url 'safety_waf_attack_count' %}?comid={{ compid }}">
+                            <a class="first_page">
+                                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">上一页</button>
+                            </a>
+
+<!--                            <a class="now_page">-->
+<!--                                <button type="button" id="now_pagea" class="layui-btn layui-btn-primary layui-btn-sm">-->
+<!--                                </button>-->
+<!--                                <button type="button" id="now_pageaa" class="layui-btn layui-btn-primary layui-btn-sm">-->
+<!--                                </button>-->
+<!--                            </a>-->
+
+                            <button id="num_pages" type="button" class="layui-btn layui-btn-primary layui-btn-sm">
+                            </button>
+
+                            <a class="last_page">
+                                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">下一页</button>
+                            </a>
+                        </form>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="boxall" style="height:3.1rem">
+                <div class="alltitle">风险占比</div>
+                <div class="allnav" id="echart_j"></div>
+                <div class="boxfoot"></div>
+            </div>
+            <div class="boxall" style="height: 3.1rem">
+                <div class="alltitle">主要受攻击端口占比</div>
+                <div class="allnav" id="echart_k"></div>
+                <div class="boxfoot"></div>
+            </div>
+            <div class="boxall" style="height: 3.5rem">
+                <div class="alltitle">TOP10</div>
+                <div class="allnav" id="echart_e"></div>
+                <div class="boxfoot"></div>
+            </div>
+        </li>
+    </ul>
 </div>
 {% endblock %}
 
@@ -78,7 +113,7 @@
 <!--js开始-->
 
 <!--攻击趋势-->
-<script type="text/javascript" >
+<script type="text/javascript">
     st_change()
         var st_port_data = []
         var st_yAxis_data = []
@@ -92,6 +127,7 @@
             echarts_a(st_time,st_count)
           })
         }
+
 </script>
 
 <!--态势地图-->
@@ -104,33 +140,7 @@
           echarts_b(geoCoordMap,BJData);
       });
     }
-</script>
 
-<!--waf攻击统计-->
-<script type="text/javascript">
-    waf_change();
-    function waf_change() {
-      $.getJSON('{% url "safety_waf_attack_count" %}',function(data) {
-          var args = data.data;
-          console.log(data)
-          var str = "";
-          str += "<table width=\"100%\" style=\"overflow:scroll;margin-bottom:50px\" border=\"0\">";
-          for (var i = 0; i < args.length; i++) {
-
-              if (i === 0) {
-                    str += "<tr style=\"padding:10px 10px;font-size:30px\"><th class='tbc'>时间</th><th class='tbc'>攻击源</th><th class='tbc'>类型</th><th class='tbc'> 域名</th></tr>"
-                }else {
-                    str += "<tbody><tr>";
-                    for (var k = 0; k < args[i].length; k++) {
-                        str += " <td class=\"tdc\">" + args[i][k] + "</td>";
-                    }
-                    str += "</tr></tbody>";
-                }
-            }
-            str += "</table>";
-            document.getElementById('waf_info').innerHTML=str
-      });
-    }
 </script>
 
 <!--风险占比-->
@@ -147,6 +157,7 @@
             echarts_j(nu_port,nu_values)
           })
         }
+
 </script>
 
 <!--主要攻击端口占比-->
@@ -163,10 +174,11 @@
             echarts_k(nu_types,nu_values)
           })
         }
+
 </script>
 
 <!--waf类型攻击趋势-->
-<script type="text/javascript" >
+<script type="text/javascript">
     sa_change();
     var wa_edtime;
     var wa_port_data = [];
@@ -234,10 +246,11 @@
       })
     }
 
+
 </script>
 
 <!--top10-->
-<script type="text/javascript" >
+<script type="text/javascript">
     top_change();
     var top_ip = [];
     var top_values = [];
@@ -251,6 +264,86 @@
         echarts_e(top_ip,top_values)
       })
     }
+
+
+</script>
+
+<!--表格-->
+<script type="text/javascript">
+
+        let now_page = 1;
+        // 动态加载第一页数据
+        pag_click();
+        $('.first_page button').removeClass('layui-btn-primary').addClass('layui-btn-disabled');
+        $('.now_page button').first().removeClass('layui-btn-primary').addClass('page_this');
+        //上一页
+        $('.first_page').click(function () {
+            now_page -= 1;
+            if (now_page < 1) {
+                now_page = 1;
+                return false
+            } else {
+            pag_click()
+                $('.page_this').parent().prev().click();
+
+            }
+        });
+        //下一页
+        $('.last_page').click(function () {
+            let num_pages = $('.now_page button').last().text();
+            now_page += 1;
+            if (now_page > parseInt(num_pages)) {
+                now_page -= 1;
+                return false
+            } else {
+            pag_click()
+                $('.page_this').parent().next().click();
+
+            }
+        });
+        //切换页
+        $('.now_page').click(function () {
+            now_page = parseInt($(this).children('button').text());
+            $('.now_page button').removeClass('page_this').addClass('layui-btn-primary');
+            $(this).addClass('page_this');
+            $(this).children('button').removeClass('layui-btn-primary').addClass('page_this');
+            pag_click()
+        });
+
+        function pag_click() {
+            let page_form = $('#page');
+            $.ajax({
+                type: 'GET',
+                url: page_form.attr('action'),
+                dataType:"JSON",
+                data: {page: now_page},
+                success: function (data) {
+                console.log(data.user)
+                    $('#tbody tr').remove();
+                    $('#num_pages').html('共' + data.num_pages + '页');
+<!--                    $('#now_pagea').html(data.user[0]);-->
+<!--                    $('#now_pageaa').html(data.user[1]);-->
+
+                    if (data.has_previous === true) {
+                        $('.first_page button').removeClass('layui-btn-disabled').addClass('layui-btn-primary');
+                    } else {
+                        $('.first_page button').removeClass('layui-btn-primary').addClass('layui-btn-disabled')
+                    }
+                    if (data.has_next === true) {
+                        $('.last_page button').removeClass('layui-btn-disabled').addClass('layui-btn-primary');
+                    } else {
+                        $('.last_page button').removeClass('layui-btn-primary').addClass('layui-btn-disabled');
+                    }
+                    $.each(data.user_li, function (index, user) {
+                        let a = '<td id="ads">';
+                        let b = '</td>';
+                        let c = '<div style="color:#00aeef;overflow-y:scroll;width:130px;height:75px;white-space:pre-wrap"${position.specificTasks}</div>'
+                        let body = a + user.y_id + b + a + user.w_type + b + a + user.y_count + b + a +  user.waf_ym + b + a  +user.waf_lj + b;
+                        $('#tbody').append('<tr>' + body + '</tr>');
+                    });
+                }
+            })
+        }
 
 </script>
 {% endblock %}

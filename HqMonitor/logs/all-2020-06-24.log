@@ -408,3 +408,202 @@ TypeError: Object of type 'Page' is not JSON serializable
 [2020-06-24 10:34:09,442] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/favicon.ico HTTP/1.1" 200 67646
 [2020-06-24 10:35:23,624] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /myadmin/pany/1 HTTP/1.1" 200 8914
 [2020-06-24 10:35:23,649] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/favicon.ico HTTP/1.1" 200 67646
+[2020-06-24 10:54:11,158] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET / HTTP/1.1" 200 4420
+[2020-06-24 10:54:11,227] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /verify HTTP/1.1" 200 2027
+[2020-06-24 10:54:17,649] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monweb/css/bootstrap.min.css.map HTTP/1.1" 200 542194
+[2020-06-24 10:54:42,740] [basehttp.py:124] [basehttp:log_message] [INFO]- "POST /dologin HTTP/1.1" 302 0
+[2020-06-24 10:54:42,777] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 6878
+[2020-06-24 11:05:22,741] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=0 HTTP/1.1" 200 21099
+[2020-06-24 11:05:22,760] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/css/comon0.css HTTP/1.1" 304 0
+[2020-06-24 11:05:22,760] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/css/layui.css HTTP/1.1" 304 0
+[2020-06-24 11:05:22,761] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/safety.js HTTP/1.1" 304 0
+[2020-06-24 11:05:22,761] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/js.js HTTP/1.1" 200 31665
+[2020-06-24 11:05:22,948] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/visitport HTTP/1.1" 200 232
+[2020-06-24 11:05:22,972] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum HTTP/1.1" 200 296
+[2020-06-24 11:05:23,042] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend HTTP/1.1" 200 754
+[2020-06-24 11:05:23,300] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/domain HTTP/1.1" 200 1128
+[2020-06-24 11:05:23,432] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rstraffic HTTP/1.1" 200 2883
+[2020-06-24 11:05:23,447] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rqtraffic HTTP/1.1" 200 2766
+[2020-06-24 11:05:23,552] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/statuscode HTTP/1.1" 200 5899
+[2020-06-24 11:05:23,822] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/fraction HTTP/1.1" 200 270
+[2020-06-24 11:05:33,810] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap HTTP/1.1" 200 4713
+[2020-06-24 11:05:35,450] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit HTTP/1.1" 200 37
+[2020-06-24 11:05:38,959] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data?comid=0&page=1 HTTP/1.1" 200 410
+[2020-06-24 11:05:47,436] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=5 HTTP/1.1" 200 21553
+[2020-06-24 11:05:47,582] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/fraction HTTP/1.1" 200 270
+[2020-06-24 11:05:47,737] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/visitport?comid=5 HTTP/1.1" 200 157
+[2020-06-24 11:05:47,749] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rstraffic?comid=5 HTTP/1.1" 200 1188
+[2020-06-24 11:05:47,749] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rqtraffic?comid=5 HTTP/1.1" 200 2082
+[2020-06-24 11:05:47,899] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend?comid=5 HTTP/1.1" 200 560
+[2020-06-24 11:05:47,900] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit?comid=5 HTTP/1.1" 200 33
+[2020-06-24 11:05:52,574] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data?comid=5&page=1 HTTP/1.1" 200 402
+[2020-06-24 11:05:53,958] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum?comid=5 HTTP/1.1" 200 225
+[2020-06-24 11:05:53,964] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/domain?comid=5 HTTP/1.1" 200 240
+[2020-06-24 11:05:53,978] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/statuscode?comid=5 HTTP/1.1" 200 543
+[2020-06-24 11:05:58,935] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap?comid=5 HTTP/1.1" 200 473
+[2020-06-24 11:06:04,397] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=5 HTTP/1.1" 200 21553
+[2020-06-24 11:06:04,494] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/fraction HTTP/1.1" 200 268
+[2020-06-24 11:06:04,496] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum?comid=5 HTTP/1.1" 200 225
+[2020-06-24 11:06:04,504] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/visitport?comid=5 HTTP/1.1" 200 156
+[2020-06-24 11:06:04,528] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/domain?comid=5 HTTP/1.1" 200 240
+[2020-06-24 11:06:04,528] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend?comid=5 HTTP/1.1" 200 560
+[2020-06-24 11:06:04,538] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/statuscode?comid=5 HTTP/1.1" 200 535
+[2020-06-24 11:06:04,571] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rstraffic?comid=5 HTTP/1.1" 200 1154
+[2020-06-24 11:06:04,675] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/favicon.ico HTTP/1.1" 200 67646
+[2020-06-24 11:06:04,793] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rqtraffic?comid=5 HTTP/1.1" 200 2145
+[2020-06-24 11:06:04,794] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit?comid=5 HTTP/1.1" 200 33
+[2020-06-24 11:06:04,959] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data?comid=5&page=1 HTTP/1.1" 200 402
+[2020-06-24 11:06:07,138] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=4 HTTP/1.1" 200 21553
+[2020-06-24 11:06:07,244] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum?comid=4 HTTP/1.1" 200 5
+[2020-06-24 11:06:07,245] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/statuscode?comid=4 HTTP/1.1" 200 5
+[2020-06-24 11:06:07,248] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/visitport?comid=4 HTTP/1.1" 200 5
+[2020-06-24 11:06:07,253] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rqtraffic?comid=4 HTTP/1.1" 200 5
+[2020-06-24 11:06:07,253] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/domain?comid=4 HTTP/1.1" 200 5
+[2020-06-24 11:06:07,257] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/fraction HTTP/1.1" 200 268
+[2020-06-24 11:06:07,266] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rstraffic?comid=4 HTTP/1.1" 200 5
+[2020-06-24 11:06:07,268] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit?comid=4 HTTP/1.1" 200 5
+[2020-06-24 11:06:07,270] [monit.py:2832] [monit:seardat] [ERROR]- 请求出错：Compinfo matching query does not exist.
+[2020-06-24 11:06:07,270] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/Source_data
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 18, in wrapper
+    return func(*args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\monit.py", line 2773, in get
+    res = result['dat']
+TypeError: 'bool' object is not subscriptable
+[2020-06-24 11:06:07,282] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/Source_data?comid=4&page=1 HTTP/1.1" 500 16652
+[2020-06-24 11:06:07,287] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap?comid=4 HTTP/1.1" 200 5
+[2020-06-24 11:06:07,287] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend?comid=4 HTTP/1.1" 200 5
+[2020-06-24 11:06:17,510] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap?comid=5 HTTP/1.1" 200 473
+[2020-06-24 11:06:17,543] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/attackmap?comid=5 HTTP/1.1" 500 59
+[2020-06-24 11:06:48,723] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 6878
+[2020-06-24 11:07:04,929] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /logout HTTP/1.1" 302 0
+[2020-06-24 11:07:04,935] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET / HTTP/1.1" 200 4420
+[2020-06-24 11:07:04,978] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /verify HTTP/1.1" 200 1655
+[2020-06-24 11:07:22,964] [basehttp.py:124] [basehttp:log_message] [INFO]- "POST /dologin HTTP/1.1" 302 0
+[2020-06-24 11:07:25,440] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 5912
+[2020-06-24 11:07:27,693] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=5 HTTP/1.1" 200 21553
+[2020-06-24 11:07:27,806] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/fraction
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 20, in wrapper
+    comp = Compinfo.objects.get(id=comid)
+  File "E:\project_env\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\db\models\query.py", line 380, in get
+    self.model._meta.object_name
+common.models.DoesNotExist: Compinfo matching query does not exist.
+[2020-06-24 11:07:27,825] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum?comid=5 HTTP/1.1" 200 225
+[2020-06-24 11:07:27,837] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/visitport?comid=5 HTTP/1.1" 200 122
+[2020-06-24 11:07:27,838] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/fraction HTTP/1.1" 500 16871
+[2020-06-24 11:07:27,843] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/domain?comid=5 HTTP/1.1" 200 240
+[2020-06-24 11:07:27,860] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/statuscode?comid=5 HTTP/1.1" 200 531
+[2020-06-24 11:07:27,879] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend?comid=5 HTTP/1.1" 200 560
+[2020-06-24 11:07:27,880] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rqtraffic?comid=5 HTTP/1.1" 200 2412
+[2020-06-24 11:07:27,892] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rstraffic?comid=5 HTTP/1.1" 200 1183
+[2020-06-24 11:07:27,939] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data?comid=5&page=1 HTTP/1.1" 200 402
+[2020-06-24 11:07:28,343] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit?comid=5 HTTP/1.1" 200 33
+[2020-06-24 11:07:32,391] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/index
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 20, in wrapper
+    comp = Compinfo.objects.get(id=comid)
+  File "E:\project_env\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\db\models\query.py", line 380, in get
+    self.model._meta.object_name
+common.models.DoesNotExist: Compinfo matching query does not exist.
+[2020-06-24 11:07:32,418] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/index?comid=6 HTTP/1.1" 500 88923
+[2020-06-24 11:07:32,520] [base.py:152] [base:get_response] [WARNING]- Not Found: /favicon.ico
+[2020-06-24 11:07:32,521] [basehttp.py:124] [basehttp:log_message] [WARNING]- "GET /favicon.ico HTTP/1.1" 404 10786
+[2020-06-24 11:07:37,484] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap?comid=5 HTTP/1.1" 200 473
+[2020-06-24 11:07:37,487] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/attackmap?comid=5 HTTP/1.1" 500 59
+[2020-06-24 11:07:48,320] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/index
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 20, in wrapper
+    comp = Compinfo.objects.get(id=comid)
+  File "E:\project_env\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\db\models\query.py", line 380, in get
+    self.model._meta.object_name
+common.models.DoesNotExist: Compinfo matching query does not exist.
+[2020-06-24 11:07:48,348] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/index?comid=4 HTTP/1.1" 500 88923
+[2020-06-24 11:07:54,135] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap?comid=5 HTTP/1.1" 200 473
+[2020-06-24 11:07:54,137] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/attackmap?comid=5 HTTP/1.1" 500 59
+[2020-06-24 11:07:56,883] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap?comid=5 HTTP/1.1" 200 473
+[2020-06-24 11:07:56,884] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/attackmap?comid=5 HTTP/1.1" 500 59
+[2020-06-24 11:08:22,523] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap?comid=5 HTTP/1.1" 200 473
+[2020-06-24 11:08:26,525] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=7 HTTP/1.1" 200 42
+[2020-06-24 11:10:00,738] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=5 HTTP/1.1" 200 21553
+[2020-06-24 11:10:00,827] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/fraction
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 20, in wrapper
+    comp = Compinfo.objects.get(id=comid)
+  File "E:\project_env\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\db\models\query.py", line 380, in get
+    self.model._meta.object_name
+common.models.DoesNotExist: Compinfo matching query does not exist.
+[2020-06-24 11:10:00,842] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/fraction HTTP/1.1" 500 16871
+[2020-06-24 11:10:00,850] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum?comid=5 HTTP/1.1" 200 212
+[2020-06-24 11:10:00,873] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/visitport?comid=5 HTTP/1.1" 200 122
+[2020-06-24 11:10:00,884] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/domain?comid=5 HTTP/1.1" 200 227
+[2020-06-24 11:10:00,896] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/statuscode?comid=5 HTTP/1.1" 200 419
+[2020-06-24 11:10:00,902] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend?comid=5 HTTP/1.1" 200 563
+[2020-06-24 11:10:00,907] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rqtraffic?comid=5 HTTP/1.1" 200 2362
+[2020-06-24 11:10:00,910] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/favicon.ico HTTP/1.1" 200 67646
+[2020-06-24 11:10:00,914] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rstraffic?comid=5 HTTP/1.1" 200 1152
+[2020-06-24 11:10:01,025] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data?comid=5&page=1 HTTP/1.1" 200 402
+[2020-06-24 11:10:12,219] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit?comid=5 HTTP/1.1" 200 33
+[2020-06-24 11:10:12,230] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=7 HTTP/1.1" 200 42
+[2020-06-24 11:10:13,559] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap?comid=5 HTTP/1.1" 200 378
+[2020-06-24 11:10:13,561] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/attackmap?comid=5 HTTP/1.1" 500 59
+[2020-06-24 11:10:50,755] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap?comid=5 HTTP/1.1" 200 378
+[2020-06-24 11:11:02,233] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 5912
