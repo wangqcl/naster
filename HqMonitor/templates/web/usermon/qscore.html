@@ -62,14 +62,14 @@
                                 <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">上一页</button>
                             </a>
 
-                            {% for num in paglist %}
-                                <a class="now_page">
-                                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">{{ num.pag }}</button>
-                                </a>
+                            {% for num in users.paginator.page_range %}
+                                    <a class="now_page">
+                                        <button type="button"   class="layui-btn layui-btn-primary layui-btn-sm">{{ num }}</button>
+                                    </a>
                             {% endfor %}
 
                             <button id="num_pages" type="button" class="layui-btn layui-btn-primary layui-btn-sm">
-                                共5页
+                                共{{ users.paginator.num_pages }}页
                             </button>
 
                             <a class="last_page">

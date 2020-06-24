@@ -348,7 +348,7 @@ function ec_thactive(tiv_xdata,tiv_ydata) {
                 type: 'bar',
                 yAxisIndex: 1,
                 barGap: '-100%',
-                data: [6990, 6990, 6990, 6990, 6990, 6990, 6990, 6990, 6990, 6990],
+                data: [99, 99.5, 99.5, 99.5, 99.5, 99.5, 99.5, 99.5, 99.5, 99.5],
                 barWidth: 20,
                 itemStyle: {
                     normal: {
@@ -362,7 +362,7 @@ function ec_thactive(tiv_xdata,tiv_ydata) {
                 type: 'bar',
                 yAxisIndex: 2,
                 barGap: '-100%',
-                data: [7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000, 7000],
+                data: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
                 barWidth: 24,
                 itemStyle: {
                     normal: {

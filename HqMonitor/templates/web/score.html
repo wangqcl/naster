@@ -64,7 +64,7 @@
 
                                {% for num in users.paginator.page_range %}
                                     <a class="now_page">
-                                        <button type="button" style="background: #5578f5"  class="layui-btn layui-btn-primary layui-btn-sm">{{ num }}</button>
+                                        <button type="button"   class="layui-btn layui-btn-primary layui-btn-sm">{{ num }}</button>
                                     </a>
                                 {% endfor %}
 
@@ -256,11 +256,9 @@
             now_page -= 1;
             if (now_page < 1) {
                 now_page = 1;
-                pag_click();
                 return false
             } else {
                 $('.page_this').parent().prev().click();
-                pag_click()
             }
         });
         //下一页
@@ -269,11 +267,9 @@
             now_page += 1;
             if (now_page > parseInt(num_pages)) {
                 now_page -= 1;
-                pag_click();
                 return false
             } else {
                 $('.page_this').parent().next().click();
-                pag_click()
             }
         });
         //切换页

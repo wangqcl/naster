@@ -31,11 +31,21 @@ class scindex(View):
         comid = request.GET.get('comid',None)
         username = request.session.get('webuser', default=None)
         user = Users.objects.get(username=username)
-        paglist = [{"pag": 1}, {"pag": 2}, {"pag": 3}, {"pag": 4}, {"pag": 5}]
-        content = {
-            "compid":comid,
-            "paglist":paglist
-        }
+
+        result = self.seardat(comid)
+        res = result["dat"]
+        if res != False:
+            paginator = Paginator(res, 8)  # 分页功能，一页8条数据
+            userlist = paginator.page(1)
+            content = {
+                "compid": comid,
+                "users": userlist
+            }
+        else:
+            content = {
+                "compid": comid
+            }
+
         if user.state == 0:
             if int(comid) == 0:
                 return render(request, "web/score.html", content)
@@ -54,6 +64,268 @@ class scindex(View):
             error = "访问出错！"
             content = {"info": error}
             return render(request, "web/monweb/info.html", content)
+
+    def seardat(self,comid):
+        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
+        if int(comid) == 0:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return es_result
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_ip = comp.comp_ip  # IP
+                comp_s = comp_ip.split(';')
+                sp_param = {
+                    "bool": {
+                        "should": [
+                        ],
+                        "minimum_should_match": 1
+                    }
+                }
+                for ip in comp_s:
+                    match_phrase = {"match_phrase": {"dst_ip": ip}}
+                    sp_param["bool"]["should"].append(match_phrase)
+                self.es_result = self.sear_info(st_time, ed_time, sp_param)
+                if self.es_result == False:
+                    return False
+                else:
+                    return self.es_result
+            except Exception as err:
+                logger.error('请求出错：{}'.format(err))
+                return False
+
+    def sear_info(self,st_time,ed_time,sp_param):
+        if sp_param == None:
+            body = {
+              "aggs": {
+                "2": {
+                  "terms": {
+                    "field": "src_ip.keyword",
+                    "order": {
+                      "_count": "desc"
+                    },
+                    "size": 10
+                  },
+                  "aggs": {
+                    "3": {
+                      "terms": {
+                        "field": "dst_ip.keyword",
+                        "order": {
+                          "_count": "desc"
+                        },
+                        "size": 10
+                      },
+                      "aggs": {
+                        "4": {
+                          "terms": {
+                            "field": "snort.type.keyword",
+                            "order": {
+                              "_count": "desc"
+                            },
+                            "size": 10
+                          },
+                          "aggs": {
+                            "5": {
+                              "terms": {
+                                "field": "ti.type.keyword",
+                                "order": {
+                                  "_count": "desc"
+                                },
+                                "size": 10
+                              },
+                              "aggs": {
+                                "6": {
+                                  "terms": {
+                                    "field": "waf.type.keyword",
+                                    "order": {
+                                      "_count": "desc"
+                                    },
+                                    "size": 10
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "size": 0,
+              "_source": {
+                "excludes": []
+              },
+              "stored_fields": [
+                "*"
+              ],
+              "script_fields": {},
+              "docvalue_fields": [
+                {
+                  "field": "timestamp",
+                  "format": "date_time"
+                }
+              ],
+              "query": {
+                "bool": {
+                  "must": [],
+                  "filter": [
+                    {
+                      "match_all": {}
+                    },
+                    {
+                      "match_all": {}
+                    },
+                    {
+                      "range": {
+                        "timestamp": {
+                          "format": "strict_date_optional_time",
+                          "gte": st_time,
+                          "lte": ed_time
+                        }
+                      }
+                    }
+                  ],
+                  "should": [],
+                  "must_not": []
+                }
+              }
+            } #全部
+        else:
+            body = {
+              "aggs": {
+                "2": {
+                  "terms": {
+                    "field": "src_ip.keyword",
+                    "order": {
+                      "_count": "desc"
+                    },
+                    "size": 10
+                  },
+                  "aggs": {
+                    "3": {
+                      "terms": {
+                        "field": "dst_ip.keyword",
+                        "order": {
+                          "_count": "desc"
+                        },
+                        "size": 10
+                      },
+                      "aggs": {
+                        "4": {
+                          "terms": {
+                            "field": "snort.type.keyword",
+                            "order": {
+                              "_count": "desc"
+                            },
+                            "size": 10
+                          },
+                          "aggs": {
+                            "5": {
+                              "terms": {
+                                "field": "ti.type.keyword",
+                                "order": {
+                                  "_count": "desc"
+                                },
+                                "size": 10
+                              },
+                              "aggs": {
+                                "6": {
+                                  "terms": {
+                                    "field": "waf.type.keyword",
+                                    "order": {
+                                      "_count": "desc"
+                                    },
+                                    "size": 10
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "size": 0,
+              "_source": {
+                "excludes": []
+              },
+              "stored_fields": [
+                "*"
+              ],
+              "script_fields": {},
+              "docvalue_fields": [
+                {
+                  "field": "timestamp",
+                  "format": "date_time"
+                }
+              ],
+              "query": {
+                "bool": {
+                  "must": [],
+                  "filter": [
+                    {
+                      "match_all": {}
+                    },
+                    {
+                      "match_all": {}
+                    },
+                    sp_param,
+                    {
+                      "range": {
+                        "timestamp": {
+                          "format": "strict_date_optional_time",
+                          "gte": st_time,
+                          "lte": ed_time
+                        }
+                      }
+                    }
+                  ],
+                  "should": [],
+                  "must_not": []
+                }
+              }
+            } #按IP筛选
+        try:
+            ret = es.search(index='total', doc_type='_doc', body=body)
+            re_data = ret['aggregations']['2']['buckets']
+            jsonlist = []
+            for i in re_data:  #多个
+                buck_a = i['3']['buckets']
+                for v in buck_a:   #多个
+                    try:
+                        jsontext_1 = {}
+                        #遍历数据
+                        buck_b = v['4']['buckets']
+                        y_id = v['key']    # 源IP
+                        jsontext_1["y_id"] = y_id
+                        number = v['doc_count']  #数量
+                        jsontext_1["number"] = number
+                        for k in buck_b:
+                            m_ip = k['key']#目的IP
+                            jsontext_1["m_ip"] = m_ip
+                            buck_c = k['5']['buckets']
+                            for c in buck_c:
+                                w_ip = c['key']  # 威胁情报类型
+                                jsontext_1["w_ip"] = w_ip
+                                buck_d = c['6']['buckets']
+                                for d in buck_d:
+                                    waf_ip = d['key']  # waf类型
+                                    jsontext_1["waf_ip"] = waf_ip
+                        jsonlist.append(jsontext_1)
+                    except Exception as err:
+                        logger.error('威胁分类数据报错：{}'.format(err))
+                    continue
+            jstext = {}
+            jstext['dat'] = jsonlist
+            return jstext
+        except Exception as err:
+            logger.error('威胁情报-数据-获取数据出错：{}'.format(err))
+            return False
 
 #主要威胁IP分值
 class mainthr(View):

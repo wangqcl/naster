@@ -607,3 +607,479 @@ common.models.DoesNotExist: Compinfo matching query does not exist.
 [2020-06-24 11:10:13,561] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/attackmap?comid=5 HTTP/1.1" 500 59
 [2020-06-24 11:10:50,755] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap?comid=5 HTTP/1.1" 200 378
 [2020-06-24 11:11:02,233] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 5912
+[2020-06-24 15:20:56,617] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET / HTTP/1.1" 200 4420
+[2020-06-24 15:20:56,970] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /verify HTTP/1.1" 200 1634
+[2020-06-24 15:21:09,916] [basehttp.py:124] [basehttp:log_message] [INFO]- "POST /dologin HTTP/1.1" 302 0
+[2020-06-24 15:21:09,961] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 6878
+[2020-06-24 15:21:12,864] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=5 HTTP/1.1" 200 21553
+[2020-06-24 15:21:12,880] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/js.js HTTP/1.1" 304 0
+[2020-06-24 15:21:12,881] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/css/comon0.css HTTP/1.1" 304 0
+[2020-06-24 15:21:12,881] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/safety.js HTTP/1.1" 200 21912
+[2020-06-24 15:21:13,451] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/visitport?comid=5 HTTP/1.1" 200 122
+[2020-06-24 15:21:13,481] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/fraction HTTP/1.1" 200 268
+[2020-06-24 15:21:13,652] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rqtraffic?comid=5 HTTP/1.1" 200 2371
+[2020-06-24 15:21:13,847] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rstraffic?comid=5 HTTP/1.1" 200 1176
+[2020-06-24 15:21:14,004] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend?comid=5 HTTP/1.1" 200 709
+[2020-06-24 15:21:21,114] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum?comid=5 HTTP/1.1" 200 201
+[2020-06-24 15:21:21,124] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/domain?comid=5 HTTP/1.1" 200 216
+[2020-06-24 15:21:21,129] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/statuscode?comid=5 HTTP/1.1" 200 351
+[2020-06-24 15:21:25,938] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap?comid=5 HTTP/1.1" 200 378
+[2020-06-24 15:21:26,704] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit?comid=5 HTTP/1.1" 200 33
+[2020-06-24 15:21:31,919] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data?comid=5&page=1 HTTP/1.1" 200 402
+[2020-06-24 15:21:36,244] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Invasion?comid=5 HTTP/1.1" 200 13197
+[2020-06-24 15:21:36,260] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/Invasion.js HTTP/1.1" 200 27524
+[2020-06-24 15:21:36,309] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/allattrack?comid=5 HTTP/1.1" 200 14
+[2020-06-24 15:21:36,322] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attrackclass?comid=5 HTTP/1.1" 200 38
+[2020-06-24 15:21:36,325] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Invasion?comid=5&page=1 HTTP/1.1" 200 73
+[2020-06-24 15:21:36,335] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attrackport?comid=5 HTTP/1.1" 200 60
+[2020-06-24 15:21:36,346] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attracktype?comid=5 HTTP/1.1" 200 60
+[2020-06-24 15:21:36,348] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/mainattrack?comid=5 HTTP/1.1" 200 38
+[2020-06-24 15:23:22,480] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Invasion?comid=5 HTTP/1.1" 200 13197
+[2020-06-24 15:23:22,539] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/allattrack?comid=5 HTTP/1.1" 200 14
+[2020-06-24 15:23:22,545] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/mainattrack?comid=5 HTTP/1.1" 200 38
+[2020-06-24 15:23:22,545] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attrackclass?comid=5 HTTP/1.1" 200 38
+[2020-06-24 15:23:22,546] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attracktype?comid=5 HTTP/1.1" 200 60
+[2020-06-24 15:23:22,546] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Invasion?comid=5&page=1 HTTP/1.1" 200 73
+[2020-06-24 15:23:22,556] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attrackport?comid=5 HTTP/1.1" 200 60
+[2020-06-24 15:23:25,739] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 6878
+[2020-06-24 15:23:26,910] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=0 HTTP/1.1" 200 21099
+[2020-06-24 15:23:27,068] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/visitport HTTP/1.1" 200 234
+[2020-06-24 15:23:27,091] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum HTTP/1.1" 200 296
+[2020-06-24 15:23:27,132] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend HTTP/1.1" 200 1412
+[2020-06-24 15:23:27,193] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/domain HTTP/1.1" 200 1237
+[2020-06-24 15:23:27,301] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/statuscode HTTP/1.1" 200 4949
+[2020-06-24 15:23:27,363] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rqtraffic HTTP/1.1" 200 2126
+[2020-06-24 15:23:27,453] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/fraction HTTP/1.1" 200 269
+[2020-06-24 15:23:27,480] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rstraffic HTTP/1.1" 200 2844
+[2020-06-24 15:23:32,935] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data?comid=0&page=1 HTTP/1.1" 200 421
+[2020-06-24 15:23:37,289] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap HTTP/1.1" 200 4915
+[2020-06-24 15:23:38,642] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit HTTP/1.1" 200 37
+[2020-06-24 15:23:45,054] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data?comid=0&page=2 HTTP/1.1" 200 413
+[2020-06-24 15:24:28,958] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=0 HTTP/1.1" 200 21072
+[2020-06-24 15:24:29,041] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/fraction HTTP/1.1" 200 271
+[2020-06-24 15:24:29,140] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/visitport HTTP/1.1" 200 234
+[2020-06-24 15:24:29,160] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum HTTP/1.1" 200 296
+[2020-06-24 15:24:29,226] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend HTTP/1.1" 200 1412
+[2020-06-24 15:24:29,261] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/domain HTTP/1.1" 200 1231
+[2020-06-24 15:24:29,377] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/statuscode HTTP/1.1" 200 4905
+[2020-06-24 15:24:29,379] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/favicon.ico HTTP/1.1" 200 67646
+[2020-06-24 15:24:29,434] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rqtraffic HTTP/1.1" 200 2081
+[2020-06-24 15:24:29,442] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rstraffic HTTP/1.1" 200 2874
+[2020-06-24 15:24:29,446] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit HTTP/1.1" 200 37
+[2020-06-24 15:24:34,680] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data?comid=0&page=1 HTTP/1.1" 200 421
+[2020-06-24 15:24:39,215] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap HTTP/1.1" 200 4912
+[2020-06-24 15:24:39,728] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/scindex?comid=0 HTTP/1.1" 200 13778
+[2020-06-24 15:24:39,751] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/score.js HTTP/1.1" 200 19645
+[2020-06-24 15:25:02,412] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/webthr HTTP/1.1" 200 894
+[2020-06-24 15:25:02,416] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/tithr HTTP/1.1" 200 874
+[2020-06-24 15:25:02,419] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/totalthr HTTP/1.1" 200 776
+[2020-06-24 15:25:02,455] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/mainthr HTTP/1.1" 200 317
+[2020-06-24 15:25:03,007] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/inthr HTTP/1.1" 200 1632
+[2020-06-24 15:25:03,056] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/score_count?comid=0&page=1 HTTP/1.1" 200 1258
+[2020-06-24 15:25:26,259] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thindex?comid=0 HTTP/1.1" 200 13944
+[2020-06-24 15:25:26,678] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/threaten.js HTTP/1.1" 200 25463
+[2020-06-24 15:25:47,311] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thattack HTTP/1.1" 200 412
+[2020-06-24 15:25:47,377] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thactive HTTP/1.1" 200 279
+[2020-06-24 15:25:47,582] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/threat HTTP/1.1" 200 989
+[2020-06-24 15:25:47,665] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/threaten_count?comid=0&page=1 HTTP/1.1" 200 1176
+[2020-06-24 15:25:49,282] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit HTTP/1.1" 200 37
+[2020-06-24 15:25:49,310] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thhit HTTP/1.1" 200 755
+[2020-06-24 15:25:49,523] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thnews HTTP/1.1" 200 947
+[2020-06-24 15:26:26,385] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/safety?comid=0 HTTP/1.1" 200 13909
+[2020-06-24 15:26:26,398] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/css/safety.css HTTP/1.1" 200 8313
+[2020-06-24 15:26:26,456] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attacktrend HTTP/1.1" 200 325
+[2020-06-24 15:26:26,462] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/wafattack HTTP/1.1" 200 1412
+[2020-06-24 15:26:26,466] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/safety_risk HTTP/1.1" 200 222
+[2020-06-24 15:26:26,469] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/safetytop HTTP/1.1" 200 275
+[2020-06-24 15:26:26,470] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackport HTTP/1.1" 200 157
+[2020-06-24 15:26:26,486] [safety.py:1335] [safety:seardat] [ERROR]- 请求出错：Compinfo matching query does not exist.
+[2020-06-24 15:26:26,486] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/wafattackcount
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\safety.py", line 1280, in get
+    res = result['dat']
+TypeError: 'bool' object is not subscriptable
+[2020-06-24 15:26:26,995] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/wafattackcount?comid=0&page=1 HTTP/1.1" 500 16492
+[2020-06-24 15:26:36,185] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/safetymap HTTP/1.1" 200 4914
+[2020-06-24 15:29:22,652] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/safety?comid=0 HTTP/1.1" 200 13909
+[2020-06-24 15:29:22,663] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/safety.js HTTP/1.1" 304 0
+[2020-06-24 15:29:22,712] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackport HTTP/1.1" 200 123
+[2020-06-24 15:29:22,713] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/safety_risk HTTP/1.1" 200 222
+[2020-06-24 15:29:22,716] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attacktrend HTTP/1.1" 200 332
+[2020-06-24 15:29:22,716] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/favicon.ico HTTP/1.1" 200 67646
+[2020-06-24 15:29:22,743] [safety.py:1335] [safety:seardat] [ERROR]- 请求出错：Compinfo matching query does not exist.
+[2020-06-24 15:29:22,744] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/wafattackcount
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\safety.py", line 1280, in get
+    res = result['dat']
+TypeError: 'bool' object is not subscriptable
+[2020-06-24 15:29:22,754] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/wafattackcount?comid=0&page=1 HTTP/1.1" 500 16492
+[2020-06-24 15:29:22,772] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/wafattack HTTP/1.1" 200 1412
+[2020-06-24 15:29:22,907] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/safetytop HTTP/1.1" 200 277
+[2020-06-24 15:29:32,704] [safety.py:442] [safety:sear_info] [ERROR]- 获取地图数据出错：ConnectionTimeout caused by - ReadTimeoutError(HTTPConnectionPool(host='119.90.98.16', port=9200): Read timed out. (read timeout=10))
+[2020-06-24 15:29:32,705] [base.py:152] [base:get_response] [WARNING]- Not Found: /web/safetymap
+[2020-06-24 15:29:32,706] [basehttp.py:124] [basehttp:log_message] [WARNING]- "GET /web/safetymap HTTP/1.1" 404 13
+[2020-06-24 15:32:04,495] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/safety?comid=0 HTTP/1.1" 200 13909
+[2020-06-24 15:32:04,559] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/safety_risk HTTP/1.1" 200 190
+[2020-06-24 15:32:04,561] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attacktrend HTTP/1.1" 200 333
+[2020-06-24 15:32:04,562] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackport HTTP/1.1" 200 157
+[2020-06-24 15:32:04,567] [safety.py:1335] [safety:seardat] [ERROR]- 请求出错：Compinfo matching query does not exist.
+[2020-06-24 15:32:04,568] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/wafattackcount
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\safety.py", line 1280, in get
+    res = result['dat']
+TypeError: 'bool' object is not subscriptable
+[2020-06-24 15:32:04,576] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/wafattackcount?comid=0&page=1 HTTP/1.1" 500 16492
+[2020-06-24 15:32:04,604] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/wafattack HTTP/1.1" 200 1628
+[2020-06-24 15:32:04,747] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/safetytop HTTP/1.1" 200 279
+[2020-06-24 15:32:14,564] [safety.py:442] [safety:sear_info] [ERROR]- 获取地图数据出错：ConnectionTimeout caused by - ReadTimeoutError(HTTPConnectionPool(host='119.90.98.16', port=9200): Read timed out. (read timeout=10))
+[2020-06-24 15:32:14,565] [base.py:152] [base:get_response] [WARNING]- Not Found: /web/safetymap
+[2020-06-24 15:32:14,565] [basehttp.py:124] [basehttp:log_message] [WARNING]- "GET /web/safetymap HTTP/1.1" 404 13
+[2020-06-24 15:32:45,587] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/safety?comid=0 HTTP/1.1" 200 13909
+[2020-06-24 15:32:45,671] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackport HTTP/1.1" 200 157
+[2020-06-24 15:32:45,672] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attacktrend HTTP/1.1" 200 333
+[2020-06-24 15:32:45,676] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/safety_risk HTTP/1.1" 200 190
+[2020-06-24 15:32:45,677] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/favicon.ico HTTP/1.1" 200 67646
+[2020-06-24 15:32:45,700] [safety.py:1335] [safety:seardat] [ERROR]- 请求出错：Compinfo matching query does not exist.
+[2020-06-24 15:32:45,700] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/wafattackcount
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\safety.py", line 1280, in get
+    res = result['dat']
+TypeError: 'bool' object is not subscriptable
+[2020-06-24 15:32:45,735] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/wafattack HTTP/1.1" 200 1628
+[2020-06-24 15:32:45,785] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/wafattackcount?comid=0&page=1 HTTP/1.1" 500 16492
+[2020-06-24 15:32:45,801] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/safetytop HTTP/1.1" 200 279
+[2020-06-24 15:32:55,650] [safety.py:442] [safety:sear_info] [ERROR]- 获取地图数据出错：ConnectionTimeout caused by - ReadTimeoutError(HTTPConnectionPool(host='119.90.98.16', port=9200): Read timed out. (read timeout=10))
+[2020-06-24 15:32:55,650] [base.py:152] [base:get_response] [WARNING]- Not Found: /web/safetymap
+[2020-06-24 15:32:55,651] [basehttp.py:124] [basehttp:log_message] [WARNING]- "GET /web/safetymap HTTP/1.1" 404 13
+[2020-06-24 15:35:13,976] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/safety?comid=0 HTTP/1.1" 200 13909
+[2020-06-24 15:35:13,986] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/css/safety.css HTTP/1.1" 304 0
+[2020-06-24 15:35:36,646] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attacktrend HTTP/1.1" 200 320
+[2020-06-24 15:35:36,646] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackport HTTP/1.1" 200 157
+[2020-06-24 15:35:36,646] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/safety_risk HTTP/1.1" 200 190
+[2020-06-24 15:35:36,650] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/favicon.ico HTTP/1.1" 200 67646
+[2020-06-24 15:35:36,655] [safety.py:1336] [safety:seardat] [ERROR]- 请求出错：Compinfo matching query does not exist.
+[2020-06-24 15:35:36,655] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/wafattackcount
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\safety.py", line 1281, in get
+    res = result['dat']
+TypeError: 'bool' object is not subscriptable
+[2020-06-24 15:35:36,692] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/wafattack HTTP/1.1" 200 1629
+[2020-06-24 15:35:36,742] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/wafattackcount?comid=0&page=1 HTTP/1.1" 500 16492
+[2020-06-24 15:35:36,773] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/safetytop HTTP/1.1" 200 277
+[2020-06-24 15:35:46,330] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/safetymap HTTP/1.1" 200 4908
+[2020-06-24 15:37:16,796] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/safety?comid=0 HTTP/1.1" 200 13909
+[2020-06-24 15:37:16,881] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/safety_risk HTTP/1.1" 200 158
+[2020-06-24 15:37:16,881] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackport HTTP/1.1" 200 157
+[2020-06-24 15:37:16,886] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/favicon.ico HTTP/1.1" 200 67646
+[2020-06-24 15:37:16,891] [safety.py:1335] [safety:seardat] [ERROR]- 请求出错：Compinfo matching query does not exist.
+[2020-06-24 15:37:16,891] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/wafattackcount
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\safety.py", line 1280, in get
+    res = result['dat']
+TypeError: 'bool' object is not subscriptable
+[2020-06-24 15:37:16,898] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attacktrend HTTP/1.1" 200 320
+[2020-06-24 15:37:16,953] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/wafattack HTTP/1.1" 200 1631
+[2020-06-24 15:37:16,985] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/wafattackcount?comid=0&page=1 HTTP/1.1" 500 16492
+[2020-06-24 15:37:17,049] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/safetytop HTTP/1.1" 200 278
+[2020-06-24 15:37:26,883] [safety.py:442] [safety:sear_info] [ERROR]- 获取地图数据出错：ConnectionTimeout caused by - ReadTimeoutError(HTTPConnectionPool(host='119.90.98.16', port=9200): Read timed out. (read timeout=10))
+[2020-06-24 15:37:26,883] [base.py:152] [base:get_response] [WARNING]- Not Found: /web/safetymap
+[2020-06-24 15:37:26,884] [basehttp.py:124] [basehttp:log_message] [WARNING]- "GET /web/safetymap HTTP/1.1" 404 13
+[2020-06-24 15:39:54,673] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=0 HTTP/1.1" 200 21072
+[2020-06-24 15:39:54,688] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/safety.js HTTP/1.1" 304 0
+[2020-06-24 15:40:15,139] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/visitport HTTP/1.1" 200 232
+[2020-06-24 15:40:15,182] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum HTTP/1.1" 200 296
+[2020-06-24 15:40:15,277] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend HTTP/1.1" 200 1632
+[2020-06-24 15:40:15,425] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/statuscode HTTP/1.1" 200 4723
+[2020-06-24 15:40:15,504] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit HTTP/1.1" 200 38
+[2020-06-24 15:40:15,611] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rstraffic HTTP/1.1" 200 2785
+[2020-06-24 15:40:15,772] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/fraction HTTP/1.1" 200 257
+[2020-06-24 15:40:16,348] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/domain HTTP/1.1" 200 1004
+[2020-06-24 15:40:17,509] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rqtraffic HTTP/1.1" 200 2491
+[2020-06-24 15:40:22,745] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data?comid=0&page=1 HTTP/1.1" 200 424
+[2020-06-24 15:40:27,949] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap HTTP/1.1" 200 5674
+[2020-06-24 15:41:06,454] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 6878
+[2020-06-24 17:16:12,497] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /myadmin/logout HTTP/1.1" 302 0
+[2020-06-24 17:16:12,505] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /myadmin/login HTTP/1.1" 200 2283
+[2020-06-24 17:16:12,557] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /myadmin/verify HTTP/1.1" 200 1713
+[2020-06-24 17:16:15,659] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET / HTTP/1.1" 200 4420
+[2020-06-24 17:16:15,703] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /verify HTTP/1.1" 200 1776
+[2020-06-24 17:16:29,922] [basehttp.py:124] [basehttp:log_message] [INFO]- "POST /dologin HTTP/1.1" 302 0
+[2020-06-24 17:16:29,958] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 6878
+[2020-06-24 17:16:36,349] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=0 HTTP/1.1" 200 21979
+[2020-06-24 17:16:36,366] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/safety.js HTTP/1.1" 304 0
+[2020-06-24 17:16:36,481] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/fraction HTTP/1.1" 200 258
+[2020-06-24 17:16:36,513] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/visitport HTTP/1.1" 200 230
+[2020-06-24 17:16:36,574] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum HTTP/1.1" 200 296
+[2020-06-24 17:16:36,649] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/domain HTTP/1.1" 200 1335
+[2020-06-24 17:16:36,672] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend HTTP/1.1" 200 1784
+[2020-06-24 17:16:36,755] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/statuscode HTTP/1.1" 200 4284
+[2020-06-24 17:16:36,872] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rqtraffic HTTP/1.1" 200 2817
+[2020-06-24 17:16:36,901] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rstraffic HTTP/1.1" 200 2673
+[2020-06-24 17:16:41,494] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data?comid=0&page=1 HTTP/1.1" 200 424
+[2020-06-24 17:16:46,963] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap HTTP/1.1" 200 5307
+[2020-06-24 17:16:48,801] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit HTTP/1.1" 200 38
+[2020-06-24 17:17:47,282] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data?comid=0&page=2 HTTP/1.1" 200 410
+[2020-06-24 17:18:36,642] [basehttp.py:124] [basehttp:log_message] [INFO]- "POST /web/getnum HTTP/1.1" 200 88
+[2020-06-24 17:20:36,735] [basehttp.py:124] [basehttp:log_message] [INFO]- "POST /web/getnum HTTP/1.1" 200 88
+[2020-06-24 17:22:48,103] [basehttp.py:124] [basehttp:log_message] [INFO]- "POST /web/getnum HTTP/1.1" 200 88
+[2020-06-24 17:24:01,118] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=0 HTTP/1.1" 200 21979
+[2020-06-24 17:24:01,279] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum HTTP/1.1" 200 280
+[2020-06-24 17:24:01,308] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/visitport HTTP/1.1" 200 230
+[2020-06-24 17:24:01,375] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/domain HTTP/1.1" 200 1219
+[2020-06-24 17:24:01,472] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend HTTP/1.1" 200 1784
+[2020-06-24 17:24:01,593] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/statuscode HTTP/1.1" 200 4973
+[2020-06-24 17:24:01,641] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rqtraffic HTTP/1.1" 200 2389
+[2020-06-24 17:24:01,644] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/favicon.ico HTTP/1.1" 200 67646
+[2020-06-24 17:24:01,716] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rstraffic HTTP/1.1" 200 2293
+[2020-06-24 17:24:01,847] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/fraction HTTP/1.1" 200 260
+[2020-06-24 17:24:12,790] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit HTTP/1.1" 200 38
+[2020-06-24 17:24:15,427] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap HTTP/1.1" 200 4914
+[2020-06-24 17:24:19,536] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data?comid=0&page=1 HTTP/1.1" 200 424
+[2020-06-24 17:24:23,242] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/scindex?comid=0 HTTP/1.1" 200 16985
+[2020-06-24 17:24:23,327] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/totalthr HTTP/1.1" 200 776
+[2020-06-24 17:24:23,329] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/webthr HTTP/1.1" 200 893
+[2020-06-24 17:24:23,330] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/mainthr HTTP/1.1" 200 317
+[2020-06-24 17:24:23,330] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/tithr HTTP/1.1" 200 874
+[2020-06-24 17:24:23,337] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/score_count?comid=0&page=1 HTTP/1.1" 200 1355
+[2020-06-24 17:24:23,548] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/inthr HTTP/1.1" 200 1632
+[2020-06-24 17:24:38,746] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/score_count?comid=0&page=2 HTTP/1.1" 200 1038
+[2020-06-24 17:24:39,875] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/score_count?comid=0&page=1 HTTP/1.1" 200 1355
+[2020-06-24 17:30:42,093] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/scindex?comid=0 HTTP/1.1" 200 16985
+[2020-06-24 17:30:42,169] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/totalthr HTTP/1.1" 200 761
+[2020-06-24 17:30:42,172] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/favicon.ico HTTP/1.1" 200 67646
+[2020-06-24 17:30:42,178] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/webthr HTTP/1.1" 200 876
+[2020-06-24 17:30:42,182] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/tithr HTTP/1.1" 200 858
+[2020-06-24 17:30:42,188] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/score_count?comid=0&page=1 HTTP/1.1" 200 1355
+[2020-06-24 17:30:42,263] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/inthr HTTP/1.1" 200 1632
+[2020-06-24 17:30:42,274] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/mainthr HTTP/1.1" 200 317
+[2020-06-24 17:30:46,726] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/score_count?comid=0&page=2 HTTP/1.1" 200 1038
+[2020-06-24 17:30:47,519] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/score_count?comid=0&page=3 HTTP/1.1" 200 761
+[2020-06-24 17:30:48,714] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/score_count?comid=0&page=4 HTTP/1.1" 200 761
+[2020-06-24 17:30:51,546] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/score_count?comid=0&page=5 HTTP/1.1" 200 1392
+[2020-06-24 17:30:52,881] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/score_count?comid=0&page=6 HTTP/1.1" 200 757
+[2020-06-24 17:30:58,832] [threaten.py:254] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-24 17:30:58,832] [threaten.py:254] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-24 17:30:58,833] [threaten.py:254] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-24 17:30:58,833] [threaten.py:254] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-24 17:30:58,833] [threaten.py:254] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-24 17:30:58,834] [threaten.py:254] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-24 17:30:58,836] [threaten.py:254] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-24 17:30:58,836] [threaten.py:254] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-24 17:30:58,841] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thindex?comid=0 HTTP/1.1" 200 14647
+[2020-06-24 17:30:58,924] [threaten.py:1477] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-24 17:30:58,924] [threaten.py:1477] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-24 17:30:58,925] [threaten.py:1477] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-24 17:30:58,926] [threaten.py:1477] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-24 17:30:58,926] [threaten.py:1477] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-24 17:30:58,926] [threaten.py:1477] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-24 17:30:58,927] [threaten.py:1477] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-24 17:30:58,927] [threaten.py:1477] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-24 17:30:58,929] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/threaten_count?comid=0&page=1 HTTP/1.1" 200 1258
+[2020-06-24 17:30:58,954] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thhit HTTP/1.1" 200 742
+[2020-06-24 17:30:59,143] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thactive HTTP/1.1" 200 275
+[2020-06-24 17:30:59,144] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thattack HTTP/1.1" 200 412
+[2020-06-24 17:30:59,273] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/threat HTTP/1.1" 200 981
+[2020-06-24 17:31:10,226] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit HTTP/1.1" 200 38
+[2020-06-24 17:31:10,579] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thnews HTTP/1.1" 200 939
+[2020-06-24 17:31:15,222] [threaten.py:1477] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-24 17:31:15,222] [threaten.py:1477] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-24 17:31:15,222] [threaten.py:1477] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-24 17:31:15,223] [threaten.py:1477] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-24 17:31:15,223] [threaten.py:1477] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-24 17:31:15,223] [threaten.py:1477] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-24 17:31:15,224] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/threaten_count?comid=0&page=NaN HTTP/1.1" 200 1151
+[2020-06-24 17:32:01,482] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 6878
+[2020-06-24 17:32:09,209] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=0 HTTP/1.1" 200 21979
+[2020-06-24 17:32:09,368] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/visitport HTTP/1.1" 200 232
+[2020-06-24 17:32:09,384] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum HTTP/1.1" 200 296
+[2020-06-24 17:32:09,483] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/domain HTTP/1.1" 200 1256
+[2020-06-24 17:32:09,526] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend HTTP/1.1" 200 1822
+[2020-06-24 17:32:09,574] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit HTTP/1.1" 200 38
+[2020-06-24 17:32:09,675] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/statuscode HTTP/1.1" 200 4282
+[2020-06-24 17:32:09,735] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rqtraffic HTTP/1.1" 200 2929
+[2020-06-24 17:32:09,779] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rstraffic HTTP/1.1" 200 2241
+[2020-06-24 17:32:10,148] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/fraction HTTP/1.1" 200 267
+[2020-06-24 17:32:16,261] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data?comid=0&page=1 HTTP/1.1" 200 424
+[2020-06-24 17:32:21,902] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap HTTP/1.1" 200 5101
+[2020-06-24 17:32:25,075] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data?comid=0&page=2 HTTP/1.1" 200 410
+[2020-06-24 17:32:26,977] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data?comid=0&page=3 HTTP/1.1" 200 409
+[2020-06-24 17:32:26,978] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data?comid=0&page=4 HTTP/1.1" 200 153
+[2020-06-24 17:32:27,322] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/scindex?comid=0 HTTP/1.1" 200 16985
+[2020-06-24 17:32:27,479] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/inthr HTTP/1.1" 200 1632
+[2020-06-24 17:32:27,506] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/score_count?comid=0&page=1 HTTP/1.1" 200 1355
+[2020-06-24 17:32:27,632] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/webthr HTTP/1.1" 200 894
+[2020-06-24 17:32:27,637] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/tithr HTTP/1.1" 200 875
+[2020-06-24 17:32:27,657] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/mainthr HTTP/1.1" 200 317
+[2020-06-24 17:32:27,672] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/totalthr HTTP/1.1" 200 775
+[2020-06-24 17:34:21,506] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/scindex?comid=0 HTTP/1.1" 200 15450
+[2020-06-24 17:34:21,581] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/mainthr HTTP/1.1" 200 317
+[2020-06-24 17:34:21,593] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/totalthr HTTP/1.1" 200 776
+[2020-06-24 17:34:21,600] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/webthr HTTP/1.1" 200 894
+[2020-06-24 17:34:21,609] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/tithr HTTP/1.1" 200 875
+[2020-06-24 17:34:21,613] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/score_count?comid=0&page=1 HTTP/1.1" 200 1355
+[2020-06-24 17:34:21,627] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/favicon.ico HTTP/1.1" 200 67646
+[2020-06-24 17:34:21,690] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/inthr HTTP/1.1" 200 1632
+[2020-06-24 17:35:22,759] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/score_count?comid=0&page=2 HTTP/1.1" 200 1038
+[2020-06-24 17:36:10,642] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 6878
+[2020-06-24 17:36:16,981] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=5 HTTP/1.1" 200 22205
+[2020-06-24 17:36:17,081] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/visitport?comid=5 HTTP/1.1" 200 121
+[2020-06-24 17:36:17,089] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/fraction HTTP/1.1" 200 263
+[2020-06-24 17:36:17,147] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rqtraffic?comid=5 HTTP/1.1" 200 1310
+[2020-06-24 17:36:17,164] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rstraffic?comid=5 HTTP/1.1" 200 1193
+[2020-06-24 17:36:17,748] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend?comid=5 HTTP/1.1" 200 777
+[2020-06-24 17:36:20,380] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum?comid=5 HTTP/1.1" 200 224
+[2020-06-24 17:36:20,388] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/domain?comid=5 HTTP/1.1" 200 239
+[2020-06-24 17:36:20,647] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/statuscode?comid=5 HTTP/1.1" 200 528
+[2020-06-24 17:36:23,974] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data?comid=5&page=1 HTTP/1.1" 200 402
+[2020-06-24 17:36:28,305] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap?comid=5 HTTP/1.1" 200 285
+[2020-06-24 17:36:29,890] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit?comid=5 HTTP/1.1" 200 34
+[2020-06-24 17:36:45,230] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/scindex?comid=5 HTTP/1.1" 200 14204
+[2020-06-24 17:36:45,246] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/safety.js HTTP/1.1" 304 0
+[2020-06-24 17:36:45,302] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/totalthr?comid=5 HTTP/1.1" 200 245
+[2020-06-24 17:36:45,319] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/tithr?comid=5 HTTP/1.1" 200 258
+[2020-06-24 17:36:45,319] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/score_count?comid=5&page=1 HTTP/1.1" 200 766
+[2020-06-24 17:36:45,323] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/mainthr?comid=5 HTTP/1.1" 200 260
+[2020-06-24 17:36:45,418] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/inthr?comid=5 HTTP/1.1" 200 1581
+[2020-06-24 17:36:45,426] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/webthr?comid=5 HTTP/1.1" 200 238
+[2020-06-24 17:37:10,320] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/score_count?comid=5&page=2 HTTP/1.1" 200 515
+[2020-06-24 17:37:11,936] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/score_count?comid=5&page=1 HTTP/1.1" 200 766
+[2020-06-24 17:37:27,494] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thindex?comid=5 HTTP/1.1" 200 14086
+[2020-06-24 17:37:27,683] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thactive?comid=5 HTTP/1.1" 200 267
+[2020-06-24 17:37:27,686] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit?comid=5 HTTP/1.1" 200 34
+[2020-06-24 17:37:27,728] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thnews?comid=5 HTTP/1.1" 200 1017
+[2020-06-24 17:37:27,890] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thattack?comid=5 HTTP/1.1" 200 219
+[2020-06-24 17:37:27,969] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/threaten_count?comid=5&page=1 HTTP/1.1" 200 1218
+[2020-06-24 17:37:28,597] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/threat?comid=5 HTTP/1.1" 200 979
+[2020-06-24 17:37:28,605] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thhit?comid=5 HTTP/1.1" 200 502
+[2020-06-24 17:37:34,724] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/scindex?comid=5 HTTP/1.1" 200 14204
+[2020-06-24 17:37:34,786] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/tithr?comid=5 HTTP/1.1" 200 258
+[2020-06-24 17:37:34,792] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/totalthr?comid=5 HTTP/1.1" 200 245
+[2020-06-24 17:37:34,792] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/score_count?comid=5&page=1 HTTP/1.1" 200 766
+[2020-06-24 17:37:34,792] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/mainthr?comid=5 HTTP/1.1" 200 260
+[2020-06-24 17:37:34,792] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/webthr?comid=5 HTTP/1.1" 200 238
+[2020-06-24 17:37:34,793] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/inthr?comid=5 HTTP/1.1" 200 1581
+[2020-06-24 17:37:39,178] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thindex?comid=5 HTTP/1.1" 200 14086
+[2020-06-24 17:37:39,239] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thactive?comid=5 HTTP/1.1" 200 267
+[2020-06-24 17:37:39,240] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thattack?comid=5 HTTP/1.1" 200 219
+[2020-06-24 17:37:39,505] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/threat?comid=5 HTTP/1.1" 200 979
+[2020-06-24 17:37:39,506] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thhit?comid=5 HTTP/1.1" 200 502
+[2020-06-24 17:37:39,531] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/threaten_count?comid=5&page=1 HTTP/1.1" 200 1218
+[2020-06-24 17:37:50,525] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit?comid=5 HTTP/1.1" 200 34
+[2020-06-24 17:37:50,555] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thnews?comid=5 HTTP/1.1" 200 1017
+[2020-06-24 17:37:58,919] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/threaten_count?comid=5&page=2 HTTP/1.1" 200 1119
+[2020-06-24 17:37:59,839] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/threaten_count?comid=5&page=1 HTTP/1.1" 200 1218
+[2020-06-24 17:41:02,420] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thindex?comid=5 HTTP/1.1" 200 14086
+[2020-06-24 17:41:02,431] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/js.js HTTP/1.1" 304 0
+[2020-06-24 17:41:02,431] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/css/comon0.css HTTP/1.1" 304 0
+[2020-06-24 17:41:02,495] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thhit?comid=5 HTTP/1.1" 200 502
+[2020-06-24 17:41:02,502] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thattack?comid=5 HTTP/1.1" 200 219
+[2020-06-24 17:41:02,505] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/favicon.ico HTTP/1.1" 200 67646
+[2020-06-24 17:41:02,532] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thactive?comid=5 HTTP/1.1" 200 267
+[2020-06-24 17:41:02,533] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/threaten_count?comid=5&page=1 HTTP/1.1" 200 1218
+[2020-06-24 17:41:02,534] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/threat?comid=5 HTTP/1.1" 200 979
+[2020-06-24 17:41:13,780] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit?comid=5 HTTP/1.1" 200 34
+[2020-06-24 17:41:13,838] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thnews?comid=5 HTTP/1.1" 200 1017
+[2020-06-24 17:41:14,018] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thindex?comid=5 HTTP/1.1" 200 14086
+[2020-06-24 17:41:14,056] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/css/comon0.css HTTP/1.1" 304 0
+[2020-06-24 17:41:14,058] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/js.js HTTP/1.1" 304 0
+[2020-06-24 17:41:14,058] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/safety.js HTTP/1.1" 200 21912
+[2020-06-24 17:41:14,059] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/threaten.js HTTP/1.1" 200 25451
+[2020-06-24 17:41:14,174] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thattack?comid=5 HTTP/1.1" 200 219
+[2020-06-24 17:41:14,175] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thhit?comid=5 HTTP/1.1" 200 502
+[2020-06-24 17:41:14,186] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit?comid=5 HTTP/1.1" 200 34
+[2020-06-24 17:41:14,187] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thactive?comid=5 HTTP/1.1" 200 267
+[2020-06-24 17:41:14,192] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/threat?comid=5 HTTP/1.1" 200 979
+[2020-06-24 17:41:14,214] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/threaten_count?comid=5&page=1 HTTP/1.1" 200 1218
+[2020-06-24 17:41:14,216] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/threaten/thnews?comid=5 HTTP/1.1" 200 1017
+[2020-06-24 17:41:46,341] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=5 HTTP/1.1" 200 22205
+[2020-06-24 17:41:46,409] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/fraction
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 23, in wrapper
+    comp = Compinfo.objects.get(id=comid)
+  File "E:\project_env\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\db\models\query.py", line 380, in get
+    self.model._meta.object_name
+common.models.DoesNotExist: Compinfo matching query does not exist.
+[2020-06-24 17:41:46,427] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum?comid=5 HTTP/1.1" 200 224
+[2020-06-24 17:41:46,434] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/visitport?comid=5 HTTP/1.1" 200 121
+[2020-06-24 17:41:46,448] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rqtraffic?comid=5 HTTP/1.1" 200 1463
+[2020-06-24 17:41:46,450] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/domain?comid=5 HTTP/1.1" 200 239
+[2020-06-24 17:41:46,470] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/statuscode?comid=5 HTTP/1.1" 200 716
+[2020-06-24 17:41:46,479] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend?comid=5 HTTP/1.1" 200 805
+[2020-06-24 17:41:46,492] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rstraffic?comid=5 HTTP/1.1" 200 1196
+[2020-06-24 17:41:46,493] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit?comid=5 HTTP/1.1" 200 34
+[2020-06-24 17:41:46,536] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data?comid=5&page=1 HTTP/1.1" 200 402
+[2020-06-24 17:41:46,554] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/fraction HTTP/1.1" 500 16871
+[2020-06-24 17:41:57,879] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap?comid=5 HTTP/1.1" 200 285
+[2020-06-24 17:41:58,984] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data?comid=5&page=2 HTTP/1.1" 200 395

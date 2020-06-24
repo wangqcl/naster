@@ -32,26 +32,347 @@ class index(View):
         username = request.session.get('webuser',default=None)  # 获取登录用户名
         user = Users.objects.get(username=username)
         pIndex = request.GET.get('comid', None)
+
+        result = self.seardat(pIndex)
+        res = result["dat"]
+        if res != False:
+            paginator = Paginator(res, 4)  # 分页功能，一页8条数据
+            userlist = paginator.page(1)
+            content = {
+                "compid": pIndex,
+                "users": userlist
+            }
+        else:
+            content = {
+                "compid": pIndex
+            }
+
         if user.state == 0:
             if int(pIndex) == 0:
-                content = {
-                    "compid": pIndex
-                }
                 return render(request,"web/monit.html",content)
             else:
-                content = {
-                    "compid":pIndex
-                }
                 return render(request, "web/usermon/qmonit.html",content)   #只查询此用户下的数据
         elif user.state == 1 :
-                content = {
-                    "compid": pIndex
-                }
                 return render(request,"web/usermon/qmonit.html",content)  #用户的监控首页
         else:
             error = "访问出错！"
             content = {"info":error}
             return render(request, "web/monweb/info.html",content)
+
+    def seardat(self,comid):
+        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
+        if int(comid) == 0:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return es_result
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_ip = comp.comp_ip  # IP
+                comp_s = comp_ip.split(';')
+                sp_param = {
+                    "bool": {
+                        "should": [
+                        ],
+                        "minimum_should_match": 1
+                    }
+                }
+                for ip in comp_s:
+                    match_phrase = {"match_phrase": {"destination.ip": ip}}
+                    sp_param["bool"]["should"].append(match_phrase)
+                self.es_result = self.sear_info(st_time, ed_time, sp_param)
+                if self.es_result == False:
+                    return False
+                else:
+                    return self.es_result
+            except Exception as err:
+                logger.error('请求出错：{}'.format(err))
+                return False
+
+    def sear_info(self, st_time, ed_time,sp_param):
+        if sp_param == None:
+            body = {
+              "aggs": {
+                "3": {
+                  "terms": {
+                    "field": "source.ip",
+                    "order": {
+                      "1": "desc"
+                    },
+                    "size": 5
+                  },
+                  "aggs": {
+                    "1": {
+                      "sum": {
+                        "field": "source.bytes"
+                      }
+                    },
+                    "4": {
+                      "terms": {
+                        "field": "destination.ip",
+                        "order": {
+                          "1": "desc"
+                        },
+                        "size": 5
+                      },
+                      "aggs": {
+                        "1": {
+                          "sum": {
+                            "field": "source.bytes"
+                          }
+                        },
+                        "2": {
+                          "sum": {
+                            "field": "destination.bytes"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "size": 0,
+              "_source": {
+                "excludes": []
+              },
+              "stored_fields": [
+                "*"
+              ],
+              "script_fields": {},
+              "docvalue_fields": [
+                {
+                  "field": "@timestamp",
+                  "format": "date_time"
+                },
+                {
+                  "field": "event.created",
+                  "format": "date_time"
+                },
+                {
+                  "field": "event.end",
+                  "format": "date_time"
+                },
+                {
+                  "field": "event.start",
+                  "format": "date_time"
+                },
+                {
+                  "field": "file.accessed",
+                  "format": "date_time"
+                },
+                {
+                  "field": "file.created",
+                  "format": "date_time"
+                },
+                {
+                  "field": "file.ctime",
+                  "format": "date_time"
+                },
+                {
+                  "field": "file.mtime",
+                  "format": "date_time"
+                },
+                {
+                  "field": "process.start",
+                  "format": "date_time"
+                },
+                {
+                  "field": "tls.client_certificate.not_after",
+                  "format": "date_time"
+                },
+                {
+                  "field": "tls.client_certificate.not_before",
+                  "format": "date_time"
+                },
+                {
+                  "field": "tls.server_certificate.not_after",
+                  "format": "date_time"
+                },
+                {
+                  "field": "tls.server_certificate.not_before",
+                  "format": "date_time"
+                }
+              ],
+              "query": {
+                "bool": {
+                  "must": [],
+                  "filter": [
+                    {
+                      "match_all": {}
+                    },
+                    {
+                      "match_all": {}
+                    },
+                    {
+                      "match_all": {}
+                    },
+                    {
+                      "range": {
+                        "@timestamp": {
+                          "format": "strict_date_optional_time",
+                          "gte": st_time,
+                          "lte": ed_time
+                        }
+                      }
+                    }
+                  ],
+                  "should": [],
+                  "must_not": []
+                }
+              }
+    }
+        else:
+            body = {
+                "aggs": {
+                    "3": {
+                        "terms": {
+                            "field": "source.ip",
+                            "order": {
+                                "1": "desc"
+                            },
+                            "size": 5
+                        },
+                        "aggs": {
+                            "1": {
+                                "sum": {
+                                    "field": "source.bytes"
+                                }
+                            },
+                            "4": {
+                                "terms": {
+                                    "field": "destination.ip",
+                                    "order": {
+                                        "1": "desc"
+                                    },
+                                    "size": 5
+                                },
+                                "aggs": {
+                                    "1": {
+                                        "sum": {
+                                            "field": "source.bytes"
+                                        }
+                                    },
+                                    "2": {
+                                        "sum": {
+                                            "field": "destination.bytes"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "size": 0,
+                "_source": {
+                    "excludes": []
+                },
+                "stored_fields": [
+                    "*"
+                ],
+                "script_fields": {},
+                "docvalue_fields": [
+                    {
+                        "field": "@timestamp",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "event.created",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "event.end",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "event.start",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "file.accessed",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "file.created",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "file.ctime",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "file.mtime",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "process.start",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "tls.client_certificate.not_after",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "tls.client_certificate.not_before",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "tls.server_certificate.not_after",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "tls.server_certificate.not_before",
+                        "format": "date_time"
+                    }
+                ],
+                "query": {
+                    "bool": {
+                        "must": [],
+                        "filter": [
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            sp_param,
+                            {
+                                "range": {
+                                    "@timestamp": {
+                                        "format": "strict_date_optional_time",
+                                        "gte": st_time,
+                                        "lte": ed_time
+                                    }
+                                }
+                            }
+                        ],
+                        "should": [],
+                        "must_not": []
+                    }
+                }
+            }
+        try:
+            ret = es.search(index='packetbeat-*', doc_type='_doc', body=body)
+            re_data = ret['aggregations']['3']['buckets']
+            jsontext,datalist={},[]
+            for v in re_data:
+                da_list = v["4"]["buckets"]
+                for i in da_list:
+                    data = {}
+                    data["yip"] = v["key"]  # 源IP
+                    data["mip"] = i["key"]  # 目的IP
+                    data["ydat"] = format(i["1"]["value"]/1048576, '.2f')  #源数据
+                    data["mdat"] = format(i["2"]["value"]/1048576, '.2f')   #回应数据
+                    datalist.append(data)
+            jsontext['edtime'] = ed_time
+            jsontext['dat'] = datalist
+            return jsontext
+        except:
+            errinfo = {"error": "数据请求失败！"}
+            return HttpResponse(errinfo)
 
 #请求数量
 class Main_getnum(View):
