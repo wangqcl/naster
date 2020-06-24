@@ -56,20 +56,20 @@
                         <tbody id="tbody"></tbody>
                     </table>
 
-                    <div style="text-align: center;margin: 5% 0;">
-                        <form id="page" action="{% url 'monit_score_scindex' %}?comid={{ compid }}">
+                    <div style="text-align: center;margin: 0;">
+                        <form id="page" action="{% url 'monit_score_count' %}?comid={{ compid }}">
                             <a class="first_page">
                                 <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">上一页</button>
                             </a>
 
-                            {% for num in users.paginator.page_range %}
+                            {% for num in paglist %}
                                 <a class="now_page">
-                                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">{{ num }}</button>
+                                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">{{ num.pag }}</button>
                                 </a>
                             {% endfor %}
 
                             <button id="num_pages" type="button" class="layui-btn layui-btn-primary layui-btn-sm">
-                                共{{ users.paginator.num_pages }}页
+                                共5页
                             </button>
 
                             <a class="last_page">

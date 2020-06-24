@@ -13,7 +13,7 @@ def check_user_request(func):
         user = Users.objects.get(username=username)
         status = int(user.state)
         userid = user.id
-        comid = int(req.GET.get('comid'))
+        comid = int(req.GET.get('comid',1))
         if status == 0:
             return func(*args, **kwargs)
         if comid != 0:

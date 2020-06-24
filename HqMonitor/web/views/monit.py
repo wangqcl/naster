@@ -8,6 +8,12 @@ from django.views.generic import View
 from django.conf import settings
 from . import check_user_request
 
+import logging
+from django.http import JsonResponse
+from django.core.paginator import Paginator, PageNotAnInteger, InvalidPage
+
+logger = logging.getLogger('log')
+
 '''配置es'''
 es = Elasticsearch(
     settings.IP_LOCAL,
@@ -2758,48 +2764,73 @@ class Hit(View):
         except:
             errinfo = {"error": "数据请求失败！"}
             return HttpResponse(errinfo)
-
 #流量数据
 class Source_data(View):
     @check_user_request
     def get(self, request):
-        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
-        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
-        # 获取
         comid = request.GET.get('comid', None)
-        if comid == None:  # 是否携带用户信息
+        result = self.seardat(comid)
+        res = result['dat']
+        paginator = Paginator(res, 4)  # 分页功能，一页8条数据
+        if request.is_ajax() == False:
+            userlist = paginator.page(1)
+            content = {
+                "compid": comid,
+                "users": userlist
+            }
+            return JsonResponse(content)
+            # Ajax数据交互
+        if request.is_ajax():
+            # print("调用了ajax请求")
+            page = request.GET.get('page')
+            try:
+                # userlist = paginator.page(1)
+                users = paginator.page(page)
+            # 如果页数不是整数，返回第一页
+            except PageNotAnInteger:
+                users = paginator.page(1)
+            # 如果页数不存在/不合法，返回最后一页
+            except InvalidPage:
+                users = paginator.page(paginator.num_pages)
+            user_li = list(users)  # .object_list.values()
+            # 分别为是否有上一页false/true，是否有下一页false/true，总共多少页，当前页面的数据
+            result = {'has_previous': users.has_previous(),
+                      'has_next': users.has_next(),
+                      'num_pages': users.paginator.num_pages,
+                      'user_li': user_li,
+                      }
+            return JsonResponse(result)
+
+    def seardat(self,comid):
+        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
+        if int(comid) == 0:  # 是否携带用户信息
             sp_param = None
             es_result = self.sear_info(st_time, ed_time, sp_param)
-            return HttpResponse(es_result)
+            return es_result
         else:
             try:
                 comp = Compinfo.objects.get(id=comid)
                 comp_ip = comp.comp_ip  # IP
                 comp_s = comp_ip.split(';')
                 sp_param = {
-                    "bool":
-                        {
-                            "should":
-                                [
-
-                                ],
-                            "minimum_should_match": 1
-                        }
+                    "bool": {
+                        "should": [
+                        ],
+                        "minimum_should_match": 1
+                    }
                 }
                 for ip in comp_s:
                     match_phrase = {"match_phrase": {"destination.ip": ip}}
                     sp_param["bool"]["should"].append(match_phrase)
-                es_result = self.sear_info(st_time, ed_time, sp_param)
-                return HttpResponse(es_result)
+                self.es_result = self.sear_info(st_time, ed_time, sp_param)
+                if self.es_result == False:
+                    return False
+                else:
+                    return self.es_result
             except Exception as err:
-                print(err)
-                return HttpResponse("Error")
-        # es_result = self.sear_info(st_time, ed_time)
-        # return HttpResponse(es_result)
-
-    def post(self, request):
-        info = {"请求失败！"}
-        return HttpResponse(info)
+                logger.error('请求出错：{}'.format(err))
+                return False
 
     def sear_info(self, st_time, ed_time,sp_param):
         if sp_param == None:
@@ -3072,15 +3103,15 @@ class Source_data(View):
             for v in re_data:
                 da_list = v["4"]["buckets"]
                 for i in da_list:
-                    data = []
-                    data.append(v["key"])  # 源IP
-                    data.append(i["key"])  # 目的IP
-                    data.append(format(i["1"]["value"]/1048576, '.2f'))  #源数据
-                    data.append(format(i["2"]["value"]/1048576, '.2f'))   #回应数据
+                    data = {}
+                    data["yip"] = v["key"]  # 源IP
+                    data["mip"] = i["key"]  # 目的IP
+                    data["ydat"] = format(i["1"]["value"]/1048576, '.2f')  #源数据
+                    data["mdat"] = format(i["2"]["value"]/1048576, '.2f')   #回应数据
                     datalist.append(data)
             jsontext['edtime'] = ed_time
-            jsontext['data'] = datalist
-            return json.dumps(jsontext,ensure_ascii=False)
+            jsontext['dat'] = datalist
+            return jsontext
         except:
             errinfo = {"error": "数据请求失败！"}
             return HttpResponse(errinfo)

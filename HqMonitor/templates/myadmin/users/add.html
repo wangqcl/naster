@@ -11,14 +11,14 @@
             <div class="control-group">
                 <label class="control-label" for="input01">账号：</label>
                 <div class="controls">
-                    <input type="text" name="username" class="input-xlarge" id="user_name" value="" />
+                    <input type="text" name="username" class="input-xlarge" id="user_name" value="" placeholder="建议长度8-20"/>
                     <span class="error_tip"></span>
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label" for="input01">密码：</label>
                 <div class="controls">
-                    <input type="text" name="password" class="input-xlarge" id="pwd"/>
+                    <input type="text" name="password" class="input-xlarge" id="pwd" placeholder="建议长度8-16位"/>
                     <span class="error_tip"></span>
                 </div>
             </div>
@@ -44,19 +44,6 @@
                     <span class="error_tip"></span>
                 </div>
             </div>
-
-<!--            <div class="control-group">-->
-<!--                <label class="control-label" for="input01">所属企业：</label>-->
-<!--                <div class="controls">-->
-<!--                    <select name="compid">-->
-<!--                        {% for vo in complist %}-->
-<!--                            <option value="{{ vo.id }}">{{ vo.comp_name }}</option>-->
-<!--                        {% endfor %}-->
-<!--                    </select>-->
-<!--                </div>-->
-<!--            </div>-->
-
-
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary">添加</button> <button type="reset" class="btn">重置</button>
             </div>

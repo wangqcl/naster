@@ -70,20 +70,20 @@
                         <tbody id="tbody"></tbody>
                     </table>
 
-                    <div style="text-align: center;margin: 5% 0;">
-                        <form id="page" action="{% url 'monit_threaten_indexs' %}?comid={{ compid }}">
+                    <div style="text-align: center;margin: 0;">
+                        <form id="page" action="{% url 'monit_threaten_count' %}?comid={{ compid }}">
                             <a class="first_page">
                                 <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">上一页</button>
                             </a>
 
-                            {% for num in users.paginator.page_range %}
+                            {% for num in paglist %}
                                 <a class="now_page">
-                                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">{{ num }}</button>
+                                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">{{ num.pag }}</button>
                                 </a>
                             {% endfor %}
 
                             <button id="num_pages" type="button" class="layui-btn layui-btn-primary layui-btn-sm">
-                                共{{ users.paginator.num_pages }}页
+                                共5页
                             </button>
 
                             <a class="last_page">
@@ -178,7 +178,7 @@
                         $('.last_page button').removeClass('layui-btn-primary').addClass('layui-btn-disabled');
                     }
                     $.each(data.user_li, function (index, user) {
-                        let a = '<td style="color: #00c3f5;width:50%">';
+                        let a = '<td style="color: #00aeef">';
                         let b = '</td>';
                         let body = a + user.time + b + a + user.src_ip + b + a + user.geo + b + a + user.tag + b;
                         $('#tbody').append('<tr>' + body + '</tr>');

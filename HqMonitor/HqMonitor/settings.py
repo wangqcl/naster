@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #'common.shopmiddleware.ShopMiddleware',     #注册中间件
+    'common.shopmiddleware.ShopMiddleware',     #注册中间件
 ]
 
 ROOT_URLCONF = 'HqMonitor.urls'
@@ -99,7 +99,7 @@ DATABASES = {
     }
 }
 
-#本地
+# 本地
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
@@ -230,14 +230,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
-
-# from elasticsearch import Elasticsearch
-# ELASTICSEARCH = Elasticsearch(
-#     ['119.90.98.16', '9200'],
-#     http_auth=('elastic', 'hqsec711'),
-#     scheme="http",
-#     port=9200,
-# )
 
 
 

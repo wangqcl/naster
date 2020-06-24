@@ -8,12 +8,6 @@
     <form class="form-inline" action="{% url 'myadmin_pany_index' 1 %}" method="get">
       <label>关键字：</label>
       <input type="text" name="keyword" value="{{request.GET.keyword}}" class="input-small" placeholder="企业名称">
-<!--      <label>性别：</label>-->
-<!--      <select name="sex" class="span1">-->
-<!--          <option value="">全部</option>-->
-<!--          <option value="1" {% if request.GET.sex == '1' %}selected{% endif %}>男</option>-->
-<!--          <option value="0" {% if request.GET.sex == '0' %}selected{% endif %}>女</option>-->
-<!--      </select>-->
       <button type="submit" class="btn">搜索</button>
       <a href="{% url 'myadmin_pany_index' 1 %}" class="btn">全部</a>
     </form>
@@ -30,7 +24,6 @@
                 <th>端口</th>
                 <th>接入状态</th>
                 <th>接入节点</th>
-                <th>服务项</th>
                 <th>操作</th>
             </tr>
         </thead>

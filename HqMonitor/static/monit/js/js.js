@@ -620,7 +620,7 @@ function echarts_32(lineY,charts) {
                 }
             },
             series: lineY
-        }
+        };
 
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
@@ -976,125 +976,6 @@ var svg = "path://M32.597,9.782 L30.475,11.904 C30.085,12.294 29.452,12.294 29.0
             myChart.resize();
         });
     }
-
-//IP接入状态
-// function accessip() {
-//         // 基于准备好的dom，初始化echarts实例
-//         var myChart = echarts.init(document.getElementById('accessip'));
-//
-//         option = {
-//             title: {
-//                 text: "",
-//                 subtext: "",
-//                 left: "center",
-//                 textStyle: {
-//                     color: "#fff",
-//                     fontSize: 18
-//                 },
-//             },
-//
-//             backgroundColor: new echarts.graphic.RadialGradient(0, 0, 1, [{
-//                 offset: 0,
-//                 color: '#174b78'
-//             }, {
-//                 offset: 1,
-//                 color: '#174b78'
-//             }]),
-//             tooltip: {
-//                 trigger: 'item',
-//                 formatter: "{a} <br/>{b}:({d}%)"
-//             },
-//             series: [
-//                 {
-//                 name: '一级指标',
-//                 type: 'pie',
-//                 selectedMode: 'single',
-//                 radius: [0, '30%'],
-//
-//                 label: {
-//                     normal: {
-//                         position: 'inner'
-//                     }
-//                 },
-//                 labelLine: {
-//                     normal: {
-//                         show: false
-//                     }
-//                 },
-//                 data: [{
-//                     value: 2,
-//                     name: '应急管理组织指标'
-//                 }, {
-//                     value: 8,
-//                     name: '应急管理对象指标'
-//                 }, {
-//                     value: 18,
-//                     name: '应急管理能力指标'
-//                 }, {
-//                     value: 16,
-//                     name: '应急管理态势指标'
-//                 }, {
-//                     value: 40,
-//                     name: '应急管理效能指标'
-//                 }]
-//             }, {
-//                 name: '二级指标',
-//                 type: 'pie',
-//                 radius: ['32%', '60%'],
-//                 label: {
-//                     normal: {
-//                         position: 'inner'
-//                     }
-//                 },
-//                 data: [{
-//                     value: 1,
-//                     name: '应急机构组成情况'
-//                 }, {
-//                     value: 1,
-//                     name: '应急知识准备情况'
-//                 }, {
-//                     value: 5,
-//                     name: '危险源和风险隐患区情况'
-//                 }
-//                 ]
-//             },
-//             {
-//                 name: '三级指标',
-//                 color: ['#2AC9FD', '#76FBC0', '#35C96E', '#FCC708', '#48B188', '#5957C2'],
-//                 type: 'pie',
-//                 radius: ['62%', '70%'],
-//                 label: {
-//                     normal: {
-//                         position: 'outer'
-//                     }
-//                 },
-//                 data: [{
-//                     value: 1,
-//                     name: ''
-//                 }, {
-//                     value: 1,
-//                     name: ''
-//                 }, {
-//                     value: 1,
-//                     name: ''
-//                 }, {
-//                     value: 1,
-//                     name: ''
-//                 }, {
-//                     value: 1,
-//                     name: ''
-//                 }
-//                 ]
-//             }
-//             ]
-//         };
-//
-//         // 使用刚指定的配置项和数据显示图表。
-//         myChart.setOption(option);
-//         window.addEventListener("resize", function () {
-//             myChart.resize();
-//         });
-//     }
 
 		
 		

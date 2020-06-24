@@ -2,8 +2,8 @@ from django.conf.urls import url
 from . import views
 from .views import center,monit,threaten,score,Invasion
 from .views.monit import * #Main_visit_port,Server_status_code,Domain_infor,Ip_fraction,Request_traffic,Response_traffic,Waf_attack_trend,Attack_map,Access_ip,Main_getnum,Hit,Source_data
-from .views.threaten import thattack,thhit,thactive,threat,thnews,thindex
-from .views.score import mainthr,totalthr,tithr,webthr,inthr,scindex
+from .views.threaten import thattack,thhit,thactive,threat,thnews,thindex,threaten_count
+from .views.score import mainthr,totalthr,tithr,webthr,inthr,scindex,score_count
 from .views.Invasion import *
 from .views.safety import *
 
@@ -40,6 +40,7 @@ urlpatterns = [
     url(r'^web/threaten/thactive$',thactive.as_view(),name="monit_threaten_thactive"),  #活跃攻击源
     url(r'^web/threaten/threat$',threat.as_view(),name="monit_threaten_threat"),  #IP威胁分类
     url(r'^web/threaten/thnews$',thnews.as_view(),name="monit_threaten_thnews"),  #IP威胁情报源
+    url(r'^web/threaten/threaten_count$',threaten_count.as_view(),name="monit_threaten_count"),  #详细数据数量
 
     #综合评分
     url(r'^web/score/scindex$', scindex.as_view(), name="monit_score_scindex"),  # 综合评分首页
@@ -49,6 +50,7 @@ urlpatterns = [
     url(r'^web/score/tithr$',tithr.as_view(),name="monit_score_tithr"),#TI威胁趋势
     url(r'^web/score/webthr$',webthr.as_view(),name="monit_score_webthr"),#WEB威胁安全趋势
     url(r'^web/score/inthr$',inthr.as_view(),name="monit_score_inthr"),#WEB威胁安全趋势
+    url(r'^web/score/score_count$',score_count.as_view(),name="monit_score_count"),  #详细数据数量
 
     #入侵检测
     url(r'^web/Invasion$', indexs.as_view(), name='monit_invasion_index'),  # 首页

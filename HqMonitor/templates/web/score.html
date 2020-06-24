@@ -56,17 +56,17 @@
                         <tbody id="tbody"></tbody>
                     </table>
 
-                    <div style="text-align: center;margin: 5% 0;">
-                        <form id="page" action="{% url 'monit_score_scindex' %}?comid={{ compid }}">
+                    <div style="text-align: center;margin: 0;">
+                        <form id="page" action="{% url 'monit_score_count' %}?comid={{ compid }}">
                             <a class="first_page">
                                 <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">上一页</button>
                             </a>
 
-                            {% for num in users.paginator.page_range %}
-                                <a class="now_page">
-                                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">{{ num }}</button>
-                                </a>
-                            {% endfor %}
+                               {% for num in users.paginator.page_range %}
+                                    <a class="now_page">
+                                        <button type="button" style="background: #5578f5"  class="layui-btn layui-btn-primary layui-btn-sm">{{ num }}</button>
+                                    </a>
+                                {% endfor %}
 
                             <button id="num_pages" type="button" class="layui-btn layui-btn-primary layui-btn-sm">
                                 共{{ users.paginator.num_pages }}页
@@ -256,9 +256,11 @@
             now_page -= 1;
             if (now_page < 1) {
                 now_page = 1;
+                pag_click();
                 return false
             } else {
                 $('.page_this').parent().prev().click();
+                pag_click()
             }
         });
         //下一页
@@ -267,9 +269,11 @@
             now_page += 1;
             if (now_page > parseInt(num_pages)) {
                 now_page -= 1;
+                pag_click();
                 return false
             } else {
                 $('.page_this').parent().next().click();
+                pag_click()
             }
         });
         //切换页

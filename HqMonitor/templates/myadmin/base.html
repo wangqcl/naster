@@ -9,7 +9,7 @@
         <link href="{% static 'myadmin/css/bootstrap-responsive.css' %}" rel="stylesheet">
 
         <link href="{% static 'myadmin/css/site.css' %}" rel="stylesheet">
-
+        <link rel="icon" href="{% static 'favicon.ico' %}">
         <script src="{% static 'myadmin/js/jquery.min.js' %}"></script>
         <script src="{% static 'myadmin/js/bootstrap.js' %}"></script>
         <script type="text/javascript" src="{% static 'myadmin/js/register.js' %}"></script>
@@ -25,7 +25,7 @@
             <div class="navbar">
                 <div class="navbar-inner">
                     <div class="container">
-                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a class="brand" href="#">网站后台管理</a>
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a class="brand" href="#">后台管理</a>
                         <div class="nav-collapse">
                             <ul class="nav">
                                 <li class="active">
@@ -41,7 +41,7 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">更多 <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a href="#">Introduction Tour</a>
+                                            <a href="#">待扩展..</a>
                                         </li>
                                         <li class="divider">
                                         </li>
@@ -49,7 +49,7 @@
                                             Files
                                         </li>
                                         <li>
-                                            <a href="#">How to upload multiple files</a>
+                                            <a href="#">待扩展..</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -86,7 +86,7 @@
                                 会员管理
                             </li>
                             <li >
-                                <a href="{% url 'myadmin_users_index' 1 %}"><i class="icon-folder-open"></i> 浏览会员</a>
+                                <a href="{% url 'myadmin_users_index' 1 %}"><i class="icon-user"></i> 浏览会员</a>
                             </li>
                             <li>
                                 <a href="{% url 'myadmin_users_add' %}"><i class="icon-check"></i> 添加会员</a>
@@ -95,10 +95,10 @@
                                 类别管理
                             </li>
                             <li>
-                                <a href="{% url 'myadmin_pany_index' 1 %}"><i class="icon-envelope"></i> 浏览业务</a>
+                                <a href="{% url 'myadmin_pany_index' 1 %}"><i class="icon-flag"></i> 浏览业务</a>
                             </li>
                             <li>
-                                <a href="{% url 'myadmin_pany_add' %}"><i class="icon-file"></i> 添加业务</a>
+                                <a href="{% url 'myadmin_pany_add' %}"><i class="icon-check"></i> 添加业务</a>
                             </li>
                              <li class="nav-header">
                                 信息管理
@@ -106,16 +106,16 @@
                             <li class="divider">
                             </li>
                             <li>
-                                <a href="#"><i class="icon-info-sign"></i> Help</a>
+                                <a href="#"><i class="icon-info-sign"></i> 待扩展..</a>
                             </li>
                             <li class="nav-header">
-                                Bonus Templates
+                                Templates
                             </li>
                             <li>
-                                <a href="#"><i class="icon-picture"></i> Gallery</a>
+                                <a href="#"><i class="icon-picture"></i> 待扩展..</a>
                             </li>
                             <li>
-                                <a href="#"><i class="icon-stop"></i> Blank Slate</a>
+                                <a href="#"><i class="icon-stop"></i> 待扩展..</a>
                             </li>
                         </ul>
                     </div><!-- 侧边导航结束 -->
