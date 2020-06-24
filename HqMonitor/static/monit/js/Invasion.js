@@ -50,7 +50,7 @@ function in_ap(nu_port,nu_values) {
                     show: true,
                     position: 'outside',
                     color: '#ddd',
-                    fontSize: 22,
+                    fontSize: 16,
                     formatter: function(params) {
                         var percent = 0;
                         var total = 0;
@@ -66,8 +66,8 @@ function in_ap(nu_port,nu_values) {
                     },
                 },
                 labelLine: {
-                    length:50,
-                    length2:100,
+                    length:30,
+                    length2:20,
                     show: true,
                     color:'#00ffff'
                 }

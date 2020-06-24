@@ -18,10 +18,12 @@ es = Elasticsearch(
     http_auth=settings.H_AUTH,
     scheme="http",
     port=9200,
+    timeout=30,
+    retry_on_timeout=True
 )
 
 
-# 首页
+# 首页+日志
 class indexs(View):
 
     '''首页-入侵检测信息'''
@@ -826,8 +828,6 @@ class Main_attrack(View):
         except:
             errinfo = {"error": "数据请求失败！"}
             return HttpResponse(errinfo)
-
-
 
 
 

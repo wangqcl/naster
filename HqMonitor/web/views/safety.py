@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from common.models import Users, Compinfo
-from django.utils.decorators import method_decorator
+from . import check_user_request
 from elasticsearch import Elasticsearch
 import json
 import datetime
@@ -17,6 +17,7 @@ es = Elasticsearch(
     settings.IP_LOCAL,
     http_auth=settings.H_AUTH,
     scheme="http",
+    timeout=30,
     port=9200,
 )
 
@@ -25,57 +26,420 @@ es = Elasticsearch(
 class Safety_index(View):
     '''首页-web安全信息'''
 
+    @check_user_request
     def get(self, request):
-        comid = request.GET.get('comid', None)
+        comid = request.GET.get('comid', 'None')
         # comid = request.GET.get('comid', 0)  #企业ID
-        username = request.session.get('webuser', default=None)  # 获取登录用户名
-        user = Users.objects.get(username=username)
-        if user.state == 0:
-            if int(comid) == 0:
-                content = {
-                    "compid": comid
-                }
-                return render(request, "web/safety.html", content)
-            else:
-                content = {
-                    "compid": comid
-                }
-                return render(request, "web/usermon/qsafety.html", content)
-        elif user.state == 1 and comid != 0:
-            comp = Compinfo.objects.get(id=comid)
-            users = comp.users.all()
-            for us in users:
-                if us.username == username:
-                    content = {
-                        "compid": comid
-                    }
-                    return render(request, "web/usermon/qsafety.html", content)  # 用户的监控首页
+        result = self.seardat(comid)
+        res = result["dat"]
+        paginator = Paginator(res, 4)  # 分页功能，一页8条数据
+        if request.is_ajax() == False:
+            username = request.session.get('webuser', default=None)  # 获取登录用户名
+            user = Users.objects.get(username=username)
+            userlist = paginator.page(1)
+            content = {
+                "compid": comid,
+                "users": userlist
+            }
+            if user.state == 0:
+                if int(comid) == 0:
+                    return render(request, "web/safety.html", content)
                 else:
-                    content = {"info": "查询失败！"}
-            return render(request, "web/monweb/info.html", content)
+                    return render(request, "web/usermon/qsafety.html", content)
+            elif user.state == 1 & comid != 0:
+                comp = Compinfo.objects.get(id=comid)
+                users = comp.users.all()
+                for us in users:
+                    if us.username == username:
+                        return render(request, "web/usermon/qsafety.html", content)  # 用户的监控首页
+                    else:
+                        content = {"info": "查询失败！"}
+                return render(request, "web/monweb/info.html", content)
+            else:
+                error = "访问出错！"
+                content = {"info": error}
+                return render(request, "web/monweb/info.html", content)
+
+        # Ajax数据交互
+        if request.is_ajax():
+            page = request.GET.get('page')
+            try:
+                users = paginator.page(page)
+            # 如果页数不是整数，返回第一页
+            except PageNotAnInteger:
+                users = paginator.page(1)
+            # 如果页数不存在/不合法，返回最后一页
+            except InvalidPage:
+                users = paginator.page(paginator.num_pages)
+            user_li = list(users)  # .object_list.values()
+            # 分别为是否有上一页false/true，是否有下一页false/true，总共多少页，当前页面的数据
+            result = {'has_previous': users.has_previous(),
+                      'has_next': users.has_next(),
+                      'num_pages': users.paginator.num_pages,
+                      'user_li': user_li}
+            return JsonResponse(result)
+
+    def seardat(self, comid):
+        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区时间
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
+        if int(comid) == 0:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return es_result
         else:
-            error = "访问出错！"
-            content = {"info": error}
-            return render(request, "web/monweb/info.html", content)
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_ip = comp.comp_ip  # IP
+                comp_s = comp_ip.split(';')
+                sp_param = {
+                    "bool": {
+                        "should": [
+                        ],
+                        "minimum_should_match": 1
+                    }
+                }
+                for ip in comp_s:
+                    match_phrase = {"match_phrase": {"transaction.host_ip.keyword": ip}}
+                    sp_param["bool"]["should"].append(match_phrase)
+                self.es_result = self.sear_info(st_time, ed_time, sp_param)
+                if self.es_result == False:
+                    return False
+                else:
+                    return self.es_result
+            except Exception as err:
+                logger.error('请求出错：{}'.format(err))
+                # print(err)
+                return False
 
-
-# 验证用户权限
-def comd_user(view_func):
-    def wrapper(request, *args, **kwargs):
-        if not request.session.get('username') and request.GET.get('comid'):
-            return HttpResponse('404')
-        comp_id = Compinfo.objects.get(id=request.GET.get('comid'))
-        user = Users.objects.filter(username=request.session.get('username'))
-        if user.id != comp_id:
+    def sear_info(self, st_time, ed_time, sp_param):
+        if sp_param == None:
+            body = {
+                "aggs": {
+                    "2": {
+                        "terms": {
+                            "field": "@timestamp",
+                            "order": {
+                                "_count": "desc"
+                            },
+                            "size": 5
+                        },
+                        "aggs": {
+                            "3": {
+                                "terms": {
+                                    "field": "transaction.client_ip.keyword",
+                                    "order": {
+                                        "_count": "desc"
+                                    },
+                                    "size": 5
+                                },
+                                "aggs": {
+                                    "4": {
+                                        "terms": {
+                                            "field": "transaction.request.method.keyword",
+                                            "order": {
+                                                "_count": "desc"
+                                            },
+                                            "size": 5
+                                        },
+                                        "aggs": {
+                                            "5": {
+                                                "terms": {
+                                                    "field": "transaction.request.headers.Host.keyword",
+                                                    "order": {
+                                                        "_count": "desc"
+                                                    },
+                                                    "missing": "__missing__",
+                                                    "size": 5
+                                                },
+                                                "aggs": {
+                                                    "6": {
+                                                        "terms": {
+                                                            "field": "transaction.request.headers.host.keyword",
+                                                            "order": {
+                                                                "_count": "desc"
+                                                            },
+                                                            "missing": "__missing__",
+                                                            "size": 5
+                                                        },
+                                                        "aggs": {
+                                                            "7": {
+                                                                "terms": {
+                                                                    "field": "transaction.request.uri.keyword",
+                                                                    "order": {
+                                                                        "_count": "desc"
+                                                                    },
+                                                                    "size": 5
+                                                                },
+                                                                "aggs": {
+                                                                    "8": {
+                                                                        "terms": {
+                                                                            "field": "transaction.messages.message.keyword",
+                                                                            "order": {
+                                                                                "_count": "desc"
+                                                                            },
+                                                                            "size": 5
+                                                                        },
+                                                                        "aggs": {
+                                                                            "9": {
+                                                                                "terms": {
+                                                                                    "field": "transaction.host_ip.keyword",
+                                                                                    "order": {
+                                                                                        "_count": "desc"
+                                                                                    },
+                                                                                    "size": 5
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "size": 0,
+                "_source": {
+                    "excludes": []
+                },
+                "stored_fields": [
+                    "*"
+                ],
+                "script_fields": {},
+                "docvalue_fields": [
+                    {
+                        "field": "@timestamp",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "values._widget_1583487508607.data.uploadTime",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "values._widget_1583990422218.data.uploadTime",
+                        "format": "date_time"
+                    }
+                ],
+                "query": {
+                    "bool": {
+                        "must": [],
+                        "filter": [
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "exists": {
+                                    "field": "transaction.messages.message.keyword"
+                                }
+                            },
+                            {
+                                "range": {
+                                    "@timestamp": {
+                                        "format": "strict_date_optional_time",
+                                        "gte": st_time,
+                                        "lte": ed_time
+                                    }
+                                }
+                            }
+                        ],
+                        "should": [],
+                        "must_not": []
+                    }
+                }
+            }
+        else:
+            body = {
+                "aggs": {
+                    "2": {
+                        "terms": {
+                            "field": "@timestamp",
+                            "order": {
+                                "_count": "desc"
+                            },
+                            "size": 5
+                        },
+                        "aggs": {
+                            "3": {
+                                "terms": {
+                                    "field": "transaction.client_ip.keyword",
+                                    "order": {
+                                        "_count": "desc"
+                                    },
+                                    "size": 5
+                                },
+                                "aggs": {
+                                    "4": {
+                                        "terms": {
+                                            "field": "transaction.request.method.keyword",
+                                            "order": {
+                                                "_count": "desc"
+                                            },
+                                            "size": 5
+                                        },
+                                        "aggs": {
+                                            "5": {
+                                                "terms": {
+                                                    "field": "transaction.request.headers.Host.keyword",
+                                                    "order": {
+                                                        "_count": "desc"
+                                                    },
+                                                    "missing": "__missing__",
+                                                    "size": 5
+                                                },
+                                                "aggs": {
+                                                    "6": {
+                                                        "terms": {
+                                                            "field": "transaction.request.headers.host.keyword",
+                                                            "order": {
+                                                                "_count": "desc"
+                                                            },
+                                                            "missing": "__missing__",
+                                                            "size": 5
+                                                        },
+                                                        "aggs": {
+                                                            "7": {
+                                                                "terms": {
+                                                                    "field": "transaction.request.uri.keyword",
+                                                                    "order": {
+                                                                        "_count": "desc"
+                                                                    },
+                                                                    "size": 5
+                                                                },
+                                                                "aggs": {
+                                                                    "8": {
+                                                                        "terms": {
+                                                                            "field": "transaction.messages.message.keyword",
+                                                                            "order": {
+                                                                                "_count": "desc"
+                                                                            },
+                                                                            "size": 5
+                                                                        },
+                                                                        "aggs": {
+                                                                            "9": {
+                                                                                "terms": {
+                                                                                    "field": "transaction.host_ip.keyword",
+                                                                                    "order": {
+                                                                                        "_count": "desc"
+                                                                                    },
+                                                                                    "size": 5
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "size": 0,
+                "_source": {
+                    "excludes": []
+                },
+                "stored_fields": [
+                    "*"
+                ],
+                "script_fields": {},
+                "docvalue_fields": [
+                    {
+                        "field": "@timestamp",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "values._widget_1583487508607.data.uploadTime",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "values._widget_1583990422218.data.uploadTime",
+                        "format": "date_time"
+                    }
+                ],
+                "query": {
+                    "bool": {
+                        "must": [],
+                        "filter": [
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "exists": {
+                                    "field": "transaction.messages.message.keyword"
+                                }
+                            },
+                            sp_param,
+                            {
+                                "range": {
+                                    "@timestamp": {
+                                        "format": "strict_date_optional_time",
+                                        "gte": st_time,
+                                        "lte": ed_time
+                                    }
+                                }
+                            }
+                        ],
+                        "should": [],
+                        "must_not": []
+                    }
+                }
+            }
+        try:
+            ret = es.search(index='waf*', doc_type='_doc', body=body)
+            re_data = ret['aggregations']['2']['buckets']
+            jsonlist, jsontext = [], {}
+            for i in re_data:  # 多个
+                buck_a = i['3']['buckets']
+                for v in buck_a:  # 多个
+                    try:
+                        jsontext_1 = {}
+                        # 遍历数据
+                        buck_b = v['4']['buckets']
+                        y_id = v['key']  # 源IP
+                        y_count = v['doc_count']  # 数量
+                        jsontext_1["y_id"] = y_id
+                        jsontext_1["y_count"] = y_count
+                        for k in buck_b:
+                            jsontext_1["w_type"] = k['key']  # 威胁情报类型
+                            buck_c = k['5']['buckets']
+                            for c in buck_c:
+                                waf_ym = c['key']  # 域名
+                                jsontext_1["waf_ym"] = waf_ym
+                                buck_d = c['6']['buckets']
+                                for d in buck_d:
+                                    buck_d = d['7']['buckets']
+                                    for l in buck_d:
+                                        waf_lj = l['key']
+                                        jsontext_1["waf_lj"] = waf_lj  # waf拦截器
+                        jsonlist.append(jsontext_1)
+                    except Exception as err:
+                        logger.error('威胁统计数据报错：{}'.format(err))
+                    continue
+            jsontext['dat'] = jsonlist
+            return jsontext
+        except Exception as err:
+            logger.error('威胁统计-数据-获取数据出错：{}'.format(err))
             return False
-        return view_func(request, *args, **kwargs)
-        # print("自定义装饰器被调用路径为%s" % request.path)
-
-    return wrapper
 
 
 # 攻击趋势
-# @method_decorator(comd_user, name='dispatch')
 class Safety_attack_trend(View):
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
@@ -1274,14 +1638,16 @@ class Safety_attack_port(View):
 # web安全威胁统计
 class Safety_waf_attack_count(View):
     '''首页-web安全信息'''
+
     def get(self, request):
+
         comid = request.GET.get('comid', None)
         result = self.seardat(comid)
         res = result['dat']
         paginator = Paginator(res, 8)  # 分页功能，一页8条数据
         userlist = paginator.page(1)
 
-            # Ajax数据交互
+        # Ajax数据交互
         if request.is_ajax():
             # print("调用了ajax请求")
             page = request.GET.get('page')
@@ -1628,7 +1994,7 @@ class Safety_waf_attack_count(View):
         try:
             ret = es.search(index='waf*', doc_type='_doc', body=body)
             re_data = ret['aggregations']['2']['buckets']
-            jsonlist,jsontext = [],{}
+            jsonlist, jsontext = [], {}
             for i in re_data:  # 多个
                 buck_a = i['3']['buckets']
                 for v in buck_a:  # 多个
