@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^verify$', center.verify, name="verify"),  # 验证码
 
     url(r'^web/center$', center.center, name="web_center"),  #个人中心
+    url(r'^web/center/edit$', center.edit, name="web_center_edit"),  #个人中心
 
     #管理员网络全局信息监控路由
     url(r'^web/index$', index.as_view(), name="monit_index"),  # 威胁情报监控首页

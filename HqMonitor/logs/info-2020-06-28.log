@@ -1,0 +1,10 @@
+[2020-06-28 09:50:44,280] [threaten.py:254] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-28 09:50:44,281] [threaten.py:254] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-28 09:50:44,357] [threaten.py:1477] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-28 09:50:44,357] [threaten.py:1477] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-28 10:16:33,081] [threaten.py:254] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-28 10:16:33,500] [threaten.py:254] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-28 10:16:33,614] [threaten.py:1477] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-28 10:16:33,614] [threaten.py:1477] [threaten:sear_info] [ERROR]- 解析威胁情报详细数据报错：'geo'
+[2020-06-28 10:22:02,422] [safety.py:1701] [safety:seardat] [ERROR]- 请求出错：Compinfo matching query does not exist.
+[2020-06-28 11:01:03,274] [safety.py:1701] [safety:seardat] [ERROR]- 请求出错：Compinfo matching query does not exist.

@@ -33,4 +33,18 @@ def check_user_request(func):
             return func(*args, **kwargs)
     return wrapper
 
+#判断是否有修改权限
+def user_edit(func):
+    name = func.__name__
 
+    def wrapper(*args,**kwargs):
+        req = args[0]
+        username = req.session.get('webuser',default=None)  # 获取登录用户名
+        user = Users.objects.get(username=username)
+        userid = req.POST['user']
+        if user.id == int(userid):
+            return func(*args, **kwargs)
+        else:
+            return HttpResponse("request error", status=403)
+
+    return wrapper

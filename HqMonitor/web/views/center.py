@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from common.models import Users,Compinfo
 from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.hashers import check_password
+from . import user_edit
 
 # Create your views here.
 
@@ -22,7 +23,23 @@ def center(request):
     }
     return render(request, "web/monweb/Center.html",content)
 
-# ==============后台管理员操作====================
+#执行编辑
+@user_edit
+def edit(request):
+    try:
+        userid = request.POST['user']
+        us = Users.objects.get(id=userid)
+        us.name = request.POST['uname']
+        us.phone = request.POST['uphone']
+        us.email = request.POST['uemail']
+        us.save()
+        context = {'msg': 'success'}
+    except Exception as err:
+        print(err)
+        context = {'msg': 'fail'}
+    return JsonResponse(context)
+
+
 # 会员登录表单
 def login(request):
     return render(request,'web/monweb/login.html')
