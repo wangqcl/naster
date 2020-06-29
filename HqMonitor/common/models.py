@@ -1,6 +1,5 @@
 from django.db import models
 from datetime import datetime
-import uuid
 
 #用户信息模型
 class Users(models.Model):
@@ -11,6 +10,8 @@ class Users(models.Model):
     phone = models.CharField(max_length=16,null=True)     #电话
     email = models.CharField(max_length=50,null=True)     #Emai
     state = models.IntegerField(default=1)      #状态
+    login_time = models.DateTimeField(default=datetime.now)      #登录锁定时间
+    count = models.IntegerField(default=0)      #登录错误次数
     #comp_id = models.IntegerField(null=True)             #对应公司信息ID
     addtime = models.DateTimeField(default=datetime.now)    #注册时间
 
@@ -24,8 +25,10 @@ class Users(models.Model):
 
 #公司信息表
 class Compinfo(models.Model):
-    # id = models.UUIDField(primary_key=True, auto_created=True, default=uuid.uuid4, editable=False)
     comp_name = models.CharField(max_length=16)  # 企业名称
+    #address = models.CharField(max_length=255,null=True)  # 地址
+    #name = models.CharField(max_length=16,null=True)  # 企业联系人
+    #phone = models.CharField(max_length=16,null=True)  # 电话
     comp_ip = models.CharField(max_length=32)  # 企业IP
     comp_realm = models.CharField(max_length=32)  # 企业域名
     state = models.IntegerField(default=1) #企业信息状态
