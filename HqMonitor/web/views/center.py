@@ -5,6 +5,8 @@ from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.hashers import check_password
 from . import user_edit
+import datetime
+
 
 # Create your views here.
 
@@ -23,6 +25,7 @@ def center(request):
     }
     return render(request, "web/monweb/Center.html",content)
 
+
 #执行编辑
 @user_edit
 def edit(request):
@@ -40,9 +43,11 @@ def edit(request):
     return JsonResponse(context)
 
 
+# ==============后台管理员操作====================
 # 会员登录表单
 def login(request):
-    return render(request,'web/monweb/login.html')
+    return render(request, 'web/monweb/login.html')
+
 
 # 会员执行登录
 def dologin(request):
@@ -55,36 +60,50 @@ def dologin(request):
         return render(request, "web/monweb/login.html", context)
     # 判断是否有特殊字符
     user_name = request.POST['username']
-    print(user_name)
-    string = "~#$%^&*()+-*/<>,.[]\/"  #去除特殊字符的正则
+    string = "~#$%^&*()+-*/<>,.[]\/"  # 去除特殊字符的正则
     for i in string:
         if i in user_name:
-            print(i)
             context = {'info': '您的输入包含特殊字符,请重新输入！'}
             return render(request, "web/monweb/login.html", context)
-
     try:
         # 根据账号获取登录者信息
         user = Users.objects.get(username=user_name)
         passw = request.POST['password']
         # 判断是否禁用
         if user.state != 2:
+            if int((datetime.datetime.now() - user.login_time).total_seconds()) < 300:
+                context = {'info': '账号锁定5分钟内不能登陆!'}
+                return render(request, "web/monweb/login.html", context)
+            if user.count > 4:
+                user.login_time = datetime.datetime.now()
+                user.count = 0
+                user.save()
+                context = {'info': '密码输入超过5次，用户锁定5分钟'}
+                return render(request, "web/monweb/login.html", context)
             ps_bool = check_password(passw, user.password)
             if ps_bool == True:
                 request.session['webuser'] = user.username
+                user.count = 0
+                user.save()
                 return redirect(reverse('web_center'))
-            else:
-                context = {'info': '登录账号/密码错误！'}
+            user.count += 1
+            user.save()
+            context = {'info': '登录账号/密码错误！'}
+            return render(request, "web/monweb/login.html", context)
         else:
             context = {'info': '无登录权限！'}
+            return render(request, "web/monweb/login.html", context)
     except:
-        context = {'info': '登录账号/密码错误！'}
+
+        context = {'info': '用户名不存在！'}
     return render(request, "web/monweb/login.html", context)
+
 
 # 会员退出
 def logout(request):
     del request.session['webuser']
     return redirect(reverse('login'))
+
 
 # 会员登录表单
 def verify(request):

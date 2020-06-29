@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.hashers import check_password
 
 from common.models import Users,Compinfo
-import time,json
+import time,json,datetime
 
 # 后台首页
 def index(request):
@@ -43,16 +43,29 @@ def dologin(request):
         user = Users.objects.get(username=user_name)
         passw = request.POST['password']
         if user.state == 0:
+            if int((datetime.datetime.now() - user.login_time).total_seconds()) < 300:
+                context = {'info': '账号锁定5分钟内不能登陆!'}
+                return render(request, "myadmin/login.html", context)
+            if user.count > 4:
+                user.login_time = datetime.datetime.now()
+                user.count = 0
+                user.save()
+                context = {'info': '密码输入超过5次，用户锁定5分钟'}
+                return render(request, "myadmin/login.html", context)
             ps_bool = check_password(passw,user.password)
             if ps_bool == True:
+                user.count = 0
+                user.save()
                 request.session['adminuser'] = user.username
                 return redirect(reverse('myadmin_index'))
             else:
+                user.count += 1
+                user.save()
                 context = {'info': '登录账号/密码错误！'}
         else:
             context = {'info': '无登录权限！'}
     except:
-        context = {'info': '登录账号/密码错误！'}
+        context = {'info': '用户名不存在！'}
     return render(request, "myadmin/login.html", context)
 
 # 会员退出
