@@ -1,0 +1,71 @@
+{% extends "web/monweb/base.html" %}
+{% load static from staticfiles %}
+
+<!-- 主体开始 -->
+        {% block cebody %}
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+          <h2 class="sub-header">信息反馈</h2>
+          <div class="index-main">
+            <div class="top clearfix">
+                <div class="container">
+                    <div class="alert alert-success ">
+                        <strong>信息反馈板</strong>.写下您的反馈意见吧。
+                    </div>
+                    <div class="form-group">
+                        <form action="#"  method="post">
+                            {% csrf_token %}
+
+                            <div class="form-group">
+                                反馈内容：<textarea class="form-control" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                反馈人：
+                            </div>
+                            <div class="form-inline">
+                                 <div class="form-group">
+                                    <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+                                  </div>
+{#                                <label >#}
+{#                                    <input type="submit" name="" value="反馈" class="btn btn-success">#}
+{#                                </label>#}
+                                <button type="submit" class="btn btn-primary">提交反馈</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+          <h1 class="page-header">反馈记录</h1>
+{#          <div class="row placeholders">#}
+              <div class="container">
+            <table class="table table-bordered table-striped">
+                <!-- On cells (`td` or `th`) -->
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th >反馈人</th>
+                        <th >反馈信息</th>
+                        <th >反馈时间</th>
+                        <th >回复信息</th>
+                        <th >回复信息</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                      <td >1</td>
+                      <td >bbb</td>
+                      <td >ghhfg</td>
+                      <td >aaa</td>
+                      <td >aaa</td>
+                      <td >aaa</td>
+                    </tr>
+                </tbody>
+            </table>
+          </div>
+        </div>
+{#            </div>#}
+        {% endblock %}
+        <!-- 主体结束 -->
+

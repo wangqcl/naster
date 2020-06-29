@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from . import views
-from .views import center,monit,threaten,score,Invasion
+from .views import center,monit,threaten,score,Invasion,messag
 from .views.monit import * #Main_visit_port,Server_status_code,Domain_infor,Ip_fraction,Request_traffic,Response_traffic,Waf_attack_trend,Attack_map,Access_ip,Main_getnum,Hit,Source_data
 from .views.threaten import thattack,thhit,thactive,threat,thnews,thindex,threaten_count
 from .views.score import mainthr,totalthr,tithr,webthr,inthr,scindex,score_count
@@ -15,7 +15,9 @@ urlpatterns = [
     url(r'^verify$', center.verify, name="verify"),  # 验证码
 
     url(r'^web/center$', center.center, name="web_center"),  #个人中心
-    url(r'^web/center/edit$', center.edit, name="web_center_edit"),  #个人中心
+    url(r'^web/center/edit$', center.edit, name="web_center_edit"),  #修改信息
+
+    url(r'^web/messag$', messag.index, name="web_center_messag"),  #信息反馈
 
     #管理员网络全局信息监控路由
     url(r'^web/index$', index.as_view(), name="monit_index"),  # 威胁情报监控首页

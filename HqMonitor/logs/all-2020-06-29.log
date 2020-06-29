@@ -1,0 +1,39 @@
+[2020-06-29 09:27:21,300] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET / HTTP/1.1" 200 4420
+[2020-06-29 09:27:21,734] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /verify HTTP/1.1" 200 1776
+[2020-06-29 09:27:31,642] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET / HTTP/1.1" 200 4420
+[2020-06-29 09:27:31,671] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monweb/js/jquery.min.js HTTP/1.1" 304 0
+[2020-06-29 09:27:31,702] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /verify HTTP/1.1" 200 1684
+[2020-06-29 09:27:44,336] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /verify?sn=0.38696801517908774 HTTP/1.1" 200 1847
+[2020-06-29 09:27:54,082] [basehttp.py:124] [basehttp:log_message] [INFO]- "POST /dologin HTTP/1.1" 302 0
+[2020-06-29 09:27:54,149] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 10465
+[2020-06-29 09:27:54,178] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monweb/js/main.js HTTP/1.1" 304 0
+[2020-06-29 10:29:53,355] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 10451
+[2020-06-29 10:29:53,423] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/favicon.ico HTTP/1.1" 200 67646
+[2020-06-29 10:29:55,995] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 10451
+[2020-06-29 11:58:25,021] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 10468
+[2020-06-29 11:58:25,034] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monweb/js/jquery.min.js HTTP/1.1" 304 0
+[2020-06-29 11:58:25,042] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monweb/js/main.js HTTP/1.1" 304 0
+[2020-06-29 11:58:25,065] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/favicon.ico HTTP/1.1" 200 67646
+[2020-06-29 11:58:26,314] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/center/messag
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\utils\datastructures.py", line 83, in __getitem__
+    list_ = super(MultiValueDict, self).__getitem__(key)
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 44, in wrapper
+    userid = req.POST['user']
+  File "E:\project_env\lib\site-packages\django\utils\datastructures.py", line 85, in __getitem__
+    raise MultiValueDictKeyError(repr(key))
+django.utils.datastructures.MultiValueDictKeyError: "'user'"
+[2020-06-29 11:58:26,449] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/center/messag HTTP/1.1" 500 79627
+[2020-06-29 11:58:26,547] [base.py:152] [base:get_response] [WARNING]- Not Found: /favicon.ico
+[2020-06-29 11:58:26,548] [basehttp.py:124] [basehttp:log_message] [WARNING]- "GET /favicon.ico HTTP/1.1" 404 11168
