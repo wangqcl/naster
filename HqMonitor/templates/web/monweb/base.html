@@ -82,8 +82,10 @@
           <ul class="nav nav-sidebar">
             <li class="active"><a>管理中心</a></li>
             <li ><a href="{% url "web_center" %}">个人中心</a></li>
-            <li ><a href="{% url "web_center_messag" %}">信息反馈</a></li>
-
+            <li ><a href="{% url "web_center_messag" 1%}">信息反馈</a></li>
+              {% ifequal user.state 0 %}
+            <li ><a href="{% url "web_center_mesquery" %}?pIndex=1">反馈查询</a></li>
+              {% endifequal %}
           </ul>
         </div>
 

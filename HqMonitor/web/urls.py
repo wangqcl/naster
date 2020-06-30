@@ -1,11 +1,13 @@
 from django.conf.urls import url
 from . import views
 from .views import center,monit,threaten,score,Invasion,messag
-from .views.monit import * #Main_visit_port,Server_status_code,Domain_infor,Ip_fraction,Request_traffic,Response_traffic,Waf_attack_trend,Attack_map,Access_ip,Main_getnum,Hit,Source_data
-from .views.threaten import thattack,thhit,thactive,threat,thnews,thindex,threaten_count
-from .views.score import mainthr,totalthr,tithr,webthr,inthr,scindex,score_count
+from .views.monit import *
+from .views.threaten import *
+from .views.score import *
 from .views.Invasion import *
 from .views.safety import *
+from .views.messag import mesquery,messret
+
 
 urlpatterns = [
     # 登录
@@ -16,8 +18,10 @@ urlpatterns = [
 
     url(r'^web/center$', center.center, name="web_center"),  #个人中心
     url(r'^web/center/edit$', center.edit, name="web_center_edit"),  #修改信息
-
-    url(r'^web/messag$', messag.index, name="web_center_messag"),  #信息反馈
+    url(r'^web/messag/(?P<pIndex>[0-9]+)$', messag.index, name="web_center_messag"),  #信息反馈
+    url(r'^web/insert$', messag.insert, name="web_center_insert"),  #执行反馈
+    url(r'^web/mesquery$', mesquery.as_view(), name="web_center_mesquery"),  #信息查询
+    url(r'^web/messret$', messret.as_view(), name="web_center_messret"),  #提交回复
 
     #管理员网络全局信息监控路由
     url(r'^web/index$', index.as_view(), name="monit_index"),  # 威胁情报监控首页

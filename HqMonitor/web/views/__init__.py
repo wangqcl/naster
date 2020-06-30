@@ -48,3 +48,19 @@ def user_edit(func):
             return HttpResponse("request error", status=403)
 
     return wrapper
+
+#判断是否是管理员
+def admin_jur(func):
+    name = func.__name__
+
+    def wrapper(*args,**kwargs):
+        req = args[0]
+        username = req.session.get('webuser',default=None)  # 获取登录用户名
+        user = Users.objects.get(username=username)
+
+        if user.state == 0:
+            return func(*args, **kwargs)
+        else:
+            return HttpResponse("request error", status=403)
+
+    return wrapper

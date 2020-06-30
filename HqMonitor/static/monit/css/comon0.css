@@ -19,9 +19,9 @@ body{ background:#000d4a url(../images/bg.jpg) center top; background-size:cover
     z-index: 1;
     top: 0;
     left: 0;
-    background-color:  #0e90d2;
+    background-color: rgba(189, 236, 255, 0.5);
     overflow-x: hidden;
-    transition: 0.5s; /*侧栏延迟0.5s显示*/
+    transition: 0.1s; /*侧栏延迟0.5s显示*/
     padding-top: 60px;
 }
 

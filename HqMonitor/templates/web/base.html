@@ -7,7 +7,18 @@
     <script type="text/javascript" src="{% static 'monit/js/jquery.js' %}"></script>
     <link rel="stylesheet" href="{% static 'monit/css/comon0.css' %}">
     <link rel="icon" href="{% static 'favicon.ico' %}">
-
+{#    <link rel="stylesheet" href="{% static 'monit/css/layui.css' %}">#}
+    <link rel="stylesheet" href="{% static 'monit/icon/iconfont.css' %}" type="text/css">
+    <script src="{% static 'monit/icon/iconfont.js' %}"></script>
+    <style>
+        .icon {
+          width: 1em;
+          height: 1em;
+          vertical-align: -0.15em;
+          fill: currentColor;
+          overflow: hidden;
+        }
+        </style>
     <!-- css开始 -->
     {% block css %}
     {% endblock %}
@@ -52,12 +63,12 @@
     <!--侧栏界面设计-->
     <div id="mySidenav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <a href="{% url 'monit_index' %}?comid={{ compid }}">网络全局信息</a>
-      <a href="{% url 'safety_index' %}?comid={{ compid }}">web安全防护信息</a>
-      <a href="{% url 'monit_invasion_index' %}?comid={{ compid }}">入侵检测信息</a>
-      <a href="{% url 'monit_threaten_indexs' %}?comid={{ compid }}">威胁情报</a>
-        <a href="{% url 'monit_score_scindex' %}?comid={{ compid }}">安全综合评分</a>
-        <a href="{% url 'web_center' %}">个人中心</a>
+      <a href="{% url 'monit_index' %}?comid={{ compid }}"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-quanju"></use></svg> 网络全局信息</a>
+      <a href="{% url 'safety_index' %}?comid={{ compid }}"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-fanghu"></use></svg> web防护信息</a>
+      <a href="{% url 'monit_invasion_index' %}?comid={{ compid }}"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-ruqinjiance"></use></svg> 入侵检测信息</a>
+      <a href="{% url 'monit_threaten_indexs' %}?comid={{ compid }}"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-weixieqingbao_moren"></use></svg> 威胁情报</a>
+        <a href="{% url 'monit_score_scindex' %}?comid={{ compid }}"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zu"></use></svg> 安全综合评分</a>
+        <a href="{% url 'web_center' %}"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-gerenzhongxin"></use></svg> 个人中心</a>
     </div>
     <div class="butts" id="main">
       <span style="font-size:30px;cursor:pointer;color: #ddd;" onclick="openNav()">&#9776; 操作</span>

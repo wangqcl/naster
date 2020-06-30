@@ -54,4 +54,19 @@ class Migration(migrations.Migration):
             name='users',
             field=models.ManyToManyField(to='common.Users'),
         ),
+        migrations.AddField(
+            model_name='users',
+            name='count',
+            field=models.IntegerField(default=0),
+        ),
+        migrations.AddField(
+            model_name='users',
+            name='login_time',
+            field=models.DateTimeField(default=datetime.datetime.now),
+        ),
+        migrations.AlterField(
+            model_name='compinfo',
+            name='id',
+            field=models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
+        ),
     ]

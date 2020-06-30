@@ -94,11 +94,15 @@
                                     <button type="button"  class="layui-btn layui-btn-primary layui-btn-sm">上一页</button>
                                 </a>
 
-                                {% for num in users.paginator.page_range %}
-                                    <a class="now_page">
-                                        <button type="button"   class="layui-btn layui-btn-primary layui-btn-sm">{{ num }}</button>
-                                    </a>
-                                {% endfor %}
+{#                                {% for num in users.paginator.page_range %}#}
+{#                                    <a class="now_page">#}
+{#                                        <button type="button"   class="layui-btn layui-btn-primary layui-btn-sm">{{ num }}</button>#}
+{#                                    </a>#}
+{#                                {% endfor %}#}
+
+                                <a class="now_page">
+                                        <button id="now_pages" type="button"   class="layui-btn layui-btn-primary layui-btn-sm"></button>
+                                </a>
 
                                 <button id="num_pages" type="button" class="layui-btn layui-btn-primary layui-btn-sm">
                                     共{{ users.paginator.num_pages }}页
@@ -489,24 +493,24 @@
             now_page -= 1;
             if (now_page < 1) {
                 now_page = 1;
-
+                page_click();
                 return false
             } else {
-                $('.page_this').parent().prev().click();
-
+                {#$('.page_this').parent().prev().click();#}
+                page_click()
             }
         });
         //下一页
         $('.last_page').click(function () {
-            let num_pages = $('.now_page button').last().text();
+            {#let num_pages = $('.now_page button').last().text();#}
             now_page += 1;
-            if (now_page > parseInt(num_pages)) {
+            if (now_page < 1) {
                 now_page -= 1;
-
+                page_click();
                 return false
             } else {
                 $('.page_this').parent().next().click();
-
+                page_click()
             }
         });
         //切换页
@@ -526,6 +530,7 @@
                 data: {page: now_page},
                 success: function (data) {
                     $('#tbody tr').remove();
+                    $('#now_pages').html('第'+data.now_page + '页');
                     $('#num_pages').html('共' + data.num_pages + '页');
                     if (data.has_previous === true) {
                         $('.first_page button').removeClass('layui-btn-disabled').addClass('layui-btn-primary');

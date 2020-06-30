@@ -1,0 +1,93 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1271764",
+      "name": "监控",
+      "font_class": "jiankong",
+      "unicode": "e648",
+      "unicode_decimal": 58952
+    },
+    {
+      "icon_id": "3786239",
+      "name": "全局",
+      "font_class": "quanju",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "3802316",
+      "name": "威胁情报管理",
+      "font_class": "weixieqingbaoguanli",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    },
+    {
+      "icon_id": "6338139",
+      "name": "个人中心",
+      "font_class": "gerenzhongxin",
+      "unicode": "e638",
+      "unicode_decimal": 58936
+    },
+    {
+      "icon_id": "7057412",
+      "name": "服务器监控",
+      "font_class": "icon-fuwuqijiankong",
+      "unicode": "e681",
+      "unicode_decimal": 59009
+    },
+    {
+      "icon_id": "7166359",
+      "name": "监控展示",
+      "font_class": "jiankongzhanshi",
+      "unicode": "e68a",
+      "unicode_decimal": 59018
+    },
+    {
+      "icon_id": "8877685",
+      "name": "威胁情报1",
+      "font_class": "weixieqingbao",
+      "unicode": "e72c",
+      "unicode_decimal": 59180
+    },
+    {
+      "icon_id": "10070356",
+      "name": "icon_LBS监控",
+      "font_class": "icon_LBSjiankong",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    },
+    {
+      "icon_id": "10265863",
+      "name": "威胁情报_默认",
+      "font_class": "weixieqingbao_moren",
+      "unicode": "e526",
+      "unicode_decimal": 58662
+    },
+    {
+      "icon_id": "11333265",
+      "name": "综合评分",
+      "font_class": "zu",
+      "unicode": "e61f",
+      "unicode_decimal": 58911
+    },
+    {
+      "icon_id": "11917944",
+      "name": "入侵检测",
+      "font_class": "ruqinjiance",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
+      "icon_id": "13354834",
+      "name": "防护",
+      "font_class": "fanghu",
+      "unicode": "ea38",
+      "unicode_decimal": 59960
+    }
+  ]
+}

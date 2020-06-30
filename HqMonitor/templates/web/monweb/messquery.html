@@ -5,43 +5,29 @@
         {% block cebody %}
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h2 class="sub-header">信息反馈</h2>
-          <div class="index-main">
-            <div class="top clearfix">
-                <div class="container">
-                    <div class="alert alert-success ">
-                        <strong>信息反馈板</strong>.写下您的反馈意见吧。
-                    </div>
-                    <div class="form-group">
-                        <form action="{% url 'web_center_insert' %}"  method="post" name='wish' id="wish" onsubmit="return check()">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                反馈内容：<textarea class="form-control" id="content" name="content" rows="3"></textarea>
-                            </div>
-                            <div class="form-group">
-                                反馈人：
-                            </div>
-                            <div class="form-inline">
-                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="name" name="name" value="{{ user.name }}">
-                                  </div>
-                                <button type="submit" class="btn btn-primary">提交反馈</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            </div>
 
           <h1 class="page-header">反馈记录</h1>
               <div class="container">
+
+                  <form class="form-inline" action="{% url "web_center_mesquery" %}?pIndex=1" method="get">
+                      <label>关键字：</label>
+                      <input type="text" name="keyword" value="{{request.GET.keyword}}" class="input-small" placeholder="反馈人/反馈账号">
+                      <label>内容：</label>
+                      <input type="text" name="cont" value="{{request.GET.keyword}}" class="input-small" placeholder="内容">
+                      <button type="submit" class="btn">搜索</button>
+                      <a href="{% url "web_center_mesquery" %}?pIndex=1" class="btn btn-primary">全部</a>
+                    </form>
+
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th >反馈人</th>
+                        <th >反馈账号</th>
                         <th style="width: 40%">反馈内容</th>
                         <th >反馈时间</th>
                         <th >回复内容</th>
+                        <th>操作</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -49,9 +35,13 @@
                     <tr>
                       <td>{{ forloop.counter }}</td>
                       <td >{{ fee.username }}</td>
+                      <td >{{ fee.user_account }}</td>
                       <td >{{ fee.content }}</td>
                       <td >{{ fee.feedtime }}</td>
                       <td >{{ fee.reply_content }}</td>
+                        <td>
+                            <a href="{% url 'web_center_messret' %}?feed={{ fee.id }}"  class="btn btn-mini btn-info">回复</a>
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>
@@ -76,6 +66,9 @@
                     </li>
                   </ul>
                 </nav>
+
+
+
           </div>
         </div>
 
@@ -84,23 +77,25 @@
 
   <!-- js开始 -->
 {% block cescript %}
-<script>
-    //检测表单提交是否为空
-    function check(){
-       var content=document.getElementById('content').value;//内容
-       var name=document.getElementById('name').value;//反馈人
-       if(name=="") {
-          alert('反馈人信息不可为空！');
-          document.wish.name.focus();
-          return false;
-       }
-       if(content==""){
-          alert('反馈内容不可为空！');
-          document.wish.content.focus();
-          return false;
-          }
-          return true;
-        }
-</script>
+
+    <script>
+        //检测表单提交是否为空
+        function check(){
+           var content=document.getElementById('content').value;//内容
+           var name=document.getElementById('name').value;//反馈人
+           if(name=="") {
+              alert('反馈人信息不可为空！');
+              document.wish.name.focus();
+              return false;
+           }
+           if(content==""){
+              alert('反馈内容不可为空！');
+              document.wish.content.focus();
+              return false;
+              }
+              return true;
+            }
+    </script>
+
 {% endblock %}
 <!-- js结束 -->

@@ -20,6 +20,7 @@ def center(request):
         comp_list = userinfo.compinfo_set.all()
 
     content = {
+        'user':userinfo,
         'userinfo':userinfo,
         'comp_list':comp_list
     }

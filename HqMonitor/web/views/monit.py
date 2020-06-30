@@ -33,20 +33,22 @@ class index(View):
         user = Users.objects.get(username=username)
         pIndex = request.GET.get('comid', None)
 
-        result = self.seardat(pIndex)
-        res = result["dat"]
-        if res != False:
-            paginator = Paginator(res, 4)  # 分页功能，一页8条数据
-            userlist = paginator.page(1)
-            content = {
-                "compid": pIndex,
-                "users": userlist
-            }
-        else:
-            content = {
-                "compid": pIndex
-            }
-
+        # result = self.seardat(pIndex)
+        # res = result["dat"]
+        # if res != False:
+        #     paginator = Paginator(res, 4)  # 分页功能，一页8条数据
+        #     userlist = paginator.page(1)
+        #     content = {
+        #         "compid": pIndex,
+        #         "users": userlist
+        #     }
+        # else:
+        #     content = {
+        #         "compid": pIndex
+        #     }
+        content = {
+            "compid": pIndex
+        }
         if user.state == 0:
             if int(pIndex) == 0:
                 return render(request,"web/monit.html",content)
@@ -3119,6 +3121,7 @@ class Source_data(View):
                       'has_next': users.has_next(),
                       'num_pages': users.paginator.num_pages,
                       'user_li': user_li,
+                      'now_page':page,
                       }
             return JsonResponse(result)
 

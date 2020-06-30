@@ -1,0 +1,52 @@
+{% extends "web/monweb/base.html" %}
+{% load static from staticfiles %}
+
+<!-- 主体开始 -->
+        {% block cebody %}
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h2 class="sub-header">回复信息</h2>
+          <div class="index-main">
+            <div class="top clearfix">
+                <div class="container">
+                    <div class="alert alert-success ">
+                        <strong>回复信息板</strong>.写下您的回复信息吧。
+                    </div>
+                    <div class="form-group">
+                        <form action="{% url 'web_center_messret' %}"  method="post" name='wish' id="wish" onsubmit="return check()">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                回复内容：<textarea class="form-control" id="content" name="content" rows="3"></textarea>
+                            </div>
+                               <div class="hidden" >
+                                   <input id="fee" name="fee" value="{{ feeid }}">
+                               </div>
+                            <div class="form-inline">
+                                <button type="submit" class="btn btn-primary">提交</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        {% endblock %}
+        <!-- 主体结束 -->
+
+  <!-- js开始 -->
+{% block cescript %}
+
+<script>
+    //检测表单提交是否为空
+    function check(){
+       var content=document.getElementById('content').value;
+       if(content==""){
+          alert('回复内容不可为空！');
+          document.wish.content.focus();
+          return false;
+          }
+          return true;
+        }
+</script>
+{% endblock %}
+<!-- js结束 -->
