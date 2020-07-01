@@ -43,8 +43,8 @@
                 </div>
                 <div class="boxall" style="height: 5.2rem; width: 100%; margin-left: auto; margin-right: auto">
                     <div class="list-down"  style="float: right ;position:absolute;right: 0;z-index:1999">
-                        <button id="btn_inap" style="float:right;">. . .</button>
-                        <ul id="list-chooses_inap" style="display: none;">
+                        <button id="btn1" style="float:right;">. . .</button>
+                        <ul id="list-chooses1" style="display: none;">
                             <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="att_change(1)">今天</button></li>
                             <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="att_change(3)">3天内</button></li>
                             <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="att_change(7)">7天内</button></li>
@@ -61,8 +61,8 @@
             <li>
                 <div class="boxall" style="height: 5.2rem; width: 100%; float:left">
                     <div class="list-down"  style="float: right ;position:absolute;right: 0;z-index:1999">
-                        <button id="btn_inall" style="float:right;">. . .</button>
-                        <ul id="list-chooses_inall" style="display: none;">
+                        <button id="btn2" style="float:right;">. . .</button>
+                        <ul id="list-chooses2" style="display: none;">
                             <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="inva_change(1)">今天</button></li>
                             <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="inva_change(3)">3天内</button></li>
                             <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="inva_change(7)">7天内</button></li>
@@ -77,8 +77,8 @@
                 </div>
                 <div class="boxall" style="height: 5.2rem; width: 100%; float:right">
                     <div class="list-down"  style="float: right ;position:absolute;right: 10px;z-index:1999">
-                        <button id="btn_log" style="float:right;">. . .</button>
-                        <ul id="list-chooses_log" style="display: none;">
+                        <button id="btn3" style="float:right;">. . .</button>
+                        <ul id="list-chooses3" style="display: none;">
                             <li><button type = submit style="background-color: rgba(52,97,255,0.5);color: #0aff13;width: 60px" onclick="att_log(1)">今天</button></li>
                             <li><button type = submit style="background-color: rgba(52,97,255,0.5);color: #0aff13;width: 60px" onclick="att_log(3)">3天内</button></li>
                             <li><button type = submit style="background-color: rgba(52,97,255,0.5);color: #0aff13;width: 60px" onclick="att_log(7)">7天内</button></li>
@@ -127,8 +127,8 @@
             <li>
                 <div class="boxall" style="height: 5.2rem; width: 100%; float:right">
                     <div class="list-down"  style="float: right ;position:absolute;right: 0;z-index:1999">
-                        <button id="btn_acty" style="float:right;">. . .</button>
-                        <ul id="list-chooses_acty" style="display: none;">
+                        <button id="btn4" style="float:right;">. . .</button>
+                        <ul id="list-chooses4" style="display: none;">
                             <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="fa_changes(1)">今天</button></li>
                             <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="fa_changes(3)">3天内</button></li>
                             <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="fa_changes(7)">7天内</button></li>
@@ -143,8 +143,8 @@
                 </div>
                 <div class="boxall" style="height: 5.2rem; width: 100%; float:left">
                     <div class="list-down"  style="float: right ;position:absolute;right: 0;z-index:1999">
-                        <button id="btn_accl" style="float:right;">. . .</button>
-                        <ul id="list-chooses_accl" style="display: none;">
+                        <button id="btn5" style="float:right;">. . .</button>
+                        <ul id="list-chooses5" style="display: none;">
                             <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="nu_changes(1)">今天</button></li>
                             <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="nu_changes(3)">3天内</button></li>
                             <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="nu_changes(7)">7天内</button></li>
@@ -166,8 +166,8 @@
 
 <!-- js开始 -->
 {% block jsbody %}
-
-
+    <!--【入侵检测】时间触发-->
+    <script language="JavaScript" src="{% static 'monit/js/exhib.js'%}"></script>
     <!--【入侵检测】总攻击数-->
     <script type="text/javascript" >
         inva_all();
@@ -182,61 +182,6 @@
             })
         }
 
-        $('#btn_inall').unbind('click').bind('click',function(){
-
-            const listBtn_inall = document.getElementById('btn_inall');
-            const lists_inall = document.getElementById('list-chooses_inall');
-            const listsLis_inall = lists_inall.querySelectorAll('li');
-
-
-            // 列表选项从上而下出现
-            let listDown = () => {
-                let startHeight = 0;
-                let stopHeight = 40;
-
-                let timeId = setInterval(() => {
-                    startHeight++;
-                    // 注意：forEach() 方法在 IE8 以下不支持
-                    listsLis_inall.forEach((item) => {
-                        item.style.height = startHeight + 'px';
-                    });
-                    if (startHeight >= stopHeight) {
-                        clearInterval(timeId);
-                    }
-                }, 10);
-
-                lists_inall.style.display = 'block';
-            };
-
-            // 列表选项从下而上消失
-            let listUp = () => {
-                let startHeight = 40;
-                let stopHeight = 0;
-
-                let timeId = setInterval(() => {
-                    startHeight--;
-                    listsLis_inall.forEach((item) => {
-                        item.style.height = startHeight + 'px';
-                    });
-                    if (startHeight <= stopHeight) {
-                        clearInterval(timeId);
-                    }
-                }, 10);
-                // 这里，如果不延时的话，会直接消失，而没有上拉的效果
-                setTimeout(() => {
-                    lists_inall.style.display = 'none';
-                }, 350);
-            };
-
-            // 如果列表选项为隐藏，点击则显示；如果列表选项为显示，点击则隐藏
-            listBtn_inall.onclick=function(){
-                if (lists_inall.style.display == 'none') {
-                    listDown();
-                } else {
-                    listUp();
-                }
-            };
-        });
 
         inva_change(edtime);
         var all_data = [];
@@ -270,61 +215,6 @@
             })
         }
 
-        $('#btn_accl').unbind('click').bind('click',function(){
-
-            const listBtn_accl = document.getElementById('btn_accl');
-            const lists_accl = document.getElementById('list-chooses_accl');
-            const listsLis_accl = lists_accl.querySelectorAll('li');
-
-
-            // 列表选项从上而下出现
-            let listDown = () => {
-                let startHeight = 0;
-                let stopHeight = 40;
-
-                let timeId = setInterval(() => {
-                    startHeight++;
-                    // 注意：forEach() 方法在 IE8 以下不支持
-                    listsLis_accl.forEach((item) => {
-                        item.style.height = startHeight + 'px';
-                    });
-                    if (startHeight >= stopHeight) {
-                        clearInterval(timeId);
-                    }
-                }, 10);
-
-                lists_accl.style.display = 'block';
-            };
-
-            // 列表选项从下而上消失
-            let listUp = () => {
-                let startHeight = 40;
-                let stopHeight = 0;
-
-                let timeId = setInterval(() => {
-                    startHeight--;
-                    listsLis_accl.forEach((item) => {
-                        item.style.height = startHeight + 'px';
-                    });
-                    if (startHeight <= stopHeight) {
-                        clearInterval(timeId);
-                    }
-                }, 10);
-                // 这里，如果不延时的话，会直接消失，而没有上拉的效果
-                setTimeout(() => {
-                    lists_accl.style.display = 'none';
-                }, 350);
-            };
-
-            // 如果列表选项为隐藏，点击则显示；如果列表选项为显示，点击则隐藏
-            listBtn_accl.onclick=function(){
-                if (lists_accl.style.display == 'none') {
-                    listDown();
-                } else {
-                    listUp();
-                }
-            };
-        });
 
         nu_changes(edtime);
         var type = [];
@@ -363,65 +253,6 @@
                 ma_ac(data.name,linex,value);
             })
         }
-
-
-
-        $('#btn').unbind('click').bind('click',function(){
-
-            const listBtn = document.getElementById('btn');
-            const lists = document.getElementById('list-chooses');
-            const listsLis = lists.querySelectorAll('li');
-
-
-            // 列表选项从上而下出现
-            let listDown = () => {
-                let startHeight = 0;
-                let stopHeight = 40;
-
-                let timeId = setInterval(() => {
-                    startHeight++;
-                    // 注意：forEach() 方法在 IE8 以下不支持
-                    listsLis.forEach((item) => {
-                        item.style.height = startHeight + 'px';
-                    });
-                    if (startHeight >= stopHeight) {
-                        clearInterval(timeId);
-                    }
-                }, 10);
-
-                lists.style.display = 'block';
-            };
-
-            // 列表选项从下而上消失
-            let listUp = () => {
-                let startHeight = 40;
-                let stopHeight = 0;
-
-                let timeId = setInterval(() => {
-                    startHeight--;
-                    listsLis.forEach((item) => {
-                        item.style.height = startHeight + 'px';
-                    });
-                    if (startHeight <= stopHeight) {
-                        clearInterval(timeId);
-                    }
-                }, 10);
-                // 这里，如果不延时的话，会直接消失，而没有上拉的效果
-                setTimeout(() => {
-                    lists.style.display = 'none';
-                }, 350);
-            };
-
-            // 如果列表选项为隐藏，点击则显示；如果列表选项为显示，点击则隐藏
-            listBtn.onclick=function(){
-                if (lists.style.display == 'none') {
-                    listDown();
-                } else {
-                    listUp();
-                }
-            };
-        });
-
 
 
         ma_change(edtime);
@@ -464,64 +295,6 @@
             })
         }
 
-        $('#btn_inap').unbind('click').bind('click',function(){
-
-            const listBtn_inap = document.getElementById('btn_inap');
-            const lists_inap = document.getElementById('list-chooses_inap');
-            const listsLis_inap = lists_inap.querySelectorAll('li');
-
-
-            // 列表选项从上而下出现
-            let listDown = () => {
-                let startHeight = 0;
-                let stopHeight = 40;
-
-                let timeId = setInterval(() => {
-                    startHeight++;
-                    // 注意：forEach() 方法在 IE8 以下不支持
-                    listsLis_inap.forEach((item) => {
-                        item.style.height = startHeight + 'px';
-                    });
-                    if (startHeight >= stopHeight) {
-                        clearInterval(timeId);
-                    }
-                }, 10);
-
-                lists_inap.style.display = 'block';
-            };
-
-            // 列表选项从下而上消失
-            let listUp = () => {
-                let startHeight = 40;
-                let stopHeight = 0;
-
-                let timeId = setInterval(() => {
-                    startHeight--;
-                    listsLis_inap.forEach((item) => {
-                        item.style.height = startHeight + 'px';
-                    });
-                    if (startHeight <= stopHeight) {
-                        clearInterval(timeId);
-                    }
-                }, 10);
-                // 这里，如果不延时的话，会直接消失，而没有上拉的效果
-                setTimeout(() => {
-                    lists_inap.style.display = 'none';
-                }, 350);
-            };
-
-            // 如果列表选项为隐藏，点击则显示；如果列表选项为显示，点击则隐藏
-            listBtn_inap.onclick=function(){
-                if (lists_inap.style.display == 'none') {
-                    listDown();
-
-                } else {
-                    listUp();
-
-
-                }
-            };
-        });
 
         att_change(edtime);
         var nu_port = [];
@@ -557,64 +330,6 @@
             })
         }
 
-        $('#btn_acty').unbind('click').bind('click',function(){
-
-            const listBtn_acty = document.getElementById('btn_acty');
-            const lists_acty = document.getElementById('list-chooses_acty');
-            const listsLis_acty = lists_acty.querySelectorAll('li');
-
-
-            // 列表选项从上而下出现
-            let listDown = () => {
-                let startHeight = 0;
-                let stopHeight = 40;
-
-                let timeId = setInterval(() => {
-                    startHeight++;
-                    // 注意：forEach() 方法在 IE8 以下不支持
-                    listsLis_acty.forEach((item) => {
-                        item.style.height = startHeight + 'px';
-                    });
-                    if (startHeight >= stopHeight) {
-                        clearInterval(timeId);
-                    }
-                }, 10);
-
-                lists_acty.style.display = 'block';
-            };
-
-            // 列表选项从下而上消失
-            let listUp = () => {
-                let startHeight = 40;
-                let stopHeight = 0;
-
-                let timeId = setInterval(() => {
-                    startHeight--;
-                    listsLis_acty.forEach((item) => {
-                        item.style.height = startHeight + 'px';
-                    });
-                    if (startHeight <= stopHeight) {
-                        clearInterval(timeId);
-                    }
-                }, 10);
-                // 这里，如果不延时的话，会直接消失，而没有上拉的效果
-                setTimeout(() => {
-                    lists_acty.style.display = 'none';
-                }, 350);
-            };
-
-            // 如果列表选项为隐藏，点击则显示；如果列表选项为显示，点击则隐藏
-            listBtn_acty.onclick=function(){
-                if (lists_acty.style.display == 'none') {
-                    listDown();
-
-                } else {
-                    listUp();
-
-
-                }
-            };
-        });
 
         fa_changes(edtime);
         var fa_ip = [];
@@ -744,61 +459,6 @@
 
         }
 
-        $('#btn_log').unbind('click').bind('click',function(){
-
-            const listBtn_log = document.getElementById('btn_log');
-            const lists_log = document.getElementById('list-chooses_log');
-            const listsLis_log = lists_log.querySelectorAll('li');
-
-
-            // 列表选项从上而下出现
-            let listDown = () => {
-                let startHeight = 0;
-                let stopHeight = 40;
-
-                let timeId = setInterval(() => {
-                    startHeight++;
-                    // 注意：forEach() 方法在 IE8 以下不支持
-                    listsLis_log.forEach((item) => {
-                        item.style.height = startHeight + 'px';
-                    });
-                    if (startHeight >= stopHeight) {
-                        clearInterval(timeId);
-                    }
-                }, 10);
-
-                lists_log.style.display = 'block';
-            };
-
-            // 列表选项从下而上消失
-            let listUp = () => {
-                let startHeight = 40;
-                let stopHeight = 0;
-
-                let timeId = setInterval(() => {
-                    startHeight--;
-                    listsLis_log.forEach((item) => {
-                        item.style.height = startHeight + 'px';
-                    });
-                    if (startHeight <= stopHeight) {
-                        clearInterval(timeId);
-                    }
-                }, 10);
-                // 这里，如果不延时的话，会直接消失，而没有上拉的效果
-                setTimeout(() => {
-                    lists_log.style.display = 'none';
-                }, 350);
-            };
-
-            // 如果列表选项为隐藏，点击则显示；如果列表选项为显示，点击则隐藏
-            listBtn_log.onclick=function(){
-                if (lists_log.style.display == 'none') {
-                    listDown();
-                } else {
-                    listUp();
-                }
-            };
-        });
 
         att_log(edtime);
         function att_log(edtime) {
