@@ -305,8 +305,37 @@ class All_attrack(View):
 
 
     def post(self, request):
-        info = {"请求失败！"}
-        return HttpResponse(info)
+        time = int(request.POST['edtime'])
+        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
+        if request.POST.get('compid'):
+            comid = int(request.POST.get('compid'))
+        else:
+            comid = None
+        if type(comid) != int:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.in_all(st_time, ed_time, sp_param)
+            return HttpResponse(es_result)
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_ip = comp.comp_ip  # IP
+                comp_s = comp_ip.split(';')
+                sp_param = {
+                    "bool": {
+                        "should": [
+                        ],
+                        "minimum_should_match": 1
+                    }
+                }
+                for ip in comp_s:
+                    match_phrase = {"match_phrase": {"dst_ip": ip}}
+                    sp_param["bool"]["should"].append(match_phrase)
+                es_result = self.in_all(st_time, ed_time, sp_param)
+                return HttpResponse(es_result)
+            except Exception as err:
+                print(err)
+                return HttpResponse("Error")
 
 
     def in_all(self, st_time, ed_time,sp_param):
@@ -446,9 +475,37 @@ class Attrack_classification(View):
                 return HttpResponse("Error")
 
     def post(self, request):
-        info = {"请求失败！"}
-        return HttpResponse(info)
-
+        time = int(request.POST['edtime'])
+        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
+        if request.POST.get('compid'):
+            comid = int(request.POST.get('compid'))
+        else:
+            comid = None
+        if type(comid) != int:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return HttpResponse(es_result)
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_ip = comp.comp_ip  # IP
+                comp_s = comp_ip.split(';')
+                sp_param = {
+                    "bool": {
+                        "should": [
+                        ],
+                        "minimum_should_match": 1
+                    }
+                }
+                for ip in comp_s:
+                    match_phrase = {"match_phrase": {"dst_ip": ip}}
+                    sp_param["bool"]["should"].append(match_phrase)
+                es_result = self.sear_info(st_time, ed_time, sp_param)
+                return HttpResponse(es_result)
+            except Exception as err:
+                print(err)
+                return HttpResponse("Error")
     def sear_info(self, st_time, ed_time, sp_param):
         if sp_param == None:
             body ={
@@ -656,8 +713,40 @@ class Main_attrack(View):
         # return HttpResponse(es_result)
 
     def post(self, request):
-        info = {"请求失败！"}
-        return HttpResponse(info)
+        time = int(request.POST['edtime'])
+        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
+        if request.POST.get('compid'):
+            comid = int(request.POST.get('compid'))
+        else:
+            comid = None
+        if type(comid) != int:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return HttpResponse(es_result)
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_ip = comp.comp_ip  # IP
+                comp_s = comp_ip.split(';')
+                sp_param = {
+                    "bool":
+                        {
+                            "should":
+                                [
+
+                                ],
+                            "minimum_should_match": 1
+                        }
+                }
+                for ip in comp_s:
+                    match_phrase = {"match_phrase": {"dst_ip": ip}}
+                    sp_param["bool"]["should"].append(match_phrase)
+                es_result = self.sear_info(st_time, ed_time, sp_param)
+                return HttpResponse(es_result)
+            except Exception as err:
+                print(err)
+                return HttpResponse("Error")
 
     def sear_info(self, st_time, ed_time,sp_param):
         if sp_param == None:
@@ -868,9 +957,37 @@ class Attrack_port(View):
                 print(err)
                 return HttpResponse("Error")
     def post(self,request):
-        info = {"请求失败！"}
-        return HttpResponse(info)
-
+        time = int(request.POST['edtime'])
+        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
+        if request.POST.get('compid'):
+            comid = int(request.POST.get('compid'))
+        else:
+            comid = None
+        if type(comid) != int:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return HttpResponse(es_result)
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_ip = comp.comp_ip  # IP
+                comp_s = comp_ip.split(';')
+                sp_param ={
+                    "bool": {
+                        "should": [
+                        ],
+                        "minimum_should_match": 1
+                    }
+                }
+                for ip in comp_s:
+                    match_phrase = {"match_phrase": {"dst_ip": ip}}
+                    sp_param["bool"]["should"].append(match_phrase)
+                es_result = self.sear_info(st_time, ed_time, sp_param)
+                return HttpResponse(es_result)
+            except Exception as err:
+                print(err)
+                return HttpResponse("Error")
     def sear_info(self,st_time,ed_time,sp_param):
         if sp_param == None:
             body = {
@@ -1035,9 +1152,40 @@ class Attrack_type(View):
                 return HttpResponse("Error")
 
     def post(self, request):
-        info = {"请求失败！"}
-        return HttpResponse(info)
+        time = int(request.POST['edtime'])
+        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
+        if request.POST.get('compid'):
+            comid = int(request.POST.get('compid'))
+        else:
+            comid = None
+        if type(comid) != int:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return HttpResponse(es_result)
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_ip = comp.comp_ip  # IP
+                comp_s = comp_ip.split(';')
+                sp_param = {
+                    "bool":
+                        {
+                            "should":
+                                [
 
+                                ],
+                            "minimum_should_match": 1
+                        }
+                }
+                for ip in comp_s:
+                    match_phrase = {"match_phrase": {"dst_ip": ip}}
+                    sp_param["bool"]["should"].append(match_phrase)
+                es_result = self.sear_info(st_time, ed_time, sp_param)
+                return HttpResponse(es_result)
+            except Exception as err:
+                print(err)
+                return HttpResponse("Error")
     def sear_info(self, st_time, ed_time, sp_param):
         if sp_param == None:
             body = {

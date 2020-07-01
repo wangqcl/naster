@@ -1,9 +1,9 @@
-﻿@charset "utf-8";
+@charset "utf-8";
 /* CSS Document */
 *{
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box}
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box}
 *,body{padding:0px;	margin:0px;color: #222;font-family: "微软雅黑";}
 @font-face{font-family:electronicFont;src:url(../font/DS-DIGIT.TTF)}
 body{ background:#000d4a url(../images/bg.jpg) center top; background-size:cover;color:#666;font-size: .1rem;font-family: "Lato", sans-serif;
@@ -19,9 +19,9 @@ body{ background:#000d4a url(../images/bg.jpg) center top; background-size:cover
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: rgba(189, 236, 255, 0.5);
+    background-color:  #0e90d2;
     overflow-x: hidden;
-    transition: 0.1s; /*侧栏延迟0.5s显示*/
+    transition: 0.5s; /*侧栏延迟0.5s显示*/
     padding-top: 60px;
 }
 
@@ -57,8 +57,8 @@ body{ background:#000d4a url(../images/bg.jpg) center top; background-size:cover
 
 /*当文档高度小于450px时，改变侧栏的padding属性和字体大小*/
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
 }
 
 
@@ -73,11 +73,11 @@ a:hover{ color:#06c; text-decoration: none!important}
 
 
 .clearfix:after, .clearfix:before {
-	display: table;
-	content: " "
+    display: table;
+    content: " "
 }
- .clearfix:after {
-	clear: both
+.clearfix:after {
+    clear: both
 }
 
 .l_left{
@@ -98,9 +98,9 @@ a:hover{ color:#06c; text-decoration: none!important}
 .pulll_right{float:right;}
 /*谷哥滚动条样式*/
 
-  ::-webkit-scrollbar {width:5px;height:5px;position:absolute}
-  ::-webkit-scrollbar-thumb {background-color:#5bc0de}
-  ::-webkit-scrollbar-track {background-color:#ddd}
+::-webkit-scrollbar {width:5px;height:5px;position:absolute}
+::-webkit-scrollbar-thumb {background-color:#5bc0de}
+::-webkit-scrollbar-track {background-color:#ddd}
 
 /***/
 .canvas{position: absolute; width:100%; left: 0; top: 0; height: 99%; z-index: 1;}
@@ -181,9 +181,9 @@ a:hover{ color:#06c; text-decoration: none!important}
     height: 10px;
     background-color: rgba(255,255,255,.1);
     content: '';
-	 margin-left:0; right:-1px;    margin-top: 7px;
-	
-	
+    margin-left:0; right:-1px;    margin-top: 7px;
+
+
 }
 .tabs li a.active {border: 1px solid rgba(25,186,139,.17); background: rgba(255,255,255,.05); color:#fff;}
 
@@ -215,63 +215,63 @@ a:hover{ color:#06c; text-decoration: none!important}
 
 @keyframes myfirst2
 {
-from {transform: rotate(0deg);}
-to {transform: rotate(359deg);}
+    from {transform: rotate(0deg);}
+    to {transform: rotate(359deg);}
 }
 
 @keyframes myfirst
 {
-from {transform: rotate(0deg);}
-to {transform: rotate(-359deg);}
+    from {transform: rotate(0deg);}
+    to {transform: rotate(-359deg);}
 }
 
 
 /*Plugin CSS*/
 .str_wrap {
-	overflow:hidden;
-	width:100%;
-	position:relative;
-	-moz-user-select: none;
-	-khtml-user-select: none;
-	user-select: none;  
-	white-space:nowrap;
+    overflow:hidden;
+    width:100%;
+    position:relative;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+    white-space:nowrap;
 }
 
 
-.str_move { 
-	white-space:nowrap;
-	position:absolute; 
-	top:0; 
-	left:0;
-	cursor:move;
+.str_move {
+    white-space:nowrap;
+    position:absolute;
+    top:0;
+    left:0;
+    cursor:move;
 }
 .str_move_clone {
-	display:inline-block;
-	vertical-align:top;
-	position:absolute; 
-	left:100%;
-	top:0;
+    display:inline-block;
+    vertical-align:top;
+    position:absolute;
+    left:100%;
+    top:0;
 }
 .str_vertical .str_move_clone {
-	left:0;
-	top:100%;
+    left:0;
+    top:100%;
 }
 .str_down .str_move_clone {
-	left:0;
-	bottom:100%;
+    left:0;
+    bottom:100%;
 }
 .str_vertical .str_move,
 .str_down .str_move {
-	white-space:normal;
-	width:100%;
+    white-space:normal;
+    width:100%;
 }
 .str_static .str_move,
 .no_drag .str_move,
 .noStop .str_move{
-	cursor:inherit;
+    cursor:inherit;
 }
 .str_wrap img {
-	max-width:none !important;	
+    max-width:none !important;
 }
 
 
@@ -281,22 +281,22 @@ to {transform: rotate(-359deg);}
 .tbc{color:rgba(255,255,255,.6)}
 
 #l1{
-	font-size: 15px;
+    font-size: 15px;
 }
 #l2{
-	font-size: 15px;
+    font-size: 15px;
 }
 #l3{
-	font-size: 15px;
+    font-size: 15px;
 }
 #l4{
-	font-size: 15px;
+    font-size: 15px;
 }
 #l5{
-	font-size: 15px;
+    font-size: 15px;
 }
 #l6{
-	font-size: 15px;
+    font-size: 15px;
 }
 
 /* 偶数行背景色 */
@@ -322,13 +322,14 @@ to {transform: rotate(-359deg);}
     background-color: transparent !important;
 }
 .transparentDataTable .layui-table th {
-    background-color: #009688; /* MediumSeaGreen */
+    background-color: #5578f5; /* MediumSeaGreen */
     color: #fff;
     font-weight: bold;
-	border-color:#009688
+    border-color: #2cebf5
 }
 
-.transparentDataTable .layui-table td{border-color:#009688}
+.transparentDataTable .layui-table td{border-color: #2cebf5
+}
 
 .transparentDataTable .layui-table-view{
     background-color: rgba(0, 0, 0, 0.5) !important;
@@ -388,10 +389,10 @@ to {transform: rotate(-359deg);}
 }
 
 .layui-table-cell {
-   height:auto;
-   overflow:visible;
-  text-overflow:inherit;
- white-space:normal;
+    height:auto;
+    overflow:visible;
+    text-overflow:inherit;
+    white-space:normal;
 }
 
 /*.statistics_table_opacity {*/
@@ -400,4 +401,79 @@ to {transform: rotate(-359deg);}
 
 /*设置表透明  end====================================================================================================================*/
 
+
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    /* 消除按钮点击之后默认出现的蓝色边框 */
+    outline: none;
+}
+ul {
+    list-style: none;
+}
+.list-down {
+    width: 80px;
+    margin: 10px auto;
+    text-align: center;
+}
+.list-down button {
+    width: 80px;
+    height: 40px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    color: #00FFFF;
+}
+.list-down button:hover {
+    color: #00FFFF;
+    font-size: 17px;
+    font-style: 2000;
+}
+.list-down button:focus {
+    border: none;
+}
+
+.list-down #list-chooses {
+    border-top: 40px solid transparent;
+}
+
+.list-down #list-chooses_inap {
+    border-top: 40px solid transparent;
+}
+
+.list-down #list-chooses_inall {
+    border-top: 40px solid transparent;
+}
+
+.list-down #list-chooses_acty {
+    border-top: 40px solid transparent;
+}
+
+.list-down #list-chooses_accl {
+    border-top: 40px solid transparent;
+}
+
+.list-down #list-chooses_log {
+    border-top: 40px solid transparent;
+}
+
+.list-down #list-chooses li {
+    width: 80px;
+    height: 0px;
+    line-height: 40px;
+    background-color: transparent;
+}
+.list-down #list-chooses li a {
+    color: transparent;
+    text-decoration: none;
+}
+.list-down #list-chooses li:hover a {
+    color: transparent;
+    font-size: 17px;
+    font-style: 2000;
+}
+.list-down #list-chooses li#close {
+    border-top: 1px solid transparent;
+}
 

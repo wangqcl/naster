@@ -129,13 +129,13 @@ function in_all(data) {
 
     var rich = {
         white: {
-            fontSize: 100,
+            fontSize: 100/1,
             color: '#00ffff',
             fontWeight: '500',
             padding: [-150, 0, 0, 0]
         },
         bule: {
-            fontSize: 200,
+            fontSize:100/1,
             fontFamily: 'DINBold',
             color: '#00ffff',
             fontWeight: '700',
@@ -268,14 +268,12 @@ function ac_ty(fa_ip,fa_values) {
     for (var k in itemData) {
         data[itemData[k]] = seriesData[k];
     }
-
     var xAxisData = [];
     var dataArr = [];
     for (var i in data) {
         xAxisData.push(i);
         dataArr.push(data[i]);
     }
-
     option = {
         //backgroundColor: '#142058',
         grid: {
@@ -306,7 +304,7 @@ function ac_ty(fa_ip,fa_values) {
             show: true,
             name: '来源',
             nameTextStyle: {
-                fontSize: 14,
+                fontSize: 8,
                 fontFamily: 'Microsoft YaHei',
                 color: '#fff'
             },
@@ -314,7 +312,7 @@ function ac_ty(fa_ip,fa_values) {
             nameLocation: 'end',
             nameGap: 8,
             axisLabel: {
-                fontSize: 16,
+                fontSize: 10,
                 fontFamily: 'Microsoft YaHei',
                 color: "#fff",
                 interval: 0,
@@ -559,6 +557,7 @@ function ac_ty(fa_ip,fa_values) {
 //主要攻击类型
 function ma_ac(name,linex,value){
     var myChart = echarts.init(document.getElementById('maac'));
+    myChart.clear()
     //var xData = ["2019-03-01", "2019-03-02", "2019-03-03", "2019-03-04", "2019-03-05", "2019-03-06", "2019-03-07", "2019-03-08", "2019-03-09", "2019-03-10", "2019-03-11", "2019-03-12", "2019-03-13", "2019-03-14", "2019-03-15", "2019-03-16", "2019-03-17", "2019-03-18", "2019-03-19", "2019-03-20"];
     var xData = linex;
     var yData = [10,20,30,40,50,60,70];
@@ -643,3 +642,6 @@ function ma_ac(name,linex,value){
         myChart.resize();
     });
 }
+
+
+

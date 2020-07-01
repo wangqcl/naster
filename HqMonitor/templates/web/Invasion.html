@@ -3,6 +3,7 @@
 <!-- css开始 -->
 {% block css %}
     <link rel="stylesheet" href={% static 'monit/css/layui.css' %}>
+    <link rel="stylesheet" href={% static 'monit/css/Invasion.css' %}>
 {% endblock %}
 <!-- css结束 -->
 
@@ -25,11 +26,33 @@
     <ul class="clearfix">
         <li>
             <div class="boxall" style="height: 5.2rem; width: 100%; margin-left: auto; margin-right: auto">
+                <div class="list-down"  style="float: right ;position:absolute;right: 0;">
+                    <button id="btn" style="float:right;">. . .</button>
+                    <ul id="list-chooses" style="display: none;">
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="ma_change(1)">今天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="ma_change(3)">3天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="ma_change(7)">7天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="ma_change(14)">14天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="ma_change(30)">30天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="ma_change(60)">60天内</button></li>
+                    </ul>
+                </div>
                 <div class="alltitle">【入侵检测】主要攻击类型</div>
-                <div class="allnav" id="maac"></div>
+                <div class="allnav" id="maac" ></div>
                 <div class="boxfoot"></div>
             </div>
-            <div class="boxall" style="height: 5.2rem; width: 100%; float:left">
+            <div class="boxall" style="height: 5.2rem; width: 100%; margin-left: auto; margin-right: auto">
+                <div class="list-down"  style="float: right ;position:absolute;right: 0;">
+                    <button id="btn_inap" style="float:right;">. . .</button>
+                    <ul id="list-chooses_inap" style="display: none;">
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="att_change(1)">今天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="att_change(3)">3天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="att_change(7)">7天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="att_change(14)">14天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="att_change(30)">30天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="att_change(60)">60天内</button></li>
+                    </ul>
+                </div>
                 <div class="alltitle">【入侵检测】主要受攻击端口</div>
                 <div class="allnav" id="inap"></div>
                 <div class="boxfoot"></div>
@@ -37,11 +60,33 @@
         </li>
         <li>
             <div class="boxall" style="height: 5.2rem; width: 100%; float:left">
+                <div class="list-down"  style="float: right ;position:absolute;right: 0;">
+                    <button id="btn_inall" style="float:right;">. . .</button>
+                    <ul id="list-chooses_inall" style="display: none;">
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="inva_change(1)">今天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="inva_change(3)">3天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="inva_change(7)">7天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="inva_change(14)">14天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="inva_change(30)">30天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="inva_change(60)">60天内</button></li>
+                    </ul>
+                </div>
                 <div class="alltitle">【入侵检测】总攻击数</div>
                 <div class="allnav" id="inall"></div>
                 <div class="boxfoot"></div>
             </div>
             <div class="boxall" style="height: 5.2rem; width: 100%; float:right">
+                <div class="list-down"  style="float: right ;position:absolute;right: 0;">
+                    <button id="btn_log" style="float:right;">. . .</button>
+                    <ul id="list-chooses_log" style="display: none;">
+                        <li><button type = submit style="background: transparent;color: #00FFFF" onclick="log(1)">今天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF" onclick="log(3)">3天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF" onclick="log(7)">7天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF" onclick="log(14)">14天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF" onclick="log(30)">30天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF" onclick="log(60)">60天内</button></li>
+                    </ul>
+                </div>
                 <div class="alltitle">【入侵检测】日志</div>
                 <div class="allnav">
                     <div class="transparentDataTable">
@@ -85,11 +130,33 @@
         </li>
         <li>
             <div class="boxall" style="height: 5.2rem; width: 100%; float:right">
+                <div class="list-down"  style="float: right ;position:absolute;right: 0;">
+                    <button id="btn_acty" style="float:right;">. . .</button>
+                    <ul id="list-chooses_acty" style="display: none;">
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="fa_changes(1)">今天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="fa_changes(3)">3天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="fa_changes(7)">7天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="fa_changes(14)">14天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="fa_changes(30)">30天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="fa_changes(60)">60天内</button></li>
+                    </ul>
+                </div>
                 <div class="alltitle">【入侵检测】主要攻击类型占比</div>
                 <div class="allnav" id="acty"></div>
                 <div class="boxfoot"></div>
             </div>
             <div class="boxall" style="height: 5.2rem; width: 100%; float:left">
+                <div class="list-down"  style="float: right ;position:absolute;right: 0;">
+                    <button id="btn_accl" style="float:right;">. . .</button>
+                    <ul id="list-chooses_accl" style="display: none;">
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="nu_changes(1)">今天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="nu_changes(3)">3天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="nu_changes(7)">7天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="nu_changes(14)">14天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="nu_changes(30)">30天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="nu_changes(60)">60天内</button></li>
+                    </ul>
+                </div>
                 <div class="alltitle">【入侵检测】主要攻击类型攻击方式分类</div>
                 <div class="allnav" id="accl"></div>
                 <div class="boxfoot"></div>
@@ -103,17 +170,91 @@
 
 <!-- js开始 -->
 {% block jsbody %}
+
+
 <!--【入侵检测】总攻击数-->
 <script type="text/javascript" >
     inva_all();
     var all_data = [];
     var nu_edtime;
+
     function inva_all() {
         $.getJSON('{% url "monit_all_attrack" %}',function(data) {
             all_data=data.key;
             data = all_data[0];
             in_all(data)
         })
+    }
+
+    $('#btn_inall').unbind('click').bind('click',function(){
+
+        const listBtn_inall = document.getElementById('btn_inall');
+        const lists_inall = document.getElementById('list-chooses_inall');
+        const listsLis_inall = lists_inall.querySelectorAll('li');
+
+
+        // 列表选项从上而下出现
+        let listDown = () => {
+            let startHeight = 0;
+            let stopHeight = 40;
+
+            let timeId = setInterval(() => {
+                startHeight++;
+                // 注意：forEach() 方法在 IE8 以下不支持
+                listsLis_inall.forEach((item) => {
+                    item.style.height = startHeight + 'px';
+                });
+                if (startHeight >= stopHeight) {
+                    clearInterval(timeId);
+                }
+            }, 10);
+
+            lists_inall.style.display = 'block';
+        };
+
+        // 列表选项从下而上消失
+        let listUp = () => {
+            let startHeight = 40;
+            let stopHeight = 0;
+
+            let timeId = setInterval(() => {
+                startHeight--;
+                listsLis_inall.forEach((item) => {
+                    item.style.height = startHeight + 'px';
+                });
+                if (startHeight <= stopHeight) {
+                    clearInterval(timeId);
+                }
+            }, 10);
+            // 这里，如果不延时的话，会直接消失，而没有上拉的效果
+            setTimeout(() => {
+                lists_inall.style.display = 'none';
+            }, 350);
+        };
+
+        // 如果列表选项为隐藏，点击则显示；如果列表选项为显示，点击则隐藏
+        listBtn_inall.onclick=function(){
+            if (lists_inall.style.display == 'none') {
+                listDown();
+            } else {
+                listUp();
+            }
+        };
+    });
+
+    inva_change(edtime);
+    var all_data = [];
+    var nu_edtime;
+
+    function inva_change(edtime) {
+        $.ajaxSetup({
+            data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+        });
+        $.post("{% url 'monit_all_attrack' %}",{'edtime':edtime}, function(data){
+            all_data=data.key;
+            data = all_data[0];
+            in_all(data)
+        },'json')
     }
 </script>
 <!--【入侵检测】主要攻击类型攻击方式分类-->
@@ -123,6 +264,7 @@
     var method = [];
     var show = [];
     var nu_edtime;
+
     function nu_change(){
         $.getJSON('{% url "monit_attrack_class" %}',function(data){
             type=data.type;
@@ -131,38 +273,277 @@
             ac_cl(type,method,show)
         })
     }
+
+    $('#btn_accl').unbind('click').bind('click',function(){
+
+        const listBtn_accl = document.getElementById('btn_accl');
+        const lists_accl = document.getElementById('list-chooses_accl');
+        const listsLis_accl = lists_accl.querySelectorAll('li');
+
+
+        // 列表选项从上而下出现
+        let listDown = () => {
+            let startHeight = 0;
+            let stopHeight = 40;
+
+            let timeId = setInterval(() => {
+                startHeight++;
+                // 注意：forEach() 方法在 IE8 以下不支持
+                listsLis_accl.forEach((item) => {
+                    item.style.height = startHeight + 'px';
+                });
+                if (startHeight >= stopHeight) {
+                    clearInterval(timeId);
+                }
+            }, 10);
+
+            lists_accl.style.display = 'block';
+        };
+
+        // 列表选项从下而上消失
+        let listUp = () => {
+            let startHeight = 40;
+            let stopHeight = 0;
+
+            let timeId = setInterval(() => {
+                startHeight--;
+                listsLis_accl.forEach((item) => {
+                    item.style.height = startHeight + 'px';
+                });
+                if (startHeight <= stopHeight) {
+                    clearInterval(timeId);
+                }
+            }, 10);
+            // 这里，如果不延时的话，会直接消失，而没有上拉的效果
+            setTimeout(() => {
+                lists_accl.style.display = 'none';
+            }, 350);
+        };
+
+        // 如果列表选项为隐藏，点击则显示；如果列表选项为显示，点击则隐藏
+        listBtn_accl.onclick=function(){
+            if (lists_accl.style.display == 'none') {
+                listDown();
+            } else {
+                listUp();
+            }
+        };
+    });
+
+    nu_changes(edtime);
+    var type = [];
+    var method = [];
+    var show = [];
+
+    function nu_changes(edtime) {
+
+        $.ajaxSetup({
+            data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+        });
+        $.post("{% url 'monit_attrack_class' %}",{'edtime':edtime}, function(data){
+            type=data.type;
+            method=data.method;
+            show=data.show;
+            ac_cl(type,method,show)
+        },'json')
+
+
+    }
+
 </script>
 <!--【入侵检测】主要攻击类型-->
 <script type="text/javascript" >
+
     main_ac();
     var name = [];
     var linex = [];
     var value = [];
-    var nu_edtime;
+
     function main_ac(){
         $.getJSON('{% url "monit_main_attrack" %}',function(data){
             name = data.name;
             linex = data.linex;
             value = data.value;
-            ma_ac(data.name,data.linex,data.value)
+            ma_ac(data.name,linex,value);
         })
     }
+
+
+
+    $('#btn').unbind('click').bind('click',function(){
+
+        const listBtn = document.getElementById('btn');
+        const lists = document.getElementById('list-chooses');
+        const listsLis = lists.querySelectorAll('li');
+
+
+        // 列表选项从上而下出现
+        let listDown = () => {
+            let startHeight = 0;
+            let stopHeight = 40;
+
+            let timeId = setInterval(() => {
+                startHeight++;
+                // 注意：forEach() 方法在 IE8 以下不支持
+                listsLis.forEach((item) => {
+                    item.style.height = startHeight + 'px';
+                });
+                if (startHeight >= stopHeight) {
+                    clearInterval(timeId);
+                }
+            }, 10);
+
+            lists.style.display = 'block';
+        };
+
+        // 列表选项从下而上消失
+        let listUp = () => {
+            let startHeight = 40;
+            let stopHeight = 0;
+
+            let timeId = setInterval(() => {
+                startHeight--;
+                listsLis.forEach((item) => {
+                    item.style.height = startHeight + 'px';
+                });
+                if (startHeight <= stopHeight) {
+                    clearInterval(timeId);
+                }
+            }, 10);
+            // 这里，如果不延时的话，会直接消失，而没有上拉的效果
+            setTimeout(() => {
+                lists.style.display = 'none';
+            }, 350);
+        };
+
+        // 如果列表选项为隐藏，点击则显示；如果列表选项为显示，点击则隐藏
+        listBtn.onclick=function(){
+            if (lists.style.display == 'none') {
+                listDown();
+            } else {
+                listUp();
+            }
+        };
+    });
+
+
+
+    ma_change(edtime);
+    var names = [];
+    var linexs = [];
+    var values = [];
+
+    function ma_change(edtime) {
+
+        $.ajaxSetup({
+            data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+        });
+        $.post("{% url 'monit_main_attrack' %}",{'edtime':edtime}, function(data){
+            names = data.name;
+            linexs = data.linex;
+            values = data.value;
+            ma_ac(names,linexs,values);
+        },'json')
+
+
+    }
+
 
 </script>
 <!--【入侵检测】主要受攻击端口-->
 <script type="text/javascript">
-    attrackport()
-    var nu_port = []
-    var nu_values = []
-    var nu_edtime
+    attrackport();
+
+    var nu_port = [];
+    var nu_values = [];
+    var nu_edtime;
+
+
     function attrackport(){
         $.getJSON('{% url "monit_attrack_port" %}',function(data){
-            nu_port=data.ports
-            nu_values=data.number
-            nu_edtime = data.edtime
+            nu_port=data.ports;
+            nu_values=data.number;
+            nu_edtime = data.edtime;
             in_ap(nu_port,nu_values)
         })
     }
+
+    $('#btn_inap').unbind('click').bind('click',function(){
+
+        const listBtn_inap = document.getElementById('btn_inap');
+        const lists_inap = document.getElementById('list-chooses_inap');
+        const listsLis_inap = lists_inap.querySelectorAll('li');
+
+
+        // 列表选项从上而下出现
+        let listDown = () => {
+            let startHeight = 0;
+            let stopHeight = 40;
+
+            let timeId = setInterval(() => {
+                startHeight++;
+                // 注意：forEach() 方法在 IE8 以下不支持
+                listsLis_inap.forEach((item) => {
+                    item.style.height = startHeight + 'px';
+                });
+                if (startHeight >= stopHeight) {
+                    clearInterval(timeId);
+                }
+            }, 10);
+
+            lists_inap.style.display = 'block';
+        };
+
+        // 列表选项从下而上消失
+        let listUp = () => {
+            let startHeight = 40;
+            let stopHeight = 0;
+
+            let timeId = setInterval(() => {
+                startHeight--;
+                listsLis_inap.forEach((item) => {
+                    item.style.height = startHeight + 'px';
+                });
+                if (startHeight <= stopHeight) {
+                    clearInterval(timeId);
+                }
+            }, 10);
+            // 这里，如果不延时的话，会直接消失，而没有上拉的效果
+            setTimeout(() => {
+                lists_inap.style.display = 'none';
+            }, 350);
+        };
+
+        // 如果列表选项为隐藏，点击则显示；如果列表选项为显示，点击则隐藏
+        listBtn_inap.onclick=function(){
+            if (lists_inap.style.display == 'none') {
+                listDown();
+
+            } else {
+                listUp();
+
+
+            }
+        };
+    });
+
+    att_change(edtime);
+    var nu_port = [];
+    var nu_values = [];
+    var nu_edtime;
+
+    function att_change(edtime) {
+        $.ajaxSetup({
+            data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+        });
+        $.post("{% url 'monit_attrack_port' %}",{'edtime':edtime}, function(data){
+            nu_port=data.ports;
+            nu_values=data.number;
+            nu_edtime = data.edtime;
+            in_ap(nu_port,nu_values)
+        },'json')
+    }
+
 </script>
 <!--【入侵检测】主要攻击类型占比-->
 <script type="text/javascript" >
@@ -180,48 +561,195 @@
         })
     }
 
+    $('#btn_acty').unbind('click').bind('click',function(){
+
+        const listBtn_acty = document.getElementById('btn_acty');
+        const lists_acty = document.getElementById('list-chooses_acty');
+        const listsLis_acty = lists_acty.querySelectorAll('li');
+
+
+        // 列表选项从上而下出现
+        let listDown = () => {
+            let startHeight = 0;
+            let stopHeight = 40;
+
+            let timeId = setInterval(() => {
+                startHeight++;
+                // 注意：forEach() 方法在 IE8 以下不支持
+                listsLis_acty.forEach((item) => {
+                    item.style.height = startHeight + 'px';
+                });
+                if (startHeight >= stopHeight) {
+                    clearInterval(timeId);
+                }
+            }, 10);
+
+            lists_acty.style.display = 'block';
+        };
+
+        // 列表选项从下而上消失
+        let listUp = () => {
+            let startHeight = 40;
+            let stopHeight = 0;
+
+            let timeId = setInterval(() => {
+                startHeight--;
+                listsLis_acty.forEach((item) => {
+                    item.style.height = startHeight + 'px';
+                });
+                if (startHeight <= stopHeight) {
+                    clearInterval(timeId);
+                }
+            }, 10);
+            // 这里，如果不延时的话，会直接消失，而没有上拉的效果
+            setTimeout(() => {
+                lists_acty.style.display = 'none';
+            }, 350);
+        };
+
+        // 如果列表选项为隐藏，点击则显示；如果列表选项为显示，点击则隐藏
+        listBtn_acty.onclick=function(){
+            if (lists_acty.style.display == 'none') {
+                listDown();
+
+            } else {
+                listUp();
+
+
+            }
+        };
+    });
+
+    fa_changes(edtime);
+    var fa_ip = [];
+    var fa_values = [];
+    var fa_edtime;
+
+    function fa_changes(edtime) {
+        $.ajaxSetup({
+            data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+        });
+        $.post("{% url 'monit_attrack_type' %}",{'edtime':edtime}, function(data){
+            fa_ip=data.types;
+            fa_values=data.number;
+            fa_edtime = data.edtime;
+            console.log(fa_ip)
+            console.log(fa_values)
+            ac_ty(fa_ip,fa_values);
+        },'json')
+    }
+
 </script>
 <!--【入侵检测】日志-->
 <script type="text/javascript">
 
-        // ajax分页
-        let now_page = 1;
-        // 动态加载第一页数据
-        page_click();
-        $('.first_page button').removeClass('layui-btn-primary').addClass('layui-btn-disabled');
-        $('.now_page button').first().removeClass('layui-btn-primary').addClass('page_this');
-        //上一页
-        $('.first_page').click(function () {
+
+    // ajax分页
+    let now_page = 1;
+    let edtime = None;
+    // 动态加载第一页数据
+    page_click();
+    log(edtime);
+
+    function log(edtime) {
+        page_click(edtime)
+    }
+
+
+
+
+    $('.first_page button').removeClass('layui-btn-primary').addClass('layui-btn-disabled');
+    $('.now_page button').first().removeClass('layui-btn-primary').addClass('page_this');
+    //上一页
+    $('.first_page').click(function () {
+        now_page -= 1;
+        if (now_page < 1) {
+            now_page = 1;
+            return false
+        } else {
+            $('.page_this').parent().prev().click();
+        }
+    });
+    //下一页
+    $('.last_page').click(function () {
+        let num_pages = $('.now_page button').last().text();
+        now_page += 1;
+        if (now_page > parseInt(num_pages)) {
             now_page -= 1;
-            if (now_page < 1) {
-                now_page = 1;
-                return false
-            } else {
-                $('.page_this').parent().prev().click();
-            }
-        });
-        //下一页
-        $('.last_page').click(function () {
-            let num_pages = $('.now_page button').last().text();
-            now_page += 1;
-            if (now_page > parseInt(num_pages)) {
-                now_page -= 1;
-                return false
-            } else {
-                $('.page_this').parent().next().click();
-            }
-        });
-        //切换页
-        $('.now_page').click(function () {
-            now_page = parseInt($(this).children('button').text());
-            $('.now_page button').removeClass('page_this').addClass('layui-btn-primary');
-            $(this).addClass('page_this');
-            $(this).children('button').removeClass('layui-btn-primary').addClass('page_this');
-            page_click()
+            return false
+        } else {
+            $('.page_this').parent().next().click();
+        }
+    });
+    //切换页
+    $('.now_page').click(function () {
+        now_page = parseInt($(this).children('button').text());
+        $('.now_page button').removeClass('page_this').addClass('layui-btn-primary');
+        $(this).addClass('page_this');
+        $(this).children('button').removeClass('layui-btn-primary').addClass('page_this');
+        page_click()
+    });
+
+    function page_click(edtime) {
+        let page_form = $('#page');
+
+            $('#btn_log').unbind('click').bind('click',function(){
+
+            const listBtn_log = document.getElementById('btn_log');
+            const lists_log = document.getElementById('list-chooses_log');
+            const listsLis_log = lists_log.querySelectorAll('li');
+
+
+            // 列表选项从上而下出现
+            let listDown = () => {
+                let startHeight = 0;
+                let stopHeight = 40;
+
+                let timeId = setInterval(() => {
+                    startHeight++;
+                    // 注意：forEach() 方法在 IE8 以下不支持
+                    listsLis_log.forEach((item) => {
+                        item.style.height = startHeight + 'px';
+                    });
+                    if (startHeight >= stopHeight) {
+                        clearInterval(timeId);
+                    }
+                }, 10);
+
+                lists_log.style.display = 'block';
+            };
+
+            // 列表选项从下而上消失
+            let listUp = () => {
+                let startHeight = 40;
+                let stopHeight = 0;
+
+                let timeId = setInterval(() => {
+                    startHeight--;
+                    listsLis_log.forEach((item) => {
+                        item.style.height = startHeight + 'px';
+                    });
+                    if (startHeight <= stopHeight) {
+                        clearInterval(timeId);
+                    }
+                }, 10);
+                // 这里，如果不延时的话，会直接消失，而没有上拉的效果
+                setTimeout(() => {
+                    lists_log.style.display = 'none';
+                }, 350);
+            };
+
+            // 如果列表选项为隐藏，点击则显示；如果列表选项为显示，点击则隐藏
+            listBtn_log.onclick=function(){
+                if (lists_log.style.display == 'none') {
+                    listDown();
+                } else {
+                    listUp();
+                }
+            };
         });
 
-        function page_click() {
-            let page_form = $('#page');
+        if(edtime == None){
             $.ajax({
                 type: 'get',
                 url: page_form.attr('action'),
@@ -242,7 +770,34 @@
                     $.each(data.user_li, function (index, user) {
                         let a = '<td style="color: #00c3f5;width:50%">';
                         let b = '</td>';
-                        let c = '<div style="color:#00aeef;overflow-y:scroll;width:100%;height:50px;white-space:pre-wrap"${position.specificTasks}</div>'
+                        let c = '<div style="color:#00aeef;overflow-y:scroll;height:50px;white-space:pre-wrap"${position.specificTasks}</div>'
+                        let body =a + c + user.time + b + a + c + user.ip + b + a + c + user.port + b + a + c + user.title + b + a + c + user.url + b;
+                        $('#tbody').append('<tr>' + body + '</tr>');
+                    });
+                }
+            })
+        }else {
+            $.ajax({
+                type: 'post',
+                url: page_form.attr('action'),
+                data: {page: now_page},
+                success: function (data) {
+                    $('#tbody tr').remove();
+                    $('#num_pages').html('共' + data.num_pages + '页');
+                    if (data.has_previous === true) {
+                        $('.first_page button').removeClass('layui-btn-disabled').addClass('layui-btn-primary');
+                    } else {
+                        $('.first_page button').removeClass('layui-btn-primary').addClass('layui-btn-disabled')
+                    }
+                    if (data.has_next === true) {
+                        $('.last_page button').removeClass('layui-btn-disabled').addClass('layui-btn-primary');
+                    } else {
+                        $('.last_page button').removeClass('layui-btn-primary').addClass('layui-btn-disabled');
+                    }
+                    $.each(data.user_li, function (index, user) {
+                        let a = '<td style="color: #00c3f5;width:50%">';
+                        let b = '</td>';
+                        let c = '<div style="color:#00aeef;overflow-y:scroll;height:50px;white-space:pre-wrap"${position.specificTasks}</div>'
                         console.log(user.time)
                         let body =a + c + user.time + b + a + c + user.ip + b + a + c + user.port + b + a + c + user.title + b + a + c + user.url + b;
                         $('#tbody').append('<tr>' + body + '</tr>');
@@ -251,7 +806,13 @@
             })
         }
 
+    }
+
+
+
+
 </script>
+
 {% endblock %}
 <!-- js结束 -->
 

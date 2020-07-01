@@ -3,6 +3,7 @@
 <!-- css开始 -->
 {% block css %}
     <link rel="stylesheet" href={% static 'monit/css/layui.css' %}>
+    <link rel="stylesheet" href={% static 'monit/css/Invasion.css' %}>
 {% endblock %}
 <!-- css结束 -->
 
@@ -25,6 +26,17 @@
         <ul class="clearfix">
             <li>
                 <div class="boxall" style="height: 5.2rem; width: 100%; margin-left: auto; margin-right: auto">
+                    <div class="list-down"  style="float: right ;position:absolute;right: 0;">
+                        <button id="btn" style="float:right;">. . .</button>
+                        <ul id="list-chooses" style="display: none;">
+                            <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="ma_change(1)">今天</button></li>
+                            <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="ma_change(3)">3天内</button></li>
+                            <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="ma_change(7)">7天内</button></li>
+                            <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="ma_change(14)">14天内</button></li>
+                            <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="ma_change(30)">30天内</button></li>
+                            <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="ma_change(60)">60天内</button></li>
+                        </ul>
+                    </div>
                     <div class="alltitle">【入侵检测】主要攻击类型</div>
                     <div class="allnav" id="maac"></div>
                     <div class="boxfoot"></div>
@@ -58,24 +70,24 @@
                                 <tbody id="tbody" ></tbody>
                             </table>
 
-                            <div style="text-align: center;margin: 5% 0;">
+                            <div style="text-align: center;margin: 0;">
                                 <form id="page" action="{% url 'monit_invasion_index' %}?comid={{ compid }}">
                                     <a class="first_page">
-                                        <button type="button" style="background: #5578f5" class="layui-btn layui-btn-primary layui-btn-sm">上一页</button>
+                                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">上一页</button>
                                     </a>
 
                                     {% for num in users.paginator.page_range %}
                                         <a class="now_page">
-                                            <button type="button" style="background: #5578f5"  class="layui-btn layui-btn-primary layui-btn-sm">{{ num }}</button>
+                                            <button type="button"  class="layui-btn layui-btn-primary layui-btn-sm">{{ num }}</button>
                                         </a>
                                     {% endfor %}
 
-                                    <button id="num_pages" type="button"style="background: #5578f5" class="layui-btn layui-btn-primary layui-btn-sm">
+                                    <button id="num_pages" type="button" class="layui-btn layui-btn-primary layui-btn-sm">
                                         共{{ users.paginator.num_pages }}页
                                     </button>
 
                                     <a class="last_page">
-                                        <button type="button" style="background: #5578f5" class="layui-btn layui-btn-primary layui-btn-sm">下一页</button>
+                                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">下一页</button>
                                     </a>
                                 </form>
                             </div>
@@ -148,7 +160,82 @@
                 ma_ac(data.name,data.linex,data.value)
             })
         }
+        window.onload = () => {
+            const listBtn = document.getElementById('btn')
+            const lists = document.getElementById('list-chooses');
+            const listsLis = lists.querySelectorAll('li');
+            const listsCloseBtn = document.getElementById('close');
 
+            // 列表选项从上而下出现
+            let listDown = () => {
+                let startHeight = 0;
+                let stopHeight = 40;
+
+                let timeId = setInterval(() => {
+                    startHeight++;
+                    // 注意：forEach() 方法在 IE8 以下不支持
+                    listsLis.forEach((item) => {
+                        item.style.height = startHeight + 'px';
+                    });
+                    if (startHeight >= stopHeight) {
+                        clearInterval(timeId);
+                    }
+                }, 10);
+
+                lists.style.display = 'block';
+            };
+
+            // 列表选项从下而上消失
+            let listUp = () => {
+                let startHeight = 40;
+                let stopHeight = 0;
+
+                let timeId = setInterval(() => {
+                    startHeight--;
+                    listsLis.forEach((item) => {
+                        item.style.height = startHeight + 'px';
+                    });
+                    if (startHeight <= stopHeight) {
+                        clearInterval(timeId);
+                    }
+                }, 10);
+
+                // 这里，如果不延时的话，会直接消失，而没有上拉的效果
+                setTimeout(() => {
+                    lists.style.display = 'none';
+                }, 350);
+            };
+
+            // 如果列表选项为隐藏，点击则显示；如果列表选项为显示，点击则隐藏
+            listBtn.addEventListener('click', () => {
+                if (lists.style.display == 'none') {
+                    listDown();
+                } else {
+                    listUp();
+                }
+            });
+
+            listsCloseBtn.addEventListener('click', () => {
+                listUp();
+            });
+        };
+
+        ma_change(edtime);
+        var names = [];
+        var linexs = [];
+        var values = [];
+
+        function ma_change(edtime) {
+            $.ajaxSetup({
+                data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+            });
+            $.post("{% url 'monit_main_attrack' %}",{'edtime':edtime,'compid':{{ compid }}}, function(data){
+                names = data.name;
+                linexs = data.linex;
+                values = data.value;
+                ma_ac(names,linexs,values);
+            },'json')
+        }
     </script>
     <!--【入侵检测】主要受攻击端口-->
     <script type="text/javascript">
@@ -243,9 +330,9 @@
                     $.each(data.user_li, function (index, user) {
                         let a = '<td style="color: #00c3f5;width:50%">';
                         let b = '</td>';
-                        let c = '<div style="color:#00aeef;overflow-y:scroll;width:110px;height:65px;white-space:pre-wrap"${position.specificTasks}</div>'
+                        let c = '<div style="color:#00aeef;overflow-y:scroll;height:50px;white-space:pre-wrap"${position.specificTasks}</div>'
                         console.log(user.time)
-                        let body = a + c+user.time + b + a +c+ user.ip + b + a +c+ user.port + b + a +c+ user.title + b + a +c+ user.url + b;
+                        let body =a + c + user.time + b + a + c + user.ip + b + a + c + user.port + b + a + c + user.title + b + a + c + user.url + b;
                         $('#tbody').append('<tr>' + body + '</tr>');
                     });
                 }
