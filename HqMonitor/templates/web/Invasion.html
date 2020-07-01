@@ -26,7 +26,7 @@
     <ul class="clearfix">
         <li>
             <div class="boxall" style="height: 5.2rem; width: 100%; margin-left: auto; margin-right: auto">
-                <div class="list-down"  style="float: right ;position:absolute;right: 0;">
+                <div class="list-down"  style="float: right ;position:absolute;right: 0;z-index:1999">
                     <button id="btn" style="float:right;">. . .</button>
                     <ul id="list-chooses" style="display: none;">
                         <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="ma_change(1)">今天</button></li>
@@ -42,7 +42,7 @@
                 <div class="boxfoot"></div>
             </div>
             <div class="boxall" style="height: 5.2rem; width: 100%; margin-left: auto; margin-right: auto">
-                <div class="list-down"  style="float: right ;position:absolute;right: 0;">
+                <div class="list-down"  style="float: right ;position:absolute;right: 0;z-index:1999">
                     <button id="btn_inap" style="float:right;">. . .</button>
                     <ul id="list-chooses_inap" style="display: none;">
                         <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="att_change(1)">今天</button></li>
@@ -60,7 +60,7 @@
         </li>
         <li>
             <div class="boxall" style="height: 5.2rem; width: 100%; float:left">
-                <div class="list-down"  style="float: right ;position:absolute;right: 0;">
+                <div class="list-down"  style="float: right ;position:absolute;right: 0;z-index:1999">
                     <button id="btn_inall" style="float:right;">. . .</button>
                     <ul id="list-chooses_inall" style="display: none;">
                         <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="inva_change(1)">今天</button></li>
@@ -76,15 +76,15 @@
                 <div class="boxfoot"></div>
             </div>
             <div class="boxall" style="height: 5.2rem; width: 100%; float:right">
-                <div class="list-down"  style="float: right ;position:absolute;right: 0;">
+                <div class="list-down"  style="float: right ;position:absolute;right: 10px;z-index:1999">
                     <button id="btn_log" style="float:right;">. . .</button>
                     <ul id="list-chooses_log" style="display: none;">
-                        <li><button type = submit style="background: transparent;color: #00FFFF" onclick="log(1)">今天</button></li>
-                        <li><button type = submit style="background: transparent;color: #00FFFF" onclick="log(3)">3天内</button></li>
-                        <li><button type = submit style="background: transparent;color: #00FFFF" onclick="log(7)">7天内</button></li>
-                        <li><button type = submit style="background: transparent;color: #00FFFF" onclick="log(14)">14天内</button></li>
-                        <li><button type = submit style="background: transparent;color: #00FFFF" onclick="log(30)">30天内</button></li>
-                        <li><button type = submit style="background: transparent;color: #00FFFF" onclick="log(60)">60天内</button></li>
+                        <li><button type = submit style="background-color: rgba(52,97,255,0.5);color: #0aff13;width: 60px" onclick="att_log(1)">今天</button></li>
+                        <li><button type = submit style="background-color: rgba(52,97,255,0.5);color: #0aff13;width: 60px" onclick="att_log(3)">3天内</button></li>
+                        <li><button type = submit style="background-color: rgba(52,97,255,0.5);color: #0aff13;width: 60px" onclick="att_log(7)">7天内</button></li>
+                        <li><button type = submit style="background-color: rgba(52,97,255,0.5);color: #0aff13;width: 60px" onclick="att_log(14)">14天内</button></li>
+                        <li><button type = submit style="background-color: rgba(52,97,255,0.5);color: #0aff13;width: 60px" onclick="att_log(30)">30天内</button></li>
+                        <li><button type = submit style="background-color: rgba(52,97,255,0.5);color: #0aff13;width: 60px" onclick="att_log(60)">60天内</button></li>
                     </ul>
                 </div>
                 <div class="alltitle">【入侵检测】日志</div>
@@ -103,17 +103,13 @@
                             <tbody id="tbody" ></tbody>
                         </table>
                         <div style="text-align: center;margin: 0;">
-                            <form id="page" action="{% url 'monit_invasion_index' %}?comid={{ compid }}">
+                            <form id="page" action="{% url 'monit_attrack_log' %}?comid={{ compid }}">
                                 <a class="first_page">
                                     <button type="button"  class="layui-btn layui-btn-primary layui-btn-sm">上一页</button>
                                 </a>
-
-                                {% for num in users.paginator.page_range %}
-                                    <a class="now_page">
-                                        <button type="button"  class="layui-btn layui-btn-primary layui-btn-sm">{{ num }}</button>
-                                    </a>
-                                {% endfor %}
-
+                                <a class="now_page">
+                                    <button id="now_pages" type="button"   class="layui-btn layui-btn-primary layui-btn-sm"></button>
+                                </a>
                                 <button id="num_pages" type="button" class="layui-btn layui-btn-primary layui-btn-sm">
                                     共{{ users.paginator.num_pages }}页
                                 </button>
@@ -130,7 +126,7 @@
         </li>
         <li>
             <div class="boxall" style="height: 5.2rem; width: 100%; float:right">
-                <div class="list-down"  style="float: right ;position:absolute;right: 0;">
+                <div class="list-down"  style="float: right ;position:absolute;right: 0;z-index:1999">
                     <button id="btn_acty" style="float:right;">. . .</button>
                     <ul id="list-chooses_acty" style="display: none;">
                         <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="fa_changes(1)">今天</button></li>
@@ -146,7 +142,7 @@
                 <div class="boxfoot"></div>
             </div>
             <div class="boxall" style="height: 5.2rem; width: 100%; float:left">
-                <div class="list-down"  style="float: right ;position:absolute;right: 0;">
+                <div class="list-down"  style="float: right ;position:absolute;right: 0;z-index:1999">
                     <button id="btn_accl" style="float:right;">. . .</button>
                     <ul id="list-chooses_accl" style="display: none;">
                         <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="nu_changes(1)">今天</button></li>
@@ -646,16 +642,11 @@
 
     // ajax分页
     let now_page = 1;
-    let edtime = None;
+    var time = 0;
+
+    {#var kk = att_log(edtime);#}
     // 动态加载第一页数据
-    page_click();
-    log(edtime);
-
-    function log(edtime) {
-        page_click(edtime)
-    }
-
-
+    page_click(time);
 
 
     $('.first_page button').removeClass('layui-btn-primary').addClass('layui-btn-disabled');
@@ -667,18 +658,19 @@
             now_page = 1;
             return false
         } else {
-            $('.page_this').parent().prev().click();
+            page_click(time)
         }
     });
     //下一页
     $('.last_page').click(function () {
-        let num_pages = $('.now_page button').last().text();
         now_page += 1;
-        if (now_page > parseInt(num_pages)) {
+        if (now_page < 1) {
             now_page -= 1;
+            page_click(time)
             return false
         } else {
             $('.page_this').parent().next().click();
+            page_click(time)
         }
     });
     //切换页
@@ -687,75 +679,19 @@
         $('.now_page button').removeClass('page_this').addClass('layui-btn-primary');
         $(this).addClass('page_this');
         $(this).children('button').removeClass('layui-btn-primary').addClass('page_this');
-        page_click()
+        page_click(time)
     });
 
-    function page_click(edtime) {
+    function page_click(time) {
         let page_form = $('#page');
-
-            $('#btn_log').unbind('click').bind('click',function(){
-
-            const listBtn_log = document.getElementById('btn_log');
-            const lists_log = document.getElementById('list-chooses_log');
-            const listsLis_log = lists_log.querySelectorAll('li');
-
-
-            // 列表选项从上而下出现
-            let listDown = () => {
-                let startHeight = 0;
-                let stopHeight = 40;
-
-                let timeId = setInterval(() => {
-                    startHeight++;
-                    // 注意：forEach() 方法在 IE8 以下不支持
-                    listsLis_log.forEach((item) => {
-                        item.style.height = startHeight + 'px';
-                    });
-                    if (startHeight >= stopHeight) {
-                        clearInterval(timeId);
-                    }
-                }, 10);
-
-                lists_log.style.display = 'block';
-            };
-
-            // 列表选项从下而上消失
-            let listUp = () => {
-                let startHeight = 40;
-                let stopHeight = 0;
-
-                let timeId = setInterval(() => {
-                    startHeight--;
-                    listsLis_log.forEach((item) => {
-                        item.style.height = startHeight + 'px';
-                    });
-                    if (startHeight <= stopHeight) {
-                        clearInterval(timeId);
-                    }
-                }, 10);
-                // 这里，如果不延时的话，会直接消失，而没有上拉的效果
-                setTimeout(() => {
-                    lists_log.style.display = 'none';
-                }, 350);
-            };
-
-            // 如果列表选项为隐藏，点击则显示；如果列表选项为显示，点击则隐藏
-            listBtn_log.onclick=function(){
-                if (lists_log.style.display == 'none') {
-                    listDown();
-                } else {
-                    listUp();
-                }
-            };
-        });
-
-        if(edtime == None){
+        if(time == 0) {
             $.ajax({
                 type: 'get',
                 url: page_form.attr('action'),
                 data: {page: now_page},
                 success: function (data) {
                     $('#tbody tr').remove();
+                    $('#now_pages').html('第'+data.now_page + '页');
                     $('#num_pages').html('共' + data.num_pages + '页');
                     if (data.has_previous === true) {
                         $('.first_page button').removeClass('layui-btn-disabled').addClass('layui-btn-primary');
@@ -771,18 +707,19 @@
                         let a = '<td style="color: #00c3f5;width:50%">';
                         let b = '</td>';
                         let c = '<div style="color:#00aeef;overflow-y:scroll;height:50px;white-space:pre-wrap"${position.specificTasks}</div>'
-                        let body =a + c + user.time + b + a + c + user.ip + b + a + c + user.port + b + a + c + user.title + b + a + c + user.url + b;
+                        let body = a + c + user.time + b + a + c + user.ip + b + a + c + user.port + b + a + c + user.title + b + a + c + user.url + b;
                         $('#tbody').append('<tr>' + body + '</tr>');
                     });
                 }
             })
-        }else {
+        } else {
             $.ajax({
-                type: 'post',
+                type: 'get',
                 url: page_form.attr('action'),
-                data: {page: now_page},
+                data: {page: now_page,edtime:time},
                 success: function (data) {
                     $('#tbody tr').remove();
+                    $('#now_pages').html('第'+data.now_page + '页');
                     $('#num_pages').html('共' + data.num_pages + '页');
                     if (data.has_previous === true) {
                         $('.first_page button').removeClass('layui-btn-disabled').addClass('layui-btn-primary');
@@ -798,7 +735,6 @@
                         let a = '<td style="color: #00c3f5;width:50%">';
                         let b = '</td>';
                         let c = '<div style="color:#00aeef;overflow-y:scroll;height:50px;white-space:pre-wrap"${position.specificTasks}</div>'
-                        console.log(user.time)
                         let body =a + c + user.time + b + a + c + user.ip + b + a + c + user.port + b + a + c + user.title + b + a + c + user.url + b;
                         $('#tbody').append('<tr>' + body + '</tr>');
                     });
@@ -808,6 +744,67 @@
 
     }
 
+    $('#btn_log').unbind('click').bind('click',function(){
+
+        const listBtn_log = document.getElementById('btn_log');
+        const lists_log = document.getElementById('list-chooses_log');
+        const listsLis_log = lists_log.querySelectorAll('li');
+
+
+        // 列表选项从上而下出现
+        let listDown = () => {
+            let startHeight = 0;
+            let stopHeight = 40;
+
+            let timeId = setInterval(() => {
+                startHeight++;
+                // 注意：forEach() 方法在 IE8 以下不支持
+                listsLis_log.forEach((item) => {
+                    item.style.height = startHeight + 'px';
+                });
+                if (startHeight >= stopHeight) {
+                    clearInterval(timeId);
+                }
+            }, 10);
+
+            lists_log.style.display = 'block';
+        };
+
+        // 列表选项从下而上消失
+        let listUp = () => {
+            let startHeight = 40;
+            let stopHeight = 0;
+
+            let timeId = setInterval(() => {
+                startHeight--;
+                listsLis_log.forEach((item) => {
+                    item.style.height = startHeight + 'px';
+                });
+                if (startHeight <= stopHeight) {
+                    clearInterval(timeId);
+                }
+            }, 10);
+            // 这里，如果不延时的话，会直接消失，而没有上拉的效果
+            setTimeout(() => {
+                lists_log.style.display = 'none';
+            }, 350);
+        };
+
+        // 如果列表选项为隐藏，点击则显示；如果列表选项为显示，点击则隐藏
+        listBtn_log.onclick=function(){
+            if (lists_log.style.display == 'none') {
+                listDown();
+            } else {
+                listUp();
+            }
+        };
+    });
+
+    att_log(edtime);
+    function att_log(edtime) {
+        time = edtime;
+        page_click(time)
+    }
 
 
 
@@ -820,4 +817,4 @@
 
 
 
-
+?comid={{ compid }}

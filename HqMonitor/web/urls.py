@@ -66,6 +66,7 @@ urlpatterns = [
     url(r'^web/mainattrack$', Main_attrack.as_view(), name='monit_main_attrack'),  # 【入侵检测】主要攻击类型
     url(r'^web/attrackport$', Attrack_port.as_view(), name='monit_attrack_port'),  # 【入侵检测】主要受攻击端口
     url(r'^web/attracktype$', Attrack_type.as_view(), name='monit_attrack_type'),  # 【入侵检测】主要攻击类型占比柱状图
+    url(r'^web/attracklog$', Attrack_log.as_view(), name='monit_attrack_log'),  # 【入侵检测】日志
 
     #web安全防护信息
     url(r'^web/safety$', Safety_index.as_view(), name="safety_index"),   # 安全主页

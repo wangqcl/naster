@@ -28,66 +28,61 @@ class indexs(View):
 
     '''首页-入侵检测信息'''
     @check_user_request
-    def get(self, request):
-        comid = request.GET.get('comid','None')
-        if comid == 'None':
-            comid = None
-        else:
-            comid = int(comid)
-        # comid = request.GET.get('comid', 0)  #企业ID
-        result =self.seardat(comid)
-        res = result["dat"]
-        # res = result.get('dat','')
-        paginator = Paginator(res, 4)    #分页功能，一页8条数据
-        if request.is_ajax() ==False:
-            username = request.session.get('webuser', default=None)  # 获取登录用户名
-            user = Users.objects.get(username=username)
-            userlist = paginator.page(1)
-            content = {
-                "compid":comid,
-                "users":userlist
+    def get(self,request):
+        username = request.session.get('webuser', default=None)  # 获取登录用户名
+        user = Users.objects.get(username=username)
+        pIndex = request.GET.get('comid', None)
+        content = {
+            "compid":pIndex,
             }
-            if user.state == 0:
-                if int(comid) == 0:
-                    return render(request, "web/Invasion.html", content)
-                else:
-                    return render(request, "web/usermon/qinvasion.html", content)
-            elif user.state == 1 & comid != 0:
-                comp = Compinfo.objects.get(id=comid)
-                users = comp.users.all()
-                for us in users:
-                    if us.username == username:
-                        return render(request, "web/usermon/qinvasion.html", content)  # 用户的监控首页
-                    else:
-                        content = {"info": "查询失败！"}
-                return render(request, "web/monweb/info.html", content)
+        if user.state == 0:
+            if int(pIndex) == 0:
+                return render(request, "web/Invasion.html", content)
             else:
-                error = "访问出错！"
-                content = {"info": error}
-                return render(request, "web/monweb/info.html", content)
+                return render(request, "web/usermon/qinvasion.html", content)
+        elif user.state == 1 :
+                return render(request, "web/usermon/qinvasion.html", content)  # 用户的监控首页
+        else:
+            error = "访问出错！"
+            content = {"info": error}
+            return render(request, "web/monweb/info.html", content)
 
-        # Ajax数据交互
-        if request.is_ajax():
-            page = request.GET.get('page')
-            try:
-                users = paginator.page(page)
-            # 如果页数不是整数，返回第一页
-            except PageNotAnInteger:
-                users = paginator.page(1)
-            # 如果页数不存在/不合法，返回最后一页
-            except InvalidPage:
-                users = paginator.page(paginator.num_pages)
-            user_li = list(users)  #.object_list.values()
-            # 分别为是否有上一页false/true，是否有下一页false/true，总共多少页，当前页面的数据
-            result = {'has_previous': users.has_previous(),
-                      'has_next': users.has_next(),
-                      'num_pages': users.paginator.num_pages,
-                      'user_li': user_li}
-            return JsonResponse(result)
 
     def seardat(self,comid):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区时间
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-30)).strftime('%Y-%m-%dT%H:%M:00')
+        if int(comid) == 0:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return es_result
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_ip = comp.comp_ip  # IP
+                comp_s = comp_ip.split(';')
+                sp_param = {
+                    "bool": {
+                        "should": [
+                        ],
+                        "minimum_should_match": 1
+                    }
+                }
+                for ip in comp_s:
+                    match_phrase = {"match_phrase": {"dst_ip": ip}}
+                    sp_param["bool"]["should"].append(match_phrase)
+                self.es_result = self.sear_info(st_time, ed_time, sp_param)
+                if self.es_result == False:
+                    return False
+                else:
+                    return self.es_result
+            except Exception as err:
+                # logger.error('请求出错：{}'.format(err))
+                print(err)
+                return False
+
+    def seardate(self,comid,time):
+        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区时间
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
         if int(comid) == 0:  # 是否携带用户信息
             sp_param = None
             es_result = self.sear_info(st_time, ed_time, sp_param)
@@ -308,8 +303,8 @@ class All_attrack(View):
         time = int(request.POST['edtime'])
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
-        if request.POST.get('compid'):
-            comid = int(request.POST.get('compid'))
+        if request.POST.get('comid'):
+            comid = int(request.POST.get('comid'))
         else:
             comid = None
         if type(comid) != int:  # 是否携带用户信息
@@ -478,8 +473,8 @@ class Attrack_classification(View):
         time = int(request.POST['edtime'])
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
-        if request.POST.get('compid'):
-            comid = int(request.POST.get('compid'))
+        if request.POST.get('comid'):
+            comid = int(request.POST.get('comid'))
         else:
             comid = None
         if type(comid) != int:  # 是否携带用户信息
@@ -716,8 +711,8 @@ class Main_attrack(View):
         time = int(request.POST['edtime'])
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
-        if request.POST.get('compid'):
-            comid = int(request.POST.get('compid'))
+        if request.POST.get('comid'):
+            comid = int(request.POST.get('comid'))
         else:
             comid = None
         if type(comid) != int:  # 是否携带用户信息
@@ -960,8 +955,8 @@ class Attrack_port(View):
         time = int(request.POST['edtime'])
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
-        if request.POST.get('compid'):
-            comid = int(request.POST.get('compid'))
+        if request.POST.get('comid'):
+            comid = int(request.POST.get('comid'))
         else:
             comid = None
         if type(comid) != int:  # 是否携带用户信息
@@ -1155,8 +1150,8 @@ class Attrack_type(View):
         time = int(request.POST['edtime'])
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
-        if request.POST.get('compid'):
-            comid = int(request.POST.get('compid'))
+        if request.POST.get('comid'):
+            comid = int(request.POST.get('comid'))
         else:
             comid = None
         if type(comid) != int:  # 是否携带用户信息
@@ -1309,5 +1304,256 @@ class Attrack_type(View):
             return HttpResponse(errinfo)
 
 
+# 【入侵检测】日志
+class Attrack_log(View):
+    def get(self, request):
+        comid = request.GET.get('comid','None')
+        if comid == 'None':
+            comid = None
+        else:
+            comid = int(comid)
+        # comid = request.GET.get('comid', 0)  #企业ID
+        time = int(request.GET.get('edtime',0))
+        if time == 0:
+            result =self.seardat(comid)
+        else:
+            result =self.seardate(comid,time)
+        res = result["dat"]
+        # res = result.get('dat','')
+        paginator = Paginator(res, 4)    #分页功能，一页8条数据
+        if request.is_ajax() == False:
+            userlist = paginator.page(1)
+            content = {
+                "compid": comid,
+                "users": userlist
+            }
+            return JsonResponse(content)
+        # Ajax数据交互
+        if request.is_ajax():
+            page = request.GET.get('page')
+            try:
+                users = paginator.page(page)
+            # 如果页数不是整数，返回第一页
+            except PageNotAnInteger:
+                users = paginator.page(1)
+            # 如果页数不存在/不合法，返回最后一页
+            except InvalidPage:
+                users = paginator.page(paginator.num_pages)
+            user_li = list(users)  #.object_list.values()
+            # 分别为是否有上一页false/true，是否有下一页false/true，总共多少页，当前页面的数据
+            result = {'has_previous': users.has_previous(),
+                      'has_next': users.has_next(),
+                      'num_pages': users.paginator.num_pages,
+                      'user_li': user_li,
+                      'now_page':page,}
+            return JsonResponse(result)
 
+    def seardat(self,comid):
+        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区时间
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-30)).strftime('%Y-%m-%dT%H:%M:00')
+        if int(comid) == 0:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return es_result
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_ip = comp.comp_ip  # IP
+                comp_s = comp_ip.split(';')
+                sp_param = {
+                    "bool": {
+                        "should": [
+                        ],
+                        "minimum_should_match": 1
+                    }
+                }
+                for ip in comp_s:
+                    match_phrase = {"match_phrase": {"dst_ip": ip}}
+                    sp_param["bool"]["should"].append(match_phrase)
+                self.es_result = self.sear_info(st_time, ed_time, sp_param)
+                if self.es_result == False:
+                    return False
+                else:
+                    return self.es_result
+            except Exception as err:
+                # logger.error('请求出错：{}'.format(err))
+                print(err)
+                return False
 
+    def seardate(self,comid,time):
+        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区时间
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
+        if int(comid) == 0:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return es_result
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_ip = comp.comp_ip  # IP
+                comp_s = comp_ip.split(';')
+                sp_param = {
+                    "bool": {
+                        "should": [
+                        ],
+                        "minimum_should_match": 1
+                    }
+                }
+                for ip in comp_s:
+                    match_phrase = {"match_phrase": {"dst_ip": ip}}
+                    sp_param["bool"]["should"].append(match_phrase)
+                self.es_result = self.sear_info(st_time, ed_time, sp_param)
+                if self.es_result == False:
+                    return False
+                else:
+                    return self.es_result
+            except Exception as err:
+                # logger.error('请求出错：{}'.format(err))
+                print(err)
+                return False
+
+    def sear_info(self, st_time, ed_time,sp_param):
+        if sp_param == None:
+            body = {
+                "version": "true",
+                "size": 30,
+                "sort": [
+                    {
+                        "@timestamp": {
+                            "order": "desc",
+                            "unmapped_type": "boolean"
+                        }
+                    }
+                ],
+                "_source": {
+                    "excludes": []
+                },
+                "stored_fields": [
+                    "*"
+                ],
+                "script_fields": {},
+                "docvalue_fields": [
+                    {
+                        "field": "@timestamp",
+                        "format": "date_time"
+                    }
+                ],
+                "query": {
+                    "bool": {
+                        "must": [],
+                        "filter": [
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "range": {
+                                    "@timestamp": {
+                                        "format": "strict_date_optional_time",
+                                        "gte": st_time,
+                                        "lte": ed_time
+                                    }
+                                }
+                            }
+                        ],
+                        "should": [],
+                        "must_not": []
+                    }
+                },
+                "highlight": {
+                    "pre_tags": [
+                        "@kibana-highlighted-field@"
+                    ],
+                    "post_tags": [
+                        "@/kibana-highlighted-field@"
+                    ],
+                    "fields": {
+                        "*": {}
+                    },
+                    "fragment_size": 2147483647
+                }
+            }
+        else:
+            body = {
+                "version": "true",
+                "size": 30,
+                "sort": [
+                    {
+                        "@timestamp": {
+                            "order": "desc",
+                            "unmapped_type": "boolean"
+                        }
+                    }
+                ],
+                "_source": {
+                    "excludes": []
+                },
+                "stored_fields": [
+                    "*"
+                ],
+                "script_fields": {},
+                "docvalue_fields": [
+                    {
+                        "field": "@timestamp",
+                        "format": "date_time"
+                    }
+                ],
+                "query": {
+                    "bool": {
+                        "must": [],
+                        "filter": [
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            sp_param,
+                            {
+                                "range": {
+                                    "@timestamp": {
+                                        "format": "strict_date_optional_time",
+                                        "gte": st_time,
+                                        "lte": ed_time
+                                    }
+                                }
+                            }
+                        ],
+                        "should": [],
+                        "must_not": []
+                    }
+                },
+                "highlight": {
+                    "pre_tags": [
+                        "@kibana-highlighted-field@"
+                    ],
+                    "post_tags": [
+                        "@/kibana-highlighted-field@"
+                    ],
+                    "fields": {
+                        "*": {}
+                    },
+                    "fragment_size": 2147483647
+                }
+            }
+        try:
+            ret = es.search(index='snort', doc_type='_doc', body=body)
+            re_data = ret['hits']['hits']
+            datalist,jstext = [],{}
+            for v in re_data:
+                jsontext = {}
+                da_list = v.get('_source','')
+                times = time(da_list.get('@timestamp',''),3)
+                jsontext['time']=times  # 时间
+                jsontext['ip']=da_list.get('src_ip','') # ip
+                jsontext['port']=da_list.get('dst_port','')  #端口
+                jsontext['title']=da_list.get('title','')   #标题
+                jsontext['url']=da_list.get('urls','')   #URL
+                datalist.append(jsontext)
+            jstext['dat'] = datalist
+            return jstext
+        except:
+            errinfo = {"error": "数据请求失败！"}
+            return HttpResponse(errinfo)

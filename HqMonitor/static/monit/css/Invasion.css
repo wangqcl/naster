@@ -302,12 +302,12 @@ a:hover{ color:#06c; text-decoration: none!important}
 /* 偶数行背景色 */
 .layui-table[lay-even] tr:nth-child(even) {
     /* background-color: #aaffaa; */
-    background-color: #abffcd;
+    background-color: transparent;
 }
 
 /* 鼠标指向表格时,奇数行背景颜色 */
 .layui-table tbody tr:hover,.layui-table-hover {
-    background-color: #91eeff;
+    background-color: transparent;
 }
 
 /* 表格头部工具栏背景色 */
@@ -322,10 +322,12 @@ a:hover{ color:#06c; text-decoration: none!important}
     background-color: transparent !important;
 }
 .transparentDataTable .layui-table th {
-    background-color: #5578f5; /* MediumSeaGreen */
+    background-color: #5578f5;
+    position:relative;z-index:999;
     color: #fff;
     font-weight: bold;
-    border-color: #2cebf5
+    border-color: #2cebf5;
+
 }
 
 .transparentDataTable .layui-table td{border-color: #2cebf5
@@ -455,7 +457,7 @@ ul {
 }
 
 .list-down #list-chooses_log {
-    border-top: 40px solid transparent;
+    border-top: 40px solid transparent ;
 }
 
 .list-down #list-chooses li {
