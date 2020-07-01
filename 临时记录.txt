@@ -23,3 +23,12 @@ Invasion.html     <!--  入侵检测监控页面-->
 safety.html  安全防护
 score.html  综合评分
 threaten.html  威胁情报（--默认查询1天的数据量）
+
+
+
+-----变更-----
+20200701
+    pip install Cyrpto
+
+    数据库新增字段
+

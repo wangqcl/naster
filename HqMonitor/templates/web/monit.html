@@ -3,8 +3,11 @@
 <!-- css开始 -->
 {% block css %}
     <link rel="stylesheet" href={% static 'monit/css/layui.css' %}>
+{#    <link rel="stylesheet" href={% static 'monit/css/Invasion.css' %}>#}
 {% endblock %}
 <!-- css结束 -->
+
+
     <!-- 头 -->
     {% block title %}
       <h1>网络安全动态数据监控</h1>
@@ -24,6 +27,14 @@
         <div class="boxfoot"></div>
       </div>
       <div class="boxall" style="height: 3.2rem">
+      <div class="list-down"  style="float: right ;position:absolute;right: 0;z-index:1999">
+            <button id="btn1" style="float:right;">. . .</button>
+            <ul id="list-chooses1" style="display: none;">
+                <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="pdo_change(1)">今天</button></li>
+                <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="pdo_change(2)">2天内</button></li>
+                <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="pdo_change(3)">3天内</button></li>
+            </ul>
+        </div>
         <div class="alltitle">域名被访问次数/时间</div>
         <div class="allnav" id="echart2"></div>
         <div class="boxfoot"></div>
@@ -63,6 +74,14 @@
     </li>
     <li>
       <div class="boxall" style="height:3.2rem">
+          <div class="list-down"  style="float: right ;position:absolute;right: 0;z-index:1999">
+                <button id="btn" style="float:right;">. . .</button>
+                <ul id="list-chooses" style="display: none;">
+                    <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="p_chage(1)">今天</button></li>
+                    <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="p_chage(2)">2天内</button></li>
+                    <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="p_chage(3)">3天内</button></li>
+                </ul>
+            </div>
         <div class="alltitle">请求数量</div>
         <div class="allnav" id="echart4"></div>
         <div class="boxfoot"></div>
@@ -94,12 +113,6 @@
                                     <button type="button"  class="layui-btn layui-btn-primary layui-btn-sm">上一页</button>
                                 </a>
 
-{#                                {% for num in users.paginator.page_range %}#}
-{#                                    <a class="now_page">#}
-{#                                        <button type="button"   class="layui-btn layui-btn-primary layui-btn-sm">{{ num }}</button>#}
-{#                                    </a>#}
-{#                                {% endfor %}#}
-
                                 <a class="now_page">
                                         <button id="now_pages" type="button"   class="layui-btn layui-btn-primary layui-btn-sm"></button>
                                 </a>
@@ -126,7 +139,9 @@
 
 <!-- js开始 -->
 {% block jsbody %}
-<!--访问数量-->
+    <script language="JavaScript" src="{% static 'monit/js/exhib.js'%}"></script>
+
+<!--请求数量-->
 <script type="text/javascript" >
     change();
     var times = [];
@@ -146,35 +161,46 @@
       })
     }
 
-    function p_chage() {
-      $.ajaxSetup({
-        data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
-      });
-      $.post("{% url 'monit_main_getnum' %}",{'edtime':edtime,'compid':params}, function(data){
-        times = times.concat(data.times);
-        values = values.concat(data.number);
-        edtime = data.edtime;
-
-        echarts_4(times,values);
-
-        var n = 20;
-        times = times.slice(-n);
-        values = values.slice(-n);
-        setTimeout(p_chage,120000)//定时调用
-        },"json");
+    function p_chage(tim) {
+        if (tim){
+            $.ajaxSetup({
+                data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+            });
+            $.post("{% url 'monit_main_getnum' %}",{'edtime':edtime,'compid':params,'tim':tim}, function(data){
+                times = data.times;
+                values = data.number;
+                edtime = data.edtime;
+                echarts_4(times,values);
+            },"json");
+        } else{
+            $.ajaxSetup({
+                data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+            });
+            $.post("{% url 'monit_main_getnum' %}",{'edtime':edtime,'compid':params,'tim':'None'}, function(data){
+                times = times.concat(data.times);
+                values = values.concat(data.number);
+                edtime = data.edtime;
+                echarts_4(times,values);
+                var n = 20;
+                times = times.slice(-n);
+                values = values.slice(-n);
+                setTimeout(p_chage,120000)//定时调用
+            },"json");
+        }
     }
 </script>
-<!--端口请求数量-->
+
+<!--主要访问端口-->
 <script type="text/javascript">
-        nu_change()
-        var nu_port = []
-        var nuvalues = []
-        var nu_edtime
+        nu_change();
+        var nu_port = [];
+        var nuvalues = [];
+        var nu_edtime;
         function nu_change(){
           $.getJSON('{% url "monit_visitport" %}',function(data){
-            nu_port=data.port
-            nu_values=data.number
-            nu_edtime = data.edtime
+            nu_port=data.port;
+            nu_values=data.number;
+            nu_edtime = data.edtime;
             echarts_34(nu_port,nu_values)
           })
         }
@@ -187,38 +213,85 @@
         var color = ['#0E7CE2', '#FF8352', '#E271DE', '#F8456B', '#00FFFF', '#4AEAB0']
         var i = 0;
         var st_series = [];
+        var st_endtime;
         function st_change(){
           $.getJSON('{% url "monit_status_code" %}',function(data){
             st_port_data=data.port;
             st_xAxis_data=data.xAxis;
             st_yAxis_data = data.yAxis;
+            st_endtime = data.endtime;
             for (var key in st_yAxis_data)
                 {
-                    var test = {};
-                    test["color"] = color[i],
-                    test["name"] = key,
-                    test["type"] = 'bar',
-                    test["barWidth"] = 5,
-                    test["stack"] = 'statu',
-                    test["data"] = st_yAxis_data[key],
-                    st_series.push(test);
+                    var dat = {};
+                    dat["color"] = color[i],
+                    dat["name"] = key,
+                    dat["type"] = 'bar',
+                    dat["barWidth"] = 5,
+                    dat["stack"] = 'statu',
+                    dat["data"] = st_yAxis_data[key],
+                    st_series.push(dat);
                     i++;
                 }
-            echarts_35(st_series,st_port_data,st_xAxis_data)
+            echarts_35(st_series,st_port_data,st_xAxis_data);
+            setTimeout(function(){
+              pst_change();
+            },130000);
           })
         }
+
+        function pst_change() {
+            i = 0;
+            $.ajaxSetup({
+                data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+            });
+            $.post("{% url 'monit_status_code' %}",{'edtime':st_endtime,'compid':params}, function(data){
+                st_endtime = data.endtime;
+                st_port_data=st_port_data.concat(data.port);
+                st_xAxis_data=st_xAxis_data.concat(data.xAxis);
+                {#st_yAxis_data#}
+                new_yAxis=data.yAxis;
+                for (var key in st_yAxis_data)
+                    {
+                        var dat = {};
+                        dat["color"] = color[i],
+                        dat["name"] = key,
+                        dat["type"] = 'bar',
+                        dat["barWidth"] = 5,
+                        dat["stack"] = 'statu',
+                        datalsit = st_yAxis_data[key];
+                        now_lsit = new_yAxis[key];
+                        var k = datalsit.concat(now_lsit);
+                        dat["data"] = k;
+                            console.log(k);
+                        st_series.push(dat);
+                        i++;
+                    }
+                var n = 100;
+                st_series = st_series.slice(-n);
+                st_port_data = st_port_data.slice(-n);
+                st_xAxis_data = st_xAxis_data.slice(-n);
+
+                echarts_35(st_series,st_port_data,st_xAxis_data);
+                console.log(st_port_data);
+
+                setTimeout(pst_change,130000)//定时调用
+            },"json");
+        }
+
 </script>
-<!--域名被访问-->
+<!--域名被访问次数/时间-->
 <script type="text/javascript">
         do_change();
         var do_port_data = [];
         var do_yAxis_data = [];
         var do_series = [];
+        var pdo_edtime;
         function do_change(){
           $.getJSON('{% url "monit_domain_infor" %}',function(data){
             do_port_data=data.port;
             do_xAxis_data=data.xAxis;
             do_yAxis_data = data.yAxis;
+            pdo_edtime = data.edtime;
             var color =['#00f8ff','#00f15a','#0696f9','#dcf776','#499C9F','#7944B7','#F034C1'];
             var i=0;
             for (var key in do_yAxis_data)
@@ -246,8 +319,93 @@
                     do_series.push(ser)
                 }
             echarts_2(do_series,do_port_data,do_xAxis_data)
+            setTimeout(function(){
+              pdo_change();
+            },120000);
           })
         }
+
+        function pdo_change(tim) {
+            if (tim){
+                $.ajaxSetup({
+                    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+                });
+                $.post("{% url 'monit_domain_infor' %}",{'edtime':pdo_edtime,'compid':params,'tim':tim}, function(data){
+                    do_port_data=data.port;
+                    do_xAxis_data=data.xAxis;
+                    do_yAxis_data = data.yAxis;
+                    var color =['#00f8ff','#00f15a','#0696f9','#dcf776','#499C9F','#7944B7','#F034C1'];
+                    var i=0;
+                    for (var key in do_yAxis_data)
+                        {
+                            var ser = {};
+                            ser["symbol"] = "none";
+                            ser["name"] = key;
+                            ser["type"] = 'line';
+                            ser["areaStyle"] = {};
+                            ser["areaStyle"] = {
+                                normal: {
+                                    borderWidth: 5,
+                                    color: color[i],
+                                }
+                            };
+                             ser["itemStyle"] = {
+                                normal: {
+                                  color: color[i],
+                                  borderColor: 'rgba(221, 220, 107, .1)',
+                                  borderWidth: 12
+                                }
+                              };
+                            i++;
+                            ser["data"] = do_yAxis_data[key];
+                            do_series.push(ser)
+                        }
+                    echarts_2(do_series,do_port_data,do_xAxis_data)
+                },"json");
+            } else{
+                $.ajaxSetup({
+                    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+                });
+                $.post("{% url 'monit_domain_infor' %}",{'edtime':pdo_edtime,'compid':params,'tim':tim}, function(data){
+                    do_port_data=do_port_data.concat(data.port);
+                    do_xAxis_data=do_xAxis_data.concat(data.xAxis);
+                    do_yAxis_data = do_yAxis_data.concat(data.yAxis);
+                    pdo_edtime = data.edtime;
+                    var color =['#00f8ff','#00f15a','#0696f9','#dcf776','#499C9F','#7944B7','#F034C1'];
+                    var i=0;
+                    for (var key in do_yAxis_data)
+                        {
+                            var ser = {};
+                            ser["symbol"] = "none";
+                            ser["name"] = key;
+                            ser["type"] = 'line';
+                            ser["areaStyle"] = {};
+                            ser["areaStyle"] = {
+                                normal: {
+                                    borderWidth: 5,
+                                    color: color[i],
+                                }
+                            };
+                             ser["itemStyle"] = {
+                                normal: {
+                                  color: color[i],
+                                  borderColor: 'rgba(221, 220, 107, .1)',
+                                  borderWidth: 12
+                                }
+                              };
+                            i++;
+                            ser["data"] = do_yAxis_data[key];
+                            do_series.push(ser)
+                        }
+                    echarts_2(do_series,do_port_data,do_xAxis_data);
+                    var pdo_n = 30;
+                    times = times.slice(-pdo_n);
+                    values = values.slice(-pdo_n);
+                    setTimeout(pdo_change,120000)//定时调用
+                },"json");
+            }
+        }
+
 </script>
 <!--主要威胁IP-->
 <script type="text/javascript" >

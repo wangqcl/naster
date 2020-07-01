@@ -399,11 +399,16 @@ class Main_getnum(View):
                 print(err)
                 return HttpResponse("Error")
 
-
     def post(self,request):
-        st_time = request.POST['edtime']
+        tim = request.POST['tim']
         comid = request.POST['compid']
-        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+        if tim == "None":
+            st_time = request.POST['edtime']
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+        else:
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-int(tim))).strftime('%Y-%m-%dT%H:%M:00')
+
         if int(comid) == 0: #是否携带用户信息
             sp_param = None
             es_result = self.sear_info(st_time,ed_time,sp_param)
@@ -849,8 +854,25 @@ class Server_status_code(View):
         # es_result = self.sear_info(st_time,ed_time)
         # return HttpResponse(es_result)
     def post(self,request):
-        info = {"请求失败！"}
-        return HttpResponse(info)
+        comid = request.POST['compid']
+        st_time = request.POST['edtime']
+        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+
+        if int(comid) == 0:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return HttpResponse(es_result)
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_realm = comp.comp_realm  # 域名
+                comp_s = comp_realm.split('.', 1)
+                sp_param = "*%s*" % (comp_s[1])
+                es_result = self.sear_info(st_time, ed_time, sp_param)
+                return HttpResponse(es_result)
+            except Exception as err:
+                print(err)
+                return HttpResponse("Error")
 
     def sear_info(self,st_time,ed_time,sp_param):
         if sp_param == None:
@@ -1025,6 +1047,7 @@ class Server_status_code(View):
                 jsontext['yAxis'] = yAxis_data  #端口对应数据量
                 jsontext['xAxis'] = list_date  #X轴
                 jsontext['port'] = list(yAxis_data.keys())  # 所有端口值
+                jsontext['endtime'] = ed_time
             return json.dumps(jsontext)
         except:
             errinfo = {"error": "数据请求失败！"}
@@ -1055,8 +1078,30 @@ class Domain_infor(View):
         # es_result = self.sear_info(st_time,ed_time)
         # return HttpResponse(es_result)
     def post(self,request):
-        info = {"请求失败！"}
-        return HttpResponse(info)
+        tim = request.POST['tim']
+        comid = request.POST['compid']
+        if tim == "None":
+            st_time = request.POST['edtime']
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+        else:
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-int(tim))).strftime('%Y-%m-%dT%H:%M:00')
+
+        if int(comid) == 0:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return HttpResponse(es_result)
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_realm = comp.comp_realm  # 域名
+                comp_s = comp_realm.split('.', 1)
+                sp_param = "*%s*" % (comp_s[1])
+                es_result = self.sear_info(st_time, ed_time, sp_param)
+                return HttpResponse(es_result)
+            except Exception as err:
+                print(err)
+                return HttpResponse("Error")
 
     def sear_info(self,st_time,ed_time,sp_param):
         if sp_param == None:
@@ -1226,13 +1271,12 @@ class Domain_infor(View):
                         else:
                             yAxis_data[port_key].append(doc_count)
                     else:
-
                         null_list = ['0' for _ in range(len(list_date)-1)]
                         yAxis_data.setdefault(port_key, null_list).append(doc_count)  # 字典中添加端口和数量
                 jsontext['yAxis'] = yAxis_data  #域名对应数据量
                 jsontext['xAxis'] = list_date[:-1]  #日期列表做X轴
                 jsontext['port'] = list(yAxis_data.keys())  # 统计所有域名
-                # jsontext['edtime'] = ed_time
+                jsontext['edtime'] = ed_time
             return json.dumps(jsontext)
         except:
             errinfo = {"error": "数据请求失败！"}

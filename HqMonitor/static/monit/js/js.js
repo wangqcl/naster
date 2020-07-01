@@ -977,8 +977,61 @@ var svg = "path://M32.597,9.782 L30.475,11.904 C30.085,12.294 29.452,12.294 29.0
         });
     }
 
-		
-		
+
+
+// $('#btn').unbind('click').bind('click',function(){
+//     alert("2222");
+//         const listBtn = document.getElementById('btn');
+//         const lists = document.getElementById('list-chooses');
+//         const listsLis = lists.querySelectorAll('li');
+//         // 列表选项从上而下出现
+//         let listDown = () => {
+//             let startHeight = 0;
+//             let stopHeight = 40;
+//             let timeId = setInterval(() => {
+//                 startHeight++;
+//                 // 注意：forEach() 方法在 IE8 以下不支持
+//                 listsLis.forEach((item) => {
+//                     item.style.height = startHeight + 'px';
+//                 });
+//                 if (startHeight >= stopHeight) {
+//                     clearInterval(timeId);
+//                 }
+//             }, 10);
+//             lists.style.display = 'block';
+//         };
+//         // 列表选项从下而上消失
+//         let listUp = () => {
+//             let startHeight = 40;
+//             let stopHeight = 0;
+//             let timeId = setInterval(() => {
+//                 startHeight--;
+//                 listsLis.forEach((item) => {
+//                     item.style.height = startHeight + 'px';
+//                 });
+//                 if (startHeight <= stopHeight) {
+//                     clearInterval(timeId);
+//                 }
+//             }, 10);
+//             // 这里，如果不延时的话，会直接消失，而没有上拉的效果
+//             setTimeout(() => {
+//                 lists.style.display = 'none';
+//             }, 350);
+//         };
+//
+//         // 如果列表选项为隐藏，点击则显示；如果列表选项为显示，点击则隐藏
+//         listBtn.onclick=function(){
+//             if (lists.style.display == 'none') {
+//                 listDown();
+//             } else {
+//                 listUp();
+//             }
+//         };
+//     });
+
+
+
+
 		
 
 
