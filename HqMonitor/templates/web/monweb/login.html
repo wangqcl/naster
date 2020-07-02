@@ -67,7 +67,6 @@
     <!-- Main File-->
     <script src="{% static 'monweb/js/front.js' %}"></script>
     <script>
-
         /*动态获取生成的公钥文件*/
         var key= $.ajax({
             url: "static/monweb/master-public.pem",
@@ -75,10 +74,8 @@
                 return data;
             },
          });　　　　　　
-
         $(document).ready(function() {
             $("#login1").click(function ()  {
-                alert("1111111111")
                 var userName=$("#login-username").val();
                 var passWord=$("#login-password").val();
                 var Code = $("#code").val();
@@ -88,7 +85,7 @@
                 }
 
                 var PUBLIC_KEY = key.responseText;
-                console.log(PUBLIC_KEY)
+                console.log(PUBLIC_KEY);
                 //rsa加密
                 var encrypt = new JSEncrypt();
                 encrypt.setPublicKey(PUBLIC_KEY);

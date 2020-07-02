@@ -64,11 +64,11 @@
     <!--侧栏界面设计-->
     <div id="mySidenav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <a href="{% url 'monit_index' %}?comid={{ compid }}"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-quanju"></use></svg> 网络全局信息</a>
-      <a href="{% url 'safety_index' %}?comid={{ compid }}"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-fanghu"></use></svg> web防护信息</a>
-      <a href="{% url 'monit_invasion_index' %}?comid={{ compid }}"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-ruqinjiance"></use></svg> 入侵检测信息</a>
-      <a href="{% url 'monit_threaten_indexs' %}?comid={{ compid }}"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-weixieqingbao_moren"></use></svg> 威胁情报</a>
-        <a href="{% url 'monit_score_scindex' %}?comid={{ compid }}"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zu"></use></svg> 安全综合评分</a>
+      <a href="{% url 'monit_index' %}?comid={{ compid }}"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-quanju"></use></svg> 安全管理中心</a>
+      <a href="{% url 'safety_index' %}?comid={{ compid }}"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-fanghu"></use></svg> Web应用防护</a>
+      <a href="{% url 'monit_invasion_index' %}?comid={{ compid }}"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-ruqinjiance"></use></svg>  IPS入侵防御</a>
+      <a href="{% url 'monit_threaten_indexs' %}?comid={{ compid }}"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-weixieqingbao_moren"></use></svg> 动态威胁预警</a>
+        <a href="{% url 'monit_score_scindex' %}?comid={{ compid }}"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-zu"></use></svg> 网络安全态势</a>
         <a href="{% url 'web_center' %}"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-gerenzhongxin"></use></svg> 个人中心</a>
     </div>
     <div class="butts" id="main">

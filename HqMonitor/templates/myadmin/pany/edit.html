@@ -53,15 +53,6 @@
                     <input type="text" name="serviceitems" class="input-xlarge" id="input01" value="{{ comp.service_items }}" />
                 </div>
             </div>
-            <div class="control-group">
-                <label class="control-label" for="input01">状态：</label>
-                <div class="controls">
-                    <input type="radio" name="state" class="input-xlarge" id="input01" value="1"
-                    {% if comp.state == 1 %}checked{% endif %} /> 启用
-                    <input type="radio" name="state" class="input-xlarge" id="input01" value="2"
-                    {% if comp.state == 2 %}checked{% endif %} /> 禁用
-                </div>
-            </div>
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary">保存</button>
                 <a href="{% url 'myadmin_index' %}" class="btn">取消</a>

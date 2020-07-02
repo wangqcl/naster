@@ -33,7 +33,7 @@ class Compinfo(models.Model):
     access_node = models.CharField(max_length=32,default="")   #接入节点
     service_items = models.CharField(max_length=32,default="") #服务
     users = models.ManyToManyField(to='Users')  #多对多关系对应
-    leak_scan = models.CharField(max_length=32,null=True)
+    leak_scan = models.CharField(max_length=32,null=True) #服务项
 
     def toDict(self):
         return {'id':self.id,'comp_name':self.comp_name,'comp_ip':self.comp_ip,'comp_realm':self.comp_realm,'state':self.state,'addtime':self.addtime,'port':self.port,'access_status':self.access_status,'access_node':self.access_node,'service_items':self.service_items,'Leak_scan':self.leak_scan}

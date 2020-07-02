@@ -76,11 +76,11 @@ def delete(request,uid):
         Comp = Compinfo.objects.get(id=uid)
         user.compinfo_set.remove(Comp)
         print("删除的用户ID：%s"%uid)
-        return redirect(reverse('myadmin_lation_index', args=(user_id)))
+        return redirect(reverse('myadmin_lation_index', kwargs={'uid':user_id}))
     except Exception as err:
         print(err)
         context = {'info': '删除失败！'}
-    return render(request, 'myadmin/info.html', context)
+        return render(request, 'myadmin/info.html', context)
 
 def edit(request):
     pass
