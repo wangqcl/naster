@@ -48,217 +48,6 @@ class indexs(View):
             return render(request, "web/monweb/info.html", content)
 
 
-    def seardat(self,comid):
-        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区时间
-        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-30)).strftime('%Y-%m-%dT%H:%M:00')
-        if int(comid) == 0:  # 是否携带用户信息
-            sp_param = None
-            es_result = self.sear_info(st_time, ed_time, sp_param)
-            return es_result
-        else:
-            try:
-                comp = Compinfo.objects.get(id=comid)
-                comp_ip = comp.comp_ip  # IP
-                comp_s = comp_ip.split(';')
-                sp_param = {
-                    "bool": {
-                        "should": [
-                        ],
-                        "minimum_should_match": 1
-                    }
-                }
-                for ip in comp_s:
-                    match_phrase = {"match_phrase": {"dst_ip": ip}}
-                    sp_param["bool"]["should"].append(match_phrase)
-                self.es_result = self.sear_info(st_time, ed_time, sp_param)
-                if self.es_result == False:
-                    return False
-                else:
-                    return self.es_result
-            except Exception as err:
-                # logger.error('请求出错：{}'.format(err))
-                print(err)
-                return False
-
-    def seardate(self,comid,time):
-        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区时间
-        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
-        if int(comid) == 0:  # 是否携带用户信息
-            sp_param = None
-            es_result = self.sear_info(st_time, ed_time, sp_param)
-            return es_result
-        else:
-            try:
-                comp = Compinfo.objects.get(id=comid)
-                comp_ip = comp.comp_ip  # IP
-                comp_s = comp_ip.split(';')
-                sp_param = {
-                    "bool": {
-                        "should": [
-                        ],
-                        "minimum_should_match": 1
-                    }
-                }
-                for ip in comp_s:
-                    match_phrase = {"match_phrase": {"dst_ip": ip}}
-                    sp_param["bool"]["should"].append(match_phrase)
-                self.es_result = self.sear_info(st_time, ed_time, sp_param)
-                if self.es_result == False:
-                    return False
-                else:
-                    return self.es_result
-            except Exception as err:
-                # logger.error('请求出错：{}'.format(err))
-                print(err)
-                return False
-
-    def sear_info(self, st_time, ed_time,sp_param):
-        if sp_param == None:
-            body = {
-            "version": "true",
-            "size": 30,
-            "sort": [
-                {
-                    "@timestamp": {
-                        "order": "desc",
-                        "unmapped_type": "boolean"
-                    }
-                }
-            ],
-            "_source": {
-                "excludes": []
-            },
-            "stored_fields": [
-                "*"
-            ],
-            "script_fields": {},
-            "docvalue_fields": [
-                {
-                    "field": "@timestamp",
-                    "format": "date_time"
-                }
-            ],
-            "query": {
-                "bool": {
-                    "must": [],
-                    "filter": [
-                        {
-                            "match_all": {}
-                        },
-                        {
-                            "match_all": {}
-                        },
-                        {
-                            "range": {
-                                "@timestamp": {
-                                    "format": "strict_date_optional_time",
-                                    "gte": st_time,
-                                    "lte": ed_time
-                                }
-                            }
-                        }
-                    ],
-                    "should": [],
-                    "must_not": []
-                }
-            },
-            "highlight": {
-                "pre_tags": [
-                    "@kibana-highlighted-field@"
-                ],
-                "post_tags": [
-                    "@/kibana-highlighted-field@"
-                ],
-                "fields": {
-                    "*": {}
-                },
-                "fragment_size": 2147483647
-            }
-        }
-        else:
-            body = {
-                "version": "true",
-                "size": 30,
-                "sort": [
-                    {
-                        "@timestamp": {
-                            "order": "desc",
-                            "unmapped_type": "boolean"
-                        }
-                    }
-                ],
-                "_source": {
-                    "excludes": []
-                },
-                "stored_fields": [
-                    "*"
-                ],
-                "script_fields": {},
-                "docvalue_fields": [
-                    {
-                        "field": "@timestamp",
-                        "format": "date_time"
-                    }
-                ],
-                "query": {
-                    "bool": {
-                        "must": [],
-                        "filter": [
-                            {
-                                "match_all": {}
-                            },
-                            {
-                                "match_all": {}
-                            },
-                            sp_param,
-                            {
-                                "range": {
-                                    "@timestamp": {
-                                        "format": "strict_date_optional_time",
-                                        "gte": st_time,
-                                        "lte": ed_time
-                                    }
-                                }
-                            }
-                        ],
-                        "should": [],
-                        "must_not": []
-                    }
-                },
-                "highlight": {
-                    "pre_tags": [
-                        "@kibana-highlighted-field@"
-                    ],
-                    "post_tags": [
-                        "@/kibana-highlighted-field@"
-                    ],
-                    "fields": {
-                        "*": {}
-                    },
-                    "fragment_size": 2147483647
-                }
-            }
-        try:
-            ret = es.search(index='snort', doc_type='_doc', body=body)
-            re_data = ret['hits']['hits']
-            datalist,jstext = [],{}
-            for v in re_data:
-                jsontext = {}
-                da_list = v.get('_source','')
-                times = time(da_list.get('@timestamp',''),3)
-                jsontext['time']=times  # 时间
-                jsontext['ip']=da_list.get('src_ip','') # ip
-                jsontext['port']=da_list.get('dst_port','')  #端口
-                jsontext['title']=da_list.get('title','')   #标题
-                jsontext['url']=da_list.get('urls','')   #URL
-                datalist.append(jsontext)
-            jstext['dat'] = datalist
-            return jstext
-        except:
-            errinfo = {"error": "数据请求失败！"}
-            return HttpResponse(errinfo)
-
-
 # 【入侵检测】总攻击数
 
 class All_attrack(View):
@@ -300,9 +89,13 @@ class All_attrack(View):
 
 
     def post(self, request):
-        time = int(request.POST['edtime'])
-        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
-        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
+        if request.POST['edtime'] == 'None':
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-30)).strftime('%Y-%m-%dT%H:%M:00')
+        else:
+            time = int(request.POST['edtime'])
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
         if request.POST.get('comid'):
             comid = int(request.POST.get('comid'))
         else:
@@ -426,6 +219,7 @@ class All_attrack(View):
             re_data = ret['hits']['total']['value']
             list.append(str(re_data))
             invasion_all['key'] = list
+            invasion_all['edtime'] = time(ed_time,4)
             return json.dumps(invasion_all)
         except:
             errinfo = {"error": "数据请求失败！"}
@@ -470,9 +264,13 @@ class Attrack_classification(View):
                 return HttpResponse("Error")
 
     def post(self, request):
-        time = int(request.POST['edtime'])
-        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
-        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
+        if request.POST['edtime'] == 'None':
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-30)).strftime('%Y-%m-%dT%H:%M:00')
+        else:
+            time = int(request.POST['edtime'])
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
         if request.POST.get('comid'):
             comid = int(request.POST.get('comid'))
         else:
@@ -660,6 +458,7 @@ class Attrack_classification(View):
             all['type']=type
             all['method']=method
             all['show']=show
+            all['edtime'] = ed_time
             return json.dumps(all)
         except:
             errinfo = {"error": "数据请求失败！"}
@@ -708,9 +507,14 @@ class Main_attrack(View):
         # return HttpResponse(es_result)
 
     def post(self, request):
-        time = int(request.POST['edtime'])
-        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
-        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
+
+        if request.POST['edtime'] == 'None':
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-30)).strftime('%Y-%m-%dT%H:%M:00')
+        else:
+            time = int(request.POST['edtime'])
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
         if request.POST.get('comid'):
             comid = int(request.POST.get('comid'))
         else:
@@ -881,6 +685,7 @@ class Main_attrack(View):
             for i in re_data:
                 string = time(i.get('key_as_string'),1)
                 linex.append(string)
+                linex.sort()
                 key = i.get('3','').get('buckets','')
                 for j in key:
                     if j.get('key','') not in name:
@@ -908,6 +713,7 @@ class Main_attrack(View):
             jsontext['name'] = name
             jsontext['linex'] = linex
             jsontext['value'] = line
+            jsontext['edtime'] = ed_time
             return json.dumps(jsontext)
         except:
             errinfo = {"error": "数据请求失败！"}
@@ -952,9 +758,14 @@ class Attrack_port(View):
                 print(err)
                 return HttpResponse("Error")
     def post(self,request):
-        time = int(request.POST['edtime'])
-        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
-        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
+
+        if request.POST['edtime'] == 'None':
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-30)).strftime('%Y-%m-%dT%H:%M:00')
+        else:
+            time = int(request.POST['edtime'])
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
         if request.POST.get('comid'):
             comid = int(request.POST.get('comid'))
         else:
@@ -1147,9 +958,14 @@ class Attrack_type(View):
                 return HttpResponse("Error")
 
     def post(self, request):
-        time = int(request.POST['edtime'])
-        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
-        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
+
+        if request.POST['edtime'] == 'None':
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-30)).strftime('%Y-%m-%dT%H:%M:00')
+        else:
+            time = int(request.POST['edtime'])
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
         if request.POST.get('comid'):
             comid = int(request.POST.get('comid'))
         else:
@@ -1553,6 +1369,7 @@ class Attrack_log(View):
                 jsontext['url']=da_list.get('urls','')   #URL
                 datalist.append(jsontext)
             jstext['dat'] = datalist
+            jstext['edtime'] = ed_time
             return jstext
         except:
             errinfo = {"error": "数据请求失败！"}

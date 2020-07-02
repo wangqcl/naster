@@ -10,6 +10,7 @@
 <!-- js开始 -->
 {% block script %}
     <script language="JavaScript" src="{% static 'monit/js/Invasion.js'%}"></script>
+
 {% endblock %}
 <!-- js结束 -->
 
@@ -172,30 +173,43 @@
     <script type="text/javascript" >
         inva_all();
         var all_data = [];
-        var nu_edtime;
 
         function inva_all() {
             $.getJSON('{% url "monit_all_attrack" %}?comid={{ compid }}',function(data) {
                 all_data=data.key;
-                data = all_data[0];
-                in_all(data)
-            })
+                data_list = all_data[0];
+                in_all(data_list);
+            });
+            //setTimeout(function(){
+            //    inva_change();
+            //},120000);
         }
 
 
         inva_change(edtime);
         var all_data = [];
-        var nu_edtime;
 
         function inva_change(edtime) {
-            $.ajaxSetup({
-                data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
-            });
-            $.post("{% url 'monit_all_attrack' %}",{'edtime':edtime,'comid':{{ compid }}}, function(data){
-                all_data=data.key;
-                data = all_data[0];
-                in_all(data)
-            },'json')
+            if(edtime){
+                $.ajaxSetup({
+                    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+                });
+                $.post("{% url 'monit_all_attrack' %}",{'edtime':edtime,'comid':{{ compid }}}, function(data){
+                    all_data=data.key;
+                    data = all_data[0];
+                    in_all(data);
+                },'json')
+            }else {
+                $.ajaxSetup({
+                    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+                });
+                $.post("{% url 'monit_all_attrack' %}",{'edtime':'None','comid':{{ compid }}}, function(data){
+                    all_data=data.key;
+                    data = all_data[0];
+                    in_all(data)
+                    setTimeout(inva_change,120000)//定时调用
+                },'json')
+            }
         }
     </script>
     <!--【入侵检测】主要攻击类型攻击方式分类-->
@@ -212,7 +226,10 @@
                 method=data.method;
                 show=data.show;
                 ac_cl(type,method,show)
-            })
+            });
+            //setTimeout(function(){
+            //    nu_changes();
+            //},120000);
         }
 
 
@@ -222,17 +239,28 @@
         var show = [];
 
         function nu_changes(edtime) {
-
-            $.ajaxSetup({
-                data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
-            });
-            $.post("{% url 'monit_attrack_class' %}",{'edtime':edtime,'comid':{{ compid }}}, function(data){
-                type=data.type;
-                method=data.method;
-                show=data.show;
-                ac_cl(type,method,show)
-            },'json')
-
+            if(edtime){
+                $.ajaxSetup({
+                    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+                });
+                $.post("{% url 'monit_attrack_class' %}",{'edtime':edtime,'comid':{{ compid }}}, function(data){
+                    type=data.type;
+                    method=data.method;
+                    show=data.show;
+                    ac_cl(type,method,show)
+                },'json')
+            }else{
+                $.ajaxSetup({
+                    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+                });
+                $.post("{% url 'monit_attrack_class' %}",{'edtime':'None','comid':{{ compid }}}, function(data){
+                    type=data.type;
+                    method=data.method;
+                    show=data.show;
+                    ac_cl(type,method,show)
+                    setTimeout(nu_changes,120000)//定时调用
+                },'json')
+            }
 
         }
 
@@ -251,7 +279,10 @@
                 linex = data.linex;
                 value = data.value;
                 ma_ac(data.name,linex,value);
-            })
+            });
+            //setTimeout(function(){
+            //    ma_change();
+            //},120000);
         }
 
 
@@ -261,18 +292,28 @@
         var values = [];
 
         function ma_change(edtime) {
-
-            $.ajaxSetup({
-                data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
-            });
-            $.post("{% url 'monit_main_attrack' %}",{'edtime':edtime,'comid':{{ compid }}}, function(data){
-                names = data.name;
-                linexs = data.linex;
-                values = data.value;
-                ma_ac(names,linexs,values);
-            },'json')
-
-
+            if(edtime){
+                $.ajaxSetup({
+                    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+                });
+                $.post("{% url 'monit_main_attrack' %}",{'edtime':edtime,'comid':{{ compid }}}, function(data){
+                    names = data.name;
+                    linexs = data.linex;
+                    values = data.value;
+                    ma_ac(names,linexs,values);
+                },'json')
+            }else {
+                $.ajaxSetup({
+                    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+                });
+                $.post("{% url 'monit_main_attrack' %}",{'edtime':'None','comid':{{ compid }}}, function(data){
+                    names = data.name;
+                    linexs = data.linex;
+                    values = data.value;
+                    ma_ac(names,linexs,values);
+                    setTimeout(ma_change,120000)//定时调用
+                },'json')
+            }
         }
 
 
@@ -285,14 +326,16 @@
         var nu_values = [];
         var nu_edtime;
 
-
         function attrackport(){
             $.getJSON('{% url "monit_attrack_port" %}?comid={{ compid }}',function(data){
                 nu_port=data.ports;
                 nu_values=data.number;
                 nu_edtime = data.edtime;
                 in_ap(nu_port,nu_values)
-            })
+            });
+            //setTimeout(function(){
+            //   att_change();
+            //},120000);
         }
 
 
@@ -302,15 +345,28 @@
         var nu_edtime;
 
         function att_change(edtime) {
-            $.ajaxSetup({
-                data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
-            });
-            $.post("{% url 'monit_attrack_port' %}",{'edtime':edtime,'comid':{{ compid }}}, function(data){
-                nu_port=data.ports;
-                nu_values=data.number;
-                nu_edtime = data.edtime;
-                in_ap(nu_port,nu_values)
-            },'json')
+            if(edtime){
+                $.ajaxSetup({
+                    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+                });
+                $.post("{% url 'monit_attrack_port' %}",{'edtime':edtime,'comid':{{ compid }}}, function(data){
+                    nu_port=data.ports;
+                    nu_values=data.number;
+                    nu_edtime = data.edtime;
+                    in_ap(nu_port,nu_values)
+                },'json')
+            }else {
+                $.ajaxSetup({
+                    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+                });
+                $.post("{% url 'monit_attrack_port' %}",{'edtime':'None','comid':{{ compid }}}, function(data){
+                    nu_port=data.ports;
+                    nu_values=data.number;
+                    nu_edtime = data.edtime;
+                    in_ap(nu_port,nu_values)
+                    setTimeout(att_change,120000)//定时调用
+                },'json')
+            }
         }
 
     </script>
@@ -327,7 +383,10 @@
                 fa_values=data.number;
                 fa_edtime = data.edtime;
                 ac_ty(fa_ip,fa_values)
-            })
+            });
+            //setTimeout(function(){
+            //    fa_changes();
+            //},120000);
         }
 
 
@@ -337,17 +396,32 @@
         var fa_edtime;
 
         function fa_changes(edtime) {
-            $.ajaxSetup({
-                data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
-            });
-            $.post("{% url 'monit_attrack_type' %}",{'edtime':edtime,'comid':{{ compid }}}, function(data){
-                fa_ip=data.types;
-                fa_values=data.number;
-                fa_edtime = data.edtime;
-                console.log(fa_ip)
-                console.log(fa_values)
-                ac_ty(fa_ip,fa_values);
-            },'json')
+            if(edtime){
+                $.ajaxSetup({
+                    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+                });
+                $.post("{% url 'monit_attrack_type' %}",{'edtime':edtime,'comid':{{ compid }}}, function(data){
+                    fa_ip=data.types;
+                    fa_values=data.number;
+                    fa_edtime = data.edtime;
+                    console.log(fa_ip)
+                    console.log(fa_values)
+                    ac_ty(fa_ip,fa_values);
+                },'json')
+            }else {
+                $.ajaxSetup({
+                    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+                });
+                $.post("{% url 'monit_attrack_type' %}",{'edtime':'None','comid':{{ compid }}}, function(data){
+                    fa_ip=data.types;
+                    fa_values=data.number;
+                    fa_edtime = data.edtime;
+                    console.log(fa_ip)
+                    console.log(fa_values)
+                    ac_ty(fa_ip,fa_values);
+                    setTimeout(fa_changes,120000)//定时调用
+                },'json')
+            }
         }
 
     </script>
@@ -472,6 +546,10 @@
 
 {% endblock %}
 <!-- js结束 -->
+
+
+
+
 
 
 

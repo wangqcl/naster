@@ -9,6 +9,7 @@ from .views.safety import *
 from .views.messag import mesquery,messret
 
 
+
 urlpatterns = [
     # 登录
     url(r'^$', center.login, name="login"),  # 登录页面
@@ -17,6 +18,8 @@ urlpatterns = [
     url(r'^verify$', center.verify, name="verify"),  # 验证码
 
     url(r'^web/center$', center.center, name="web_center"),  #个人中心
+    url(r'^web/center/monit$', center.monit_center, name="web_center_monit"),  #个人中心
+    url(r'^web/center/search$', center.search, name="web_search"),  #个人中心搜索用户
     url(r'^web/center/edit$', center.edit, name="web_center_edit"),  #修改信息
     url(r'^web/messag/(?P<pIndex>[0-9]+)$', messag.index, name="web_center_messag"),  #信息反馈
     url(r'^web/insert$', messag.insert, name="web_center_insert"),  #执行反馈
