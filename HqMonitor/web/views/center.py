@@ -10,13 +10,33 @@ import base64
 from Crypto import Random
 from Crypto.Cipher import PKCS1_v1_5 as Cipher_pkcs1_v1_5
 from Crypto.PublicKey import RSA
-
+from django.db.models import Q
 
 # Create your views here.
 
+
+def search(request):
+    '''跳转检索的用户个人中心'''
+
+    log_user = request.session['webuser']  # 获取当前登录账号
+    userinfo = Users.objects.get(username=log_user)
+    name = str(request.GET.get('text'))
+    if userinfo.state == 0:  # 判断是否超级管理员
+        comp_list = Compinfo.objects.filter(comp_name=name)
+    else:
+        comp_lists = userinfo.compinfo_set.all()
+        comp_list = comp_lists.filter(Q(comp_name=name))
+    content = {
+        'userinfo': userinfo,
+        'comp_list': comp_list
+    }
+    return render(request, "web/monweb/Center.html", content)
+
+
+
+
 def center(request):
     '''跳转用户个人中心'''
-    print(111111111111111)
     log_user = request.session['webuser']  # 获取当前登录账号
     userinfo = Users.objects.get(username=log_user)
     if userinfo.state == 0:  # 判断是否超级管理员
@@ -29,6 +49,24 @@ def center(request):
         'comp_list': comp_list
     }
     return render(request, "web/monweb/Center.html", content)
+
+
+def monit_center(request):
+    '''登录直接跳转'''
+    log_user = request.session['webuser']  # 获取当前登录账号
+    userinfo = Users.objects.get(username=log_user)
+    if userinfo.state == 0:  # 判断是否超级管理员
+        return render(request, "web/monit.html")
+    else:
+        comp_list = userinfo.compinfo_set.all()
+        comid = comp_list[0].id
+        content = {
+            'userinfo': userinfo,
+            'comp_list': comp_list,
+            'compid':comid
+        }
+        return render(request, "web/usermon/qmonit.html", content)
+
 
 
 # 执行编辑
@@ -98,7 +136,7 @@ def dologin(request):
                 request.session['webuser'] = user.username
                 user.count = 0
                 user.save()
-                context = {'info': '登陆成功', 'msg': 'success', 'url': '/web/center'}
+                context = {'info': '登陆成功', 'msg': 'success', 'url': '/web/center/monit'}
                 return JsonResponse(context)
             user.count += 1
             user.save()
