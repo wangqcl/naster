@@ -32,20 +32,6 @@ class index(View):
         username = request.session.get('webuser',default=None)  # 获取登录用户名
         user = Users.objects.get(username=username)
         pIndex = request.GET.get('comid', None)
-
-        # result = self.seardat(pIndex)
-        # res = result["dat"]
-        # if res != False:
-        #     paginator = Paginator(res, 4)  # 分页功能，一页8条数据
-        #     userlist = paginator.page(1)
-        #     content = {
-        #         "compid": pIndex,
-        #         "users": userlist
-        #     }
-        # else:
-        #     content = {
-        #         "compid": pIndex
-        #     }
         content = {
             "compid": pIndex
         }
@@ -407,7 +393,7 @@ class Main_getnum(View):
             ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         else:
             ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
-            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-int(tim))).strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(hours=-int(tim))).strftime('%Y-%m-%dT%H:%M:00')
 
         if int(comid) == 0: #是否携带用户信息
             sp_param = None
@@ -851,13 +837,11 @@ class Server_status_code(View):
             except Exception as err:
                 print(err)
                 return HttpResponse("Error")
-        # es_result = self.sear_info(st_time,ed_time)
-        # return HttpResponse(es_result)
+
     def post(self,request):
         comid = request.POST['compid']
-        st_time = request.POST['edtime']
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
-
         if int(comid) == 0:  # 是否携带用户信息
             sp_param = None
             es_result = self.sear_info(st_time, ed_time, sp_param)
@@ -1047,7 +1031,6 @@ class Server_status_code(View):
                 jsontext['yAxis'] = yAxis_data  #端口对应数据量
                 jsontext['xAxis'] = list_date  #X轴
                 jsontext['port'] = list(yAxis_data.keys())  # 所有端口值
-                jsontext['endtime'] = ed_time
             return json.dumps(jsontext)
         except:
             errinfo = {"error": "数据请求失败！"}
@@ -1075,22 +1058,22 @@ class Domain_infor(View):
             except Exception as err:
                 print(err)
                 return HttpResponse("Error")
-        # es_result = self.sear_info(st_time,ed_time)
-        # return HttpResponse(es_result)
+
     def post(self,request):
         tim = request.POST['tim']
         comid = request.POST['compid']
         if tim == "None":
-            st_time = request.POST['edtime']
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
             ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         else:
             ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
-            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-int(tim))).strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(hours=-int(tim))).strftime('%Y-%m-%dT%H:%M:00')
 
         if int(comid) == 0:  # 是否携带用户信息
             sp_param = None
             es_result = self.sear_info(st_time, ed_time, sp_param)
             return HttpResponse(es_result)
+            # return HttpResponse("request error", status=403)
         else:
             try:
                 comp = Compinfo.objects.get(id=comid)
@@ -1252,12 +1235,12 @@ class Domain_infor(View):
             list_date, jsontext,yAxis_data = [], {},{}
             doc_count = []
             for i in re_data:
-                list_date.append(i["key_as_string"][11:-13])  #获取日期数据并放入列表
+                list_date.append(i["key_as_string"][11:-13])  #获取日期
                 ret_buckets = i["3"]["buckets"]
                 for v in ret_buckets:
                     port_key = v["key"]  # 端口
-                    doc_count = v["doc_count"]  # 获取端口对应数量
-                    # 判断jsontext中是否存在相同的key,端口
+                    doc_count = v["doc_count"]  # 端口数量
+                    # 判断相同的key
                     keys = list(yAxis_data.keys())
                     if (port_key in keys):
                         # print("存在")
@@ -1276,7 +1259,6 @@ class Domain_infor(View):
                 jsontext['yAxis'] = yAxis_data  #域名对应数据量
                 jsontext['xAxis'] = list_date[:-1]  #日期列表做X轴
                 jsontext['port'] = list(yAxis_data.keys())  # 统计所有域名
-                jsontext['edtime'] = ed_time
             return json.dumps(jsontext)
         except:
             errinfo = {"error": "数据请求失败！"}
@@ -1318,9 +1300,39 @@ class Ip_fraction(View):
                 print(err)
                 return HttpResponse("Error")
     def post(self,request):
-        info = {"请求失败！"}
-        return HttpResponse(info)
-
+        tim = request.POST['tim']
+        comid = request.POST['compid']
+        if tim == "None":
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区时间
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
+        else:
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(hours=-int(tim))).strftime('%Y-%m-%dT%H:%M:00')
+        if int(comid) == 0:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return HttpResponse(es_result)
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_ip = comp.comp_ip  # IP
+                comp_s = comp_ip.split(';')
+                sp_param = {
+                    "bool":
+                        {
+                            "should":
+                                [],
+                            "minimum_should_match": 1
+                        }
+                }
+                for ip in comp_s:
+                    match_phrase = {"match_phrase": {"dst_ip": ip}}
+                    sp_param["bool"]["should"].append(match_phrase)
+                es_result = self.sear_info(st_time, ed_time, sp_param)
+                return HttpResponse(es_result)
+            except Exception as err:
+                print(err)
+                return HttpResponse("Error")
     def sear_info(self,st_time,ed_time,sp_param):
         if sp_param == None:
             body = {
@@ -1483,7 +1495,6 @@ class Ip_fraction(View):
                 number.append(round(ip_frac)) #分值,四舍五入
             jsontext['ports'] = ports
             jsontext['number'] = number
-            jsontext['edtime'] = ed_time
             return json.dumps(jsontext)
         except:
             errinfo = {"error": "数据请求失败！"}
@@ -1526,8 +1537,42 @@ class Request_traffic(View):
                 return HttpResponse("Error")
 
     def post(self,request):
-        info = {"请求失败！"}
-        return HttpResponse(info)
+        tim = request.POST['tim']
+        comid = request.POST['compid']
+        if tim == "None":
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
+        else:
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(hourse=-int(tim))).strftime('%Y-%m-%dT%H:%M:00')
+        if int(comid) == 0:
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return HttpResponse(es_result)
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_ip = comp.comp_ip  # IP
+                comp_s = comp_ip.split(';')
+                sp_param = {
+                    "bool":
+                        {
+                            "should":
+                                [
+
+                                ],
+                            "minimum_should_match": 1
+                        }
+                }
+                for ip in comp_s:
+                    match_phrase = {"match_phrase": {"destination.ip": ip}}
+                    sp_param["bool"]["should"].append(match_phrase)
+                es_result = self.sear_info(st_time, ed_time, sp_param)
+                return HttpResponse(es_result)
+            except Exception as err:
+                print(err)
+                return HttpResponse("Error")
+
 
     def sear_info(self,st_time,ed_time,sp_param):
         if sp_param == None:
@@ -2156,13 +2201,43 @@ class Waf_attack_trend(View):
             except Exception as err:
                 print(err)
                 return HttpResponse("Error")
-        # es_result = self.sear_info(st_time, ed_time)
-        # return HttpResponse(es_result)
 
     def post(self, request):
-        info = {"请求失败！"}
-        return HttpResponse(info)
+        tim = request.POST['tim']
+        comid = request.POST['compid']
+        if tim == "None":
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+            st_time = datetime.datetime.strptime(datetime.datetime.now().strftime("%Y-%m-%d"), "%Y-%m-%d").strftime('%Y-%m-%dT%H:%M:%S')
+        else:
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-int(tim))).strftime('%Y-%m-%dT%H:%M:00')
+        if int(comid) == 0:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return HttpResponse(es_result)
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_ip = comp.comp_ip  # IP
+                comp_s = comp_ip.split(';')
+                sp_param = {
+                    "bool":
+                        {
+                            "should":
+                                [
 
+                                ],
+                            "minimum_should_match": 1
+                        }
+                }
+                for ip in comp_s:
+                    match_phrase = {"match_phrase": {"transaction.host_ip": ip}}
+                    sp_param["bool"]["should"].append(match_phrase)
+                es_result = self.sear_info(st_time, ed_time, sp_param)
+                return HttpResponse(es_result)
+            except Exception as err:
+                print(err)
+                return HttpResponse("Error")
     def sear_info(self, st_time, ed_time,sp_param):
         if sp_param == None:
             body = {
@@ -2365,9 +2440,7 @@ class Attack_map(View):
                         "bool":
                             {
                                 "should":
-                                    [
-
-                                    ],
+                                    [],
                                 "minimum_should_match": 1
                             }
                     }
@@ -2385,13 +2458,52 @@ class Attack_map(View):
             except Exception as err:
                 print(err)
                 return HttpResponse("Error")
-        # es_result = self.sear_info(st_time, ed_time)
-        # return HttpResponse(es_result)
 
     def post(self, request):
-        info = {"请求失败！"}
-        return HttpResponse(info)
+        tim = request.POST['tim']
+        comid = request.POST['compid']
+        if tim == "None":
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
+        else:
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(hours=-int(tim))).strftime('%Y-%m-%dT%H:%M:00')
 
+        if int(comid) == 0:  # 是否携带用户信息
+            param = None
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param, param)
+            return HttpResponse(es_result)
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_realm = comp.comp_realm
+                if comp_realm == "":  # 域名为空
+                    param = 1
+                    comp_ip = comp.comp_ip  # IP
+                    comp_s = comp_ip.split(';')
+                    sp_param = {
+                        "bool":
+                            {
+                                "should":
+                                    [],
+                                "minimum_should_match": 1
+                            }
+                    }
+                    for ip in comp_s:
+                        match_phrase = {"match_phrase": {"domain": ip}}
+                        sp_param["bool"]["should"].append(match_phrase)
+                    es_result = self.sear_info(st_time, ed_time, sp_param, param)
+                    return HttpResponse(es_result)
+                else:
+                    param = 2
+                    comp_s = comp_realm.split('.', 1)
+                    sp_param = "*%s*" % (comp_s[1])
+                    es_result = self.sear_info(st_time, ed_time, sp_param, param)
+                    return HttpResponse(es_result)
+            except Exception as err:
+                print(err)
+                return HttpResponse("Error")
     def sear_info(self, st_time, ed_time,sp_param,param):
         if sp_param == None:
             body = {
@@ -3136,7 +3248,8 @@ class Source_data(View):
     @check_user_request
     def get(self, request):
         comid = request.GET.get('comid', None)
-        result = self.seardat(comid)
+        tim = request.GET.get('tim', None)
+        result = self.seardat(comid,tim)
         res = result['dat']
         paginator = Paginator(res, 4)  # 分页功能，一页8条数据
         if request.is_ajax() == False:
@@ -3169,9 +3282,13 @@ class Source_data(View):
                       }
             return JsonResponse(result)
 
-    def seardat(self,comid):
-        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
-        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
+    def seardat(self,comid,tim):
+        if tim == "None":
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
+        else:
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(hours=-int(tim))).strftime('%Y-%m-%dT%H:%M:00')
         if int(comid) == 0:  # 是否携带用户信息
             sp_param = None
             es_result = self.sear_info(st_time, ed_time, sp_param)

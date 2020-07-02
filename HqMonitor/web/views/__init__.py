@@ -18,7 +18,7 @@ def check_user_request(func):
         if req.method == 'GET':
             comid = int(req.GET.get('comid',1))
         else:
-            comid = int(req.data.get('comid',1))
+            comid = int(req.POST.get('comid',1))
         if status == 0:
             return func(*args, **kwargs)
         if comid != 0:

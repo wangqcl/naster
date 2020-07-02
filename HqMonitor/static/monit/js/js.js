@@ -183,7 +183,7 @@ function echarts_34(nu_port,nu_values) {
             myChart.resize();
         });
     }
-
+//服务器状态码
 function echarts_35(st_series,st_port_data,st_xAxis_data) {
         var myChart = echarts.init(document.getElementById('echart1_2'));
         option = {
@@ -252,20 +252,18 @@ function echarts_35(st_series,st_port_data,st_xAxis_data) {
 
 
         // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
+        myChart.setOption(option,true);
         window.addEventListener("resize", function () {
             myChart.resize();
         });
+        myChart.resize();
     }
-
+// 域名被访问次数
 function echarts_2(do_series,do_port_data,do_xAxis_data) {
-        // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echart2'));
 
+
+        var myChart = echarts.init(document.getElementById('echart2'));//构建实例
         option = {
-            // title: {
-            //     text: '堆叠区域图'
-            // },
             tooltip: {
                 trigger: 'axis',
                 axisPointer: {
@@ -338,10 +336,6 @@ function echarts_2(do_series,do_port_data,do_xAxis_data) {
             ],
             series: do_series
         };
-
-
-
-        // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
         window.addEventListener("resize", function () {
             myChart.resize();

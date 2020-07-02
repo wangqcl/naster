@@ -36,6 +36,8 @@ def dologin(request):
     verifycode = request.session['verifycode']
     code = request.POST['code'].upper()
     if verifycode != code:
+        print("验证码1：",verifycode)
+        print("验证码2：", code)
         context = {'info': '验证码错误！', 'msg': 'fail'}
         return JsonResponse(context)
     # 判断是否有特殊字符!@_

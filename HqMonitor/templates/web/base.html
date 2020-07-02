@@ -7,9 +7,11 @@
     <script type="text/javascript" src="{% static 'monit/js/jquery.js' %}"></script>
     <link rel="stylesheet" href="{% static 'monit/css/comon.css' %}">
     <link rel="icon" href="{% static 'favicon.ico' %}">
-{#    <link rel="stylesheet" href="{% static 'monit/css/layui.css' %}">#}
     <link rel="stylesheet" href="{% static 'monit/icon/iconfont.css' %}" type="text/css">
     <script src="{% static 'monit/icon/iconfont.js' %}"></script>
+    <script type="text/javascript" >
+        var params = {{ compid }};
+    </script>
     <style>
         .icon {
           width: 1em;
@@ -42,7 +44,6 @@
 	</script>
 	<script type="text/javascript" src="{% static 'monit/js/echarts.min.js'%}"></script>
 	<script language="JavaScript" src="{% static 'monit/js/js.js'%}"></script>
-
 	<script language="JavaScript" src="{% static 'monit/js/safety.js'%}"></script>
 
     <!-- js开始 -->

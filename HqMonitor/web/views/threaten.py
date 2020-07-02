@@ -261,7 +261,7 @@ class thindex(View):
             return False
 
 
-
+#攻击类型
 class thattack(View):
     @check_user_request
     def get(self,request):
@@ -297,8 +297,41 @@ class thattack(View):
                 logger.error('请求出错：{}'.format(err))
                 return HttpResponse("request error", status=404)
     def post(self,request):
-        info = {"请求失败！"}
-        return HttpResponse(info)
+        tim = request.POST['tim']
+        comid = request.POST['compid']
+        if tim == "None":
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
+        else:
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-int(tim))).strftime('%Y-%m-%dT%H:%M:00')
+        if int(comid) == 0:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return HttpResponse(es_result)
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_ip = comp.comp_ip  # IP
+                comp_s = comp_ip.split(';')
+                sp_param = {
+                    "bool": {
+                        "should": [
+                        ],
+                        "minimum_should_match": 1
+                    }
+                }
+                for ip in comp_s:
+                    match_phrase = {"match_phrase": {"dst_ip.ip": ip}}
+                    sp_param["bool"]["should"].append(match_phrase)
+                es_result = self.sear_info(st_time, ed_time, sp_param)
+                if es_result == False:
+                    return HttpResponse("request false", status=404)
+                else:
+                    return HttpResponse(es_result)
+            except Exception as err:
+                logger.error('请求出错：{}'.format(err))
+                return HttpResponse("request error", status=404)
 
     def sear_info(self,st_time,ed_time,sp_param):
         if sp_param == None:
@@ -478,8 +511,41 @@ class thhit(View):
                 logger.error('请求出错：{}'.format(err))
                 return HttpResponse("request error", status=404)
     def post(self,request):
-        info = {"请求失败！"}
-        return HttpResponse(info)
+        tim = request.POST['tim']
+        comid = request.POST['compid']
+        if tim == "None":
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
+        else:
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-int(tim))).strftime('%Y-%m-%dT%H:%M:00')
+        if int(comid) == 0:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return HttpResponse(es_result)
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_ip = comp.comp_ip  # IP
+                comp_s = comp_ip.split(';')
+                sp_param = {
+                    "bool": {
+                        "should": [
+                        ],
+                        "minimum_should_match": 1
+                    }
+                }
+                for ip in comp_s:
+                    match_phrase = {"match_phrase": {"dst_ip.ip": ip}}
+                    sp_param["bool"]["should"].append(match_phrase)
+                es_result = self.sear_info(st_time, ed_time, sp_param)
+                if es_result == False:
+                    return HttpResponse("request false", status=404)
+                else:
+                    return HttpResponse(es_result)
+            except Exception as err:
+                logger.error('请求出错：{}'.format(err))
+                return HttpResponse("request error", status=404)
 
     def sear_info(self,st_time,ed_time,sp_param):
         if sp_param == None:
@@ -653,9 +719,41 @@ class thactive(View):
                 logger.error('请求出错：{}'.format(err))
                 return HttpResponse("request error", status=404)
     def post(self,request):
-        info = {"请求失败！"}
-        return HttpResponse(info)
-
+        tim = request.POST['tim']
+        comid = request.POST['compid']
+        if tim == "None":
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
+        else:
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-int(tim))).strftime('%Y-%m-%dT%H:%M:00')
+        if int(comid) == 0:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return HttpResponse(es_result)
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_ip = comp.comp_ip  # IP
+                comp_s = comp_ip.split(';')
+                sp_param = {
+                    "bool": {
+                        "should": [
+                        ],
+                        "minimum_should_match": 1
+                    }
+                }
+                for ip in comp_s:
+                    match_phrase = {"match_phrase": {"dst_ip.ip": ip}}
+                    sp_param["bool"]["should"].append(match_phrase)
+                es_result = self.sear_info(st_time, ed_time, sp_param)
+                if es_result == False:
+                    return HttpResponse("request false", status=404)
+                else:
+                    return HttpResponse(es_result)
+            except Exception as err:
+                logger.error('请求出错：{}'.format(err))
+                return HttpResponse("request error", status=404)
     def function(self,date):
         return date['doc_count']
 
@@ -861,9 +959,41 @@ class threat(View):
                 logger.error('请求出错：{}'.format(err))
                 return HttpResponse("request error", status=404)
     def post(self,request):
-        info = {"请求失败！"}
-        return HttpResponse(info)
-
+        tim = request.POST['tim']
+        comid = request.POST['compid']
+        if tim == "None":
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
+        else:
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-int(tim))).strftime('%Y-%m-%dT%H:%M:00')
+        if int(comid) == 0:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return HttpResponse(es_result)
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_ip = comp.comp_ip  # IP
+                comp_s = comp_ip.split(';')
+                sp_param = {
+                    "bool": {
+                        "should": [
+                        ],
+                        "minimum_should_match": 1
+                    }
+                }
+                for ip in comp_s:
+                    match_phrase = {"match_phrase": {"dst_ip.ip": ip}}
+                    sp_param["bool"]["should"].append(match_phrase)
+                es_result = self.sear_info(st_time, ed_time, sp_param)
+                if es_result == False:
+                    return HttpResponse("request false", status=404)
+                else:
+                    return HttpResponse(es_result)
+            except Exception as err:
+                logger.error('请求出错：{}'.format(err))
+                return HttpResponse("request error", status=404)
     def sear_info(self,st_time,ed_time,sp_param):
         if sp_param == None:
             body = {
@@ -1077,9 +1207,44 @@ class thnews(View):
                 return HttpResponse("request error",status=404)
 
     def post(self,request):
-        info = {"请求失败！"}
-        return HttpResponse(info)
-
+        tim = request.POST['tim']
+        comid = request.POST['compid']
+        if tim == "None":
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
+        else:
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-int(tim))).strftime('%Y-%m-%dT%H:%M:00')
+        if int(comid) == 0:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            if es_result == False:
+                return HttpResponse("request false", status=404)
+            else:
+                return HttpResponse(es_result)
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_ip = comp.comp_ip  # IP
+                comp_s = comp_ip.split(';')
+                sp_param = {
+                    "bool": {
+                        "should": [
+                        ],
+                        "minimum_should_match": 1
+                    }
+                }
+                for ip in comp_s:
+                    match_phrase = {"match_phrase": {"dst_ip.ip": ip}}
+                    sp_param["bool"]["should"].append(match_phrase)
+                es_result = self.sear_info(st_time, ed_time, sp_param)
+                if es_result == False:
+                    return HttpResponse("request false", status=404)
+                else:
+                    return HttpResponse(es_result)
+            except Exception as err:
+                logger.error('请求出错：{}'.format(err))
+                return HttpResponse("request error", status=404)
     def sear_info(self,st_time,ed_time,sp_param):
         if sp_param == None:
             body = {
@@ -1251,13 +1416,14 @@ class thnews(View):
         except Exception as err:
             logger.error('获取数据出错：{}'.format(err))
             return False
-
+#详细数据
 class threaten_count(View):
     '''表格'''
     @check_user_request
     def get(self, request):
         comid = request.GET.get('comid', None)
-        result = self.seardat(comid)
+        tim = request.GET.get('tim', None)
+        result = self.seardat(comid,tim)
         res = result['dat']
         paginator = Paginator(res, 8)  # 分页功能，一页8条数据
         if request.is_ajax() == False:
@@ -1284,13 +1450,19 @@ class threaten_count(View):
             result = {'has_previous': users.has_previous(),
                       'has_next': users.has_next(),
                       'num_pages': users.paginator.num_pages,
-                      'user_li': user_li}
+                      'user_li': user_li,
+                      'now_page': page
+                      }
             return JsonResponse(result)
 
-    def seardat(self,comid):
-        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
-        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
-        if int(comid) == 0:  # 是否携带用户信息
+    def seardat(self,comid,tim):
+        if tim == "None":
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
+        else:
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-int(tim))).strftime('%Y-%m-%dT%H:%M:00')
+        if int(comid) == 0:
             sp_param = None
             es_result = self.sear_info(st_time, ed_time, sp_param)
             return es_result

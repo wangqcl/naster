@@ -23,11 +23,31 @@
     <ul class="clearfix">
         <li>
             <div class="boxall" style="height: 5.2rem; width: 100%; float:left">
+                <div class="list-down"  style="float: right ;position:absolute;right: 0;z-index:1999">
+                    <button id="btn1" style="float:right;">. . .</button>
+                    <ul id="list-chooses1" style="display: none;">
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="pth_thattack(1)">1天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="pth_thattack(2)">2天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="pth_thattack(3)">3天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="pth_thattack(4)">4天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="pth_thattack(5)">5天</button></li>
+                    </ul>
+                </div>
                 <div class="alltitle">【威胁情报】攻击类型</div>
               <div class="allnav" id="thattack"></div>
               <div class="boxfoot"></div>
           </div>
             <div class="boxall" style="height: 5.2rem; width: 100%; float:left">
+                <div class="list-down"  style="float: right ;position:absolute;right: 0;z-index:1999">
+                    <button id="btn2" style="float:right;">. . .</button>
+                    <ul id="list-chooses2" style="display: none;">
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="pth_thattack(1)">1天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="pth_thattack(2)">2天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="pth_thattack(3)">3天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="pth_thattack(4)">4天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="pth_thattack(5)">5天</button></li>
+                    </ul>
+                </div>
                 <div class="alltitle">【威胁情报】命中趋势</div>
                 <div class="allnav" id="thhit"></div>
                 <div class="boxfoot"></div>
@@ -50,11 +70,31 @@
         </div>
 
             <div class="boxall" style="height: 4.2rem; width: 100%; margin-left: auto; margin-right: auto">
+                <div class="list-down"  style="float: right ;position:absolute;right: 0;z-index:1999">
+                    <button id="btn3" style="float:right;">. . .</button>
+                    <ul id="list-chooses3" style="display: none;">
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="pth_thactive(1)">1天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="pth_thactive(2)">2天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="pth_thactive(3)">3天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="pth_thactive(4)">4天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="pth_thactive(5)">5天</button></li>
+                    </ul>
+                </div>
                 <div class="alltitle">【威胁情报】活跃攻击源</div>
                 <div class="allnav" id="thactive"></div>
                 <div class="boxfoot"></div>
             </div>
             <div class="boxall" style="height: 4.7rem; width: 100%; float:right">
+                <div class="list-down"  style="float: right ;position:absolute;right: 0;z-index:1999">
+                    <button id="btn" style="float:right;">. . .</button>
+                    <ul id="list-chooses" style="display: none;">
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="page_click(1)">1天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="page_click(2)">2天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="page_click(3)">3天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="page_click(4)">4天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="page_click(5)">5天</button></li>
+                    </ul>
+                </div>
                 <div class="alltitle">【威胁情报】详细数据</div>
                 <div class="allnav">
                 <div class="transparentDataTable">
@@ -75,17 +115,12 @@
                             <a class="first_page">
                                 <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">上一页</button>
                             </a>
-
-                            {% for num in users.paginator.page_range %}
-                                <a class="now_page">
-                                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">{{ num.pag }}</button>
-                                </a>
-                            {% endfor %}
-
+                            <a class="now_page">
+                                    <button id="now_pages" type="button"   class="layui-btn layui-btn-primary layui-btn-sm"></button>
+                            </a>
                             <button id="num_pages" type="button" class="layui-btn layui-btn-primary layui-btn-sm">
                                 共{{ users.paginator.num_pages }}页
                             </button>
-
                             <a class="last_page">
                                 <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">下一页</button>
                             </a>
@@ -101,11 +136,31 @@
 
         <li>
             <div class="boxall" style="height: 5.2rem; width: 100%; margin-left: auto; margin-right: auto">
+                <div class="list-down"  style="float: right ;position:absolute;right: 0;z-index:1999">
+                    <button id="btn4" style="float:right;">. . .</button>
+                    <ul id="list-chooses4" style="display: none;">
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="pth_threat(1)">1天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="pth_threat(2)">2天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="pth_threat(3)">3天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="pth_threat(4)">4天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="pth_threat(5)">5天</button></li>
+                    </ul>
+                </div>
                 <div class="alltitle">【威胁情报】IP威胁分类</div>
                 <div class="allnav" id="threat"></div>
                 <div class="boxfoot"></div>
             </div>
             <div class="boxall" style="height: 5.2rem; width: 100%; float:right">
+                <div class="list-down"  style="float: right ;position:absolute;right: 0;z-index:1999">
+                    <button id="btn5" style="float:right;">. . .</button>
+                    <ul id="list-chooses5" style="display: none;">
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="pth_thnews(1)">1天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="pth_thnews(2)">2天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="pth_thnews(3)">3天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="pth_thnews(4)">4天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="pth_thnews(5)">5天</button></li>
+                    </ul>
+                </div>
                 <div class="alltitle">【威胁情报】IP威胁情报源</div>
                 <div class="allnav" id="thnews"></div>
                 <div class="boxfoot"></div>
@@ -120,11 +175,10 @@
 
 <!-- js开始 -->
 {% block jsbody %}
+ <script language="JavaScript" src="{% static 'monit/js/exhib.js'%}"></script>
 <!--表格-->
 <script type="text/javascript">
-
         let now_page = 1;
-        // 动态加载第一页数据
         page_click();
         $('.first_page button').removeClass('layui-btn-primary').addClass('layui-btn-disabled');
         $('.now_page button').first().removeClass('layui-btn-primary').addClass('page_this');
@@ -133,20 +187,22 @@
             now_page -= 1;
             if (now_page < 1) {
                 now_page = 1;
+                page_click();
                 return false
             } else {
-                $('.page_this').parent().prev().click();
+                page_click()
             }
         });
         //下一页
         $('.last_page').click(function () {
-            let num_pages = $('.now_page button').last().text();
             now_page += 1;
-            if (now_page > parseInt(num_pages)) {
+            if (now_page < 1) {
                 now_page -= 1;
+                page_click();
                 return false
             } else {
                 $('.page_this').parent().next().click();
+                page_click()
             }
         });
         //切换页
@@ -158,14 +214,18 @@
             page_click()
         });
 
-        function page_click() {
+        function page_click(tim) {
+            if(!tim) {
+                tim = "None";
+            }
             let page_form = $('#page');
             $.ajax({
-                type: 'GET',
+                type: 'get',
                 url: page_form.attr('action'),
-                data: {page: now_page},
+                data: {page: now_page,tim:tim},
                 success: function (data) {
                     $('#tbody tr').remove();
+                    $('#now_pages').html('第'+data.now_page + '页');
                     $('#num_pages').html('共' + data.num_pages + '页');
                     if (data.has_previous === true) {
                         $('.first_page button').removeClass('layui-btn-disabled').addClass('layui-btn-primary');
@@ -202,60 +262,180 @@
 </script>
 <!--攻击类型-->
 <script type="text/javascript">
-        th_thattack();
-        var trafficWay = [];
-        var datalist = [];
-        var th_endtime;
-        function th_thattack() {
-             $.getJSON('{% url "monit_threaten_thattack" %}',function(data) {
-                    trafficWay = data.number;
-                    datalist = data.ports;
-                    th_endtime = data.edtime;
-                    ec_thattack(trafficWay,datalist)
-                });
-        }
+    th_thattack();
+    var trafficWay = [];
+    var datalist = [];
+    var th_tim = 120000;
+    function th_thattack() {
+         $.getJSON('{% url "monit_threaten_thattack" %}',function(data) {
+            trafficWay = data.number;
+            datalist = data.ports;
+            ec_thattack(trafficWay,datalist);
+            setTimeout(function(){
+                p_totalthr();
+            },we_edtime);
+            });
+    }
 
+    function pth_thattack(tim) {
+        $.ajaxSetup({
+            data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
+        });
+        if (!tim) {
+            tim = "None";
+        }
+        $.post("{% url 'monit_threaten_thattack' %}", {'compid': params, 'tim': tim}, "json").success(function (data) {
+            if (data == 'error' || JSON.stringify(data) == '{}') {
+                setTimeout(pth_thattack, th_tim)
+            } else {
+                data = JSON.parse(data);
+                trafficWay = [];
+                datalist = [];
+                trafficWay = data.number;
+                datalist = data.ports;
+                ec_thattack(trafficWay,datalist);
+                if (tim == "None") {
+                    setTimeout(pth_thattack, th_tim)
+                }
+            }
+        }).error(function (xhr, status, info) {
+            console.log(xhr.status + ":" + xhr.info);
+        })
+    }
 
 </script>
 <!--命中趋势-->
 <script type="text/javascript">
     var hit_xdata = [];
     var hit_ydata = [];
+    var tack_tim = 130000;
     th_thattack();
     function th_thattack() {
              $.getJSON('{% url "monit_threaten_thhit" %}',function(data) {
                     hit_xdata = data.times;
                     hit_ydata = data.number;
-                    ec_thhit(hit_xdata,hit_ydata)
+                    ec_thhit(hit_xdata,hit_ydata);
+                    setTimeout(function(){
+                        pth_thattack();
+                    },tack_tim);
                 });
         }
+
+    function pth_thattack(tim) {
+        $.ajaxSetup({
+            data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
+        });
+        if (!tim) {
+            tim = "None";
+        }
+        $.post("{% url 'monit_threaten_thhit' %}", {'compid': params, 'tim': tim}, "json").success(function (data) {
+            if (data == 'error' || JSON.stringify(data) == '{}') {
+                setTimeout(pth_thattack, tack_tim)
+            } else {
+                data = JSON.parse(data);
+                hit_xdata = [];
+                hit_ydata = [];
+                hit_xdata = data.times;
+                hit_ydata = data.number;
+                ec_thhit(hit_xdata,hit_ydata);
+                if (tim == "None") {
+                    setTimeout(pth_thattack, tack_tim)
+                }
+            }
+        }).error(function (xhr, status, info) {
+            console.log(xhr.status + ":" + xhr.info);
+        })
+    }
 </script>
 <!--活跃攻击源-->
 <script type="text/javascript">
     var tiv_xdata = [];
     var tiv_ydata = [];
+    var hy_time = 150000;
     th_thactive();
     function th_thactive() {
              $.getJSON('{% url "monit_threaten_thactive" %}',function(data) {
                     tiv_xdata = data.x_data;
                     tiv_ydata = data.y_data;
-                    ec_thactive(tiv_xdata,tiv_ydata)
+                    ec_thactive(tiv_xdata,tiv_ydata);
+                    setTimeout(function(){
+                        pth_thactive();
+                    },hy_time);
                 });
         }
+
+    function pth_thactive(tim) {
+        $.ajaxSetup({
+            data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
+        });
+        if (!tim) {
+            tim = "None";
+        }
+        $.post("{% url 'monit_threaten_thactive' %}", {'compid': params, 'tim': tim}, "json").success(function (data) {
+            if (data == 'error' || JSON.stringify(data) == '{}') {
+                setTimeout(pth_thactive, hy_time)
+            } else {
+                data = JSON.parse(data);
+                tiv_xdata = [];
+                tiv_ydata = [];
+                tiv_xdata = data.x_data;
+                tiv_ydata = data.y_data;
+                ec_thactive(tiv_xdata,tiv_ydata);
+
+                if (tim == "None") {
+                    setTimeout(pth_thactive, hy_time)
+                }
+            }
+        }).error(function (xhr, status, info) {
+            console.log(xhr.status + ":" + xhr.info);
+        })
+    }
 </script>
 <!--威胁分类-->
 <script type="text/javascript">
     var n_name = [];
     var n_data = [];
     var w_data = [];
+    var wx_time = 160000;
     th_threat();
     function th_threat() {
          $.getJSON('{% url "monit_threaten_threat" %}',function(data) {
                 n_name = data.n_name;
                 n_data = data.n_data;
                 w_data = data.w_data;
-                ec_threat(n_name,n_data,w_data)
+                ec_threat(n_name,n_data,w_data);
+                setTimeout(function(){
+                    pth_threat();
+                },wx_time);
             });
+    }
+
+    function pth_threat(tim) {
+        $.ajaxSetup({
+            data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
+        });
+        if (!tim) {
+            tim = "None";
+        }
+        $.post("{% url 'monit_threaten_threat' %}", {'compid': params, 'tim': tim}, "json").success(function (data) {
+            if (data == 'error' || JSON.stringify(data) == '{}') {
+                setTimeout(pth_threat, wx_time)
+            } else {
+                data = JSON.parse(data);
+                n_name = [];
+                n_data = [];
+                w_data = [];
+                n_name = data.n_name;
+                n_data = data.n_data;
+                w_data = data.w_data;
+                ec_threat(n_name,n_data,w_data);
+                if (tim == "None") {
+                    setTimeout(pth_threat, wx_time)
+                }
+            }
+        }).error(function (xhr, status, info) {
+            console.log(xhr.status + ":" + xhr.info);
+        })
     }
 </script>
 
@@ -264,14 +444,47 @@
     var sn_name = [];
     var sn_data = [];
     var sw_data = [];
+    var qb_time = 300000;
     th_thnews();
     function th_thnews() {
          $.getJSON('{% url "monit_threaten_thnews" %}',function(data) {
                 sn_name = data.n_name;
                 sn_data = data.n_data;
                 sw_data = data.w_data;
-                ec_thnews(sn_name,sn_data,sw_data)
+                ec_thnews(sn_name,sn_data,sw_data);
+                setTimeout(function(){
+                    pth_thnews();
+                },qb_time);
             });
+    }
+
+    function pth_thnews(tim) {
+        $.ajaxSetup({
+            data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
+        });
+        if (!tim) {
+            tim = "None";
+        }
+        $.post("{% url 'monit_threaten_thnews' %}", {'compid': params, 'tim': tim}, "json").success(function (data) {
+            if (data == 'error' || JSON.stringify(data) == '{}') {
+                setTimeout(pth_thnews, qb_time)
+            } else {
+                data = JSON.parse(data);
+                sn_name = [];
+                sn_data = [];
+                sw_data = [];
+                sn_name = data.n_name;
+                sn_data = data.n_data;
+                sw_data = data.w_data;
+                ec_thnews(sn_name,sn_data,sw_data);
+
+                if (tim == "None") {
+                    setTimeout(pth_thnews, qb_time)
+                }
+            }
+        }).error(function (xhr, status, info) {
+            console.log(xhr.status + ":" + xhr.info);
+        })
     }
 </script>
 {% endblock %}
