@@ -29,8 +29,7 @@
   <body>
     <div class="container">
 
-        <form class="form-signin" method="post" action="{% url 'myadmin_dologin' %}">
-          {% csrf_token %}
+        <form class="form-signin">
           <h2 class="form-signin-heading">监控后台管理登录</h2>
           账号：<br/>
           <label for="inputEmail" class="sr-only">请输入账号</label>
@@ -39,39 +38,35 @@
           <label for="inputPassword" class="sr-only">请输入密码</label>
           <input type="password" id="inputPassword" class="form-control" name="password" placeholder="请输入密码" required>
           验证码：<br/>
-          <input type="text" name="code" class="span2" style="width:130px;"  />
+          <input type="text" id="code" name="code" class="span2" style="width:130px;"  />
           <img src="{% url 'myadmin_verify'%}" onclick="this.src='{% url 'myadmin_verify' %}?sn='+Math.random()"/><br />
           <div class="checkbox">
-{#            <label>#}
-{#              <input type="checkbox" value="remember-me"> Remember me#}
-{#            </label>#}
+<!--{#            <label>#}-->
+<!--{#              <input type="checkbox" value="remember-me"> Remember me#}-->
+<!--{#            </label>#}-->
           </div>
-          <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+          <button class="btn btn-lg btn-primary btn-block" id="login" type="button">登录</button>
+            <br>
+            <span style="color:red" id="info"></span>
         </form>
-        <br/>
-        <span style="color:red" id="info"></span>
       </div>
-    </div> <!-- /container -->
-
-  </body>
-</html>
-
-        <script src="{% static 'myadmin/js/jsencrypt.min.js' %}"></script>    <!--加密库-->
+<!--    js加载-->
+        <script src="{% static 'myadmin/js/jquery.min.js' %}"></script>
+        <script src="{% static 'myadmin/js/jsencrypt.min.js' %}"></script>
         <script>
 
         /*动态获取生成的公钥文件*/
         var key= $.ajax({
             url: "/static/myadmin/master-public.pem",
             success: function(data, status) {
-            console.log(data.responseText)
                 return data;
             },
          });　　　　　　
 
         $(document).ready(function() {
-            $("#login1").click(function ()  {
-                var userName=$("#login-username").val();
-                var passWord=$("#login-password").val();
+            $("#login").click(function ()  {
+                var userName=$("#inputEmail").val();
+                var passWord=$("#inputPassword").val();
                 var Code = $("#code").val();
                 if (userName == "" || passWord == "" || code == "") {
                     alert("用户名、密码、验证码不能为空！");
@@ -94,11 +89,11 @@
                     success: function (data) {
                     console.log(data)
                         if(data.msg == 'success')
-                        {console.log(1)
+                        {
                             window.location.href=data.url;
                         }
                         else
-                        {console.log(2)
+                        {
                             $('#info').html(data.info);
                         }
                     },
@@ -108,7 +103,7 @@
             })
         })
         </script>
-
-        <script src="{% static 'myadmin/js/site.js' %}"></script>
-    </body>
+  </body>
 </html>
+
+
