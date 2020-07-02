@@ -1,5 +1,5 @@
 ﻿// 风险柱状图
-function echarts_a(st_time,st_count) {
+function echarts_a(times,values) {
         var myChart = echarts.init(document.getElementById('echart_a'));
         option = {
   //  backgroundColor: '#00265f',
@@ -18,7 +18,7 @@ function echarts_a(st_time,st_count) {
     },
     xAxis: [{
         type: 'category',
-      		data: st_time,//['NO.1', 'NO.2', 'NO.3', 'NO.4', 'NO.5', 'NO.6', 'NO.7','NO.8','NO.9','NO.10'],
+      		data: times,//['NO.1', 'NO.2', 'NO.3', 'NO.4', 'NO.5', 'NO.6', 'NO.7','NO.8','NO.9','NO.10'],
         axisLine: {
             show: true,
          lineStyle: {
@@ -35,7 +35,7 @@ function echarts_a(st_time,st_count) {
                 interval: 0,
                // rotate:50,
                 show: true,
-                splitNumber: 15,
+//                splitNumber: 15,
                 textStyle: {
  					color: "rgba(255,255,255,.6)",
                     fontSize: '12',
@@ -74,8 +74,8 @@ function echarts_a(st_time,st_count) {
 		{
         type: 'bar',
         name: '攻击数量',
-        data: st_count,
-        barWidth:'20%', //柱子宽度
+        data: values,
+        barWidth:'30%', //柱子宽度
         barGap: 1, //柱子之间间距
         itemStyle: { //添加随机的颜色
                         normal: {
@@ -84,15 +84,8 @@ function echarts_a(st_time,st_count) {
                                 var colorList = [
                                     '#bcd3bb', '#e88f70', '#9dc5c8', '#e1e8c8',
                                     '#7b7c68', '#e5b5b5', '#f0b489', '#928ea8',
-                                    '#bda29a', '#376956', '#c3bed4', '#495a80',
-                                    '#9966cc', '#bdb76a', '#eee8ab', '#a35015',
-                                    '#04dd98', '#d9b3e6', '#b6c3fc','#315dbc',
-                                    '#bcd3bb', '#e88f70', '#9dc5c8', '#e1e8c8',
-                                    '#7b7c68', '#e5b5b5', '#f0b489', '#928ea8',
-                                    '#bda29a', '#376956', '#c3bed4', '#495a80',
-                                    '#9966cc', '#bdb76a', '#eee8ab', '#a35015',
-                                    '#04dd98', '#d9b3e6', '#b6c3fc','#315dbc',
-                                    '#04dd98'
+                                    '#bda29a', '#376956','#bcd3bb', '#e88f70', '#9dc5c8',
+                                    '#7b7c68', '#e5b5b5',
                                 ];
                                 return colorList[params.dataIndex]
                             },
@@ -382,6 +375,7 @@ function echarts_c(linesY,wcharts) {
         option = {
             tooltip: {
             trigger: 'axis',
+            position: ["80%","20%"],
             axisPointer: {
                 lineStyle: {
                     color: '#dddc6b'
@@ -567,11 +561,12 @@ function echarts_j(nu_port,nu_values) {
     legend: {
         orient: 'vertical',
 //                bottom: 10,
-        left: 50,
+        left: 30,
 //        bottom: 'bottom',
         top: 50,
         textStyle: {
-                    fontSize: 18
+                    fontSize: 18,
+                    color: "rgba(255,255,255,.6)",
                 },
         data: nu_port,
 
@@ -584,15 +579,20 @@ function echarts_j(nu_port,nu_values) {
     },
     series: [{
         type: 'pie',
-        color: ['pink','#f35833','#ffcc00','black','blue'],
+        color: ['pink','#f35833','#ffcc00','blue','black'],
         radius: ['55%', '70%'],
         avoidLabelOverlap: false,
         label: {
+            normal: {
+                position: 'inner',
+                show : false
+            },
             show: true,
             formatter: '{c}',
             padding: [-20, -30, 0, -30],
             textStyle : {
-                         fontWeight : 50 ,
+            color: "rgba(255,255,255,.6)",
+//                         fontWeight : 70 ,
                          fontSize : 18    //文字的字体大小
                          },
         },
@@ -601,7 +601,7 @@ function echarts_j(nu_port,nu_values) {
         labelLine: {
             show: false,
 //            length: '55',
-            length2: '90'
+//            length2: '90'
         },
         data: nu_values,
     }]
@@ -614,7 +614,7 @@ function echarts_j(nu_port,nu_values) {
         });
     }
 // 端口环形图
-function echarts_k(nu_types,nu_values) {
+function echarts_k(po_types,po_values) {
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('echart_k'));
 
@@ -629,23 +629,24 @@ function echarts_k(nu_types,nu_values) {
 	        x: 'right',
 	        top: 40,
             textStyle: {
+            color: "rgba(255,255,255,.6)",
                     fontSize:18
                 },
-	        data: nu_types,
+	        data: po_types,
 	    },
 	    series : [
 	        {
 	            type: 'pie',
 	            radius : '70%',
 	            center: ['50%', '50%'],
-	            data:nu_values,
+	            data:po_values,
 	                    label: { //饼图图形上的文本标签
                             normal: {
                                 show: true,
 //                                position: 'inner', //标签的位置
                                 textStyle: {
                                     fontWeight: 100,
-                                    color:'black',
+                                    color:"rgba(255,255,255,.6)",
                                     fontSize: 18 //文字的字体大小
                                 },
                                 formatter: '{d}%'

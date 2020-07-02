@@ -10,7 +10,7 @@ import base64
 from Crypto import Random
 from Crypto.Cipher import PKCS1_v1_5 as Cipher_pkcs1_v1_5
 from Crypto.PublicKey import RSA
-
+from . import Encryption
 
 # 后台首页
 def index(request):
@@ -27,6 +27,7 @@ def index(request):
 # ==============后台管理员操作====================
 # 会员登录表单
 def login(request):
+    Encryption(request)
     return render(request, 'myadmin/login.html')
 
 
@@ -51,7 +52,7 @@ def dologin(request):
         passw = request.POST['password']
         passw = passw.encode('utf8')
         RANDOM_GENERATOR = Random.new().read
-        with open('web/encryption/master-private.pem') as f:
+        with open('myadmin/encryption/master-private.pem') as f:
             key = f.read()
         rsakey = RSA.importKey(key.encode('utf8'))
         cipher = Cipher_pkcs1_v1_5.new(rsakey)

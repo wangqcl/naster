@@ -28,56 +28,19 @@ class Safety_index(View):
 
     @check_user_request
     def get(self, request):
-        comid = request.GET.get('comid', 'None')
-        # comid = request.GET.get('comid', 0)  #企业ID
-        result = self.seardat(comid)
-        res = result["dat"]
-        paginator = Paginator(res, 4)  # 分页功能，一页8条数据
-        if request.is_ajax() == False:
-            username = request.session.get('webuser', default=None)  # 获取登录用户名
-            user = Users.objects.get(username=username)
-            userlist = paginator.page(1)
-            content = {
-                "compid": comid,
-                "users": userlist
-            }
-            if user.state == 0:
-                if int(comid) == 0:
-                    return render(request, "web/safety.html", content)
-                else:
-                    return render(request, "web/usermon/qsafety.html", content)
-            elif user.state == 1 & comid != 0:
-                comp = Compinfo.objects.get(id=comid)
-                users = comp.users.all()
-                for us in users:
-                    if us.username == username:
-                        return render(request, "web/usermon/qsafety.html", content)  # 用户的监控首页
-                    else:
-                        content = {"info": "查询失败！"}
-                return render(request, "web/monweb/info.html", content)
+        username = request.session.get('webuser', default=None)  # 获取登录用户名
+        user = Users.objects.get(username=username)
+        pIndex = request.GET.get('comid', None)
+        content = {
+            "compid": pIndex,
+        }
+        if user.state == 0:
+            if int(pIndex) == 0:
+                return render(request, "web/safety.html", content)
             else:
-                error = "访问出错！"
-                content = {"info": error}
-                return render(request, "web/monweb/info.html", content)
-
-        # Ajax数据交互
-        if request.is_ajax():
-            page = request.GET.get('page')
-            try:
-                users = paginator.page(page)
-            # 如果页数不是整数，返回第一页
-            except PageNotAnInteger:
-                users = paginator.page(1)
-            # 如果页数不存在/不合法，返回最后一页
-            except InvalidPage:
-                users = paginator.page(paginator.num_pages)
-            user_li = list(users)  # .object_list.values()
-            # 分别为是否有上一页false/true，是否有下一页false/true，总共多少页，当前页面的数据
-            result = {'has_previous': users.has_previous(),
-                      'has_next': users.has_next(),
-                      'num_pages': users.paginator.num_pages,
-                      'user_li': user_li}
-            return JsonResponse(result)
+                return render(request, "web/usermon/qsafety.html", content)
+        elif user.state == 1:
+            return render(request, "web/usermon/qsafety.html", content)  # 用户的监控首页
 
     def seardat(self, comid):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区时间
@@ -107,8 +70,38 @@ class Safety_index(View):
                 else:
                     return self.es_result
             except Exception as err:
-                logger.error('请求出错：{}'.format(err))
-                # print(err)
+                print(err)
+                return False
+
+    def seardate(self, comid, time):
+        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区时间
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
+        if int(comid) == 0:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return es_result
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_ip = comp.comp_ip  # IP
+                comp_s = comp_ip.split(';')
+                sp_param = {
+                    "bool": {
+                        "should": [
+                        ],
+                        "minimum_should_match": 1
+                    }
+                }
+                for ip in comp_s:
+                    match_phrase = {"match_phrase": {"transaction.host_ip.keyword": ip}}
+                    sp_param["bool"]["should"].append(match_phrase)
+                self.es_result = self.sear_info(st_time, ed_time, sp_param)
+                if self.es_result == False:
+                    return False
+                else:
+                    return self.es_result
+            except Exception as err:
+                print(err)
                 return False
 
     def sear_info(self, st_time, ed_time, sp_param):
@@ -430,44 +423,23 @@ class Safety_index(View):
                                         jsontext_1["waf_lj"] = waf_lj  # waf拦截器
                         jsonlist.append(jsontext_1)
                     except Exception as err:
-                        logger.error('威胁统计数据报错：{}'.format(err))
-                    continue
+                        continue
             jsontext['dat'] = jsonlist
             return jsontext
         except Exception as err:
             logger.error('威胁统计-数据-获取数据出错：{}'.format(err))
-            return False
+            errinfo = {"error": "数据请求失败！"}
+            return HttpResponse(errinfo)
 
 
 # 攻击趋势
 class Safety_attack_trend(View):
+    @check_user_request
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
+        # 获取
         comid = request.GET.get('comid', None)
-        if comid == None:  # 用户信息
-            sp_param = None
-            es_result = self.sear_info(st_time, ed_time, sp_param)
-            return HttpResponse(es_result)
-        else:
-            try:
-                comp = Compinfo.objects.get(id=comid)
-                comp_realm = comp.comp_realm  # 域名
-                comp_s = comp_realm.split('.', 1)
-                sp_param = "*%s*" % (comp_s[1])
-                es_result = self.sear_info(st_time, ed_time, sp_param)
-                if es_result == False:
-                    return HttpResponse("request false", status=404)
-                else:
-                    return HttpResponse(es_result)
-            except Exception as err:
-                logger.error('请求出错：{}'.format(err))
-                return HttpResponse("request error", status=404)
-
-    def post(self, request):
-        st_time = request.POST['edtime']
-        comid = request.POST['compid']
-        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         if comid == None:  # 是否携带用户信息
             sp_param = None
             es_result = self.sear_info(st_time, ed_time, sp_param)
@@ -478,23 +450,54 @@ class Safety_attack_trend(View):
                 comp_ip = comp.comp_ip  # IP
                 comp_s = comp_ip.split(';')
                 sp_param = {
-                    "bool": {
-                        "should": [
-                        ],
-                        "minimum_should_match": 1
-                    }
+                    "bool":
+                        {
+                            "should": [],
+                            "minimum_should_match": 1
+                        }
                 }
                 for ip in comp_s:
-                    match_phrase = {"match_phrase": {"dst_ip.ip": ip}}
+                    match_phrase = {"match_phrase": {"destination.ip": ip}}
                     sp_param["bool"]["should"].append(match_phrase)
                 es_result = self.sear_info(st_time, ed_time, sp_param)
-                if es_result == False:
-                    return HttpResponse("request false", status=404)
-                else:
-                    return HttpResponse(es_result)
+                return HttpResponse(es_result)
             except Exception as err:
-                logger.error('请求出错：{}'.format(err))
-                return HttpResponse("request error", status=404)
+                print(err)
+                return HttpResponse("Error")
+
+    def post(self, request):
+        time = int(request.POST['tim'])
+        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+        if time == 'None':
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
+        else:
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-time)).strftime('%Y-%m-%dT%H:%M:00')
+        # 获取
+        comid = request.GET.get('comid', None)
+        if comid == None:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return HttpResponse(es_result)
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_ip = comp.comp_ip  # IP
+                comp_s = comp_ip.split(';')
+                sp_param = {
+                    "bool":
+                        {
+                            "should": [],
+                            "minimum_should_match": 1
+                        }
+                }
+                for ip in comp_s:
+                    match_phrase = {"match_phrase": {"destination.ip": ip}}
+                    sp_param["bool"]["should"].append(match_phrase)
+                es_result = self.sear_info(st_time, ed_time, sp_param)
+                return HttpResponse(es_result)
+            except Exception as err:
+                print(err)
+                return HttpResponse("Error")
 
     def sear_info(self, st_time, ed_time, sp_param):
         if sp_param == None:
@@ -631,25 +634,21 @@ class Safety_attack_trend(View):
             re_data = ret['aggregations']['2']['buckets']
             y_date, jsontext, x_data = [], {}, []
             for i in re_data:
-                x_data.append(i["key_as_string"][11:-13])  # 获取日期数据并放入列表
+                x_data.append(i["key_as_string"].replace("T", " ")[11:-13])  # 获取日期数据并放入列表
                 y_date.append(i["doc_count"])  # 获取数据总数
-            seen = set()
-            result = []
-            for item in x_data:
-                if item not in seen:
-                    seen.add(item)
-                    result.append(item)
-            jsontext['yAxis'] = y_date  # 数据量
-            jsontext['xAxis'] = result  # 日期
+            jsontext['yAxis'] = y_date[1::2]  # 数据量
+            jsontext['xAxis'] = x_data[1::2]  # 日期
             jsontext['edtime'] = ed_time
+            print(jsontext,1111111111)
             return json.dumps(jsontext)
         except Exception as err:
-            logger.error('获取数据出错：{}'.format(err))
-            return False
+            errinfo = {"error": "数据请求失败！"}
+            return HttpResponse(errinfo)
 
 
 # 攻击分布
 class Safety_map(View):
+    @check_user_request
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
@@ -664,7 +663,7 @@ class Safety_map(View):
             return HttpResponse("request error", status=404)
 
     def post(self, request):
-        st_time = request.POST['edtime']
+        st_time = int(request.POST['edtime'])
         comid = request.POST['compid']
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         if comid == None:  # 是否携带用户信息
@@ -809,24 +808,13 @@ class Safety_map(View):
 
 # WAF攻击趋势
 class Safety_waf_attack_trend(View):
+    @check_user_request
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         st_time = datetime.datetime.strptime(datetime.datetime.now().strftime("%Y-%m-%d"), "%Y-%m-%d").strftime(
             '%Y-%m-%dT%H:%M:%S')
-        es_result = self.sear_info(st_time, ed_time)
-        try:
-            if es_result == False:
-                return HttpResponse("request false", status=404)
-            else:
-                return HttpResponse(es_result)
-        except Exception as err:
-            logger.error('请求出错：{}'.format(err))
-            return HttpResponse("request error", status=404)
-
-    def post(self, request):
-        st_time = request.POST['edtime']
-        comid = request.POST['compid']
-        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+        # 获取
+        comid = request.GET.get('comid', None)
         if comid == None:  # 是否携带用户信息
             sp_param = None
             es_result = self.sear_info(st_time, ed_time, sp_param)
@@ -837,96 +825,207 @@ class Safety_waf_attack_trend(View):
                 comp_ip = comp.comp_ip  # IP
                 comp_s = comp_ip.split(';')
                 sp_param = {
-                    "bool": {
-                        "should": [
-                        ],
-                        "minimum_should_match": 1
-                    }
+                    "bool":
+                        {
+                            "should":
+                                [
+
+                                ],
+                            "minimum_should_match": 1
+                        }
                 }
                 for ip in comp_s:
-                    match_phrase = {"match_phrase": {"dst_ip.ip": ip}}
+                    match_phrase = {"match_phrase": {"transaction.host_ip": ip}}
                     sp_param["bool"]["should"].append(match_phrase)
                 es_result = self.sear_info(st_time, ed_time, sp_param)
-                if es_result == False:
-                    return HttpResponse("request false", status=404)
-                else:
-                    return HttpResponse(es_result)
+                return HttpResponse(es_result)
             except Exception as err:
-                logger.error('请求出错：{}'.format(err))
-                return HttpResponse("request error", status=404)
+                print(err)
+                return HttpResponse("Error")
 
-    def sear_info(self, st_time, ed_time):
-        body = {
-            "aggs": {
-                "4": {
-                    "date_histogram": {
-                        "field": "@timestamp",
-                        "fixed_interval": "30m",
-                        "time_zone": "Asia/Shanghai",
-                        "min_doc_count": 1
-                    },
-                    "aggs": {
-                        "5": {
-                            "terms": {
-                                "field": "transaction.messages.message.keyword",
-                                "order": {
-                                    "_count": "desc"
-                                },
-                                "size": 5
-                            }
+    def post(self, request):
+        time = int(request.POST['tim'])
+        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+        if time == 'None':
+            st_time = datetime.datetime.strptime(datetime.datetime.now().strftime("%Y-%m-%d"), "%Y-%m-%d").strftime(
+                '%Y-%m-%dT%H:%M:%S')
+        else:
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
+        # 获取
+        comid = request.GET.get('comid', None)
+        if comid == None:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return HttpResponse(es_result)
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_ip = comp.comp_ip  # IP
+                comp_s = comp_ip.split(';')
+                sp_param = {
+                    "bool":
+                        {
+                            "should":
+                                [
+
+                                ],
+                            "minimum_should_match": 1
                         }
+                }
+                for ip in comp_s:
+                    match_phrase = {"match_phrase": {"transaction.host_ip": ip}}
+                    sp_param["bool"]["should"].append(match_phrase)
+                es_result = self.sear_info(st_time, ed_time, sp_param)
+                return HttpResponse(es_result)
+            except Exception as err:
+                print(err)
+                return HttpResponse("Error")
+
+    def sear_info(self, st_time, ed_time, sp_param):
+        if sp_param == None:
+            body = {
+          "aggs": {
+            "4": {
+              "date_histogram": {
+                "field": "@timestamp",
+                "fixed_interval": "30m",
+                "time_zone": "Asia/Shanghai",
+                "min_doc_count": 1
+              },
+              "aggs": {
+                "5": {
+                  "terms": {
+                    "field": "transaction.messages.message.keyword",
+                    "order": {
+                      "_count": "desc"
+                    },
+                    "size": 5
+                  }
+                }
+              }
+            }
+          },
+          "size": 0,
+          "_source": {
+            "excludes": []
+          },
+          "stored_fields": [
+            "*"
+          ],
+          "script_fields": {},
+          "docvalue_fields": [
+            {
+              "field": "@timestamp",
+              "format": "date_time"
+            },
+            {
+              "field": "values._widget_1583487508607.data.uploadTime",
+              "format": "date_time"
+            },
+            {
+              "field": "values._widget_1583990422218.data.uploadTime",
+              "format": "date_time"
+            }
+          ],
+          "query": {
+            "bool": {
+              "must": [],
+              "filter": [
+                {
+                  "match_all": {}
+                },
+                {
+                  "match_all": {}
+                },
+                {
+                  "range": {
+                    "@timestamp": {
+                      "format": "strict_date_optional_time",
+                      "gte": st_time,
+                      "lte": ed_time
                     }
+                  }
                 }
-            },
-            "size": 0,
-            "_source": {
-                "excludes": []
-            },
-            "stored_fields": [
-                "*"
-            ],
-            "script_fields": {},
-            "docvalue_fields": [
-                {
-                    "field": "@timestamp",
-                    "format": "date_time"
-                },
-                {
-                    "field": "values._widget_1583487508607.data.uploadTime",
-                    "format": "date_time"
-                },
-                {
-                    "field": "values._widget_1583990422218.data.uploadTime",
-                    "format": "date_time"
-                }
-            ],
-            "query": {
-                "bool": {
-                    "must": [],
-                    "filter": [
-                        {
-                            "match_all": {}
+              ],
+              "should": [],
+              "must_not": []
+            }
+          }
+        }
+        else:
+            body = {
+                "aggs": {
+                    "4": {
+                        "date_histogram": {
+                            "field": "@timestamp",
+                            "fixed_interval": "30m",
+                            "time_zone": "Asia/Shanghai",
+                            "min_doc_count": 1
                         },
-                        {
-                            "match_all": {}
-                        },
-                        {
-                            "range": {
-                                "@timestamp": {
-                                    "format": "strict_date_optional_time",
-                                    "gte": st_time,
-                                    "lte": ed_time
+                        "aggs": {
+                            "5": {
+                                "terms": {
+                                    "field": "transaction.messages.message.keyword",
+                                    "order": {
+                                        "_count": "desc"
+                                    },
+                                    "size": 5
                                 }
                             }
                         }
-                    ],
-                    "should": [],
-                    "must_not": []
+                    }
+                },
+                "size": 0,
+                "_source": {
+                    "excludes": []
+                },
+                "stored_fields": [
+                    "*"
+                ],
+                "script_fields": {},
+                "docvalue_fields": [
+                    {
+                        "field": "@timestamp",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "values._widget_1583487508607.data.uploadTime",
+                        "format": "date_time"
+                    },
+                    {
+                        "field": "values._widget_1583990422218.data.uploadTime",
+                        "format": "date_time"
+                    }
+                ],
+                "query": {
+                    "bool": {
+                        "must": [],
+                        "filter": [
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            sp_param,
+                            {
+                                "range": {
+                                    "@timestamp": {
+                                        "format": "strict_date_optional_time",
+                                        "gte": st_time,
+                                        "lte": ed_time
+                                    }
+                                }
+                            }
+                        ],
+                        "should": [],
+                        "must_not": []
+                    }
                 }
             }
-        }
         try:
             ret = es.search(index='waf*', doc_type='_doc', body=body)
+
             re_data = ret['aggregations']['4']['buckets']
             list_date, jsontext, yAxis_data = [], {}, {}
 
@@ -956,13 +1055,14 @@ class Safety_waf_attack_trend(View):
                 jsontext['port'] = list(yAxis_data.keys())  # 所有域名
                 jsontext['edtime'] = ed_time
             return json.dumps(jsontext)
-        except Exception as err:
-            logger.error('获取攻击趋势数据出错：{}'.format(err))
-            return False
+        except:
+            errinfo = {"error": "数据请求失败！"}
+            return HttpResponse(errinfo)
 
 
 # 攻击TOP10
 class Safety_top(View):
+    @check_user_request
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区时间
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
@@ -1000,10 +1100,14 @@ class Safety_top(View):
                 return HttpResponse("request error", status=404)
 
     def post(self, request):
-        st_time = request.POST['edtime']
-        comid = request.POST['compid']
+        time = int(request.POST['edtime'])
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
-        if comid == None:  # 是否携带用户信息
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
+        if request.POST.get('comid'):
+            comid = int(request.POST.get('comid'))
+        else:
+            comid = None
+        if type(comid) != int:  # 是否携带用户信息
             sp_param = None
             es_result = self.sear_info(st_time, ed_time, sp_param)
             return HttpResponse(es_result)
@@ -1203,6 +1307,7 @@ class Safety_top(View):
 
 # 风险占比
 class Safety_risk(View):
+    @check_user_request
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
@@ -1237,10 +1342,14 @@ class Safety_risk(View):
                 return HttpResponse("request error", status=404)
 
     def post(self, request):
-        st_time = request.POST['edtime']
-        comid = request.POST['compid']
+        time = int(request.POST['edtime'])
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
-        if comid == None:  # 是否携带用户信息
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
+        if request.POST.get('comid'):
+            comid = int(request.POST.get('comid'))
+        else:
+            comid = None
+        if type(comid) != int:  # 是否携带用户信息
             sp_param = None
             es_result = self.sear_info(st_time, ed_time, sp_param)
             return HttpResponse(es_result)
@@ -1420,6 +1529,7 @@ class Safety_risk(View):
 
 # 主要受攻击端口占比
 class Safety_attack_port(View):
+    @check_user_request
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
@@ -1454,10 +1564,14 @@ class Safety_attack_port(View):
                 return HttpResponse("request error", status=404)
 
     def post(self, request):
-        st_time = request.POST['edtime']
-        comid = request.POST['compid']
+        time = int(request.POST['edtime'])
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
-        if comid == None:  # 是否携带用户信息
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
+        if request.POST.get('comid'):
+            comid = int(request.POST.get('comid'))
+        else:
+            comid = None
+        if type(comid) != int:  # 是否携带用户信息
             sp_param = None
             es_result = self.sear_info(st_time, ed_time, sp_param)
             return HttpResponse(es_result)
@@ -1639,17 +1753,31 @@ class Safety_attack_port(View):
 class Safety_waf_attack_count(View):
     '''首页-web安全信息'''
 
+    @check_user_request
     def get(self, request):
-
-        comid = request.GET.get('comid', None)
-        result = self.seardat(comid)
-        res = result['dat']
-        paginator = Paginator(res, 8)  # 分页功能，一页8条数据
-        userlist = paginator.page(1)
-
+        comid = request.GET.get('comid', 'None')
+        if comid == 'None':
+            comid = None
+        else:
+            comid = int(comid)
+        # comid = request.GET.get('comid', 0)  #企业ID
+        time = int(request.GET.get('edtime', 0))
+        if time == 0:
+            result = self.seardat(comid)
+        else:
+            result = self.seardate(comid, time)
+        res = result["dat"]
+        # res = result.get('dat','')
+        paginator = Paginator(res, 4)  # 分页功能，一页8条数据
+        if request.is_ajax() == False:
+            userlist = paginator.page(1)
+            content = {
+                "compid": comid,
+                "users": userlist
+            }
+            return JsonResponse(content)
         # Ajax数据交互
         if request.is_ajax():
-            # print("调用了ajax请求")
             page = request.GET.get('page')
             try:
                 users = paginator.page(page)
@@ -1665,15 +1793,14 @@ class Safety_waf_attack_count(View):
                       'has_next': users.has_next(),
                       'num_pages': users.paginator.num_pages,
                       'user_li': user_li,
-                      # 'user': [i for i in userlist.paginator.page_range]
-                      }
+                      'now_page': page, }
             return JsonResponse(result)
 
     def seardat(self, comid):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
         st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-7)).strftime('%Y-%m-%dT%H:%M:00')
         # 获取
-        if comid == None:  # 是否携带用户信息
+        if int(comid) == 0:  # 是否携带用户信息
             sp_param = None
             es_result = self.sear_info(st_time, ed_time, sp_param)
             return es_result
@@ -1693,12 +1820,38 @@ class Safety_waf_attack_count(View):
                     match_phrase = {"match_phrase": {"transaction.host_ip.keyword": ip}}
                     sp_param["bool"]["should"].append(match_phrase)
                 self.es_result = self.sear_info(st_time, ed_time, sp_param)
-                if self.es_result == False:
-                    return False
-                else:
-                    return self.es_result
+                return self.es_result
             except Exception as err:
-                logger.error('请求出错：{}'.format(err))
+                print(err)
+                return False
+
+    def seardate(self, comid, time):
+        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区时间
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
+        # 获取
+        if int(comid) == 0:  # 是否携带用户信息
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param)
+            return es_result
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_ip = comp.comp_ip  # IP
+                comp_s = comp_ip.split(';')
+                sp_param = {
+                    "bool": {
+                        "should": [
+                        ],
+                        "minimum_should_match": 1
+                    }
+                }
+                for ip in comp_s:
+                    match_phrase = {"match_phrase": {"transaction.host_ip.keyword": ip}}
+                    sp_param["bool"]["should"].append(match_phrase)
+                self.es_result = self.sear_info(st_time, ed_time, sp_param)
+                return self.es_result
+            except Exception as err:
+                print(err)
                 return False
 
     def sear_info(self, st_time, ed_time, sp_param):
@@ -2026,4 +2179,5 @@ class Safety_waf_attack_count(View):
             return jsontext
         except Exception as err:
             logger.error('威胁统计-数据-获取数据出错：{}'.format(err))
-            return False
+            errinfo = {"error": "数据请求失败！"}
+            return HttpResponse(errinfo)

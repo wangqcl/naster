@@ -25,11 +25,33 @@
     <ul class="clearfix">
         <li>
             <div class="boxall" style="height: 4.9rem">
-                <div class="alltitle">攻击趋势</div>
+                <div class="list-down"  style="float: right ;position:absolute;right: 0;z-index:1999">
+                    <button id="btn" style="float:right;">. . .</button>
+                    <ul id="list-chooses" style="display: none;">
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="ma_changes(5)">5分钟</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="ma_changes(15)">15分钟</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="ma_changes(30)">30分钟</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="ma_changes(60)">1小时</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="ma_changes(1440)">24小时</button></li>
+<!--                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="ma_changes(60)">60天内</button></li>-->
+                    </ul>
+                </div>
+                <div class="alltitle">【攻击趋势】</div>
                 <div class="allnav" id="echart_a"></div>
                 <div class="boxfoot"></div>
             </div>
             <div class="boxall" style="height: 5rem">
+                <div class="list-down"  style="float: right ;position:absolute;right: 0;z-index:1999">
+                    <button id="btn1" style="float:right;">. . .</button>
+                    <ul id="list-chooses1" style="display: none;">
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="wa_changes(1)">今天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="wa_changes(3)">3天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="wa_changes(7)">7天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="wa_changes(14)">14天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="wa_changes(30)">30天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="wa_changes(60)">60天内</button></li>
+                    </ul>
+                </div>
                 <div class="alltitle">【WAF】攻击类型趋势
                 </div>
                 <div class="allnav" id="echart_c"></div>
@@ -39,7 +61,7 @@
         <li>
             <div class="bar">
                 <div class="barbox2">
-                    <div class="alltitle">攻击分布</div>
+                    <div class="alltitle">【攻击分布】</div>
                 </div>
             </div>
             <div class="map boxall" style="height: 5.6rem">
@@ -47,7 +69,19 @@
                 <div class="boxfoot"></div>
             </div>
             <div class="boxall" style="height: 3.5rem; width: 100%;">
-                <div class="alltitle">WEB攻击统计
+                <div class="list-down"  style="float: right ;position:absolute;right: 10px;z-index:1999">
+                    <button id="btn3" style="float:right;">. . .</button>
+                    <ul id="list-chooses3" style="display: none;">
+                        <li><button type = submit style="background-color: rgba(52,97,255,0.5);color: #0aff13;width: 60px" onclick="att_log(1)">今天</button></li>
+                        <li><button type = submit style="background-color: rgba(52,97,255,0.5);color: #0aff13;width: 60px" onclick="att_log(3)">3天内</button></li>
+                        <li><button type = submit style="background-color: rgba(52,97,255,0.5);color: #0aff13;width: 60px" onclick="att_log(7)">7天内</button></li>
+                        <li><button type = submit style="background-color: rgba(52,97,255,0.5);color: #0aff13;width: 60px" onclick="att_log(14)">14天内</button></li>
+                        <li><button type = submit style="background-color: rgba(52,97,255,0.5);color: #0aff13;width: 60px" onclick="att_log(30)">30天内</button></li>
+                        <li><button type = submit style="background-color: rgba(52,97,255,0.5);color: #0aff13;width: 60px" onclick="att_log(60)">60天内</button></li>
+                    </ul>
+                </div>
+
+                <div class="alltitle">WEB攻击统计</div>
                 <div class="transparentDataTable">
                     <table class="layui-table layui-table-cell" style="TABLE-LAYOUT: fixed">
                         <thead>
@@ -65,17 +99,13 @@
                         <div style="text-align: center;margin: 1% 0;">
                         <form id="page" action="{% url 'safety_waf_attack_count' %}?comid={{ compid }}">
                             <a class="first_page">
-                                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">上一页</button>
+                                <button type="button"  class="layui-btn layui-btn-primary layui-btn-sm">上一页</button>
                             </a>
-
-<!--                            <a class="now_page">-->
-<!--                                <button type="button" id="now_pagea" class="layui-btn layui-btn-primary layui-btn-sm">-->
-<!--                                </button>-->
-<!--                                <button type="button" id="now_pageaa" class="layui-btn layui-btn-primary layui-btn-sm">-->
-<!--                                </button>-->
-<!--                            </a>-->
-
+                            <a class="now_page">
+                                <button id="now_pages" type="button"   class="layui-btn layui-btn-primary layui-btn-sm"></button>
+                            </a>
                             <button id="num_pages" type="button" class="layui-btn layui-btn-primary layui-btn-sm">
+                                共{{ users.paginator.num_pages }}页
                             </button>
 
                             <a class="last_page">
@@ -84,21 +114,54 @@
                         </form>
                     </div>
                 </div>
-                </div>
+
             </div>
         </li>
         <li>
             <div class="boxall" style="height:3.1rem">
+                <div class="list-down"  style="float: right ;position:absolute;right: 0;z-index:1999">
+                    <button id="btn2" style="float:right;">. . .</button>
+                    <ul id="list-chooses2" style="display: none;">
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="nu_changes(1)">今天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="nu_changes(3)">3天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="nu_changes(7)">7天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="nu_changes(14)">14天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="nu_changes(30)">30天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="nu_changes(60)">60天内</button></li>
+                    </ul>
+                </div>
                 <div class="alltitle">风险占比</div>
                 <div class="allnav" id="echart_j"></div>
                 <div class="boxfoot"></div>
             </div>
             <div class="boxall" style="height: 3.1rem">
+                <div class="list-down"  style="float: right ;position:absolute;right: 0;z-index:1999">
+                    <button id="btn4" style="float:right;">. . .</button>
+                    <ul id="list-chooses4" style="display: none;">
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="po_changes(1)">今天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="po_changes(3)">3天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="po_changes(7)">7天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="po_changes(14)">14天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="po_changes(30)">30天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="po_changes(60)">60天内</button></li>
+                    </ul>
+                </div>
                 <div class="alltitle">主要受攻击端口占比</div>
                 <div class="allnav" id="echart_k"></div>
                 <div class="boxfoot"></div>
             </div>
             <div class="boxall" style="height: 3.5rem">
+                <div class="list-down"  style="float: right ;position:absolute;right: 0;z-index:1999">
+                    <button id="btn7" style="float:right;">. . .</button>
+                    <ul id="list-chooses7" style="display: none;">
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="top_changes(1)">今天</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="top_changes(3)">3天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="top_changes(7)">7天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="top_changes(14)">14天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="top_changes(30)">30天内</button></li>
+                        <li><button type = submit style="background: transparent;color: #00FFFF"  onclick="top_changes(60)">60天内</button></li>
+                    </ul>
+                </div>
                 <div class="alltitle">TOP10</div>
                 <div class="allnav" id="echart_e"></div>
                 <div class="boxfoot"></div>
@@ -110,23 +173,50 @@
 
 <!-- js开始 -->
 {% block jsbody %}
+<script language="JavaScript" src="{% static 'monit/js/exhib.js'%}"></script>
 <!--js开始-->
 
 <!--攻击趋势-->
-<script type="text/javascript">
-    st_change()
-        var st_port_data = []
-        var st_yAxis_data = []
-
-        var st_series = []
-        function st_change(){
+<script type="text/javascript" >
+        ma_change()
+        var times = [];
+        var values = [];
+        var ma_time = 60000;
+        function ma_change(){
           $.getJSON('{% url "safety_attack_trend" %}',function(data){
-            st_time=data.xAxis;
-            st_count = data.yAxis;
+            times=data.xAxis;
+            values = data.yAxis;
             top_edtime = data.edtime;
-            echarts_a(st_time,st_count)
+            echarts_a(times,values)
+            setTimeout(function(){
+                ma_changes();
+            },ma_time);
           })
         }
+        function ma_changes(tim) {
+            $.ajaxSetup({
+                data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
+            });
+            if (!tim) {
+                tim = "None";
+            }
+            $.post("{% url 'safety_attack_trend' %}", { 'tim': tim}, "json").success(function (data) {
+                if (data == 'error' || JSON.stringify(data) == '{}') {
+                    setTimeout(ma_changes, ma_time)
+                } else {
+                    data = JSON.parse(data)
+                    times=data.xAxis;
+                    values = data.yAxis;
+                    top_edtime = data.edtime;
+                    echarts_a(times,values)
+                    if (tim == "None") {
+                        setTimeout(ma_changes, ma_time)
+                    }
+                }
+            }).error(function (xhr, status, info) {
+                console.log(xhr.status + ":" + xhr.info);
+            })
+         }
 
 </script>
 
@@ -140,7 +230,6 @@
           echarts_b(geoCoordMap,BJData);
       });
     }
-
 </script>
 
 <!--风险占比-->
@@ -158,52 +247,78 @@
           })
         }
 
+        var nu_port = []
+        var nu_values = []
+        var nu_edtime
+        var params = {{ compid }};
+        function nu_changes(edtime) {
+            $.ajaxSetup({
+                data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+            });
+            $.post("{% url 'safety_risk' %}",{'edtime':edtime,'compid':params}, function(data){
+                nu_port=data.port
+                nu_values=data.number
+                nu_edtime = data.edtime
+                echarts_j(nu_port,nu_values)
+            },'json')
+        }
+
 </script>
 
 <!--主要攻击端口占比-->
 <script type="text/javascript">
-        nu_change()
-        var nu_port = []
-        var nu_values = []
-        var nu_edtime
-        function nu_change(){
+        po_change()
+        var po_types = []
+        var po_values = []
+        var po_edtime
+        function po_change(){
           $.getJSON('{% url "safety_attack_port" %}',function(data){
-            nu_types=data.types
-            nu_values=data.number
-            nu_edtime = data.edtime
-            echarts_k(nu_types,nu_values)
+            po_types=data.types
+            po_values=data.number
+            po_edtime = data.edtime
+            echarts_k(po_types,po_values)
           })
         }
-
+        var po_types = []
+        var po_values = []
+        var po_edtime
+        function po_changes(edtime) {
+            $.ajaxSetup({
+                data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+            });
+            $.post("{% url 'safety_attack_port' %}",{'edtime':edtime}, function(data){
+                po_types=data.types
+                po_values=data.number
+                po_edtime = data.edtime
+                echarts_k(po_types,po_values)
+            },'json')
+        }
 </script>
 
 <!--waf类型攻击趋势-->
-<script type="text/javascript">
-    sa_change();
-    var wa_edtime;
+<script type="text/javascript" >
+    wa_change();
+    var wa_time = 130000;
     var wa_port_data = [];
     var wa_yAxis_data = [];
     var wa_num = [];
-
-    function sa_change(){
+    function wa_change(){
       $.getJSON('{% url "safety_waf_attack_trend" %}',function(data){
-        sa_port_data=data.port;
+        wa_port_data=data.port;
         value = data.yAxis;
         for (var num in value){
             wa_num.push(value[num])
         }
-        sa_yAxis_data=wa_num;
-        sa_xAxis_data=data.xAxis;
-
+        wa_yAxis_data=wa_num;
+        wa_xAxis_data=data.xAxis;
         var wcharts = {
             unit: '数量',
-            names: sa_port_data,
-            lineX: sa_xAxis_data,
-            value: sa_yAxis_data,
-        }
+            names: wa_port_data,
+            lineX: wa_xAxis_data,
+            value: wa_yAxis_data,
+        };
         var colors = ['rgba(23, 255, 243', 'rgba(255,100,97','rgba(255,165,0','rgba(0,191,255',
             'rgba(255,69,0','rgba(205,92,92','rgba(199,21,133','rgba(148,0,211'];
-
         var linesY = [];
         for (var i = 0; i < wcharts.names.length; i++) {
             var x = i;
@@ -241,16 +356,94 @@
             };
             linesY.push(data)
         }
-
-        echarts_c(linesY,wcharts)
+        echarts_c(linesY,wcharts);
+      setTimeout(function(){
+          wa_changes();
+        },wa_time);
       })
     }
 
+    function wa_changes(tim) {
+                $.ajaxSetup({
+                    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+                });
+                if (!tim) {
+                    tim = "None";
+                }
+                $.post("{% url 'safety_waf_attack_trend' %}",{'tim':tim},"json").success(function(data){
+                    if (data=='error'||JSON.stringify(data) == '{}') {
+                        setTimeout(wa_changes,wa_time)
+                    }else{
+                        data = JSON.parse(data);
+                        wa_port_data = [];
+                        value = [];
+                        wa_num = [];
+                        wa_port_data=data.port;
+                        value = data.yAxis;
+                        for (var num in value){
+                            wa_num.push(value[num])
+                        }
+                        wa_yAxis_data=wa_num;
+                        wa_xAxis_data=data.xAxis;
+                        var wcharts = {
+                            unit: '数量',
+                            names: wa_port_data,
+                            lineX: wa_xAxis_data,
+                            value: wa_yAxis_data,
+                        };
+                        var colors = ['rgba(23, 255, 243', 'rgba(255,100,97','rgba(255,165,0','rgba(0,191,255',
+                            'rgba(255,69,0','rgba(205,92,92','rgba(199,21,133','rgba(148,0,211'];
+                        var linesY = [];
+                        for (var i = 0; i < wcharts.names.length; i++) {
+                            var x = i;
+                            if (x > colors.length - 1) {
+                                x = colors.length - 1
+                            }
+                            var data = {
+                                name: wcharts.names[i],
+                                type: 'line',
+                                smooth: true,
+                                symbol: 'circle',
+                                symbolSize: 5,
+                                showSymbol: false,
+                                areaStyle: {
+                                    normal: {
+                                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                            offset: 0,
+                                            color: colors[x] + ', 0.3)'
+                                        }, {
+                                            offset: 0.8,
+                                            color: colors[x] + ', 0)'
+                                        }], false),
+                                        shadowColor: 'rgba(0, 0, 0, 0.1)',
+                                        shadowBlur: 10
+                                    }
+                                },
+                                itemStyle: {
+                                    normal: {
+                                        color: colors[x] + ')',
+                                        borderColor: colors[x] + ')',
+                                        borderWidth: 12
+                                    }
+                                },
+                                data: wcharts.value[i]
+                            };
+                            linesY.push(data)
+                        }
+                        echarts_c(linesY,wcharts);
+                       if (tim == "None") {
+                            setTimeout(wa_changes,wa_time)
+                        }
+                    }
+                    }).error(function (xhr, status, info) {
+                        console.log(xhr.status+":"+xhr.info);
+                    })
+    }
 
 </script>
 
 <!--top10-->
-<script type="text/javascript">
+<script type="text/javascript" >
     top_change();
     var top_ip = [];
     var top_values = [];
@@ -264,16 +457,34 @@
         echarts_e(top_ip,top_values)
       })
     }
-
-
+    var top_ip = [];
+    var top_values = [];
+    var top_edtime;
+    function top_changes(edtime) {
+        $.ajaxSetup({
+            data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+        });
+        $.post("{% url 'safety_top' %}",{'edtime':edtime}, function(data){
+            top_ip=data.ips;
+            top_values=data.number;
+            top_edtime = data.edtime;
+            echarts_e(top_ip,top_values)
+        },'json')
+    }
 </script>
 
 <!--表格-->
 <script type="text/javascript">
 
+        // ajax分页
         let now_page = 1;
+        var time = 0;
+
+        {#var kk = att_log(edtime);#}
         // 动态加载第一页数据
-        pag_click();
+        page_click(time);
+
+
         $('.first_page button').removeClass('layui-btn-primary').addClass('layui-btn-disabled');
         $('.now_page button').first().removeClass('layui-btn-primary').addClass('page_this');
         //上一页
@@ -283,22 +494,19 @@
                 now_page = 1;
                 return false
             } else {
-            pag_click()
-                $('.page_this').parent().prev().click();
-
+                page_click(time)
             }
         });
         //下一页
         $('.last_page').click(function () {
-            let num_pages = $('.now_page button').last().text();
             now_page += 1;
-            if (now_page > parseInt(num_pages)) {
+            if (now_page < 1) {
                 now_page -= 1;
+                page_click(time)
                 return false
             } else {
-            pag_click()
                 $('.page_this').parent().next().click();
-
+                page_click(time)
             }
         });
         //切换页
@@ -307,42 +515,75 @@
             $('.now_page button').removeClass('page_this').addClass('layui-btn-primary');
             $(this).addClass('page_this');
             $(this).children('button').removeClass('layui-btn-primary').addClass('page_this');
-            pag_click()
+            page_click(time)
         });
 
-        function pag_click() {
+        function page_click(time) {
             let page_form = $('#page');
-            $.ajax({
-                type: 'GET',
-                url: page_form.attr('action'),
-                dataType:"JSON",
-                data: {page: now_page},
-                success: function (data) {
-                console.log(data.user)
-                    $('#tbody tr').remove();
-                    $('#num_pages').html('共' + data.num_pages + '页');
-<!--                    $('#now_pagea').html(data.user[0]);-->
-<!--                    $('#now_pageaa').html(data.user[1]);-->
+            if(time == 0) {
+                $.ajax({
+                    type: 'get',
+                    url: page_form.attr('action'),
+                    data: {page: now_page},
+                    success: function (data) {
+                        $('#tbody tr').remove();
+                        $('#now_pages').html('第'+data.now_page + '页');
+                        $('#num_pages').html('共' + data.num_pages + '页');
+                        if (data.has_previous === true) {
+                            $('.first_page button').removeClass('layui-btn-disabled').addClass('layui-btn-primary');
+                        } else {
+                            $('.first_page button').removeClass('layui-btn-primary').addClass('layui-btn-disabled')
+                        }
+                        if (data.has_next === true) {
+                            $('.last_page button').removeClass('layui-btn-disabled').addClass('layui-btn-primary');
+                        } else {
+                            $('.last_page button').removeClass('layui-btn-primary').addClass('layui-btn-disabled');
+                        }
+                        $.each(data.user_li, function (index, user) {
+                            let a = '<td style="color: #00aeef">';
+                            let b = '</td>';
+                            let c = '<div style="color:#00aeef;overflow-y:scroll;width:130px;height:25px;white-space:pre-wrap"${position.specificTasks}</div>'
+                            let body = a + user.y_id + b + a + user.w_type + b + a + user.y_count + b + a  + user.waf_ym + b + a + user.waf_lj + b;
+                            $('#tbody').append('<tr>' + body + '</tr>');
+                        });
+                    }
+                })
+            } else {
+                $.ajax({
+                    type: 'get',
+                    url: page_form.attr('action'),
+                    data: {page: now_page,edtime:time},
+                    success: function (data) {
+                        $('#tbody tr').remove();
+                        $('#now_pages').html('第'+data.now_page + '页');
+                        $('#num_pages').html('共' + data.num_pages + '页');
+                        if (data.has_previous === true) {
+                            $('.first_page button').removeClass('layui-btn-disabled').addClass('layui-btn-primary');
+                        } else {
+                            $('.first_page button').removeClass('layui-btn-primary').addClass('layui-btn-disabled')
+                        }
+                        if (data.has_next === true) {
+                            $('.last_page button').removeClass('layui-btn-disabled').addClass('layui-btn-primary');
+                        } else {
+                            $('.last_page button').removeClass('layui-btn-primary').addClass('layui-btn-disabled');
+                        }
+                        $.each(data.user_li, function (index, user) {
+                            let a = '<td style="color: #00aeef">';
+                            let b = '</td>';
+                            let c = '<div style="color:#00aeef;overflow-y:scroll;width:130px;height:25px;white-space:pre-wrap"${position.specificTasks}</div>'
+                            let body = a + user.y_id + b + a + user.w_type + b + a + user.y_count + b + a  + user.waf_ym + b + a + user.waf_lj + b;
+                            $('#tbody').append('<tr>' + body + '</tr>');
+                        });
+                    }
+                })
+            }
 
-                    if (data.has_previous === true) {
-                        $('.first_page button').removeClass('layui-btn-disabled').addClass('layui-btn-primary');
-                    } else {
-                        $('.first_page button').removeClass('layui-btn-primary').addClass('layui-btn-disabled')
-                    }
-                    if (data.has_next === true) {
-                        $('.last_page button').removeClass('layui-btn-disabled').addClass('layui-btn-primary');
-                    } else {
-                        $('.last_page button').removeClass('layui-btn-primary').addClass('layui-btn-disabled');
-                    }
-                    $.each(data.user_li, function (index, user) {
-                        let a = '<td id="ads">';
-                        let b = '</td>';
-                        let c = '<div style="color:#00aeef;overflow-y:scroll;width:130px;height:75px;white-space:pre-wrap"${position.specificTasks}</div>'
-                        let body = a + user.y_id + b + a + user.w_type + b + a + user.y_count + b + a +  user.waf_ym + b + a  +user.waf_lj + b;
-                        $('#tbody').append('<tr>' + body + '</tr>');
-                    });
-                }
-            })
+        }
+
+
+        function att_log(edtime) {
+            time = edtime;
+            page_click(time)
         }
 
 </script>
