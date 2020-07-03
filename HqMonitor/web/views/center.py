@@ -56,7 +56,10 @@ def monit_center(request):
     log_user = request.session['webuser']  # 获取当前登录账号
     userinfo = Users.objects.get(username=log_user)
     if userinfo.state == 0:  # 判断是否超级管理员
-        return render(request, "web/monit.html")
+        content = {
+            'compid':0
+        }
+        return render(request, "web/monit.html", content)
     else:
         comp_list = userinfo.compinfo_set.all()
         comid = comp_list[0].id
