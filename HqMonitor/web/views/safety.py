@@ -432,8 +432,7 @@ class Safety_attack_trend(View):
 
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
-        st_time = (datetime.datetime.utcnow() + datetime.timedelta(hours=-1)).strftime('%Y-%m-%dT%H:%M:00')
-        # 获取
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
         comid = request.GET.get('comid', None)
         if comid == None:  # 是否携带用户信息
             sp_param = None
@@ -466,7 +465,7 @@ class Safety_attack_trend(View):
         if time == 'None':
             st_time = (datetime.datetime.utcnow() + datetime.timedelta(hours=-1)).strftime('%Y-%m-%dT%H:%M:00')
         else:
-            st_time = (datetime.datetime.utcnow() + datetime.timedelta(hours=-int(time))).strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-int(time))).strftime('%Y-%m-%dT%H:%M:00')
         # 获取
         comid = request.GET.get('comid', None)
         if comid == None:  # 是否携带用户信息
@@ -1725,7 +1724,7 @@ class Safety_attack_port(View):
 
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
-        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-30)).strftime('%Y-%m-%dT%H:%M:00')
         # 获取
         comid = request.GET.get('comid', None)
         if comid == None:  # 是否携带用户信息
@@ -1756,7 +1755,7 @@ class Safety_attack_port(View):
     def post(self, request):
         time = int(request.POST['edtime'])
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
-        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-time)).strftime('%Y-%m-%dT%H:%M:00')
         if request.POST.get('comid'):
             comid = int(request.POST.get('comid'))
         else:
