@@ -1,0 +1,306 @@
+[2020-07-03 09:29:00,744] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET / HTTP/1.1" 200 5007
+[2020-07-03 09:29:00,879] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monweb/js/jsencrypt.min.js HTTP/1.1" 304 0
+[2020-07-03 09:29:00,888] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monweb/master-public.pem HTTP/1.1" 200 276
+[2020-07-03 09:29:00,922] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /verify HTTP/1.1" 200 1446
+[2020-07-03 09:29:26,616] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET / HTTP/1.1" 200 5007
+[2020-07-03 09:29:26,711] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /verify HTTP/1.1" 200 1845
+[2020-07-03 09:29:26,838] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monweb/js/jquery.min.js HTTP/1.1" 304 0
+[2020-07-03 09:29:26,838] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monweb/js/jsencrypt.min.js HTTP/1.1" 304 0
+[2020-07-03 09:29:26,858] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monweb/master-public.pem HTTP/1.1" 200 276
+[2020-07-03 09:29:39,864] [basehttp.py:124] [basehttp:log_message] [INFO]- "POST /dologin HTTP/1.1" 200 82
+[2020-07-03 09:29:39,926] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center/monit HTTP/1.1" 200 41095
+[2020-07-03 09:29:39,940] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/css/comon.css HTTP/1.1" 304 0
+[2020-07-03 09:29:39,941] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/icon/iconfont.css HTTP/1.1" 304 0
+[2020-07-03 09:29:39,942] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/js.js HTTP/1.1" 304 0
+[2020-07-03 09:29:39,942] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/icon/iconfont.js HTTP/1.1" 304 0
+[2020-07-03 09:29:39,943] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/safety.js HTTP/1.1" 304 0
+[2020-07-03 09:29:40,014] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monit/js/exhib.js HTTP/1.1" 304 0
+[2020-07-03 09:30:02,625] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/fraction HTTP/1.1" 200 226
+[2020-07-03 09:30:02,710] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/visitport HTTP/1.1" 200 230
+[2020-07-03 09:30:02,744] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum HTTP/1.1" 200 296
+[2020-07-03 09:30:02,820] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend HTTP/1.1" 200 640
+[2020-07-03 09:30:02,874] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/domain HTTP/1.1" 200 1094
+[2020-07-03 09:30:02,899] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit HTTP/1.1" 200 37
+[2020-07-03 09:30:02,903] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/Source_data
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 19, in wrapper
+    comid = int(req.GET.get('comid',1))
+ValueError: invalid literal for int() with base 10: ''
+[2020-07-03 09:30:03,028] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/Source_data?comid=&page=1&tim=None HTTP/1.1" 500 16941
+[2020-07-03 09:30:03,047] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rstraffic HTTP/1.1" 200 2699
+[2020-07-03 09:30:03,119] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rqtraffic HTTP/1.1" 200 2437
+[2020-07-03 09:30:03,134] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/statuscode HTTP/1.1" 200 6531
+[2020-07-03 09:30:14,327] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap HTTP/1.1" 200 4911
+[2020-07-03 09:34:27,717] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center/monit HTTP/1.1" 200 41095
+[2020-07-03 09:34:27,867] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/visitport HTTP/1.1" 200 228
+[2020-07-03 09:34:27,895] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum HTTP/1.1" 200 296
+[2020-07-03 09:34:27,947] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend HTTP/1.1" 200 786
+[2020-07-03 09:34:27,986] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/domain HTTP/1.1" 200 1174
+[2020-07-03 09:34:28,057] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rqtraffic HTTP/1.1" 200 1914
+[2020-07-03 09:34:28,079] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/statuscode HTTP/1.1" 200 5505
+[2020-07-03 09:34:28,095] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/favicon.ico HTTP/1.1" 200 67646
+[2020-07-03 09:34:28,156] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rstraffic HTTP/1.1" 200 2994
+[2020-07-03 09:34:28,386] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/fraction HTTP/1.1" 200 227
+[2020-07-03 09:34:39,316] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit HTTP/1.1" 200 37
+[2020-07-03 09:34:39,330] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/Source_data
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 19, in wrapper
+    comid = int(req.GET.get('comid',1))
+ValueError: invalid literal for int() with base 10: ''
+[2020-07-03 09:34:39,416] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/Source_data?comid=&page=1&tim=None HTTP/1.1" 500 16941
+[2020-07-03 09:34:39,937] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap HTTP/1.1" 200 4429
+[2020-07-03 09:35:31,580] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center/monit HTTP/1.1" 200 41095
+[2020-07-03 09:35:54,402] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/visitport HTTP/1.1" 200 228
+[2020-07-03 09:35:54,424] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/fraction HTTP/1.1" 200 227
+[2020-07-03 09:35:54,474] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum HTTP/1.1" 200 296
+[2020-07-03 09:35:54,474] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend HTTP/1.1" 200 786
+[2020-07-03 09:35:54,504] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/domain HTTP/1.1" 200 1179
+[2020-07-03 09:35:54,528] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit HTTP/1.1" 200 37
+[2020-07-03 09:35:54,531] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/favicon.ico HTTP/1.1" 200 67646
+[2020-07-03 09:35:54,534] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/Source_data
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 19, in wrapper
+    comid = int(req.GET.get('comid',1))
+ValueError: invalid literal for int() with base 10: ''
+[2020-07-03 09:35:54,623] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/Source_data?comid=&page=1&tim=None HTTP/1.1" 500 16941
+[2020-07-03 09:35:54,677] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/statuscode HTTP/1.1" 200 6083
+[2020-07-03 09:35:54,733] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rqtraffic HTTP/1.1" 200 1870
+[2020-07-03 09:35:54,761] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rstraffic HTTP/1.1" 200 3133
+[2020-07-03 09:36:07,249] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap HTTP/1.1" 200 4332
+[2020-07-03 09:38:28,261] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/score/scindex
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 19, in wrapper
+    comid = int(req.GET.get('comid',1))
+ValueError: invalid literal for int() with base 10: ''
+[2020-07-03 09:38:28,284] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/score/scindex?comid= HTTP/1.1" 500 81560
+[2020-07-03 09:38:28,369] [base.py:152] [base:get_response] [WARNING]- Not Found: /favicon.ico
+[2020-07-03 09:38:28,369] [basehttp.py:124] [basehttp:log_message] [WARNING]- "GET /favicon.ico HTTP/1.1" 404 12317
+[2020-07-03 09:38:36,135] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/threaten/thindex
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 19, in wrapper
+    comid = int(req.GET.get('comid',1))
+ValueError: invalid literal for int() with base 10: ''
+[2020-07-03 09:38:36,157] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/threaten/thindex?comid= HTTP/1.1" 500 81627
+[2020-07-03 09:38:39,518] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/Invasion
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 19, in wrapper
+    comid = int(req.GET.get('comid',1))
+ValueError: invalid literal for int() with base 10: ''
+[2020-07-03 09:38:39,540] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/Invasion?comid= HTTP/1.1" 500 81501
+[2020-07-03 09:42:10,564] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 11251
+[2020-07-03 09:42:10,606] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monweb/js/main.js HTTP/1.1" 304 0
+[2020-07-03 09:42:12,240] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /logout HTTP/1.1" 302 0
+[2020-07-03 09:42:12,337] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET / HTTP/1.1" 200 5007
+[2020-07-03 09:42:12,377] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /verify HTTP/1.1" 200 1620
+[2020-07-03 09:42:12,386] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monweb/master-public.pem HTTP/1.1" 200 276
+[2020-07-03 09:42:17,596] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /verify?sn=0.08583878876864381 HTTP/1.1" 200 1480
+[2020-07-03 09:42:18,093] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /verify?sn=0.4747274141880129 HTTP/1.1" 200 1784
+[2020-07-03 09:42:24,901] [basehttp.py:124] [basehttp:log_message] [INFO]- "POST /dologin HTTP/1.1" 200 82
+[2020-07-03 09:42:24,942] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center/monit HTTP/1.1" 200 41102
+[2020-07-03 09:42:25,130] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/visitport HTTP/1.1" 200 229
+[2020-07-03 09:42:25,174] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum HTTP/1.1" 200 296
+[2020-07-03 09:42:25,218] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/domain HTTP/1.1" 200 954
+[2020-07-03 09:42:25,325] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/statuscode HTTP/1.1" 200 5208
+[2020-07-03 09:42:25,333] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rqtraffic HTTP/1.1" 200 1994
+[2020-07-03 09:42:25,412] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rstraffic HTTP/1.1" 200 3028
+[2020-07-03 09:42:25,513] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/fraction HTTP/1.1" 200 230
+[2020-07-03 09:42:25,992] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend HTTP/1.1" 200 674
+[2020-07-03 09:42:27,625] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit HTTP/1.1" 200 37
+[2020-07-03 09:42:36,551] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap HTTP/1.1" 200 4426
+[2020-07-03 09:42:37,228] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data?comid=0&page=1&tim=None HTTP/1.1" 200 428
+[2020-07-03 09:42:42,545] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/scindex?comid=0 HTTP/1.1" 200 24191
+[2020-07-03 09:43:11,961] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/mainthr HTTP/1.1" 200 291
+[2020-07-03 09:43:12,022] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/webthr HTTP/1.1" 200 860
+[2020-07-03 09:43:12,022] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/totalthr HTTP/1.1" 200 775
+[2020-07-03 09:43:12,022] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/tithr HTTP/1.1" 200 873
+[2020-07-03 09:43:12,405] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/inthr HTTP/1.1" 200 1605
+[2020-07-03 09:43:12,421] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/score/score_count?comid=0&page=1&tim=None HTTP/1.1" 200 954
+[2020-07-03 09:44:11,556] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/index?comid=0 HTTP/1.1" 200 41102
+[2020-07-03 09:44:11,701] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/fraction HTTP/1.1" 200 228
+[2020-07-03 09:44:11,750] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/getnum HTTP/1.1" 200 296
+[2020-07-03 09:44:11,753] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/visitport HTTP/1.1" 200 229
+[2020-07-03 09:44:11,799] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend HTTP/1.1" 200 674
+[2020-07-03 09:44:11,817] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/domain HTTP/1.1" 200 1199
+[2020-07-03 09:44:11,934] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rqtraffic HTTP/1.1" 200 2079
+[2020-07-03 09:44:11,962] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/statuscode HTTP/1.1" 200 5224
+[2020-07-03 09:44:11,966] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/rstraffic HTTP/1.1" 200 3042
+[2020-07-03 09:44:19,537] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Source_data?comid=0&page=1&tim=None HTTP/1.1" 200 428
+[2020-07-03 09:44:23,130] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/Hit HTTP/1.1" 200 37
+[2020-07-03 09:44:23,762] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/attackmap HTTP/1.1" 200 4333
+[2020-07-03 09:44:29,778] [basehttp.py:124] [basehttp:log_message] [INFO]- "POST /web/fraction HTTP/1.1" 200 228
+[2020-07-03 09:44:47,841] [basehttp.py:124] [basehttp:log_message] [INFO]- "POST /web/trend HTTP/1.1" 200 674
+[2020-07-03 09:44:49,592] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/Invasion
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 23, in wrapper
+    return func(*args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\Invasion.py", line 40, in get
+    return render(request, "web/Invasion.html", content)
+  File "E:\project_env\lib\site-packages\django\shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "E:\project_env\lib\site-packages\django\template\loader.py", line 68, in render_to_string
+    return template.render(context, request)
+  File "E:\project_env\lib\site-packages\django\template\backends\django.py", line 66, in render
+    return self.template.render(context)
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 207, in render
+    return self._render(context)
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "E:\project_env\lib\site-packages\django\template\loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "E:\project_env\lib\site-packages\django\template\loader_tags.py", line 72, in render
+    result = block.nodelist.render(context)
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "E:\project_env\lib\site-packages\django\template\defaulttags.py", line 458, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "E:\project_env\lib\site-packages\django\urls\base.py", line 91, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "E:\project_env\lib\site-packages\django\urls\resolvers.py", line 497, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'web/center/search' not found. 'web/center/search' is not a valid view function or pattern name.
+[2020-07-03 09:44:49,731] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/Invasion?comid=0 HTTP/1.1" 500 198188
+[2020-07-03 10:17:16,567] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend HTTP/1.1" 200 836
+[2020-07-03 10:17:17,113] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/fraction HTTP/1.1" 200 224
+[2020-07-03 10:17:35,996] [basehttp.py:124] [basehttp:log_message] [INFO]- "POST /web/fraction HTTP/1.1" 200 224
+[2020-07-03 10:17:55,001] [basehttp.py:124] [basehttp:log_message] [INFO]- "POST /web/trend HTTP/1.1" 200 836
+[2020-07-03 10:18:24,564] [exception.py:135] [exception:handle_uncaught_exception] [ERROR]- Internal Server Error: /web/Invasion
+Traceback (most recent call last):
+  File "E:\project_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "E:\project_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "E:\project_env\lib\site-packages\django\views\generic\base.py", line 88, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\__init__.py", line 23, in wrapper
+    return func(*args, **kwargs)
+  File "E:\monitor\HqMonitor\web\views\Invasion.py", line 40, in get
+    return render(request, "web/Invasion.html", content)
+  File "E:\project_env\lib\site-packages\django\shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "E:\project_env\lib\site-packages\django\template\loader.py", line 68, in render_to_string
+    return template.render(context, request)
+  File "E:\project_env\lib\site-packages\django\template\backends\django.py", line 66, in render
+    return self.template.render(context)
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 207, in render
+    return self._render(context)
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "E:\project_env\lib\site-packages\django\template\loader_tags.py", line 177, in render
+    return compiled_parent._render(context)
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 199, in _render
+    return self.nodelist.render(context)
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "E:\project_env\lib\site-packages\django\template\loader_tags.py", line 72, in render
+    result = block.nodelist.render(context)
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 990, in render
+    bit = node.render_annotated(context)
+  File "E:\project_env\lib\site-packages\django\template\base.py", line 957, in render_annotated
+    return self.render(context)
+  File "E:\project_env\lib\site-packages\django\template\defaulttags.py", line 458, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "E:\project_env\lib\site-packages\django\urls\base.py", line 91, in reverse
+    return force_text(iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs)))
+  File "E:\project_env\lib\site-packages\django\urls\resolvers.py", line 497, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'web/center/search' not found. 'web/center/search' is not a valid view function or pattern name.
+[2020-07-03 10:18:24,608] [basehttp.py:124] [basehttp:log_message] [ERROR]- "GET /web/Invasion?comid=0 HTTP/1.1" 500 198188
+[2020-07-03 10:21:33,048] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/trend HTTP/1.1" 200 837
+[2020-07-03 10:21:33,194] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/fraction HTTP/1.1" 200 225
+[2020-07-03 10:21:35,155] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 11253
+[2020-07-03 10:21:36,178] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 11253
+[2020-07-03 10:21:36,827] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/messag/1 HTTP/1.1" 200 9672
+[2020-07-03 10:21:40,132] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/mesquery?pIndex=1 HTTP/1.1" 200 12108
+[2020-07-03 10:22:45,237] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 11253
