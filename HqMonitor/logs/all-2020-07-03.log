@@ -304,3 +304,6 @@ django.urls.exceptions.NoReverseMatch: Reverse for 'web/center/search' not found
 [2020-07-03 10:21:36,827] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/messag/1 HTTP/1.1" 200 9672
 [2020-07-03 10:21:40,132] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/mesquery?pIndex=1 HTTP/1.1" 200 12108
 [2020-07-03 10:22:45,237] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /web/center HTTP/1.1" 200 11253
+[2020-07-03 10:25:48,600] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET / HTTP/1.1" 200 5007
+[2020-07-03 10:25:48,654] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /verify HTTP/1.1" 200 1763
+[2020-07-03 10:25:48,697] [basehttp.py:124] [basehttp:log_message] [INFO]- "GET /static/monweb/master-public.pem HTTP/1.1" 200 276
