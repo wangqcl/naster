@@ -32,7 +32,7 @@ function echarts_a(times,values) {
             show: false,
         },
 		axisLabel:  {
-                interval: 0,
+                interval: 2,
                // rotate:50,
                 show: true,
 //                splitNumber: 15,
@@ -84,8 +84,9 @@ function echarts_a(times,values) {
                                 var colorList = [
                                     '#bcd3bb', '#e88f70', '#9dc5c8', '#e1e8c8',
                                     '#7b7c68', '#e5b5b5', '#f0b489', '#928ea8',
-                                    '#bda29a', '#376956','#bcd3bb', '#e88f70', '#9dc5c8',
-                                    '#7b7c68', '#e5b5b5',
+                                    '#bda29a', '#376956', '#c3bed4', '#495a80',
+                                    '#9966cc', '#bdb76a', '#eee8ab', '#a35015',
+                                    '#04dd98', '#d9b3e6', '#b6c3fc','#315dbc',
                                 ];
                                 return colorList[params.dataIndex]
                             },
@@ -487,7 +488,7 @@ function echarts_e(top_ip,top_values) {
             show: false,
         },
 		axisLabel:  {
-                interval: 0,
+                interval: 2,
                // rotate:50,
                 show: true,
                 splitNumber: 15,
@@ -647,7 +648,7 @@ function echarts_k(po_types,po_values) {
                                 textStyle: {
                                     fontWeight: 100,
                                     color:"rgba(255,255,255,.6)",
-                                    fontSize: 18 //文字的字体大小
+                                    fontSize: 12 //文字的字体大小
                                 },
                                 formatter: '{d}%'
                             }

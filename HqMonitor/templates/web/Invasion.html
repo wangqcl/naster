@@ -523,7 +523,7 @@
                     $.each(data.user_li, function (index, user) {
                         let a = '<td style="color: #00c3f5;width:50%">';
                         let b = '</td>';
-                        let c = '<div style="color:#00aeef;overflow-y:scroll;height:50px;white-space:pre-wrap"${position.specificTasks}</div>'
+                        let c = '<div style="color:#00aeef;overflow-y:scroll;white-space:pre-wrap"${position.specificTasks}</div>'
                         let body =a + c + user.time + b + a + c + user.ip + b + a + c + user.port + b + a + c + user.title + b + a + c + user.url + b;
                         $('#tbody').append('<tr>' + body + '</tr>');
                     });

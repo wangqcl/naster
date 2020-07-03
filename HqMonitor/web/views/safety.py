@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from common.models import Users, Compinfo
-from . import check_user_request
+from common.models import Users,Compinfo
 from elasticsearch import Elasticsearch
 import json
 import datetime
 from django.views.generic import View
 from django.conf import settings
+from . import check_user_request
+
 import logging
 from django.http import JsonResponse
 from django.core.paginator import Paginator, PageNotAnInteger, InvalidPage
@@ -65,13 +66,10 @@ class Safety_index(View):
                     match_phrase = {"match_phrase": {"transaction.host_ip.keyword": ip}}
                     sp_param["bool"]["should"].append(match_phrase)
                 self.es_result = self.sear_info(st_time, ed_time, sp_param)
-                if self.es_result == False:
-                    return False
-                else:
-                    return self.es_result
+                return HttpResponse(self.es_result)
             except Exception as err:
                 print(err)
-                return False
+                return HttpResponse("Error")
 
     def seardate(self, comid, time):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区时间
@@ -96,13 +94,10 @@ class Safety_index(View):
                     match_phrase = {"match_phrase": {"transaction.host_ip.keyword": ip}}
                     sp_param["bool"]["should"].append(match_phrase)
                 self.es_result = self.sear_info(st_time, ed_time, sp_param)
-                if self.es_result == False:
-                    return False
-                else:
-                    return self.es_result
+                return HttpResponse(self.es_result)
             except Exception as err:
                 print(err)
-                return False
+                return HttpResponse("Error")
 
     def sear_info(self, st_time, ed_time, sp_param):
         if sp_param == None:
@@ -434,10 +429,10 @@ class Safety_index(View):
 
 # 攻击趋势
 class Safety_attack_trend(View):
-    @check_user_request
+
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
-        st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(hours=-1)).strftime('%Y-%m-%dT%H:%M:00')
         # 获取
         comid = request.GET.get('comid', None)
         if comid == None:  # 是否携带用户信息
@@ -466,12 +461,12 @@ class Safety_attack_trend(View):
                 return HttpResponse("Error")
 
     def post(self, request):
-        time = int(request.POST['tim'])
+        time = request.POST['tim']
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         if time == 'None':
-            st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(hours=-1)).strftime('%Y-%m-%dT%H:%M:00')
         else:
-            st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-time)).strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(hours=-int(time))).strftime('%Y-%m-%dT%H:%M:00')
         # 获取
         comid = request.GET.get('comid', None)
         if comid == None:  # 是否携带用户信息
@@ -639,7 +634,6 @@ class Safety_attack_trend(View):
             jsontext['yAxis'] = y_date[1::2]  # 数据量
             jsontext['xAxis'] = x_data[1::2]  # 日期
             jsontext['edtime'] = ed_time
-            print(jsontext,1111111111)
             return json.dumps(jsontext)
         except Exception as err:
             errinfo = {"error": "数据请求失败！"}
@@ -648,130 +642,341 @@ class Safety_attack_trend(View):
 
 # 攻击分布
 class Safety_map(View):
-    @check_user_request
+
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
-        st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
-        es_result = self.sear_info(st_time, ed_time)
-        try:
-            if es_result == False:
-                return HttpResponse("request false", status=404)
-            else:
-                return HttpResponse(es_result)
-        except Exception as err:
-            logger.error('请求出错：{}'.format(err))
-            return HttpResponse("request error", status=404)
-
-    def post(self, request):
-        st_time = int(request.POST['edtime'])
-        comid = request.POST['compid']
-        ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
-        if comid == None:  # 是否携带用户信息
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
+        comid = request.GET.get('comid', None)
+        if comid == None:  # 全局信息
+            param = None
             sp_param = None
-            es_result = self.sear_info(st_time, ed_time, sp_param)
+            es_result = self.sear_info(st_time, ed_time, sp_param, param)
             return HttpResponse(es_result)
         else:
             try:
                 comp = Compinfo.objects.get(id=comid)
-                comp_ip = comp.comp_ip  # IP
-                comp_s = comp_ip.split(';')
-                sp_param = {
-                    "bool": {
-                        "should": [
-                        ],
-                        "minimum_should_match": 1
+                comp_realm = comp.comp_realm
+                if comp_realm == "":  # 域名为空
+                    param = 1
+                    comp_ip = comp.comp_ip  # IP
+                    comp_s = comp_ip.split(';')
+                    sp_param = {
+                        "bool":
+                            {
+                                "should":
+                                    [],
+                                "minimum_should_match": 1
+                            }
                     }
-                }
-                for ip in comp_s:
-                    match_phrase = {"match_phrase": {"dst_ip.ip": ip}}
-                    sp_param["bool"]["should"].append(match_phrase)
-                es_result = self.sear_info(st_time, ed_time, sp_param)
-                if es_result == False:
-                    return HttpResponse("request false", status=404)
+                    for ip in comp_s:
+                        match_phrase = {"match_phrase": {"domain": ip}}
+                        sp_param["bool"]["should"].append(match_phrase)
+                    es_result = self.sear_info(st_time, ed_time, sp_param, param)
+                    return HttpResponse(es_result)
                 else:
+                    param = 2
+                    comp_s = comp_realm.split('.', 1)
+                    sp_param = "*%s*" % (comp_s[1])
+                    es_result = self.sear_info(st_time, ed_time, sp_param, param)
                     return HttpResponse(es_result)
             except Exception as err:
-                logger.error('请求出错：{}'.format(err))
-                return HttpResponse("request error", status=404)
+                print(err)
+                return HttpResponse("Error")
 
-    def sear_info(self, st_time, ed_time):
-        body = {
-            "aggs": {
-                "filter_agg": {
-                    "filter": {
-                        "geo_bounding_box": {
-                            "ignore_unmapped": "true",
-                            "geoip.location": {
-                                "top_left": {
-                                    "lat": 64.590055,
-                                    "lon": -180
-                                },
-                                "bottom_right": {
-                                    "lat": -90,
-                                    "lon": 180
+    def post(self, request):
+        tim = request.POST['tim']
+        comid = request.POST['compid']
+        if tim == "None":
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
+        else:
+            ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-int(tim))).strftime('%Y-%m-%dT%H:%M:00')
+
+        if int(comid) == 0:  # 是否携带用户信息
+            param = None
+            sp_param = None
+            es_result = self.sear_info(st_time, ed_time, sp_param, param)
+            return HttpResponse(es_result)
+        else:
+            try:
+                comp = Compinfo.objects.get(id=comid)
+                comp_realm = comp.comp_realm
+                if comp_realm == "":  # 域名为空
+                    param = 1
+                    comp_ip = comp.comp_ip  # IP
+                    comp_s = comp_ip.split(';')
+                    sp_param = {
+                        "bool":
+                            {
+                                "should":
+                                    [],
+                                "minimum_should_match": 1
+                            }
+                    }
+                    for ip in comp_s:
+                        match_phrase = {"match_phrase": {"domain": ip}}
+                        sp_param["bool"]["should"].append(match_phrase)
+                    es_result = self.sear_info(st_time, ed_time, sp_param, param)
+                    return HttpResponse(es_result)
+                else:
+                    param = 2
+                    comp_s = comp_realm.split('.', 1)
+                    sp_param = "*%s*" % (comp_s[1])
+                    es_result = self.sear_info(st_time, ed_time, sp_param, param)
+                    return HttpResponse(es_result)
+            except Exception as err:
+                print(err)
+                return HttpResponse("Error")
+
+    def sear_info(self, st_time, ed_time, sp_param, param):
+        if sp_param == None:
+            body = {
+                "aggs": {
+                    "filter_agg": {
+                        "filter": {
+                            "geo_bounding_box": {
+                                "ignore_unmapped": "true",
+                                "geoip.location": {
+                                    "top_left": {
+                                        "lat": 64.590055,
+                                        "lon": -180
+                                    },
+                                    "bottom_right": {
+                                        "lat": -90,
+                                        "lon": 180
+                                    }
                                 }
                             }
-                        }
-                    },
-                    "aggs": {
-                        "2": {
-                            "geohash_grid": {
-                                "field": "geoip.location",
-                                "precision": 2
-                            },
-                            "aggs": {
-                                "3": {
-                                    "geo_centroid": {
-                                        "field": "geoip.location"
+                        },
+                        "aggs": {
+                            "2": {
+                                "geohash_grid": {
+                                    "field": "geoip.location",
+                                    "precision": 2
+                                },
+                                "aggs": {
+                                    "3": {
+                                        "geo_centroid": {
+                                            "field": "geoip.location"
+                                        }
                                     }
                                 }
                             }
                         }
                     }
+                },
+                "size": 0,
+                "_source": {
+                    "excludes": []
+                },
+                "stored_fields": [
+                    "*"
+                ],
+                "script_fields": {},
+                "docvalue_fields": [
+                    {
+                        "field": "@timestamp",
+                        "format": "date_time"
+                    }
+                ],
+                "query": {
+                    "bool": {
+                        "must": [],
+                        "filter": [
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "range": {
+                                    "@timestamp": {
+                                        "format": "strict_date_optional_time",
+                                        "gte": st_time,
+                                        "lte": ed_time
+                                    }
+                                }
+                            }
+                        ],
+                        "should": [],
+                        "must_not": []
+                    }
                 }
-            },
-            "size": 0,
-            "_source": {
-                "excludes": []
-            },
-            "stored_fields": [
-                "*"
-            ],
-            "script_fields": {},
-            "docvalue_fields": [
-                {
-                    "field": "@timestamp",
-                    "format": "date_time"
-                }
-            ],
-            "query": {
-                "bool": {
-                    "must": [],
-                    "filter": [
-                        {
-                            "match_all": {}
+            }
+        elif param == 1:  # IP
+            body = {
+                "aggs": {
+                    "filter_agg": {
+                        "filter": {
+                            "geo_bounding_box": {
+                                "ignore_unmapped": "true",
+                                "geoip.location": {
+                                    "top_left": {
+                                        "lat": 64.590055,
+                                        "lon": -180
+                                    },
+                                    "bottom_right": {
+                                        "lat": -90,
+                                        "lon": 180
+                                    }
+                                }
+                            }
                         },
-                        {
-                            "match_all": {}
-                        },
-                        {
-                            "match_all": {}
-                        },
-                        {
-                            "range": {
-                                "@timestamp": {
-                                    "format": "strict_date_optional_time",
-                                    "gte": st_time,
-                                    "lte": ed_time
+                        "aggs": {
+                            "2": {
+                                "geohash_grid": {
+                                    "field": "geoip.location",
+                                    "precision": 2
+                                },
+                                "aggs": {
+                                    "3": {
+                                        "geo_centroid": {
+                                            "field": "geoip.location"
+                                        }
+                                    }
                                 }
                             }
                         }
-                    ],
-                    "should": [],
-                    "must_not": []
+                    }
+                },
+                "size": 0,
+                "_source": {
+                    "excludes": []
+                },
+                "stored_fields": [
+                    "*"
+                ],
+                "script_fields": {},
+                "docvalue_fields": [
+                    {
+                        "field": "@timestamp",
+                        "format": "date_time"
+                    }
+                ],
+                "query": {
+                    "bool": {
+                        "must": [],
+                        "filter": [
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            sp_param,
+                            {
+                                "range": {
+                                    "@timestamp": {
+                                        "format": "strict_date_optional_time",
+                                        "gte": st_time,
+                                        "lte": ed_time
+                                    }
+                                }
+                            }
+                        ],
+                        "should": [],
+                        "must_not": []
+                    }
                 }
             }
-        }
+        elif param == 2:  # 域名
+            body = {
+                "aggs": {
+                    "filter_agg": {
+                        "filter": {
+                            "geo_bounding_box": {
+                                "ignore_unmapped": "true",
+                                "geoip.location": {
+                                    "top_left": {
+                                        "lat": 64.590055,
+                                        "lon": -180
+                                    },
+                                    "bottom_right": {
+                                        "lat": -90,
+                                        "lon": 180
+                                    }
+                                }
+                            }
+                        },
+                        "aggs": {
+                            "2": {
+                                "geohash_grid": {
+                                    "field": "geoip.location",
+                                    "precision": 2
+                                },
+                                "aggs": {
+                                    "3": {
+                                        "geo_centroid": {
+                                            "field": "geoip.location"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "size": 0,
+                "_source": {
+                    "excludes": []
+                },
+                "stored_fields": [
+                    "*"
+                ],
+                "script_fields": {},
+                "docvalue_fields": [
+                    {
+                        "field": "@timestamp",
+                        "format": "date_time"
+                    }
+                ],
+                "query": {
+                    "bool": {
+                        "must": [],
+                        "filter": [
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "match_all": {}
+                            },
+                            {
+                                "bool": {
+                                    "should": [
+                                        {
+                                            "wildcard": {
+                                                "domain": sp_param
+                                            }
+                                        }
+                                    ],
+                                    "minimum_should_match": 1
+                                }
+                            },
+                            {
+                                "range": {
+                                    "@timestamp": {
+                                        "format": "strict_date_optional_time",
+                                        "gte": st_time,
+                                        "lte": ed_time
+                                    }
+                                }
+                            }
+                        ],
+                        "should": [],
+                        "must_not": []
+                    }
+                }
+            }
         try:
             ret = es.search(index='logstash-nginx-log', doc_type='_doc', body=body)
             re_data = ret['aggregations']['filter_agg']['2']['buckets']
@@ -800,15 +1005,15 @@ class Safety_map(View):
             jsontext['edtime'] = ed_time
             jsontext['geoCoordMap'] = geoCoordMap
             jsontext['BJData'] = BJData
-            return json.dumps(jsontext, ensure_ascii=False)
+            return HttpResponse(json.dumps(jsontext))
         except Exception as err:
-            logger.error('获取地图数据出错：{}'.format(err))
-            return False
+            print(err)
+            return HttpResponse("Error")
 
 
 # WAF攻击趋势
 class Safety_waf_attack_trend(View):
-    @check_user_request
+
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         st_time = datetime.datetime.strptime(datetime.datetime.now().strftime("%Y-%m-%d"), "%Y-%m-%d").strftime(
@@ -844,13 +1049,13 @@ class Safety_waf_attack_trend(View):
                 return HttpResponse("Error")
 
     def post(self, request):
-        time = int(request.POST['tim'])
+        time = request.POST['tim']
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')
         if time == 'None':
             st_time = datetime.datetime.strptime(datetime.datetime.now().strftime("%Y-%m-%d"), "%Y-%m-%d").strftime(
                 '%Y-%m-%dT%H:%M:%S')
         else:
-            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-time)).strftime('%Y-%m-%dT%H:%M:00')
+            st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-int(time))).strftime('%Y-%m-%dT%H:%M:00')
         # 获取
         comid = request.GET.get('comid', None)
         if comid == None:  # 是否携带用户信息
@@ -1062,10 +1267,10 @@ class Safety_waf_attack_trend(View):
 
 # 攻击TOP10
 class Safety_top(View):
-    @check_user_request
+
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区时间
-        st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
         # 获取
         comid = request.GET.get('comid', None)
         if comid == None:  # 是否携带用户信息
@@ -1091,13 +1296,10 @@ class Safety_top(View):
                     match_phrase = {"match_phrase": {"dst_ip": ip}}
                     sp_param["bool"]["should"].append(match_phrase)
                 es_result = self.sear_info(st_time, ed_time, sp_param)
-                if es_result == False:
-                    return HttpResponse("request false", status=404)
-                else:
-                    return HttpResponse(es_result)
+                return HttpResponse(es_result)
             except Exception as err:
-                logger.error('请求出错：{}'.format(err))
-                return HttpResponse("request error", status=404)
+                print(err)
+                return HttpResponse("Error")
 
     def post(self, request):
         time = int(request.POST['edtime'])
@@ -1127,13 +1329,10 @@ class Safety_top(View):
                     match_phrase = {"match_phrase": {"dst_ip.ip": ip}}
                     sp_param["bool"]["should"].append(match_phrase)
                 es_result = self.sear_info(st_time, ed_time, sp_param)
-                if es_result == False:
-                    return HttpResponse("request false", status=404)
-                else:
-                    return HttpResponse(es_result)
+                return HttpResponse(es_result)
             except Exception as err:
-                logger.error('请求出错：{}'.format(err))
-                return HttpResponse("request error", status=404)
+                print(err)
+                return HttpResponse("Error")
 
     def sear_info(self, st_time, ed_time, sp_param):
         if sp_param == None:
@@ -1307,10 +1506,10 @@ class Safety_top(View):
 
 # 风险占比
 class Safety_risk(View):
-    @check_user_request
+
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
-        st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
         # 获取
         comid = request.GET.get('comid', None)
         if comid == None:  # 是否携带用户信息
@@ -1333,13 +1532,10 @@ class Safety_risk(View):
                     match_phrase = {"match_phrase": {"destination.ip": ip}}
                     sp_param["bool"]["should"].append(match_phrase)
                 es_result = self.sear_info(st_time, ed_time, sp_param)
-                if es_result == False:
-                    return HttpResponse("request false", status=404)
-                else:
-                    return HttpResponse(es_result)
+                return HttpResponse(es_result)
             except Exception as err:
-                logger.error('请求出错：{}'.format(err))
-                return HttpResponse("request error", status=404)
+                print(err)
+                return HttpResponse("Error")
 
     def post(self, request):
         time = int(request.POST['edtime'])
@@ -1369,13 +1565,10 @@ class Safety_risk(View):
                     match_phrase = {"match_phrase": {"dst_ip.ip": ip}}
                     sp_param["bool"]["should"].append(match_phrase)
                 es_result = self.sear_info(st_time, ed_time, sp_param)
-                if es_result == False:
-                    return HttpResponse("request false", status=404)
-                else:
-                    return HttpResponse(es_result)
+                return HttpResponse(es_result)
             except Exception as err:
-                logger.error('请求出错：{}'.format(err))
-                return HttpResponse("request error", status=404)
+                print(err)
+                return HttpResponse("Error")
 
     def sear_info(self, st_time, ed_time, sp_param):
         if sp_param == None:
@@ -1529,10 +1722,10 @@ class Safety_risk(View):
 
 # 主要受攻击端口占比
 class Safety_attack_port(View):
-    @check_user_request
+
     def get(self, request):
         ed_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:00')  # 东八区是按 秒和毫秒为整数
-        st_time = (datetime.datetime.utcnow() + datetime.timedelta(minutes=-15)).strftime('%Y-%m-%dT%H:%M:00')
+        st_time = (datetime.datetime.utcnow() + datetime.timedelta(days=-1)).strftime('%Y-%m-%dT%H:%M:00')
         # 获取
         comid = request.GET.get('comid', None)
         if comid == None:  # 是否携带用户信息
@@ -1555,13 +1748,10 @@ class Safety_attack_port(View):
                     match_phrase = {"match_phrase": {"destination.ip": ip}}
                     sp_param["bool"]["should"].append(match_phrase)
                 es_result = self.sear_info(st_time, ed_time, sp_param)
-                if es_result == False:
-                    return HttpResponse("request false", status=404)
-                else:
-                    return HttpResponse(es_result)
+                return HttpResponse(es_result)
             except Exception as err:
-                logger.error('请求出错：{}'.format(err))
-                return HttpResponse("request error", status=404)
+                print(err)
+                return HttpResponse("Error")
 
     def post(self, request):
         time = int(request.POST['edtime'])
@@ -1591,13 +1781,10 @@ class Safety_attack_port(View):
                     match_phrase = {"match_phrase": {"dst_ip.ip": ip}}
                     sp_param["bool"]["should"].append(match_phrase)
                 es_result = self.sear_info(st_time, ed_time, sp_param)
-                if es_result == False:
-                    return HttpResponse("request false", status=404)
-                else:
-                    return HttpResponse(es_result)
+                return HttpResponse(es_result)
             except Exception as err:
-                logger.error('请求出错：{}'.format(err))
-                return HttpResponse("request error", status=404)
+                print(err)
+                return HttpResponse("Error")
 
     def sear_info(self, st_time, ed_time, sp_param):
         if sp_param == None:
@@ -1751,9 +1938,7 @@ class Safety_attack_port(View):
 
 # web安全威胁统计
 class Safety_waf_attack_count(View):
-    '''首页-web安全信息'''
 
-    @check_user_request
     def get(self, request):
         comid = request.GET.get('comid', 'None')
         if comid == 'None':
