@@ -31,19 +31,19 @@ class thindex(View):
         username = request.session.get('webuser', default=None)  # 获取登录用户名
         user = Users.objects.get(username=username)
         # userlist = paginator.page(1)
-        result = self.seardat(comid)
-        res = result["dat"]
-        if res != False:
-            paginator = Paginator(res, 8)  # 分页功能，一页8条数据
-            userlist = paginator.page(1)
-            content = {
-                "compid": comid,
-                "users": userlist
-            }
-        else:
-            content = {
-                "compid": comid
-            }
+        # result = self.seardat(comid)
+        # res = result["dat"]
+        # if res != False:
+        #     paginator = Paginator(res, 8)  # 分页功能，一页8条数据
+        #     userlist = paginator.page(1)
+        #     content = {
+        #         "compid": comid,
+        #         "users": userlist
+        #     }
+        # else:
+        content = {
+            "compid": comid
+        }
 
         if user.state == 0:
             if int(comid) == 0:
@@ -1425,7 +1425,7 @@ class threaten_count(View):
         tim = request.GET.get('tim', None)
         result = self.seardat(comid,tim)
         res = result['dat']
-        paginator = Paginator(res, 8)  # 分页功能，一页8条数据
+        paginator = Paginator(res, 5)  # 分页功能，一页8条数据
         if request.is_ajax() == False:
             userlist = paginator.page(1)
             content = {
