@@ -1,4 +1,4 @@
-Django==1.11.11
+Django==1.11.29
 elasticsearch==7.6.0
 elasticsearch-dsl==7.2.0
 Pillow==7.1.2
